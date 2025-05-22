@@ -1,0 +1,509 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/6/2025 12:12:05 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{35C6C361-6CA9-4D9B-A816-3506726A34F6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Init_CreateTables"
+  DTS:PackageType="5"
+  DTS:VersionBuild="77"
+  DTS:VersionGUID="{1EE9C71F-8351-4734-94D7-13BA85816599}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DW_Bronze]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+      DTS:ObjectName="LocalHost.DW_Bronze">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DW_Bronze;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Init_CreateTables-{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}LocalHost.DW_Bronze;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DW_Gold]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A0A4D93B-608B-409A-A503-44F17942B149}"
+      DTS:ObjectName="LocalHost.DW_Gold">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DW_Gold;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Init_CreateTables-{A0A4D93B-608B-409A-A503-44F17942B149}LocalHost.DW_Gold;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DW_Silver]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{10F6BEBC-62B8-46F5-BB82-96C382BF2260}"
+      DTS:ObjectName="LocalHost.DW_Silver">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DW_Silver;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Init_CreateTables-{10F6BEBC-62B8-46F5-BB82-96C382BF2260}LocalHost.DW_Silver;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create bronze tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{BCD47B1E-F4AC-4318-BF5C-3E74BC047C4F}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Create bronze tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_Arbetslösa"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{a1b9e3b9-92d1-4cf6-b0fe-4e9584f24238}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_Arbetslösa"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_Arbetslösa', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_Arbetslösa;&#xA;&#xA;CREATE TABLE dbo.Bronze_Arbetslösa (&#xA;    YearMonth NVARCHAR(100) NOT NULL,         -- t.ex. &quot;2024M01&quot;&#xA;    [15-24 år] FLOAT NULL,&#xA;    [16-24 år] FLOAT NULL,&#xA;    [25-54 år] FLOAT NULL,&#xA;    [55-64 år] FLOAT NULL,&#xA;    [55-74 år] FLOAT NULL,&#xA;    [totalt 15-74 år] FLOAT NULL,&#xA;    [totalt 16-64 år] FLOAT NULL,&#xA;    [totalt 20-64 år] FLOAT NULL,&#xA;    CreatedBronzeAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning&#xA;);&#xA;&#xA;-- Lägg till unikt index på YearMonth&#xA;CREATE UNIQUE INDEX UX_BronzeArbetslösa_YearMonth ON dbo.Bronze_Arbetslösa(YearMonth);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_Befolkning"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{dd4b1b44-11f5-4998-9976-cc190bf8e09f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_Befolkning"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_Befolkning', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_Befolkning;&#xA;&#xA;CREATE TABLE dbo.Bronze_Befolkning (&#xA;    YearMonth NVARCHAR(100) NOT NULL,         -- t.ex. &quot;2024M01&quot;&#xA;    Value FLOAT NULL,                        -- t.ex. 0.5&#xA;    CreatedBronzeAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning&#xA;);&#xA;&#xA;-- Lägg till unikt index på YearMonth&#xA;CREATE UNIQUE INDEX UX_BronzeBefolkning_YearMonth ON dbo.Bronze_Befolkning(YearMonth);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_BNP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{62aa6bd9-a51b-4de8-b178-20f56c244162}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_BNP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_BNP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_BNP;&#xA;&#xA;CREATE TABLE dbo.Bronze_BNP (&#xA;    Year NVARCHAR(100) NOT NULL,         -- t.ex. 2024&#xA;    Value INT NULL,                        -- t.ex. 505&#xA;    CreatedBronzeAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning&#xA;);&#xA;&#xA;-- Lägg till unikt index på Year&#xA;CREATE UNIQUE INDEX UX_BronzeBNP_Year ON dbo.Bronze_BNP(Year);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_GDP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1d8b2f74-617d-4578-a4d6-01cbd0e5f060}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_GDP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_GDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_GDP;&#xA;&#xA;CREATE TABLE dbo.Bronze_GDP (&#xA;    STRUCTURE                   NVARCHAR(100) NULL,  -- V2 structure&#xA;    STRUCTURE_ID                NVARCHAR(100) NULL,&#xA;    STRUCTURE_NAME              NVARCHAR(255) NULL,&#xA;    freq                        NVARCHAR(50)  NULL,  -- t.ex. Q&#xA;    [Time frequency]            NVARCHAR(50)  NULL,&#xA;    unit                        NVARCHAR(50)  NULL,  -- t.ex. CP_MEUR&#xA;    [Unit of measure]           NVARCHAR(100) NULL,&#xA;    s_adj                       NVARCHAR(50)  NULL,  -- NSA/SA&#xA;    [Seasonal adjustment]       NVARCHAR(100) NULL,&#xA;    na_item                     NVARCHAR(50)  NULL,  -- B1GQ&#xA;    [National accounts indicator (ESA 2010)] NVARCHAR(200) NULL,&#xA;    geo                         NVARCHAR(50)  NULL,  -- t.ex. SE, EU27_2020&#xA;    [Geopolitical entity (reporting)] NVARCHAR(200) NULL,&#xA;    TIME_PERIOD                 NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-Q1&#xA;    [Time]                      NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                   FLOAT         NULL,&#xA;    [Observation value]         NVARCHAR(100) NULL,      -- rå strängversion&#xA;    OBS_FLAG                    NVARCHAR(10)  NULL,&#xA;    [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,&#xA;    CONF_STATUS                 NVARCHAR(50)  NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status (flag)] NVARCHAR(50) NULL,&#xA;    CreatedBronzeAt             DATETIME      NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;-- Om du vill ha unikt index på kombinationen geo + TIME_PERIOD (för att täcka flera länder)&#xA;--CREATE UNIQUE INDEX UX_BronzeGDP_geo_TIME_PERIOD &#xA;--    ON dbo.Bronze_GDP(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_GDP 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{545575e2-2991-4038-9943-152acbd9f0cf}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_GDP 1"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_GDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_GDP;&#xA;&#xA;CREATE TABLE Bronze_GDP (&#xA;    Geo NVARCHAR(10) NOT NULL,&#xA;    TimePeriod NVARCHAR(10) NOT NULL,&#xA;    ObsValue FLOAT NULL,&#xA;    CreatedAt DATETIME DEFAULT GETDATE()&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_GDP 2"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{0f9e0a05-eeaf-412b-a0dd-988ca4d08ee4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_GDP 2"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_GDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_GDP;&#xA;&#xA;CREATE TABLE dbo.Bronze_GDP (&#xA;    freq NVARCHAR(100) NULL,         -- t.ex. &quot;2024M01&quot;&#xA;    unit NVARCHAR(100) NULL,                        -- t.ex. 0.5&#xA;    s_adj NVARCHAR(100) NULL,                        -- t.ex. 0.5&#xA;    na_item NVARCHAR(100) NULL,                        -- t.ex. 0.5&#xA;    geo NVARCHAR(100) NULL,                        -- t.ex. 0.5&#xA;    TIME_PERIOD NVARCHAR(100) NOT NULL,                        -- t.ex. 0.5&#xA;    OBS_VALUE FLOAT NULL,         -- t.ex. &quot;2024M01&quot;&#xA;    CreatedBronzeAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning&#xA;);&#xA;&#xA;-- Lägg till unikt index på TIME_PERIOD&#xA;-- CREATE UNIQUE INDEX UX_BronzeGDP_TIME_PERIOD ON dbo.Bronze_GDP(TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables\Bronze_KPI"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{1684c20d-9aa4-493f-8dc0-f8dc4bda0c39}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Bronze_KPI"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{27701D48-0DE9-4640-AF7B-CEC1CDB62A5C}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Bronze_KPI', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Bronze_KPI;&#xA;&#xA;CREATE TABLE dbo.Bronze_KPI (&#xA;    YearMonth NVARCHAR(100) NOT NULL,         -- t.ex. &quot;2024M01&quot;&#xA;    Value FLOAT NULL,                        -- t.ex. 0.5&#xA;    CreatedBronzeAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning&#xA;);&#xA;&#xA;-- Lägg till unikt index på YearMonth&#xA;CREATE UNIQUE INDEX UX_BronzeKPI_YearMonth ON dbo.Bronze_KPI(YearMonth);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create gold tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9DEC19AD-0735-442C-85A0-A01C4A09D8B3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Create gold tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create gold tables\Gold_KPI"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{B564BB56-219C-4154-9479-CF66BD2A56E0}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gold_KPI"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A0A4D93B-608B-409A-A503-44F17942B149}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Gold_KPI', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Gold_KPI;&#xA;&#xA;CREATE TABLE dbo.Gold_KPI (&#xA;    MonthStartDate DATE NOT NULL,                              -- t.ex. &quot;2024-01-01&quot;&#xA;    Value FLOAT NULL,                                                     -- t.ex. 0,5&#xA;    CreatedBronzeAt DATETIME,                                       -- loggar tidpunkten för inmatning i Bronze lagret&#xA;    CreatedSilverAt DATETIME                                          -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;-- Lägg till unikt index på YearMonth&#xA;CREATE UNIQUE INDEX UX_GoldKPI_YearMonth ON dbo.Gold_KPI(YearMonth);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create silver tables"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{88157532-0179-45FE-8C77-346F8B22110E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Create silver tables">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables\gdp_cleaned"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{14e03964-de39-4db7-ae91-e8055bdf0461}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="gdp_cleaned"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{10F6BEBC-62B8-46F5-BB82-96C382BF2260}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.gdp_cleaned', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.gdp_cleaned;&#xA;&#xA;CREATE TABLE dbo.gdp_cleaned (&#xA; &#x9; freq CHAR(1) NOT NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. Q&#xA;    &#x9;[Time frequency] CHAR(10) NOT NULL,&#x9;&#x9;&#x9;-- t.ex. Quarterly&#xA;    &#x9;unit CHAR(7) NOT NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. CP_MEUR&#xA;    &#x9;[Unit of measure] CHAR(30) NOT NULL,&#x9;&#x9;&#x9;-- t.ex. Current prices, million euro&#xA;    &#x9;s_adj CHAR(3) NOT NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. SCA&#xA;    &#x9;[Seasonal adjustment] CHAR(80) NOT NULL,&#x9;&#x9;-- t.ex. Seasonally and calendar adjusted data                                           &#xA;    &#x9;geo CHAR(9) NOT NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. SE&#xA;    &#x9;[Geopolitical entity (reporting)] CHAR(110) NOT NULL,&#x9;-- t.ex. Sweden&#xA;    &#x9;Date DATE NOT NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. 1995-01-01&#xA;    &#x9;OBS_VALUE NUMERIC (20,1) NOT NULL,&#x9;&#x9;-- t.ex. 1000,1&#xA;    &#x9;OBS_FLAG CHAR(2) NULL,&#x9;&#x9;&#x9;&#x9;-- t.ex. p&#xA;    &#x9;[Observation status (Flag) V2 structure] CHAR(20), &#x9;-- t.ex. provisional&#xA;    &#x9;CreatedBronzeAt DATETIME,                                       &#x9;-- loggar tidpunkten för inmatning i Bronze lagret&#xA;    &#x9;CreatedSilverAt DATETIME DEFAULT GETDATE()     &#x9;-- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;-- Lägg till unikt index på Date&#xA;-- CREATE UNIQUE INDEX UX_SilverKPI_Date ON dbo.Silver_KPI(Date);&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables\Silver_Befolkning"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{db493371-9327-4ce7-b8da-9eb48cd15429}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Silver_Befolkning"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{10F6BEBC-62B8-46F5-BB82-96C382BF2260}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Silver_Befolkning', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Silver_Befolkning;&#xA;&#xA;CREATE TABLE dbo.Silver_Befolkning (&#xA;    Date DATE NOT NULL,         -- t.ex. 2024-01-01&#xA;    Befolkning FLOAT NULL,                        -- t.ex. 0,5&#xA;    CreatedBronzeAt DATETIME,                                       -- loggar tidpunkten för inmatning i Bronze lagret&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;-- Lägg till unikt index på Date&#xA;CREATE UNIQUE INDEX UX_SilverBefolkning_Date ON dbo.Silver_Befolkning(Date);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables\Silver_BNP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{f69adbad-e02d-44a2-9534-f6be45b8330d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Silver_BNP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{10F6BEBC-62B8-46F5-BB82-96C382BF2260}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Silver_BNP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Silver_BNP;&#xA;&#xA;CREATE TABLE dbo.Silver_BNP (&#xA;    Date DATE NOT NULL,         -- t.ex. 2024-01-01&#xA;    BNP INT NULL,                        -- t.ex. 0,5&#xA;    CreatedBronzeAt DATETIME,                                       -- loggar tidpunkten för inmatning i Bronze lagret&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;-- Lägg till unikt index på Date&#xA;CREATE UNIQUE INDEX UX_SilverBNP_Date ON dbo.Silver_BNP(Date);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables\Silver_KPI"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:Disabled="True"
+          DTS:DTSID="{062eeafb-8ade-4bcb-81b4-f1427394a0cc}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Silver_KPI"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{10F6BEBC-62B8-46F5-BB82-96C382BF2260}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Silver_KPI', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Silver_KPI;&#xA;&#xA;CREATE TABLE dbo.Silver_KPI (&#xA;    Date DATE NOT NULL,         -- t.ex. 2024-01-01&#xA;    KPIProcent FLOAT NULL,                        -- t.ex. 0,5&#xA;    CreatedBronzeAt DATETIME,                                       -- loggar tidpunkten för inmatning i Bronze lagret&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()     -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;-- Lägg till unikt index på Date&#xA;CREATE UNIQUE INDEX UX_SilverKPI_Date ON dbo.Silver_KPI(Date);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9AE34354-7C4F-4028-AD87-E18C91DFF101}"
+      DTS:From="Package\Sequence Container - Create bronze tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container - Create silver tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{0F8861B3-D3C0-442F-9A0C-919E42FB3BA7}"
+      DTS:From="Package\Sequence Container - Create silver tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sequence Container - Create gold tables" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_Arbetslösa"
+          TopLeft="10,71" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_Befolkning"
+          TopLeft="149,12" />
+        <NodeLayout
+          Size="136,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_BNP"
+          TopLeft="320,10" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_GDP"
+          TopLeft="185,178" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_GDP 1"
+          TopLeft="10,275" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_GDP 2"
+          TopLeft="186,270" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Sequence Container - Create bronze tables\Bronze_KPI"
+          TopLeft="10,10" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="483,547"
+          Size="483,590"
+          Id="Package\Sequence Container - Create bronze tables"
+          TopLeft="299,8" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Sequence Container - Create gold tables\Gold_KPI"
+          TopLeft="136,39" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="452,190"
+          Size="452,233"
+          Id="Package\Sequence Container - Create gold tables"
+          TopLeft="296,1213" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container - Create silver tables\gdp_cleaned"
+          TopLeft="11,118" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Sequence Container - Create silver tables\Silver_Befolkning"
+          TopLeft="150,16" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Sequence Container - Create silver tables\Silver_BNP"
+          TopLeft="303,16" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\Sequence Container - Create silver tables\Silver_KPI"
+          TopLeft="11,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="472,215"
+          Size="472,258"
+          Id="Package\Sequence Container - Create silver tables"
+          TopLeft="296,779" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="540.5,598">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,181"
+              Start="0,0"
+              End="-8.5,173.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,86.5"
+                    Point2="0,90.5"
+                    Point3="-4,90.5" />
+                  <mssgle:LineSegment
+                    End="-4.5,90.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,90.5"
+                    Point2="-8.5,90.5"
+                    Point3="-8.5,94.5" />
+                  <mssgle:LineSegment
+                    End="-8.5,173.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="532,1037">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,176"
+              Start="0,0"
+              End="-10,168.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,84"
+                    Point2="0,88"
+                    Point3="-4,88" />
+                  <mssgle:LineSegment
+                    End="-6,88" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,88"
+                    Point2="-10,88"
+                    Point3="-10,92" />
+                  <mssgle:LineSegment
+                    End="-10,168.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="CREATE UNIQUE INDEX UX_BronzeKPI_YearMonth ON Bronze_KPI(YearMonth);&#xA;"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="443,56"
+          Id="e5ec7a4b-2c87-4f02-a956-7e5ea9c6f3b6"
+          TopLeft="767,62" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
