@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Init_CreateTables"
   DTS:PackageType="5"
-  DTS:VersionBuild="77"
-  DTS:VersionGUID="{1EE9C71F-8351-4734-94D7-13BA85816599}">
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{03652171-190F-4A0F-8F80-E8262381CF22}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -53,8 +53,724 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{780C5C71-83BE-4466-9E64-CB06D721B7B5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Date">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1970</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0200E44B-39B5-4748-9493-BD532AD83D1A}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="GETDATE()"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EndDimDate">
+      <DTS:VariableValue
+        DTS:DataType="7">6/3/2025 12:29:06 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A8611DE-E39E-4413-8A21-5306C73B0452}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartDimDate">
+      <DTS:VariableValue
+        DTS:DataType="7">1/1/1970</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{def31e87-a823-46d6-9c5d-8624aa2ae376}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A0A4D93B-608B-409A-A503-44F17942B149}"
+          SQLTask:SqlStatementSource="-- Ta bort tabellen om den redan finns&#xA;IF OBJECT_ID('dbo.DimDate', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimDate;&#xA;GO&#xA;&#xA;-- Skapa datumdimensionstabellen DimDate&#xA;CREATE TABLE dbo.DimDate&#xA;(&#xA;    DateKey        INT          NOT NULL &#xA;                   CONSTRAINT PK_DimDate PRIMARY KEY,  &#xA;                   -- Primärnyckel i format YYYYMMDD, t.ex. 20250602&#xA;&#xA;    FullDate       DATE         NOT NULL &#xA;                   CONSTRAINT UQ_DimDate_Date UNIQUE,  &#xA;                   -- Själva datumvärdet (unik), utan tidskomponent&#xA;&#xA;    [Year]         INT          NOT NULL,  &#xA;                   -- År (t.ex. 2025)&#xA;&#xA;    [Quarter]      TINYINT      NOT NULL,  &#xA;                   -- Kvartal som heltal (1–4)&#xA;&#xA;    QuarterText    NVARCHAR(2)      NOT NULL,  &#xA;                   -- Text för kvartal (t.ex. 'Q1', 'Q2', 'Q3' eller 'Q4')&#xA;&#xA;    [Month]        TINYINT      NOT NULL,  &#xA;                   -- Månad som heltal (1–12)&#xA;&#xA;    MonthName      NVARCHAR(10) NOT NULL,  &#xA;                   -- Månadsnamn på svenska (t.ex. 'januari', 'februari', etc.)&#xA;&#xA;    [Week]         TINYINT      NOT NULL,  &#xA;                   -- Veckonummer enligt ISO 8601 (1–53)&#xA;&#xA;    DayOfMonth     TINYINT      NOT NULL,  &#xA;                   -- Dag i månaden (1–31)&#xA;&#xA;    DayOfWeek      TINYINT      NOT NULL,  &#xA;                   -- Veckodagsnummer (1 = måndag, …, 7 = söndag)&#xA;&#xA;    DayOfWeekName  NVARCHAR(10) NOT NULL   &#xA;                   -- Veckodagsnamn på svenska (t.ex. 'måndag', 'tisdag', etc.)&#xA;);&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DimDate Loop"
+      DTS:AssignExpression="@[User::Date] = DATEADD(&quot;d&quot;, 1, @[User::Date])"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{a2d7d790-bafb-4cfe-8125-25ae975f0f45}"
+      DTS:EvalExpression="@[User::Date] &lt;= @[User::EndDimDate]"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@[User::Date] = @[User::StartDimDate]"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="DimDate Loop">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DimDate Loop\Load DimDate"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{14954c0d-2c9e-4a2e-ade9-5c5438ddc3f0}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load DimDate"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DB DW - Tabell DimDate"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimDate]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Gold]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Gold]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                          cachedDataType="i4"
+                          cachedName="DateKey"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DateKey]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[FullDate]"
+                          cachedDataType="wstr"
+                          cachedLength="10"
+                          cachedName="FullDate"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[FullDate]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[Year]"
+                          cachedDataType="i4"
+                          cachedName="Year"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Year]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[Quarter]"
+                          cachedDataType="i4"
+                          cachedName="Quarter"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Quarter]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[QuarterText]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="QuarterText"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[QuarterText]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[QuarterText]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[Month]"
+                          cachedDataType="i4"
+                          cachedName="Month"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Month]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[MonthName]"
+                          cachedDataType="wstr"
+                          cachedLength="9"
+                          cachedName="MonthName"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[MonthName]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[Week]"
+                          cachedDataType="i4"
+                          cachedName="Week"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Week]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Week]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[DayOfWeek]"
+                          cachedDataType="i4"
+                          cachedName="DayOfWeek"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeek]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[DayOfWeekName]"
+                          cachedDataType="wstr"
+                          cachedLength="7"
+                          cachedName="DayOfWeekName"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekName]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeekName]" />
+                        <inputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].Columns[DayOfMonth]"
+                          cachedDataType="i4"
+                          cachedName="DayOfMonth"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfMonth]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfMonth]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                          dataType="i4"
+                          name="DateKey" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[FullDate]"
+                          dataType="dbDate"
+                          name="FullDate" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                          dataType="i4"
+                          name="Year" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Quarter]"
+                          dataType="ui1"
+                          name="Quarter" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[QuarterText]"
+                          dataType="wstr"
+                          length="2"
+                          name="QuarterText" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Month]"
+                          dataType="ui1"
+                          name="Month" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[MonthName]"
+                          dataType="wstr"
+                          length="10"
+                          name="MonthName" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[Week]"
+                          dataType="ui1"
+                          name="Week" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfMonth]"
+                          dataType="ui1"
+                          name="DayOfMonth" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeek]"
+                          dataType="ui1"
+                          name="DayOfWeek" />
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input].ExternalColumns[DayOfWeekName]"
+                          dataType="wstr"
+                          length="10"
+                          name="DayOfWeekName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimDate Loop\Load DimDate\Dummy"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Dummy"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimDate]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select null as dummy</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimDate Loop\Load DimDate\Dummy.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[LocalHost.DW_Gold]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalHost.DW_Gold]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output].Columns[dummy]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output].ExternalColumns[dummy]"
+                          lineageId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output].Columns[dummy]"
+                          name="dummy"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output].ExternalColumns[dummy]"
+                          dataType="i4"
+                          name="dummy" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[dummy]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[dummy]"
+                          name="dummy" />
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimDate Loop\Load DimDate\Fyller DimDate"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Fyller DimDate"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DateKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DateKey]"
+                          name="DateKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_I4)[LEFT]([REPLACE]((DT_STR,25,1252)@[User::Date],"-",""),8)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_I4)LEFT(REPLACE((DT_STR,25,1252)@[User::Date],"-",""),8)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[FullDate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="10"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[FullDate]"
+                          name="FullDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[LEFT]((DT_WSTR,25)@[User::Date],10)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">LEFT((DT_WSTR,25)@[User::Date],10)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Year]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Year]"
+                          name="Year"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[YEAR](@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">YEAR(@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Quarter]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Quarter]"
+                          name="Quarter"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("quarter",@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("quarter",@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[QuarterText]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="2"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[QuarterText]"
+                          name="QuarterText"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"Q" + (DT_STR,1,1252)[DATEPART]("quarter",@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"Q" + (DT_STR,1,1252)DATEPART("quarter",@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Month]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Month]"
+                          name="Month"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("month",@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("month",@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[MonthName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="9"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[MonthName]"
+                          name="MonthName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("month",@[User::Date]) == 1 ? "januari" : [DATEPART]("month",@[User::Date]) == 2 ? "febuari" : [DATEPART]("month",@[User::Date]) == 3 ? "mars" : [DATEPART]("month",@[User::Date]) == 4 ? "april" : [DATEPART]("month",@[User::Date]) == 5 ? "maj" : [DATEPART]("month",@[User::Date]) == 6 ? "juni" : [DATEPART]("month",@[User::Date]) == 7 ? "juli" : [DATEPART]("month",@[User::Date]) == 8 ? "augusti" : [DATEPART]("month",@[User::Date]) == 9 ? "september" : [DATEPART]("month",@[User::Date]) == 10 ? "oktober" : [DATEPART]("month",@[User::Date]) == 11 ? "november" : [DATEPART]("month",@[User::Date]) == 12 ? "december" : "datum-fel"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("month",@[User::Date]) == 1 ? "januari" : DATEPART("month",@[User::Date]) == 2 ? "febuari" : DATEPART("month",@[User::Date]) == 3 ? "mars" : DATEPART("month",@[User::Date]) == 4 ? "april" : DATEPART("month",@[User::Date]) == 5 ? "maj" : DATEPART("month",@[User::Date]) == 6 ? "juni" : DATEPART("month",@[User::Date]) == 7 ? "juli" : DATEPART("month",@[User::Date]) == 8 ? "augusti" : DATEPART("month",@[User::Date]) == 9 ? "september" : DATEPART("month",@[User::Date]) == 10 ? "oktober" : DATEPART("month",@[User::Date]) == 11 ? "november" : DATEPART("month",@[User::Date]) == 12 ? "december" : "datum-fel"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Week]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[Week]"
+                          name="Week"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("week",@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("week",@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeek]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeek]"
+                          name="DayOfWeek"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("weekday",@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("weekday",@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeekName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="7"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfWeekName]"
+                          name="DayOfWeekName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DATEPART]("weekday",@[User::Date]) == 1 ? "måndag" : [DATEPART]("weekday",@[User::Date]) == 2 ? "tisdag" : [DATEPART]("weekday",@[User::Date]) == 3 ? "onsdag" : [DATEPART]("weekday",@[User::Date]) == 4 ? "torsdag" : [DATEPART]("weekday",@[User::Date]) == 5 ? "fredag" : [DATEPART]("weekday",@[User::Date]) == 6 ? "lördag" : [DATEPART]("weekday",@[User::Date]) == 7 ? "söndag" : "dag-fel"</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DATEPART("weekday",@[User::Date]) == 1 ? "måndag" : DATEPART("weekday",@[User::Date]) == 2 ? "tisdag" : DATEPART("weekday",@[User::Date]) == 3 ? "onsdag" : DATEPART("weekday",@[User::Date]) == 4 ? "torsdag" : DATEPART("weekday",@[User::Date]) == 5 ? "fredag" : DATEPART("weekday",@[User::Date]) == 6 ? "lördag" : DATEPART("weekday",@[User::Date]) == 7 ? "söndag" : "dag-fel"</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfMonth]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output].Columns[DayOfMonth]"
+                          name="DayOfMonth"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[DAY](@[User::Date])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">DAY(@[User::Date])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DimDate Loop\Load DimDate.Paths[Derived Column Output]"
+                  endId="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\DimDate Loop\Load DimDate.Paths[OLE DB Source Output]"
+                  endId="Package\DimDate Loop\Load DimDate\Fyller DimDate.Inputs[Derived Column Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\DimDate Loop\Load DimDate\Dummy.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Sequence Container - Create bronze tables"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -75,7 +791,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_Arbetslösa"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -95,7 +811,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_Befolkning"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -115,7 +831,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_BNP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -134,7 +850,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_GDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -154,7 +870,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_GDP 1"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -174,7 +890,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_GDP 2"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -194,7 +910,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Bronze_KPI"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -255,7 +971,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="gdp_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -275,7 +991,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Silver_Befolkning"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -295,7 +1011,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Silver_BNP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -315,7 +1031,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Silver_KPI"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -345,6 +1061,22 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Sequence Container - Create gold tables" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0A77F36F-47FA-4DC5-B958-CDC3FF0BF64B}"
+      DTS:From="Package\Sequence Container - Create gold tables"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Create DimDate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{8f50ef12-ca2c-4908-b87c-eacdc3778d0f}"
+      DTS:From="Package\Create DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DimDate Loop" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -502,8 +1234,159 @@
           Size="443,56"
           Id="e5ec7a4b-2c87-4f02-a956-7e5ea9c6f3b6"
           TopLeft="767,62" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Create DimDate"
+          TopLeft="439,1497" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\DimDate Loop\Load DimDate"
+          TopLeft="90,29" />
+        <AnnotationLayout
+          Text="Krashar när jag försöker köra för andra gången."
+          ParentId="Package\DimDate Loop"
+          FontInfo="{assembly:Null}"
+          Size="279,40"
+          Id="f7a9f99f-51e3-46ee-b998-60c09752b8f7"
+          TopLeft="34,67" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="347,162"
+          Size="347,205"
+          Id="Package\DimDate Loop"
+          TopLeft="348,1583" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="518.75,1539">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="519,1446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\DimDate Loop\Load DimDate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="115,42"
+          Id="Package\DimDate Loop\Load DimDate\Dummy"
+          TopLeft="91,60" />
+        <NodeLayout
+          Size="148,42"
+          Id="Package\DimDate Loop\Load DimDate\Fyller DimDate"
+          TopLeft="78,224" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate"
+          TopLeft="58,365" />
+        <EdgeLayout
+          Id="Package\DimDate Loop\Load DimDate.Paths[Derived Column Output]"
+          TopLeft="153.75,266">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,99"
+              Start="0,0"
+              End="0,91.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimDate Loop\Load DimDate.Paths[OLE DB Source Output]"
+          TopLeft="150.25,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,122"
+              Start="0,0"
+              End="0,114.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,114.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDate Loop\Load DimDate\Dummy">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDate Loop\Load DimDate\DB DW - Tabell DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
