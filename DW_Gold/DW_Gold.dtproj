@@ -26,35 +26,335 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSOFFICE</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAm0zR/7YjZUyRNy43m11o7gAAAAACAAAAAAAQZgAAAAEAACAAAABpNPrNUFno7ysYlBMTOA6zRMRVsGkKOn8MmhEQS6MIMgAAAAAOgAAAAAIAACAAAADbDWjAsttIEO21QggIZC7UmqU65wcIgLS37qojHX2Z/pAAAADJ0WtEQgQtX5maX3Mf5JF1UzSQWzDwTIGozqVDUcgMIHn4sH/LL7iGo6wf2J0j10o1eLV0EIUN+KV8WRJbw/2YScZGwc6tgIk9y3A/19AEfYAHGbAVwssCDFNakIAbRgdMwTlIZ69BGxffijVSjLrXwnj9LHfpxXeRVi4obZMhPIFsuJhBc2S/iZU9k18+JURAAAAA4sUfVyUdo0Np3sfMFus/J2/qtA51KLMuMDSiT8op46V/0dgpJiD6Rxz15MJP6oQBlPNN6Sp8Or+8Tl87FJVo9w==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAm0zR/7YjZUyRNy43m11o7gAAAAACAAAAAAAQZgAAAAEAACAAAAAIA+FrWEIXRuIgvdogXflBiFwRd+3Wt4ilQWKkfYwmTQAAAAAOgAAAAAIAACAAAAANDk910LBQK/7gno9M/ttHNV6Tdmd8mWwUamQ1s+1VdpAAAABoxXAof+Ix7TK4+qpd0Qh9yZdXZy3liE76oxwzP+GZQ49oJs/B3Fqy7xy+Z0p3mVITvA1nRu8mfP8udsaMFWtY4Gi9hkJHITs943hlBtPtNqQSUU95116e7b5t0wFr1zwFNxy2o3r6BalLynW8FYVU3CJZBEoRCqAeTie0ErdMxhee8PHmL+hpsO7px6tNZb5AAAAABVPkI9PwZ2qst93s+y7qHWkNcfUnx7uhAxm5nv+vZcD7aUniDkdh+a2wZ7Y1j2c5XvlEDOB+qFXz9kV9xreGEA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Package9.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.AgeClass.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.ConsumptionCategory.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.Flags.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.Gender.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.Region.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.SeasonalAdjustment.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.TimeFrequency.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.Unit.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="Dim.Date.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimAgeClass.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimConsumptionCategory.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimDate.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimFlags.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimGender.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimRegion.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimSeasonalAdjustment.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimTimeFrequency.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimUnit.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="FactGDP.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
-        <SSIS:ConnectionManagers />
+        <SSIS:ConnectionManagers>
+          <SSIS:ConnectionManager SSIS:Name="LocalHost.LIA_DB_Silver.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="LocalHost.LIA_DW_Gold.conmgr" />
+        </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
-          <SSIS:ProjectConnectionParameters />
+          <SSIS:ProjectConnectionParameters>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ConnectByProxy">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=LIA_DB_Silver;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DimConsumptionCategory-{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}LocalHost.LIA_DB_Silver;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ConnectRetryCount">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ConnectRetryInterval">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ConnectUsingManagedIdentity">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.InitialCatalog">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">LIA_DB_Silver</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.Password">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.RetainSameConnection">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.ServerName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">.</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DB_Silver.UserName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ConnectByProxy">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=.;Initial Catalog=LIA_DW_Gold;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-DimConsumptionCategory-{A017A1D6-82C4-449D-8C3E-61DF27798648}LocalHost.LIA_DW_Gold;Auto Translate=False;</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ConnectRetryCount">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ConnectRetryInterval">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ConnectUsingManagedIdentity">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.InitialCatalog">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">LIA_DW_Gold</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.Password">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.RetainSameConnection">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.ServerName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">.</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.LocalHost.LIA_DW_Gold.UserName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+          </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Package9.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimAgeClass.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{2057CD79-F684-426C-BFEF-AF90AA585149}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package9</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{4475138B-383C-422B-8503-EA7E6AF089D2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimAgeClass</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B668B875-30F9-444C-A02E-B391E91C96DC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{18C528C1-57CA-4EB2-9EBA-19D1C05335A3}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -62,16 +362,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.AgeClass.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimConsumptionCategory.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{BC7B98D0-2F77-4F64-8816-5C4212BC9577}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim AgeClass</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{A673AEC4-92D9-4E15-95FD-B0859BAC5986}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimConsumptionCategory</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E9BBEFBD-5134-4085-B40C-46EA65DDA40A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{672A615C-8E47-4699-8D3C-07CDD9FC2F3F}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -79,16 +379,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.ConsumptionCategory.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimDate.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{E1480D67-4B43-4093-A4F6-A4F7AD43739F}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim ConsumptionCategory</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{DA52BDF0-B57B-4CB1-963D-7D1CCF1D2551}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimDate</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{6E5F2DD3-192A-4FA6-82D8-C43AAB7969EC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{12ADB602-308D-4C7C-A06D-8428F29680BE}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -96,16 +396,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.Flags.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimFlags.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{FBA20B38-3D03-457B-A4F2-1DE6A11E9CEB}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim Flags</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{52F6E222-51D5-4052-8F08-6B8DA74129AE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimFlags</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4C57EE27-B006-4CC9-BF80-BFA04A2ECE4C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{30FB300D-2769-4A21-A10D-421023B29021}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -113,16 +413,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.Gender.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimGender.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{CC7A05BC-82C4-4384-93F8-F9EFD697FEF3}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim Gender</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{BF8F9CAF-D06B-425C-A8BF-799F8C2AB8FE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimGender</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4A43EAA0-122C-4BBA-9651-9F29C3A46EDA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{1D2B3C20-66B0-4ABE-9FED-A9BC1402060E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -130,16 +430,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.Region.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimRegion.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{CFCC96E5-030A-4880-B8A5-667A97B45B86}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim Region</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{8CBED0E7-BE47-44A2-815D-1086183EEDAB}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimRegion</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{B1C43617-97A0-4CEA-9EE7-AE25F47E399B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{A97E9D39-18B6-4CCF-B6E4-56CA0316FD34}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -147,16 +447,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.SeasonalAdjustment.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimSeasonalAdjustment.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{240E9B67-16C6-4201-95D4-B1092F1FDDC8}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim SeasonalAdjustment</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{8692AD11-BB09-4BA2-8E54-C74465300E6F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimSeasonalAdjustment</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{58CC3620-9C05-4289-9FAF-A1773E5BE4A2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E02D93C9-F78E-4AEC-BCFF-A62DDD1E5610}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -164,16 +464,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.TimeFrequency.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimTimeFrequency.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{5F4DF598-0CB2-4B72-84CB-F315D14D0A1E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim TimeFrequency</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{A7CFE5A5-9536-4E49-8832-CC38FFBBBB8A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimTimeFrequency</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4182898A-EFB5-41E1-A780-4AB442230647}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{D8491DD3-FBD8-4E83-962A-D1D8A3204C8E}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -181,16 +481,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.Unit.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="DimUnit.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{F5EED717-B0ED-447B-99A8-908CEC12D981}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim Unit</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{C54D4C93-CFC2-4093-9B1E-11FB05A2384C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimUnit</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{EEDF5027-65E9-4EF6-ADF1-708F325DAE30}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7CC02C0E-B4CF-47EA-9D9E-71194FFE1F62}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -198,16 +498,16 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="Dim.Date.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="FactGDP.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{3F76D15E-CAEB-4C4E-B481-FEB92282A0E9}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Dim Date</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{EF60F9EA-590B-4163-A12A-8B26EAA13080}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">FactGDP</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{BCB32BD2-4DBD-4943-BC21-9AFA19A35525}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{35382015-77B9-4E38-B493-606479AD91C1}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -238,7 +538,13 @@
         <LinkedAzureSSISIR />
         <LinkedAzureStorage />
         <RemoteExecutionFolder />
-        <ParameterConfigurationValues />
+        <ParameterConfigurationValues>
+          <ConfigurationSetting>
+            <Id>LastModifiedTime</Id>
+            <Name>LastModifiedTime</Name>
+            <Value xsi:type="xsd:dateTime">2025-06-13T09:53:48.6684045Z</Value>
+          </ConfigurationSetting>
+        </ParameterConfigurationValues>
       </Options>
     </Configuration>
   </Configurations>
