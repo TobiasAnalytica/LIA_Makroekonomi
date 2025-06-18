@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="FactGDP"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{D69F24D6-2640-48BA-A6F2-02CD71793199}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{6CF2BA55-5F0A-4615-AAA9-1CC3FD5CACF9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,110 +32,6 @@
         <pipeline
           version="1">
           <components>
-            <component
-              refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input].Columns[OBS_FLAG]"
-                      cachedDataType="wstr"
-                      cachedLength="5"
-                      cachedName="OBS_FLAG"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input].Columns[Observation status (Flag) V2 structure]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Observation status (Flag) V2 structure"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output]"
-                  exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OBS_FLAG]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="10"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OBS_FLAG]"
-                      name="Copy of OBS_FLAG"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Observation status (Flag) V2 structure]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="70"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Observation status (Flag) V2 structure]"
-                      name="Copy of Observation status (Flag) V2 structure"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
             <component
               refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened"
               componentClassID="Microsoft.OLEDBSource"
@@ -281,7 +177,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
-                      length="5"
+                      length="10"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG"
                       truncationRowDisposition="FailComponent" />
@@ -291,7 +187,7 @@
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
-                      length="50"
+                      length="70"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
                       name="Observation status (Flag) V2 structure"
                       truncationRowDisposition="FailComponent" />
@@ -357,12 +253,12 @@
                     <externalMetadataColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
                       dataType="wstr"
-                      length="5"
+                      length="10"
                       name="OBS_FLAG" />
                     <externalMetadataColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
                       dataType="wstr"
-                      length="50"
+                      length="70"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
@@ -379,6 +275,18 @@
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                     <outputColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[freq]"
                       dataType="wstr"
@@ -428,13 +336,13 @@
                     <outputColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       dataType="wstr"
-                      length="5"
+                      length="10"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG" />
                     <outputColumn
                       refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
                       dataType="wstr"
-                      length="50"
+                      length="70"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
                       name="Observation status (Flag) V2 structure" />
                     <outputColumn
@@ -447,18 +355,6 @@
                       dataType="dbTimeStamp"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
                       name="CreatedSilverAt" />
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -692,7 +588,7 @@ where [refTable].[DateValue] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Date]};</property>
+                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\20:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -850,7 +746,7 @@ where [refTable].[FlagAK] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OBS_FLAG]};</property>
+                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -874,11 +770,11 @@ where [refTable].[FlagAK] = ?</property>
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Inputs[Lookup Input].Columns[Copy of OBS_FLAG]"
+                      refId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Inputs[Lookup Input].Columns[OBS_FLAG]"
                       cachedDataType="wstr"
                       cachedLength="10"
-                      cachedName="Copy of OBS_FLAG"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OBS_FLAG]">
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -898,7 +794,7 @@ where [refTable].[FlagAK] = ?</property>
                 <output
                   refId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="RedirectRow"
+                  errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Inputs[Lookup Input]">
@@ -909,7 +805,7 @@ where [refTable].[FlagAK] = ?</property>
                       errorOrTruncationOperation="Copy Column"
                       lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
                       name="FlagKey"
-                      truncationRowDisposition="RedirectRow">
+                      truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1009,7 +905,7 @@ where [refTable].[RegionAK] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[geo]};</property>
+                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\18:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1168,7 +1064,7 @@ where [refTable].[SeasonalAdjustmentAK] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[s_adj]};</property>
+                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\16:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1327,7 +1223,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[freq]};</property>
+                  name="ParameterMap">#{Package\Load from gdp_cleaned to FactGDP\14:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1429,217 +1325,8 @@ where [refTable].[TimeFrequencyAK] = ?</property>
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination"
-              componentClassID="Microsoft.ManagedComponentHost"
-              contactInfo="Trash Destination; ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
-              description="The trash destination is used to create dummy destination which ends data path without any processing."
-              name="Trash Destination"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
-                  expressionType="Notify"
-                  name="LoggingMode"
-                  typeConverter="ZappySys.PowerPack.Common.LoggingMode">0</property>
-                <property
-                  dataType="System.Boolean"
-                  description="When you enable this property it will prefix timestamp before Log messages."
-                  expressionType="Notify"
-                  name="PrefixTimestamp">false</property>
-                <property
-                  dataType="System.Null"
-                  expressionType="Notify"
-                  name="SelfRef"
-                  typeConverter="NOTBROWSABLE" />
-                <property
-                  dataType="System.String"
-                  description="File path where you want to save data"
-                  expressionType="Notify"
-                  name="FilePath">C:\Users\Tobias E\OneDrive - Cyruz\Skrivbordet\felsok</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates if you want to save input data to comma separated text file"
-                  expressionType="Notify"
-                  name="SaveDataToFile">true</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Append data to file"
-                  expressionType="Notify"
-                  name="Append">false</property>
-                <property
-                  dataType="System.String"
-                  description="RowSeparator"
-                  expressionType="Notify"
-                  name="RowSeparator">{NEWLINE}</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether you want to overwrite target file if exists"
-                  expressionType="Notify"
-                  name="OverwriteFileIfExists">true</property>
-                <property
-                  dataType="System.String"
-                  description="ColumnSeparator"
-                  expressionType="Notify"
-                  name="ColumnSeparator">,</property>
-                <property
-                  dataType="System.Boolean"
-                  description="SupportUnicode"
-                  expressionType="Notify"
-                  name="SupportUnicode">true</property>
-                <property
-                  dataType="System.Boolean"
-                  description="ColumnNamesInFirstRow"
-                  expressionType="Notify"
-                  name="ColumnNamesInFirstRow">true</property>
-                <property
-                  dataType="System.Boolean"
-                  description="QuoteDataIfNeeded"
-                  expressionType="Notify"
-                  name="QuoteDataIfNeeded">true</property>
-                <property
-                  dataType="System.String"
-                  description="Date time format string for any column with DT_DBDATETIME, DT_DBDATETIME2 or DB_DATE format"
-                  expressionType="Notify"
-                  name="DateTimeFormat">yyyy-MM-dd HH:mm:ss</property>
-                <property
-                  dataType="System.String"
-                  name="UserComponentTypeName">ZappySys.TrashDestination</property>
-              </properties>
-              <inputs>
-                <input
-                  refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput]"
-                  hasSideEffects="true"
-                  name="TrashDestinationInput">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[freq]"
-                      cachedDataType="wstr"
-                      cachedLength="1"
-                      cachedName="freq"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[freq]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Time frequency]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="Time frequency"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Time frequency]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[s_adj]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="s_adj"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[s_adj]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Seasonal adjustment]"
-                      cachedDataType="wstr"
-                      cachedLength="80"
-                      cachedName="Seasonal adjustment"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[geo]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="geo"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[geo]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Geopolitical entity (reporting)]"
-                      cachedDataType="wstr"
-                      cachedLength="120"
-                      cachedName="Geopolitical entity (reporting)"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Date]"
-                      cachedDataType="dbDate"
-                      cachedName="Date"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Date]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[OBS_VALUE]"
-                      cachedDataType="i8"
-                      cachedName="OBS_VALUE"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[OBS_FLAG]"
-                      cachedDataType="wstr"
-                      cachedLength="5"
-                      cachedName="OBS_FLAG"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Observation status (Flag) V2 structure]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="Observation status (Flag) V2 structure"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="CreatedBronzeAt"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[CreatedSilverAt]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="CreatedSilverAt"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Copy of OBS_FLAG]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="Copy of OBS_FLAG"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OBS_FLAG]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[Copy of Observation status (Flag) V2 structure]"
-                      cachedDataType="wstr"
-                      cachedLength="70"
-                      cachedName="Copy of Observation status (Flag) V2 structure"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Observation status (Flag) V2 structure]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[DateKey]"
-                      cachedDataType="i4"
-                      cachedName="DateKey"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[TimeFrequencyKey]"
-                      cachedDataType="i4"
-                      cachedName="TimeFrequencyKey"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[SeasonalAdjustmentKey]"
-                      cachedDataType="i4"
-                      cachedName="SeasonalAdjustmentKey"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimSeasonalAdjustment.Outputs[Lookup Match Output].Columns[SeasonalAdjustmentKey]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[RegionKey]"
-                      cachedDataType="i4"
-                      cachedName="RegionKey"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]" />
-                    <inputColumn
-                      refId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      lineageId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-            </component>
           </components>
           <paths>
-            <path
-              refId="Package\Load from gdp_cleaned to FactGDP.Paths[Data Conversion Output]"
-              endId="Package\Load from gdp_cleaned to FactGDP\Lookup DimDate.Inputs[Lookup Input]"
-              name="Data Conversion Output"
-              startId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Error Output]"
-              endId="Package\Load from gdp_cleaned to FactGDP\Trash Destination.Inputs[TrashDestinationInput]"
-              name="Lookup Error Output"
-              startId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Error Output]" />
             <path
               refId="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output]"
               endId="Package\Load from gdp_cleaned to FactGDP\Lookup DimSeasonalAdjustment.Inputs[Lookup Input]"
@@ -1667,7 +1354,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               startId="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load from gdp_cleaned to FactGDP.Paths[OLE DB Source Output]"
-              endId="Package\Load from gdp_cleaned to FactGDP\Data Conversion.Inputs[Data Conversion Input]"
+              endId="Package\Load from gdp_cleaned to FactGDP\Lookup DimDate.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened.Outputs[OLE DB Source Output]" />
           </paths>
@@ -1751,7 +1438,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     design-time-name="Package\Load from gdp_cleaned to FactGDP">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="157,42"
           Id="Package\Load from gdp_cleaned to FactGDP\Lookup DimDate"
@@ -1767,7 +1454,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
         <NodeLayout
           Size="158,42"
           Id="Package\Load from gdp_cleaned to FactGDP\Load to FactGDP"
-          TopLeft="195,622" />
+          TopLeft="194,528" />
         <NodeLayout
           Size="159,42"
           Id="Package\Load from gdp_cleaned to FactGDP\Lookup DimFlags"
@@ -1780,6 +1467,76 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           Size="184,42"
           Id="Package\Load from gdp_cleaned to FactGDP\Load from gdp_clened"
           TopLeft="187,11" />
+        <EdgeLayout
+          Id="Package\Load from gdp_cleaned to FactGDP.Paths[OLE DB Source Output]"
+          TopLeft="279.125,53">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output4]"
+          TopLeft="272.875,488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output3]"
+          TopLeft="275,408">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,9.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output2]"
           TopLeft="278.25,153">
@@ -1849,173 +1606,6 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,11.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <AnnotationLayout
-          Text="Ignore OBS&#xA;"
-          ParentId="Package\Load from gdp_cleaned to FactGDP"
-          FontInfo="{assembly:Null}"
-          Size="89,56"
-          Id="63dfbf4b-3762-41c9-a480-43bd74ba58c7"
-          TopLeft="418,452" />
-        <EdgeLayout
-          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output3]"
-          TopLeft="275,408">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,9.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Load from gdp_cleaned to FactGDP\Data Conversion"
-          TopLeft="431,63" />
-        <EdgeLayout
-          Id="Package\Load from gdp_cleaned to FactGDP.Paths[OLE DB Source Output]"
-          TopLeft="371,32">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="60,52"
-              Start="0,0"
-              End="52.5,52">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="26,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="26,0"
-                    Point2="30,0"
-                    Point3="30,4" />
-                  <mssgle:LineSegment
-                    End="30,48" />
-                  <mssgle:CubicBezierSegment
-                    Point1="30,48"
-                    Point2="30,52"
-                    Point3="34,52" />
-                  <mssgle:LineSegment
-                    End="52.5,52" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Data Conversion Output]"
-          TopLeft="431,89.6666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-73.25,42.3333333333333"
-              Start="0,0"
-              End="-65.75,42.3333333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-26.9128440366973,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-26.9128440366973,0"
-                    Point2="-30.9128440366973,0"
-                    Point3="-30.9128440366973,4" />
-                  <mssgle:LineSegment
-                    End="-30.9128440366973,38.3333333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-30.9128440366973,38.3333333333333"
-                    Point2="-30.9128440366973,42.3333333333333"
-                    Point3="-34.9128440366973,42.3333333333333" />
-                  <mssgle:LineSegment
-                    End="-65.75,42.3333333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Match Output4]"
-          TopLeft="273.375,488">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,134"
-              Start="0,0"
-              End="0,126.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,126.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,57.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162,42"
-          Id="Package\Load from gdp_cleaned to FactGDP\Trash Destination"
-          TopLeft="534,579" />
-        <EdgeLayout
-          Id="Package\Load from gdp_cleaned to FactGDP.Paths[Lookup Error Output]"
-          TopLeft="297.916666666667,488">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="317.083333333333,91"
-              Start="0,0"
-              End="317.083333333333,83.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.9439601494396" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.9439601494396"
-                    Point2="0,36.9439601494396"
-                    Point3="4,36.9439601494396" />
-                  <mssgle:LineSegment
-                    End="313.083333333333,36.9439601494396" />
-                  <mssgle:CubicBezierSegment
-                    Point1="313.083333333333,36.9439601494396"
-                    Point2="317.083333333333,36.9439601494396"
-                    Point3="317.083333333333,40.9439601494396" />
-                  <mssgle:LineSegment
-                    End="317.083333333333,83.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="112.675279947917,41.9439601494396,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

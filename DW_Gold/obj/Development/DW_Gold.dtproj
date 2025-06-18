@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSOFFICE</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAm0zR/7YjZUyRNy43m11o7gAAAAACAAAAAAAQZgAAAAEAACAAAAAzhHkJboOj19a/F6304LIiOjIH66KT+LqK06ibfmmFaAAAAAAOgAAAAAIAACAAAADTa72+JQUjgC3T0r5Va4FmsFxBC4NvNgsbNrhfOsmh+ZAAAAC+ozAAQ8rvI1nkm81r0YYwh9MqELgpwn3vA4ekfE2U4yaPX0+2V1RjrdUysBEIARjRVHO2sfqRE0nRbM5f4joCRSlUZm2c19DfSy3FY9tZzsKidDEQuBFLkWp7jh/sXIzI/7iphD5GkFTtmy3PQomhXut5jWVH8YHY4lzYVpq9j0oaqH+tR0KqJtUvLur5bwtAAAAAaWhJ7S4ADDdX98RTajxhsMAEldbWrqdSIggps67oDslXechAeHdv5pQXeLApOc2EIDIdOliWpLXPFi4mvkJ5ig==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAm0zR/7YjZUyRNy43m11o7gAAAAACAAAAAAAQZgAAAAEAACAAAADaqBBohHzirZoNP9oT6WsjRU3WwuGxOfTXSRVMcNDX9QAAAAAOgAAAAAIAACAAAACTl3pL55dYSycNuhVvUGTd2qXgSLkUwj2YyEjrWjnHuJAAAAB60lFjCvSMw1QK116KiB96H3ooi+3fFqCIdEi0qco34H8lQbW3M3hTmi/jpaxXtELfofw4S54H1urMyq4OoO38/10R7Mq4r08+UFX5KBxQTghDdF32hsCI+ZeLK0BU85P8HITVTHUwnDN2nN1xDKaYVjLN6UDS1pWoYIIzGXOpzcu0UabjL93jCqv2p533CVVAAAAA2eyyqlkw16sBOxLnYwGv8ss17qRyK5gXm2et8vT1t/FTTh2MvkjxR3/UTbf8LbR8xrwHfAFT66m2wCYllE+3gg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -40,6 +40,9 @@
           <SSIS:Package SSIS:Name="DimTimeFrequency.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimUnit.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="FactGDP.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="FactEmployment.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="FactUnemployment.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="FactPopulation.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LocalHost.LIA_DB_Silver.conmgr" />
@@ -385,10 +388,10 @@
                 <SSIS:Property SSIS:Name="Name">DimDate</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{12ADB602-308D-4C7C-A06D-8428F29680BE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{F9701293-54C1-4FE4-A474-2A948558E759}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -504,10 +507,61 @@
                 <SSIS:Property SSIS:Name="Name">FactGDP</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">29</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">43</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D69F24D6-2640-48BA-A6F2-02CD71793199}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{6CF2BA55-5F0A-4615-AAA9-1CC3FD5CACF9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="FactEmployment.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{87758942-0CC4-4F04-8D0A-F72C39D732B2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{5A856DBF-0653-491C-A448-FE7CDC661A20}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="FactUnemployment.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{10E3DA2C-4E1F-400F-B7A0-FBF2AF828642}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">5</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4E8C12F6-D100-4CE6-95EE-F001D1628AEC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="FactPopulation.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{040AB961-80DA-4B90-B13D-876ABBBD3E62}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9283A931-773E-4A56-A4C1-58DFF33CD369}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

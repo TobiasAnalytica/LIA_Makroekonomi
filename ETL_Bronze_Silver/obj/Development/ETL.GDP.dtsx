@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package3"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{FDC7876A-5ECE-4BA9-972A-F378BE256D59}">
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{F520D73E-ECF9-4B2C-8076-F1647F15FB08}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -241,35 +241,14 @@
   </resheader>
 </root>]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("XLENT")]
-[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="ScriptMain.cs"
             Encoding="UTF8"><![CDATA[#region Namespaces
@@ -519,14 +498,35 @@ namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("XLENT")]
+[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -865,14 +865,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
 
   CAST(
     COALESCE(NULLIF(OBS_FLAG, ''), N'a')
-  AS NVARCHAR(5))                                 AS OBS_FLAG,
+  AS NVARCHAR(10))                                 AS OBS_FLAG,
 
   CAST(
     COALESCE(
       NULLIF([Observation status (Flag) V2 structure], ''), 
       N'actual'
     )
-  AS NVARCHAR(50))                             AS [Observation status (Flag) V2 structure],
+  AS NVARCHAR(70))                             AS [Observation status (Flag) V2 structure],
 
   CreatedBronzeAt
 FROM dbo.gdp_raw;</property>
@@ -995,7 +995,7 @@ FROM dbo.gdp_raw;</property>
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
-                      length="5"
+                      length="10"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG"
                       truncationRowDisposition="FailComponent" />
@@ -1005,7 +1005,7 @@ FROM dbo.gdp_raw;</property>
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
-                      length="50"
+                      length="70"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
                       name="Observation status (Flag) V2 structure"
                       truncationRowDisposition="FailComponent" />
@@ -1062,12 +1062,12 @@ FROM dbo.gdp_raw;</property>
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
                       dataType="wstr"
-                      length="5"
+                      length="10"
                       name="OBS_FLAG" />
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
                       dataType="wstr"
-                      length="50"
+                      length="70"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
@@ -1080,6 +1080,18 @@ FROM dbo.gdp_raw;</property>
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                     <outputColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[freq]"
                       dataType="wstr"
@@ -1129,13 +1141,13 @@ FROM dbo.gdp_raw;</property>
                     <outputColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       dataType="wstr"
-                      length="5"
+                      length="10"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG" />
                     <outputColumn
                       refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
                       dataType="wstr"
-                      length="50"
+                      length="70"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
                       name="Observation status (Flag) V2 structure" />
                     <outputColumn
@@ -1143,18 +1155,6 @@ FROM dbo.gdp_raw;</property>
                       dataType="dbTimeStamp"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
                       name="CreatedBronzeAt" />
-                    <outputColumn
-                      refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1289,14 +1289,14 @@ FROM dbo.gdp_raw;</property>
                     <inputColumn
                       refId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].Columns[OBS_FLAG]"
                       cachedDataType="wstr"
-                      cachedLength="5"
+                      cachedLength="10"
                       cachedName="OBS_FLAG"
                       externalMetadataColumnId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
                     <inputColumn
                       refId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].Columns[Observation status (Flag) V2 structure]"
                       cachedDataType="wstr"
-                      cachedLength="50"
+                      cachedLength="70"
                       cachedName="Observation status (Flag) V2 structure"
                       externalMetadataColumnId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
                       lineageId="Package\Load to gdp_cleaned\Load from gdp_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
@@ -1350,12 +1350,12 @@ FROM dbo.gdp_raw;</property>
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
                       dataType="wstr"
-                      length="5"
+                      length="10"
                       name="OBS_FLAG" />
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
                       dataType="wstr"
-                      length="50"
+                      length="70"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
                       refId="Package\Load to gdp_cleaned\Load to gdp_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"

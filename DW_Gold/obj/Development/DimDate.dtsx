@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="DimDate"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{12ADB602-308D-4C7C-A06D-8428F29680BE}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{F9701293-54C1-4FE4-A474-2A948558E759}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,10 +31,37 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
-          SQLTask:SqlStatementSource="-- Steg 1: Definiera start- och slutdatum&#xA;DECLARE @StartDate DATE = '1970-01-01';&#xA;DECLARE @EndDate   DATE = '2030-12-31';&#xA;&#xA;-- Steg 2: Använd en rekursiv CTE för att generera alla datum i intervallet&#xA;WITH DateCTE AS (&#xA;    SELECT &#xA;        @StartDate AS DateValue&#xA;    UNION ALL&#xA;    SELECT&#xA;        DATEADD(DAY, 1, DateValue)&#xA;    FROM&#xA;        DateCTE&#xA;    WHERE&#xA;        DateValue &lt; @EndDate&#xA;)&#xA;-- Steg 3: Infoga i DimDate genom att extrahera alla kolumner&#xA;INSERT INTO DimDate (&#xA;    DateKey,&#xA;    DateValue,&#xA;    YearNumber,&#xA;    MonthNumber,&#xA;    DayNumber,&#xA;    DayOfWeek,&#xA;    WeekNumber,&#xA;    QuarterNumber,&#xA;    MonthName,&#xA;    DayName&#xA;)&#xA;SELECT&#xA;    CAST(CONVERT(CHAR(8), DateValue, 112) AS INT) AS DateKey,  -- 112 ger 'YYYYMMDD' som string&#xA;    DateValue,&#xA;    YEAR(DateValue) AS YearNumber,&#xA;    MONTH(DateValue) AS MonthNumber,&#xA;    DAY(DateValue) AS DayNumber,&#xA;    DATEPART(WEEKDAY, DateValue) AS DayOfWeek,                -- 1=Sunday … 7=Saturday i SQL Server; justera om du vill ha ISO (1=Monday)&#xA;    DATEPART(ISO_WEEK, DateValue) AS WeekNumber,              -- ISO-veckonummer (i SQL Server 2012+)&#xA;    DATEPART(QUARTER, DateValue) AS QuarterNumber,&#xA;    DATENAME(MONTH, DateValue) AS MonthName,                  -- Månadens namn på serverspråket&#xA;    DATENAME(WEEKDAY, DateValue) AS DayName                   -- Veckodagens namn&#xA;FROM&#xA;    DateCTE&#xA;OPTION (MAXRECURSION 0);  -- Tillåter fler än standard 100 rekursioner&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="-- Steg 1: Definiera start- och slutdatum&#xA;DECLARE @StartDate DATE = '1960-01-01';&#xA;DECLARE @EndDate   DATE = '2030-12-31';&#xA;&#xA;-- Steg 2: Använd en rekursiv CTE för att generera alla datum i intervallet&#xA;WITH DateCTE AS (&#xA;    SELECT &#xA;        @StartDate AS DateValue&#xA;    UNION ALL&#xA;    SELECT&#xA;        DATEADD(DAY, 1, DateValue)&#xA;    FROM&#xA;        DateCTE&#xA;    WHERE&#xA;        DateValue &lt; @EndDate&#xA;)&#xA;-- Steg 3: Infoga i DimDate genom att extrahera alla kolumner&#xA;INSERT INTO DimDate (&#xA;    DateKey,&#xA;    DateValue,&#xA;    YearNumber,&#xA;    MonthNumber,&#xA;    DayNumber,&#xA;    DayOfWeek,&#xA;    WeekNumber,&#xA;    QuarterNumber,&#xA;    MonthName,&#xA;    DayName&#xA;)&#xA;SELECT&#xA;    CAST(CONVERT(CHAR(8), DateValue, 112) AS INT) AS DateKey,  -- 112 ger 'YYYYMMDD' som string&#xA;    DateValue,&#xA;    YEAR(DateValue) AS YearNumber,&#xA;    MONTH(DateValue) AS MonthNumber,&#xA;    DAY(DateValue) AS DayNumber,&#xA;    DATEPART(WEEKDAY, DateValue) AS DayOfWeek,                -- 1=Sunday … 7=Saturday i SQL Server; justera om du vill ha ISO (1=Monday)&#xA;    DATEPART(ISO_WEEK, DateValue) AS WeekNumber,              -- ISO-veckonummer (i SQL Server 2012+)&#xA;    DATEPART(QUARTER, DateValue) AS QuarterNumber,&#xA;    DATENAME(MONTH, DateValue) AS MonthName,                  -- Månadens namn på serverspråket&#xA;    DATENAME(WEEKDAY, DateValue) AS DayName                   -- Veckodagens namn&#xA;FROM&#xA;    DateCTE&#xA;OPTION (MAXRECURSION 0);  -- Tillåter fler än standard 100 rekursioner&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f907ea1f-2038-4b78-acce-b60ee24a2f05}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE DimDate;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{625D928A-8BA3-4F53-BA04-06165EAFA14F}"
+      DTS:From="Package\SQL truncate DimDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Fill DimDate" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -46,11 +73,37 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="136,42"
           Id="Package\Fill DimDate"
-          TopLeft="149,95" />
+          TopLeft="144,244" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\SQL truncate DimDate"
+          TopLeft="114,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="209,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,142"
+              Start="0,0"
+              End="0,134.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,134.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

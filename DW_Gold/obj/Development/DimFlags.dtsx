@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="DimFlags"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{30FB300D-2769-4A21-A10D-421023B29021}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{18B26F41-8802-4369-B66C-4D069A10B9A0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -225,16 +225,6 @@
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Flags]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].ExternalColumns[Flags]"
-                      length="10"
-                      lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Flags]"
-                      name="Flags"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
                       refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -243,6 +233,16 @@
                       length="70"
                       lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Flags]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].ExternalColumns[Flags]"
+                      length="10"
+                      lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Output].Columns[Flags]"
+                      name="Flags"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
@@ -281,17 +281,17 @@
                       name="ErrorColumn"
                       specialFlags="2" />
                     <outputColumn
-                      refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Flags]"
-                      dataType="wstr"
-                      length="10"
-                      lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Flags]"
-                      name="Flags" />
-                    <outputColumn
                       refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="70"
                       lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
+                    <outputColumn
+                      refId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Flags]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load from Flags to DimFlags\Load from Flags.Outputs[OLE DB Source Error Output].Columns[Flags]"
+                      name="Flags" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -668,13 +668,21 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="244,42"
+          Id="Package\Load from Flags to DimFlags\Slowly Changing Dimension Type 1"
+          TopLeft="190,107.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Load from Flags to DimFlags\OLE DB Command"
+          TopLeft="229,209.5" />
+        <NodeLayout
           Size="155,42"
           Id="Package\Load from Flags to DimFlags\Load from Flags"
           TopLeft="234.5,5.5" />
         <NodeLayout
-          Size="244,42"
-          Id="Package\Load from Flags to DimFlags\Slowly Changing Dimension Type 1"
-          TopLeft="190,107.5" />
+          Size="163,42"
+          Id="Package\Load from Flags to DimFlags\Insert Destination"
+          TopLeft="5.50000000000006,209.5" />
         <EdgeLayout
           Id="Package\Load from Flags to DimFlags.Paths[OLE DB Source Output]"
           TopLeft="312,47.5">
@@ -697,10 +705,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Load from Flags to DimFlags\Insert Destination"
-          TopLeft="5.50000000000006,209.5" />
         <EdgeLayout
           Id="Package\Load from Flags to DimFlags.Paths[New Output]"
           TopLeft="272.666666666667,149.5">
@@ -737,10 +741,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Load from Flags to DimFlags\OLE DB Command"
-          TopLeft="229,209.5" />
         <EdgeLayout
           Id="Package\Load from Flags to DimFlags.Paths[Changing Attribute Updates Output]"
           TopLeft="351.333333333333,149.5">
@@ -781,19 +781,6 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load from Flags to DimFlags\Load from Flags">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load from Flags to DimFlags\Slowly Changing Dimension Type 1">
     <Properties>
       <Property>
@@ -833,6 +820,32 @@
   &lt;DateVariable /&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from Flags to DimFlags\Load from Flags">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from Flags to DimFlags\Insert Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
