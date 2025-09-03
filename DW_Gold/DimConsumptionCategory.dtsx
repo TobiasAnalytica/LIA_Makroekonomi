@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="DimConsumptionCategory"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{672A615C-8E47-4699-8D3C-07CDD9FC2F3F}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{0D95D32D-1C5F-4D7D-B98F-40176E478A67}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -589,34 +589,7 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\SQL truncate DimConsumptionCategory"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{8c8b0ec1-9a24-4d3d-b9b3-8390fe6057de}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate DimConsumptionCategory"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE DimConsumptionCategory;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
-  <DTS:PrecedenceConstraints>
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint]"
-      DTS:CreationName=""
-      DTS:DTSID="{9F8ABD5F-7E48-498E-A5AE-8FB9B50C102B}"
-      DTS:From="Package\SQL truncate DimConsumptionCategory"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint"
-      DTS:To="Package\Load from ConsumptionCategory to DimConsumptionCategory" />
-  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -628,37 +601,11 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="372,42"
           Id="Package\Load from ConsumptionCategory to DimConsumptionCategory"
           TopLeft="70,207" />
-        <NodeLayout
-          Size="266,42"
-          Id="Package\SQL truncate DimConsumptionCategory"
-          TopLeft="117,51" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="253,93">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,114"
-              Start="0,0"
-              End="0,106.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,106.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -668,13 +615,21 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="244,42"
+          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\Slowly Changing Dimension Type 1"
+          TopLeft="190,107.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\OLE DB Command"
+          TopLeft="229,209.5" />
+        <NodeLayout
           Size="234,42"
           Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\Load from ConsumptionCategory"
           TopLeft="195,5.5" />
         <NodeLayout
-          Size="244,42"
-          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\Slowly Changing Dimension Type 1"
-          TopLeft="190,107.5" />
+          Size="163,42"
+          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\Insert Destination"
+          TopLeft="5.50000000000006,209.5" />
         <EdgeLayout
           Id="Package\Load from ConsumptionCategory to DimConsumptionCategory.Paths[OLE DB Source Output]"
           TopLeft="312,47.5">
@@ -694,13 +649,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\Insert Destination"
-          TopLeft="5.50000000000006,209.5" />
         <EdgeLayout
           Id="Package\Load from ConsumptionCategory to DimConsumptionCategory.Paths[New Output]"
           TopLeft="272.666666666667,149.5">
@@ -737,10 +690,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Load from ConsumptionCategory to DimConsumptionCategory\OLE DB Command"
-          TopLeft="229,209.5" />
         <EdgeLayout
           Id="Package\Load from ConsumptionCategory to DimConsumptionCategory.Paths[Changing Attribute Updates Output]"
           TopLeft="351.333333333333,149.5">

@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{52BAD4BB-D363-4401-86A3-CEDA4AB85412}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{66A2947A-48BE-4DBC-BC46-3728925454E8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -31,6 +31,235 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="Description"
+                      lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[ConsumptionCategory]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="ConsumptionCategory"
+                      lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[ConsumptionCategory]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="74"
+                      lineageId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[ConsumptionCategory]} + #{Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ConsumptionCategory + Description</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LIA_DB_Diagnostics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_ETL_Bronze_Silver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  connectionManagerID="{D64BDFEF-4183-44D5-945A-76A5C511F901}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="74"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned"
               componentClassID="Microsoft.OLEDBSource"
@@ -105,22 +334,22 @@ SELECT DISTINCT
                       refId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].Columns[ConsumptionCategory]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
+                      errorRowDisposition="RedirectRow"
                       externalMetadataColumnId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].ExternalColumns[ConsumptionCategory]"
                       length="4"
                       lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].Columns[ConsumptionCategory]"
                       name="ConsumptionCategory"
-                      truncationRowDisposition="FailComponent" />
+                      truncationRowDisposition="RedirectRow" />
                     <outputColumn
                       refId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
+                      errorRowDisposition="RedirectRow"
                       externalMetadataColumnId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="70"
                       lineageId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
-                      truncationRowDisposition="FailComponent" />
+                      truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -300,6 +529,16 @@ SELECT DISTINCT
           </components>
           <paths>
             <path
+              refId="Package\Load to ConsumptionCategory.Paths[Derived Column Output]"
+              endId="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load to ConsumptionCategory.Paths[OLE DB Source Error Output]"
+              endId="Package\Load to ConsumptionCategory\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\Load to ConsumptionCategory\Load hicp_index_cleaned.Outputs[OLE DB Source Error Output]" />
+            <path
               refId="Package\Load to ConsumptionCategory.Paths[OLE DB Source Output]"
               endId="Package\Load to ConsumptionCategory\Load to ConsumptionCategory.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
@@ -385,7 +624,7 @@ SELECT DISTINCT
     design-time-name="Package\Load to ConsumptionCategory">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="221,42"
           Id="Package\Load to ConsumptionCategory\Load to ConsumptionCategory"
@@ -416,6 +655,72 @@ SELECT DISTINCT
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics"
+          TopLeft="455,276" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load to ConsumptionCategory\Derived Column - Concatenate"
+          TopLeft="437,168" />
+        <EdgeLayout
+          Id="Package\Load to ConsumptionCategory.Paths[Derived Column Output]"
+          TopLeft="545,210">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to ConsumptionCategory.Paths[OLE DB Source Error Output]"
+          TopLeft="261,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="287.5,67"
+              Start="0,0"
+              End="287.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.1238670694864" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.1238670694864"
+                    Point2="0,27.1238670694864"
+                    Point3="4,27.1238670694864" />
+                  <mssgle:LineSegment
+                    End="283.5,27.1238670694864" />
+                  <mssgle:CubicBezierSegment
+                    Point1="283.5,27.1238670694864"
+                    Point2="287.5,27.1238670694864"
+                    Point3="287.5,31.1238670694864" />
+                  <mssgle:LineSegment
+                    End="287.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="80.31609375,32.1238670694864,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -429,6 +734,19 @@ SELECT DISTINCT
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load to ConsumptionCategory\Load to ConsumptionCategory">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to ConsumptionCategory\LIA_DB_Diagnostics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

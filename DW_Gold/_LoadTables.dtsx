@@ -1,0 +1,582 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/26/2025 11:12:36 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{2F23944C-D891-49F3-86B2-F6759F39A47D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{9F4590EA-F683-467E-9B9C-F29EBD4007DE}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FFC1722B-4752-41E9-BF4D-EE32734A257B}"
+      DTS:ObjectName="LocalHost.LIA_DB_Diagnostics">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=LIA_DB_Diagnostics;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{FFC1722B-4752-41E9-BF4D-EE32734A257B}LocalHost.LIA_DB_Diagnostics;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create Diagnostics_DW_Gold"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6a0d623e-76da-4af9-928c-6d7c62958f52}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Create Diagnostics_DW_Gold"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FFC1722B-4752-41E9-BF4D-EE32734A257B}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DW_Gold', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Diagnostics_DW_Gold;&#xA;&#xA;CREATE TABLE dbo.Diagnostics_DW_Gold (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task - DROP TABLES"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{38528489-8592-40c3-bb9a-af47d73bcdee}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task - DROP TABLES"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactEmployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactEmployment;&#xA;&#xA;IF OBJECT_ID('dbo.FactGDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactGDP;&#xA;&#xA;IF OBJECT_ID('dbo.FactGovernmentDebt', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactGovernmentDebt;&#xA;&#xA;IF OBJECT_ID('dbo.FactHICPIndex', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactHICPIndex;&#xA;&#xA;IF OBJECT_ID('dbo.FactJobVacancies', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactJobVacancies;&#xA;&#xA;IF OBJECT_ID('dbo.FactMoneyMarketInterestRates', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactMoneyMarketInterestRates;&#xA;&#xA;IF OBJECT_ID('dbo.FactPopulation', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactPopulation;&#xA;&#xA;IF OBJECT_ID('dbo.FactUnemployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactUnemployment;&#xA;&#xA;IF OBJECT_ID('dbo.DimAgeClass', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimAgeClass;&#xA;&#xA;IF OBJECT_ID('dbo.DimConsumptionCategory', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimConsumptionCategory;&#xA;&#xA;IF OBJECT_ID('dbo.DimDate', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimDate;&#xA;&#xA;IF OBJECT_ID('dbo.DimFlags', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimFlags;&#xA;&#xA;IF OBJECT_ID('dbo.DimGender', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimGender;&#xA;&#xA;IF OBJECT_ID('dbo.DimRegion', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimRegion;&#xA;&#xA;IF OBJECT_ID('dbo.DimSeasonalAdjustment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimSeasonalAdjustment;&#xA;&#xA;IF OBJECT_ID('dbo.DimTimeFrequency', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimTimeFrequency;&#xA;&#xA;IF OBJECT_ID('dbo.DimUnit', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimUnit;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create Gold tables - Dim"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9638ada8-5861-4267-9077-3d53aaf3a1c4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Create Gold tables - Dim">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimAgeClass"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{fea8b3d4-26c1-4221-a96e-e477b1be8674}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimAgeClass"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="8">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimAgeClass', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimAgeClass;&#xA;&#xA;CREATE TABLE dbo.DimAgeClass (&#xA;    AgeClassSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    AgeClassAK NVARCHAR(6) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(20) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimConsumptionCategory"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{fbd50bdc-4a85-4533-bc5b-acdf706609f3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimConsumptionCategory"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimConsumptionCategory', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimConsumptionCategory;&#xA;&#xA;CREATE TABLE dbo.DimConsumptionCategory (&#xA;    ConsumptionCategorySK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    ConsumptionCategoryAK NCHAR(4) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(70) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimDate"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{afbb6a64-c9cd-407b-81f8-8c1ceb384da5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimDate"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="-- Ta bort tabellen om den redan finns&#xA;IF OBJECT_ID('dbo.DimDate', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimDate;&#xA;&#xA;CREATE TABLE DimDate (&#xA;    DateKey       INT         NOT NULL PRIMARY KEY,  -- Exempel: 20250101&#xA;    DateValue     DATE        NOT NULL UNIQUE,       -- Faktiskt datum&#xA;    YearNumber    INT         NOT NULL,              -- År,  t.ex. 2025&#xA;    MonthNumber   INT         NOT NULL,              -- Månad (1–12)&#xA;    DayNumber     INT         NOT NULL,              -- Dag i månaden (1–31)&#xA;    DayOfWeek     INT         NOT NULL,              -- Veckodag (1=Monday … 7=Sunday)&#xA;    WeekNumber    INT         NOT NULL,              -- Vecka på året (ISO 1–53)&#xA;    QuarterNumber INT         NOT NULL,              -- Kvartal (1–4)&#xA;    MonthName     CHAR(20) NOT NULL,              -- Månadens namn (t.ex. 'Januari')&#xA;    DayName       CHAR(20) NOT NULL               -- Veckodagens namn (t.ex. 'Måndag')&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimFlags"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2a08e6a8-be81-4bf3-9f54-f855a73af884}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimFlags"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimFlags', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimFlags;&#xA;&#xA;CREATE TABLE dbo.DimFlags (&#xA;    FlagSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    FlagAK NVARCHAR(10) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(70) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimGender"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{60dbcdfd-4ce0-4e8e-833c-23f434acabb8}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimGender"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimGender', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimGender;&#xA;&#xA;CREATE TABLE dbo.DimGender (&#xA;    GenderSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    GenderAK NCHAR(1) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(7) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimRegion"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e277ee3f-e8ca-4708-910b-d40002842e98}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimRegion"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimRegion', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimRegion;&#xA;&#xA;CREATE TABLE dbo.DimRegion (&#xA;    RegionSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    RegionAK NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(120) NULL,&#xA;    StartDate DATETIME NULL,&#xA;    EndDate DATETIME NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimSeasonalAdjustment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8f5aa39c-bd3e-4ece-8048-05ef4ef07953}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimSeasonalAdjustment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimSeasonalAdjustment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimSeasonalAdjustment;&#xA;&#xA;CREATE TABLE dbo.DimSeasonalAdjustment (&#xA;    SeasonalAdjustmentSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    SeasonalAdjustmentAK NCHAR(3) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(80) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimTimeFrequency"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{810d363b-46f2-4ddc-b96f-3372dbfa61bb}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimTimeFrequency"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimTimeFrequency', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimTimeFrequency;&#xA;&#xA;CREATE TABLE dbo.DimTimeFrequency (&#xA;    TimeFrequencySK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    TimeFrequencyAK NCHAR(1) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(10) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimUnit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4b0c2a1b-1d6f-4fe6-a6c0-d82e43fab76c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create DimUnit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimUnit', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimUnit;&#xA;&#xA;CREATE TABLE dbo.DimUnit (&#xA;    UnitSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    UnitAK NCHAR(3) NOT NULL UNIQUE,&#xA;    Description NCHAR(30) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create Gold tables - Fact"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{f86c1672-840a-4844-857d-a770db88270c}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Create Gold tables - Fact">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactEmployment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{06a496b7-6834-4540-83e1-5bc15ab98a76}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactEmployment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactEmployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactEmployment;&#xA;&#xA;CREATE TABLE dbo.FactEmployment (&#xA;    FactEmploymentKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactEmployment_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactEmployment_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactEmployment_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactEmployment_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactEmployment_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactEmployment_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactGDP"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b34f9a76-dca2-4123-ba5b-aaa98ec97958}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactGDP"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactGDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactGDP;&#xA;&#xA;CREATE TABLE dbo.FactGDP (&#xA;    FactGDPKey INT IDENTITY(1,1) PRIMARY KEY,&#xA;    DateKey INT NOT NULL,&#xA;    TimeFrequencyKey INT NOT NULL,&#xA;    SeasonalAdjustmentKey INT NOT NULL,&#xA;    RegionKey INT NOT NULL,&#xA;    FlagKey INT NOT NULL,&#xA;    GDPAmount BIGINT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),&#xA;    CONSTRAINT FK_FactGDP_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactGDP_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactGDP_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactGDP_SeasonalAdjustment FOREIGN KEY (SeasonalAdjustmentKey) &#xA;        REFERENCES dbo.DimSeasonalAdjustment(SeasonalAdjustmentSK),&#xA;    CONSTRAINT FK_FactGDP_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactGovernmentDebt"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{a760721c-5f9d-4ccc-acde-99cf8f121d22}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactGovernmentDebt"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactGovernmentDebt', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactGovernmentDebt;&#xA;&#xA;CREATE TABLE dbo.FactGovernmentDebt (&#xA;    FactGovernmentDebtKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    Value               BIGINT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactGovernmentDebt_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactGovernmentDebt_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactGovernmentDebt_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactGovernmentDebt_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactHICPIndex"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{35818223-e486-45c5-9476-c33e9fd47a64}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactHICPIndex"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource=" IF OBJECT_ID('dbo.FactHICPIndex', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactHICPIndex;&#xA;&#xA;CREATE TABLE dbo.FactHICPIndex (&#xA;    FactHICPIndexKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    UnitKey INT NOT NULL, --FK mot DimUnit&#xA;    ConsumptionCategoryKey INT NOT NULL, --FK mot ConsumptionCategory&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    Value               NUMERIC(20,2)           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactHICPIndex_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactHICPIndex_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactHICPIndex_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactHICPIndex_Unit FOREIGN KEY (UnitKey) &#xA;        REFERENCES dbo.DimUnit(UnitSK),&#xA;    CONSTRAINT FK_FactHICPIndex_ConsumptionCategory FOREIGN KEY (ConsumptionCategoryKey) &#xA;        REFERENCES dbo.DimConsumptionCategory(ConsumptionCategorySK),&#xA;    CONSTRAINT FK_FactHICPIndex_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactJobVacancies"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b9061f88-d53f-4731-b971-30a45027a402}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactJobVacancies"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactJobVacancies', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactJobVacancies;&#xA;&#xA;CREATE TABLE dbo.FactJobVacancies (&#xA;    FactJobVacanciesKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactJobVacancies_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactJobVacancies_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactJobVacancies_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactJobVacancies_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactMoneyMarketInterestRates"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e0e14ecf-2dd1-42a3-8099-4c72451b3969}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactMoneyMarketInterestRates"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactMoneyMarketInterestRates', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactMoneyMarketInterestRates;&#xA;&#xA;CREATE TABLE dbo.FactMoneyMarketInterestRates (&#xA;    FactMoneyMarketInterestRatesKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    Value               numeric(10, 2)           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactMoneyMarketInterestRates_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactMoneyMarketInterestRates_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactMoneyMarketInterestRates_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactMoneyMarketInterestRates_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactPopulation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3bd96004-803a-4f81-aa9a-74fab6a246de}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactPopulation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactPopulation', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactPopulation;&#xA;&#xA;CREATE TABLE dbo.FactPopulation (&#xA;    FactPopulationKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactPopulation_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactPopulation_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactPopulation_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactPopulation_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactPopulation_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactPopulation_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactUnemployment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{865b5062-fec4-42d6-bb34-29d66af889ed}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create FactUnemployment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactUnemployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactUnemployment;&#xA;&#xA;CREATE TABLE dbo.FactUnemployment (&#xA;    FactUnemploymentKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactUnemployment_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactUnemployment_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactUnemployment_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactUnemployment_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactUnemployment_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactUnemployment_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0238E985-9123-4B7A-94CE-06D773FECD20}"
+      DTS:From="Package\Execute SQL Task - DROP TABLES"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Create Diagnostics_DW_Gold" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{49E7EA6C-E445-4DDF-B159-2CF88EBE2526}"
+      DTS:From="Package\Sequence Container - Create Gold tables - Dim"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Sequence Container - Create Gold tables - Fact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8FE31BC2-1101-4DA1-B718-F49FE5463B14}"
+      DTS:From="Package\Create Diagnostics_DW_Gold"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container - Create Gold tables - Dim" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Execute SQL Task - DROP TABLES"
+          TopLeft="513,103" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimAgeClass"
+          TopLeft="59.125,45" />
+        <NodeLayout
+          Size="235,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimConsumptionCategory"
+          TopLeft="300.125,47" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimDate"
+          TopLeft="578.625,49" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimFlags"
+          TopLeft="841.125,47" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimGender"
+          TopLeft="62.625,155" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimRegion"
+          TopLeft="336,155" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimSeasonalAdjustment"
+          TopLeft="558.5,161" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimTimeFrequency"
+          TopLeft="849,153" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimUnit"
+          TopLeft="67.125,260" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1124,459"
+          Size="1124,502"
+          Id="Package\Sequence Container - Create Gold tables - Dim"
+          TopLeft="71,295" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactEmployment"
+          TopLeft="457,43" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactGDP"
+          TopLeft="92,40" />
+        <NodeLayout
+          Size="213,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactGovernmentDebt"
+          TopLeft="461,162" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactHICPIndex"
+          TopLeft="830,169" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactJobVacancies"
+          TopLeft="80,264" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactMoneyMarketInterestRates"
+          TopLeft="440,274" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactPopulation"
+          TopLeft="80,157" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactUnemployment"
+          TopLeft="797,48" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1136,370"
+          Size="1136,413"
+          Id="Package\Sequence Container - Create Gold tables - Fact"
+          TopLeft="71,857" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="636,797">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Create Diagnostics_DW_Gold"
+          TopLeft="526,199" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="633.75,145">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="633.5,241">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

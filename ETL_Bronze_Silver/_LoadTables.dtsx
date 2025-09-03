@@ -11,24 +11,43 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="106"
-  DTS:VersionGUID="{0CED112E-F920-4A1B-96AC-F3A334463171}">
+  DTS:VersionBuild="136"
+  DTS:VersionGUID="{972D7FC3-2D13-46ED-9E4A-EA643DD1FEA5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Sequence Container - Create bronze tables"
+      DTS:refId="Package\Create Diagnostics_ETL_Bronze_Silver"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c2e9296c-947a-46cf-ac6a-c68641615f66}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Create Diagnostics_ETL_Bronze_Silver"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D64BDFEF-4183-44D5-945A-76A5C511F901}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_ETL_Bronze_Silver', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Diagnostics_ETL_Bronze_Silver;&#xA;&#xA;CREATE TABLE dbo.Diagnostics_ETL_Bronze_Silver (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{d1ce21d6-6207-4629-ad24-72cde2c3ebea}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Sequence Container - Create bronze tables">
+      DTS:ObjectName="Sequence Container - Create bronze tables - LIA_DB_Bronze">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create employment_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create employment_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{1ac85482-2cae-451e-803b-56fd43fb6f41}"
@@ -36,7 +55,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create employment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -47,7 +66,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create gdp_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create gdp_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{dee210f6-7071-4c30-924f-704fa71ab2ea}"
@@ -55,7 +74,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create gdp_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -66,7 +85,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create government_debt_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create government_debt_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{69d9d230-48d5-4f0b-ab67-95c0a6febf03}"
@@ -74,7 +93,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create government_debt_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -85,7 +104,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create hicp_index_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create hicp_index_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{a596ca89-e91f-493d-8937-c115d16a25bc}"
@@ -93,7 +112,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create hicp_index_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -104,7 +123,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create job_vacancies_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create job_vacancies_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{b1d37a4b-ff6b-46c1-a1b3-ef93699f151b}"
@@ -112,7 +131,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create job_vacancies_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -123,7 +142,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create money_market_interest_rates_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create money_market_interest_rates_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{44eed01d-a49a-4a60-b2ce-00be528b4e24}"
@@ -131,7 +150,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create money_market_interest_rates_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -142,7 +161,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create population_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create population_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{38993690-b2a2-4ef0-93d5-5924d0fcdfa7}"
@@ -150,7 +169,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create population_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -161,7 +180,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables\Create unemployment_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create unemployment_raw"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{58c07f73-7974-46b2-81fb-3e598e0f2ceb}"
@@ -169,7 +188,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create unemployment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -182,262 +201,17 @@
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Sequence Container - Create Gold tables - Dim"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:DTSID="{bce0aac8-1f48-432a-93dd-66dacab9eb3f}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Sequence Container - Create Gold tables - Dim">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimAgeClass"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{a1f14147-1d3b-4411-97ff-18e2ac72b29a}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimAgeClass"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimAgeClass', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimAgeClass;&#xA;&#xA;CREATE TABLE dbo.DimAgeClass (&#xA;    AgeClassSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    AgeClassAK NVARCHAR(6) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(20) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimConsumptionCategory"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{31e261b2-66b8-48a5-9659-5ae010f57388}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimConsumptionCategory"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimConsumptionCategory', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimConsumptionCategory;&#xA;&#xA;CREATE TABLE dbo.DimConsumptionCategory (&#xA;    ConsumptionCategorySK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    ConsumptionCategoryAK NCHAR(4) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(70) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimDate"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{c477203a-f151-4fe9-8f94-5475057c84c1}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimDate"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="-- Ta bort tabellen om den redan finns&#xA;IF OBJECT_ID('dbo.DimDate', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimDate;&#xA;&#xA;CREATE TABLE DimDate (&#xA;    DateKey       INT         NOT NULL PRIMARY KEY,  -- Exempel: 20250101&#xA;    DateValue     DATE        NOT NULL UNIQUE,       -- Faktiskt datum&#xA;    YearNumber    INT         NOT NULL,              -- År,  t.ex. 2025&#xA;    MonthNumber   INT         NOT NULL,              -- Månad (1–12)&#xA;    DayNumber     INT         NOT NULL,              -- Dag i månaden (1–31)&#xA;    DayOfWeek     INT         NOT NULL,              -- Veckodag (1=Monday … 7=Sunday)&#xA;    WeekNumber    INT         NOT NULL,              -- Vecka på året (ISO 1–53)&#xA;    QuarterNumber INT         NOT NULL,              -- Kvartal (1–4)&#xA;    MonthName     CHAR(20) NOT NULL,              -- Månadens namn (t.ex. 'Januari')&#xA;    DayName       CHAR(20) NOT NULL               -- Veckodagens namn (t.ex. 'Måndag')&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimFlags"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{ab10222b-afa5-49cd-9e52-f2e51b8f57a6}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimFlags"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimFlags', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimFlags;&#xA;&#xA;CREATE TABLE dbo.DimFlags (&#xA;    FlagSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    FlagAK NVARCHAR(10) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(70) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimGender"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{d5091ffc-fe9c-4b65-b0bb-932ea0aaef02}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimGender"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimGender', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimGender;&#xA;&#xA;CREATE TABLE dbo.DimGender (&#xA;    GenderSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    GenderAK NCHAR(1) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(7) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimRegion"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{ffbed0f6-e282-4bff-acbc-2756ceb98eab}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimRegion"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimRegion', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimRegion;&#xA;&#xA;CREATE TABLE dbo.DimRegion (&#xA;    RegionSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    RegionAK NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(120) NULL,&#xA;    StartDate DATETIME NULL,&#xA;    EndDate DATETIME NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimSeasonalAdjustment"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{48dd66ae-4873-4766-b7db-81cfa0ba87ea}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimSeasonalAdjustment"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimSeasonalAdjustment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimSeasonalAdjustment;&#xA;&#xA;CREATE TABLE dbo.DimSeasonalAdjustment (&#xA;    SeasonalAdjustmentSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    SeasonalAdjustmentAK NCHAR(3) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(80) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimTimeFrequency"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{93963442-ced4-4776-ba06-5ac0049ca3e9}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimTimeFrequency"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimTimeFrequency', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimTimeFrequency;&#xA;&#xA;CREATE TABLE dbo.DimTimeFrequency (&#xA;    TimeFrequencySK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    TimeFrequencyAK NCHAR(1) NOT NULL UNIQUE,&#xA;    Description NVARCHAR(10) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Dim\Create DimUnit"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{37a64830-f0a0-41e1-97d3-f353d385de0e}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create DimUnit"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.DimUnit', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.DimUnit;&#xA;&#xA;CREATE TABLE dbo.DimUnit (&#xA;    UnitSK INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;    UnitAK NCHAR(3) NOT NULL UNIQUE,&#xA;    Description NCHAR(30) NULL&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Sequence Container - Create Gold tables - Fact"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:DTSID="{a1462001-7172-4d0e-ae03-1422ebf15b40}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Sequence Container - Create Gold tables - Fact">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactEmployment"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{de8901f0-bc94-4ff8-9c47-9bbc7d0d75da}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create FactEmployment"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactEmployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactEmployment;&#xA;&#xA;CREATE TABLE dbo.FactEmployment (&#xA;    FactEmploymentKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactEmployment_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactEmployment_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactEmployment_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactEmployment_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactEmployment_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactEmployment_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactGDP"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{c7e3f0c9-c14f-4d6d-b655-e4d0aa18106d}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create FactGDP"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactGDP', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactGDP;&#xA;&#xA;CREATE TABLE dbo.FactGDP (&#xA;    FactGDPKey INT IDENTITY(1,1) PRIMARY KEY,&#xA;    DateKey INT NOT NULL,&#xA;    TimeFrequencyKey INT NOT NULL,&#xA;    SeasonalAdjustmentKey INT NOT NULL,&#xA;    RegionKey INT NOT NULL,&#xA;    FlagKey INT NOT NULL,&#xA;    GDPAmount BIGINT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),&#xA;    CONSTRAINT FK_FactGDP_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactGDP_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactGDP_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactGDP_SeasonalAdjustment FOREIGN KEY (SeasonalAdjustmentKey) &#xA;        REFERENCES dbo.DimSeasonalAdjustment(SeasonalAdjustmentSK),&#xA;    CONSTRAINT FK_FactGDP_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactPopulation"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{ce349cce-2a2f-4f6f-83e0-ce76cdab24f5}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create FactPopulation"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactPopulation', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactPopulation;&#xA;&#xA;CREATE TABLE dbo.FactPopulation (&#xA;    FactPopulationKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactPopulation_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactPopulation_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactPopulation_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactPopulation_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactPopulation_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactPopulation_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create Gold tables - Fact\Create FactUnemployment"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{26ce29b6-add6-4a2e-b988-4d488d282421}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="Create FactUnemployment"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{EC5DEE70-1E65-4D9D-8DBC-53685F989B24}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.FactUnemployment', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.FactUnemployment;&#xA;&#xA;CREATE TABLE dbo.FactUnemployment (&#xA;    FactUnemploymentKey       INT IDENTITY(1,1) PRIMARY KEY,    -- Surrogatnyckel för fakta-tabellen&#xA;    DateKey                INT           NOT NULL,           -- FK mot DimDate&#xA;    TimeFrequencyKey        INT           NOT NULL,           -- FK mot DimTimeFrequency&#xA;    GenderKey               INT           NOT NULL,           -- FK mot DimGender&#xA;    RegionKey               INT           NOT NULL,           -- FK mot DimRegion&#xA;    AgeClassKey             INT           NOT NULL,           -- FK mot DimAgeClass&#xA;    Value               INT           NULL,               -- Mätvärde (t.ex. antal)&#xA;    FlagKey INT NOT NULL,&#xA;    CreatedGoldAt DATETIME DEFAULT GETDATE(),              -- Metadata, om du vill logga inmatning&#xA;    CONSTRAINT FK_FactUnemployment_Date FOREIGN KEY (DateKey) &#xA;        REFERENCES dbo.DimDate(DateKey),&#xA;    CONSTRAINT FK_FactUnemployment_TimeFrequency FOREIGN KEY (TimeFrequencyKey) &#xA;        REFERENCES dbo.DimTimeFrequency(TimeFrequencySK),&#xA;    CONSTRAINT FK_FactUnemployment_Gender FOREIGN KEY (GenderKey) &#xA;        REFERENCES dbo.DimGender(GenderSK),&#xA;    CONSTRAINT FK_FactUnemployment_Region FOREIGN KEY (RegionKey) &#xA;        REFERENCES dbo.DimRegion(RegionSK),&#xA;    CONSTRAINT FK_FactUnemployment_AgeClass FOREIGN KEY (AgeClassKey) &#xA;        REFERENCES dbo.DimAgeClass(AgeClassSK),&#xA;    CONSTRAINT FK_FactUnemployment_Flags FOREIGN KEY (FlagKey) &#xA;        REFERENCES dbo.DimFlags(FlagSK)&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Sequence Container - Create silver tables"
+      DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{f76001f2-0807-430b-aead-c1a416a26211}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Sequence Container - Create silver tables">
+      DTS:ObjectName="Sequence Container - Create silver tables - LIA_DB_Silver">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create AgeClass"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClass"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{81dadd06-c52d-440f-9260-0d88bee9dbde}"
@@ -445,7 +219,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create AgeClass"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -456,7 +230,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create ConsumptionCategory"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create ConsumptionCategory"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{100f797d-3396-459f-9fb8-8ab165e180b1}"
@@ -464,7 +238,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create ConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -475,7 +249,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create employment_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create employment_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{6c9229bf-ed42-4634-9274-a32cf3f65727}"
@@ -483,7 +257,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create employment_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -494,7 +268,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create Flags"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Flags"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{14da3a88-f934-4cd2-aead-23dfe45f0526}"
@@ -502,7 +276,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Flags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -513,7 +287,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create gdp_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create gdp_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{08963e13-96e9-4791-ae96-f5e96dd9ae01}"
@@ -521,7 +295,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create gdp_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -532,7 +306,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create Gender"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Gender"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{094e2142-31be-4590-bb9b-9dadc167cb57}"
@@ -540,7 +314,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Gender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="12">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -551,7 +325,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create government_debt_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create government_debt_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{5dab9aaa-205e-4ae6-a4b6-5021333adef5}"
@@ -559,7 +333,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create government_debt_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -570,7 +344,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create hicp_index_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create hicp_index_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{740a45bb-ce7c-4f92-8500-ca2f536a8e73}"
@@ -578,18 +352,18 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create hicp_index_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{916ED628-1AF9-458E-85AC-E6885B6F00FD}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.hicp_index_cleaned', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.hicp_index_cleaned;&#xA;&#xA;CREATE TABLE dbo.hicp_index_cleaned (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly   &#xA;      unit NVARCHAR(7) NOT NULL,         -- t.ex. I05&#xA;     [Unit of measure] NVARCHAR(30) NOT NULL,      -- t.ex. Index, 2005=100         &#xA;     coicop NCHAR(7) NOT NULL,      &#xA;     [Classification of individual consumption by purpose (COICOP)] NVARCHAR(70) NOT NULL,                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC(20,2) NULL,   -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.hicp_index_cleaned', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.hicp_index_cleaned;&#xA;&#xA;CREATE TABLE dbo.hicp_index_cleaned (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly   &#xA;      unit NVARCHAR(7) NOT NULL,         -- t.ex. I05&#xA;     [Unit of measure] NVARCHAR(30) NOT NULL,      -- t.ex. Index, 2005=100         &#xA;     coicop NCHAR(4) NOT NULL,      &#xA;     [Classification of individual consumption by purpose (COICOP)] NVARCHAR(70) NOT NULL,                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC(20,2) NULL,   -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create job_vacancies_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create job_vacancies_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{09f83e4c-8fef-4089-bfef-de213c115a0d}"
@@ -597,7 +371,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create job_vacancies_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="15">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -608,7 +382,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create money_market_interest_rates_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create money_market_interest_rates_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{0f9d9197-07fe-48ef-9a7b-d47836df3152}"
@@ -616,7 +390,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create money_market_interest_rates_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -627,7 +401,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create population_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create population_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{24557e79-a260-42e0-adfd-f55eca2585ba}"
@@ -635,7 +409,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create population_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -646,7 +420,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create Region"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Region"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{e07a8121-07c6-4c84-a1c1-c4861fe15113}"
@@ -654,7 +428,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Region"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -665,7 +439,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create SeasonalAdjustment"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create SeasonalAdjustment"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{3fedd225-877e-4387-8acb-abbfccd52073}"
@@ -673,7 +447,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create SeasonalAdjustment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="13">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -684,7 +458,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create TimeFrequency"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create TimeFrequency"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{36293e0e-b38d-4fd6-a8af-799e37b70497}"
@@ -692,7 +466,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create TimeFrequency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -703,7 +477,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create unemployment_cleaned"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create unemployment_cleaned"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{f5338c58-724e-448b-9191-34e55dab6c61}"
@@ -711,7 +485,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create unemployment_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="14">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -722,7 +496,7 @@
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables\Create Unit"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Unit"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{5fcec9c9-edc1-44e2-a13e-f4dd7cea9eed}"
@@ -730,7 +504,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Unit"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="15">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -748,26 +522,18 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{82179F13-BD8E-478E-BC33-A9EFFB409C05}"
-      DTS:From="Package\Sequence Container - Create bronze tables"
+      DTS:From="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Sequence Container - Create silver tables" />
+      DTS:To="Package\Sequence Container - Create silver tables - LIA_DB_Silver" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{EE8F17C0-B167-4B2E-8778-5093CE2ECCFB}"
-      DTS:From="Package\Sequence Container - Create silver tables"
+      DTS:DTSID="{97546C43-B3EC-4AEF-AF1C-E78EA4C66C3A}"
+      DTS:From="Package\Create Diagnostics_ETL_Bronze_Silver"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Sequence Container - Create Gold tables - Dim" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{5680D602-6FB8-4460-A10B-9692D2C0F091}"
-      DTS:From="Package\Sequence Container - Create Gold tables - Dim"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Sequence Container - Create Gold tables - Fact" />
+      DTS:To="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -780,186 +546,120 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="199,42"
-          Id="Package\Sequence Container - Create bronze tables\Create employment_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create employment_raw"
           TopLeft="418.666666666667,56" />
         <NodeLayout
           Size="154,42"
-          Id="Package\Sequence Container - Create bronze tables\Create gdp_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create gdp_raw"
           TopLeft="35,56" />
         <NodeLayout
           Size="219,42"
-          Id="Package\Sequence Container - Create bronze tables\Create government_debt_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create government_debt_raw"
           TopLeft="424.666666666667,259" />
         <NodeLayout
           Size="186,42"
-          Id="Package\Sequence Container - Create bronze tables\Create hicp_index_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create hicp_index_raw"
           TopLeft="35,260" />
         <NodeLayout
           Size="209,42"
-          Id="Package\Sequence Container - Create bronze tables\Create job_vacancies_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create job_vacancies_raw"
           TopLeft="429.166666666667,158" />
         <NodeLayout
           Size="284,42"
-          Id="Package\Sequence Container - Create bronze tables\Create money_market_interest_rates_raw"
-          TopLeft="804.041666666667,158" />
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create money_market_interest_rates_raw"
+          TopLeft="769.041666666667,156" />
         <NodeLayout
           Size="185,42"
-          Id="Package\Sequence Container - Create bronze tables\Create population_raw"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create population_raw"
           TopLeft="35,158" />
         <NodeLayout
           Size="211,42"
-          Id="Package\Sequence Container - Create bronze tables\Create unemployment_raw"
-          TopLeft="825.041666666667,56" />
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create unemployment_raw"
+          TopLeft="791.041666666667,56" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1119,354"
-          Size="1119,397"
-          Id="Package\Sequence Container - Create bronze tables"
-          TopLeft="33,40" />
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimAgeClass"
-          TopLeft="59.125,45" />
-        <NodeLayout
-          Size="235,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimConsumptionCategory"
-          TopLeft="300.125,47" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimDate"
-          TopLeft="578.625,49" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimFlags"
-          TopLeft="841.125,47" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimGender"
-          TopLeft="62.625,155" />
-        <NodeLayout
-          Size="164,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimRegion"
-          TopLeft="336,155" />
-        <NodeLayout
-          Size="227,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimSeasonalAdjustment"
-          TopLeft="558.5,161" />
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimTimeFrequency"
-          TopLeft="849,153" />
-        <NodeLayout
-          Size="151,42"
-          Id="Package\Sequence Container - Create Gold tables - Dim\Create DimUnit"
-          TopLeft="67.125,260" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="1124,459"
-          Size="1124,502"
-          Id="Package\Sequence Container - Create Gold tables - Dim"
-          TopLeft="30,1373" />
-        <NodeLayout
-          Size="191,42"
-          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactEmployment"
-          TopLeft="457,43" />
-        <NodeLayout
-          Size="153,42"
-          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactGDP"
-          TopLeft="92,40" />
-        <NodeLayout
-          Size="204,42"
-          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactUnemployment"
-          TopLeft="797,48" />
-        <NodeLayout
-          Size="182,42"
-          Id="Package\Sequence Container - Create Gold tables - Fact\Create FactPopulation"
-          TopLeft="80,157" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="1136,427"
-          Size="1136,470"
-          Id="Package\Sequence Container - Create Gold tables - Fact"
-          TopLeft="26,2053" />
+          PanelSize="1085,354"
+          Size="1085,397"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
+          TopLeft="33,122" />
         <NodeLayout
           Size="155,42"
-          Id="Package\Sequence Container - Create silver tables\Create AgeClass"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClass"
           TopLeft="88,437.571428571428" />
         <NodeLayout
           Size="216,42"
-          Id="Package\Sequence Container - Create silver tables\Create ConsumptionCategory"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create ConsumptionCategory"
           TopLeft="366,430" />
         <NodeLayout
           Size="213,42"
-          Id="Package\Sequence Container - Create silver tables\Create employment_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create employment_cleaned"
           TopLeft="454.1875,60" />
         <NodeLayout
           Size="137,42"
-          Id="Package\Sequence Container - Create silver tables\Create Flags"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Flags"
           TopLeft="883,535" />
         <NodeLayout
           Size="173,42"
-          Id="Package\Sequence Container - Create silver tables\Create gdp_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create gdp_cleaned"
           TopLeft="65,56" />
         <NodeLayout
           Size="147,42"
-          Id="Package\Sequence Container - Create silver tables\Create Gender"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Gender"
           TopLeft="886.5,434.071428571428" />
         <NodeLayout
           Size="238,42"
-          Id="Package\Sequence Container - Create silver tables\Create government_debt_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create government_debt_cleaned"
           TopLeft="432.6875,297.5" />
         <NodeLayout
           Size="205,42"
-          Id="Package\Sequence Container - Create silver tables\Create hicp_index_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create hicp_index_cleaned"
           TopLeft="53,289.5" />
         <NodeLayout
           Size="220,42"
-          Id="Package\Sequence Container - Create silver tables\Create job_vacancies_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create job_vacancies_cleaned"
           TopLeft="446.5,183" />
         <NodeLayout
           Size="296,42"
-          Id="Package\Sequence Container - Create silver tables\Create money_market_interest_rates_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create money_market_interest_rates_cleaned"
           TopLeft="772.6875,183" />
         <NodeLayout
           Size="204,42"
-          Id="Package\Sequence Container - Create silver tables\Create population_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create population_cleaned"
           TopLeft="53.6875,177.5" />
         <NodeLayout
           Size="145,42"
-          Id="Package\Sequence Container - Create silver tables\Create Region"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Region"
           TopLeft="109.821428571429,537.071428571428" />
         <NodeLayout
           Size="208,42"
-          Id="Package\Sequence Container - Create silver tables\Create SeasonalAdjustment"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create SeasonalAdjustment"
           TopLeft="368.875,540" />
         <NodeLayout
           Size="185,42"
-          Id="Package\Sequence Container - Create silver tables\Create TimeFrequency"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create TimeFrequency"
           TopLeft="667.821428571429,430" />
         <NodeLayout
           Size="225,42"
-          Id="Package\Sequence Container - Create silver tables\Create unemployment_cleaned"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create unemployment_cleaned"
           TopLeft="809,57.5" />
         <NodeLayout
           Size="132,42"
-          Id="Package\Sequence Container - Create silver tables\Create Unit"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create Unit"
           TopLeft="657.482142857143,537" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1122,740"
-          Size="1122,783"
-          Id="Package\Sequence Container - Create silver tables"
-          TopLeft="32,502" />
+          PanelSize="1074,740"
+          Size="1074,783"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver"
+          TopLeft="45,584" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="592.75,437">
+          TopLeft="578.75,519">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -979,42 +679,24 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Create Diagnostics_ETL_Bronze_Silver"
+          TopLeft="442,5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="592.5,1285">
+          TopLeft="573.5,47">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,88"
+              EndConnector="0,75"
               Start="0,0"
-              End="0,80.5">
+              End="0,67.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,80.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="593,1875">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,178"
-              Start="0,0"
-              End="0,170.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,170.5" />
+                    End="0,67.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

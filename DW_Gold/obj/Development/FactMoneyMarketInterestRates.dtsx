@@ -1,0 +1,1772 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/25/2025 3:25:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{7A23EED3-426D-4919-B8EE-344822021F98}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{4400E940-3D51-4E64-9034-499FFFC159C3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BC921F51-A6B5-44CC-9B94-BF25191BBD76}"
+      DTS:ObjectName="LocalHost.LIA_DB_Diagnostics">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=LIA_DB_Diagnostics;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BC921F51-A6B5-44CC-9B94-BF25191BBD76}LocalHost.LIA_DB_Diagnostics;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{62214029-7e10-49a5-9008-bfec83657808}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_VALUE]"
+                      cachedDataType="numeric"
+                      cachedName="OBS_VALUE"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Observation status (Flag) V2 structure"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="317"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) ? "" : (DT_WSTR,100)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) ? "" : (DT_WSTR,100)#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}),1,500)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : (DT_WSTR,100)[Geopolitical entity (reporting)]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : (DT_WSTR,100)[Observation status (Flag) V2 structure]),1,500)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LIA_DB_Diagnostics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_DW_Gold]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="317"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load from money_market_interest_rates_cleaned"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[money_market_interest_rates_cleaned]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Connections[OleDbConnection]"
+                  connectionManagerID="{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[freq]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      length="1"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[freq]"
+                      name="freq"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      length="10"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      name="Time frequency"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[geo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      length="10"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[geo]"
+                      name="geo"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      length="5"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
+                      name="CreatedSilverAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      length="120"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      length="50"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      dataType="numeric"
+                      name="OBS_VALUE"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      name="Observation status (Flag) V2 structure" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      name="freq" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      name="Time frequency" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      name="geo" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      dataType="numeric"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
+                      name="CreatedSilverAt" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to FactPopulation"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactMoneyMarketInterestRates]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
+                      cachedDataType="i4"
+                      cachedName="OBS_VALUE"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[TimeFrequencyKey]"
+                      cachedDataType="i4"
+                      cachedName="TimeFrequencyKey"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequencyKey]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[RegionKey]"
+                      cachedDataType="i4"
+                      cachedName="RegionKey"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[FlagKey]"
+                      cachedDataType="i4"
+                      cachedName="FlagKey"
+                      externalMetadataColumnId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      dataType="numeric"
+                      name="Value"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[CreatedGoldAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedGoldAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequencyKey]"
+                      dataType="i4"
+                      name="TimeFrequencyKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
+                      dataType="i4"
+                      name="RegionKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
+                      dataType="i4"
+                      name="FlagKey" />
+                    <externalMetadataColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[FactMoneyMarketInterestRatesKey]"
+                      dataType="i4"
+                      name="FactMoneyMarketInterestRatesKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimDate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDate]) [refTable]
+where [refTable].[DateValue] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateValue" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="YearNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="QuarterNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DayName" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DateValue</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimFlags"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimFlags]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimFlags]) [refTable]
+where [refTable].[FlagAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="FlagSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FlagAK" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="70" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_FLAG]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[OBS_FLAG]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FlagAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      name="FlagKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FlagSK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimRegion"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimRegion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimRegion]) [refTable]
+where [refTable].[RegionAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="RegionSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RegionAK" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="120" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StartDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[geo]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[geo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RegionAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      name="RegionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">RegionSK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimTimeFrequency"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimTimeFrequency]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimTimeFrequency]) [refTable]
+where [refTable].[TimeFrequencyAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TimeFrequencySK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimeFrequencyAK" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[freq]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output].Columns[freq]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TimeFrequencyAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      name="TimeFrequencyKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TimeFrequencySK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Derived Column Output]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output1]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output2]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output3]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[OLE DB Source Error Output]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Error Output]" />
+            <path
+              refId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[OLE DB Source Output]"
+              endId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate FactMoneyMarketInterestRates"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0c204b36-d323-4bc7-b946-3763e893a43c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate FactMoneyMarketInterestRates"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE FactMoneyMarketInterestRates;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{bd7c17a8-8d9b-47b1-9f69-0318fe086437}"
+      DTS:From="Package\SQL truncate FactMoneyMarketInterestRates"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="475,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates"
+          TopLeft="60,236" />
+        <NodeLayout
+          Size="289,42"
+          Id="Package\SQL truncate FactMoneyMarketInterestRates"
+          TopLeft="160,62" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="301,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,132"
+              Start="0,0"
+              End="0,124.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,124.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimFlags"
+          TopLeft="322,345" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimTimeFrequency"
+          TopLeft="298.75,175" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation"
+          TopLeft="303.25,435" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimDate"
+          TopLeft="323.75,92" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Lookup DimRegion"
+          TopLeft="318.75,260" />
+        <NodeLayout
+          Size="313,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned"
+          TopLeft="248.25,6" />
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[OLE DB Source Output]"
+          TopLeft="403.5,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output3]"
+          TopLeft="401.875,302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output2]"
+          TopLeft="402.25,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output1]"
+          TopLeft="399.125,387">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Lookup Match Output]"
+          TopLeft="402.25,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Derived Column - Concatenate"
+          TopLeft="625.25,91" />
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[OLE DB Source Error Output]"
+          TopLeft="455.583333333333,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="281.166666666667,43"
+              Start="0,0"
+              End="281.166666666667,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.3312142403052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.3312142403052"
+                    Point2="0,17.3312142403052"
+                    Point3="4,17.3312142403052" />
+                  <mssgle:LineSegment
+                    End="277.166666666667,17.3312142403052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="277.166666666667,17.3312142403052"
+                    Point2="281.166666666667,17.3312142403052"
+                    Point3="281.166666666667,21.3312142403052" />
+                  <mssgle:LineSegment
+                    End="281.166666666667,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="77.1494270833334,22.3312142403052,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics"
+          TopLeft="653.25,442" />
+        <EdgeLayout
+          Id="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates.Paths[Derived Column Output]"
+          TopLeft="738.25,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,309"
+              Start="0,0"
+              End="0,301.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,301.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load to FactPopulation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\Load from money_market_interest_rates_cleaned">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from money_market_interest_rates_cleaned to FactMoneyMarketInterestRates\LIA_DB_Diagnostics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
