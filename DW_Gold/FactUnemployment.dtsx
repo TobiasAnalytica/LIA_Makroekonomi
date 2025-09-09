@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{3CDEE9AF-4F53-4164-A7EE-D0010A894EBC}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{CD075E5D-DC0D-460D-810A-B7B7838BC518}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -898,13 +898,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAgeClass]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAgeClassUnemp]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAgeClass]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAgeClassUnemp]) [refTable]
 where [refTable].[AgeClassAK] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1967,6 +1967,18 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="167,42"
+          Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimRegion"
+          TopLeft="318.75,350" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\Load from unemployment_cleaned to FactUnemployment\Load from unemployment_clened"
+          TopLeft="286.25,6" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\Load from unemployment_cleaned to FactUnemployment\Load to FactUnemployment"
+          TopLeft="305.25,591" />
+        <NodeLayout
           Size="157,42"
           Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimDate"
           TopLeft="323.75,92" />
@@ -1979,9 +1991,13 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimTimeFrequency"
           TopLeft="298.75,175" />
         <NodeLayout
-          Size="208,42"
-          Id="Package\Load from unemployment_cleaned to FactUnemployment\Load to FactUnemployment"
-          TopLeft="305.25,591" />
+          Size="173,42"
+          Id="Package\Load from unemployment_cleaned to FactUnemployment\LIA_DB_Diagnostics"
+          TopLeft="630.25,594" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load from unemployment_cleaned to FactUnemployment\Derived Column - Concatenate"
+          TopLeft="605.25,96" />
         <NodeLayout
           Size="177,42"
           Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimAgeClass"
@@ -1990,14 +2006,52 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           Size="159,42"
           Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimFlags"
           TopLeft="331,521" />
-        <NodeLayout
-          Size="167,42"
-          Id="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimRegion"
-          TopLeft="318.75,350" />
-        <NodeLayout
-          Size="237,42"
-          Id="Package\Load from unemployment_cleaned to FactUnemployment\Load from unemployment_clened"
-          TopLeft="286.25,6" />
+        <EdgeLayout
+          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[Lookup Match Output]"
+          TopLeft="404,303">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,13.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[Derived Column Output]"
+          TopLeft="716.75,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,456"
+              Start="0,0"
+              End="0,448.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,448.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[OLE DB Source Output]"
           TopLeft="403.5,48">
@@ -2018,6 +2072,42 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[OLE DB Source Error Output]"
+          TopLeft="442.916666666667,48">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="273.833333333333,48"
+              Start="0,0"
+              End="273.833333333333,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.3931265716681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.3931265716681"
+                    Point2="0,19.3931265716681"
+                    Point3="4,19.3931265716681" />
+                  <mssgle:LineSegment
+                    End="269.833333333333,19.3931265716681" />
+                  <mssgle:CubicBezierSegment
+                    Point1="269.833333333333,19.3931265716681"
+                    Point2="273.833333333333,19.3931265716681"
+                    Point3="273.833333333333,23.3931265716681" />
+                  <mssgle:LineSegment
+                    End="273.833333333333,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="73.4827604166667,24.3931265716681,126.8678125,11.43359375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -2140,99 +2230,58 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[Lookup Match Output]"
-          TopLeft="404,303">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47"
-              Start="0,0"
-              End="0,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,13.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="223,42"
-          Id="Package\Load from unemployment_cleaned to FactUnemployment\Derived Column - Concatenate"
-          TopLeft="605.25,96" />
-        <EdgeLayout
-          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[OLE DB Source Error Output]"
-          TopLeft="442.916666666667,48">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="273.833333333333,48"
-              Start="0,0"
-              End="273.833333333333,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.3931265716681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.3931265716681"
-                    Point2="0,19.3931265716681"
-                    Point3="4,19.3931265716681" />
-                  <mssgle:LineSegment
-                    End="269.833333333333,19.3931265716681" />
-                  <mssgle:CubicBezierSegment
-                    Point1="269.833333333333,19.3931265716681"
-                    Point2="273.833333333333,19.3931265716681"
-                    Point3="273.833333333333,23.3931265716681" />
-                  <mssgle:LineSegment
-                    End="273.833333333333,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="73.4827604166667,24.3931265716681,126.8678125,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Load from unemployment_cleaned to FactUnemployment\LIA_DB_Diagnostics"
-          TopLeft="630.25,594" />
-        <EdgeLayout
-          Id="Package\Load from unemployment_cleaned to FactUnemployment.Paths[Derived Column Output]"
-          TopLeft="716.75,138">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,456"
-              Start="0,0"
-              End="0,448.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,448.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimRegion">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimRegion]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Load from unemployment_clened">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Load to FactUnemployment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimDate">
     <Properties>
@@ -2303,7 +2352,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Load to FactUnemployment">
+    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\LIA_DB_Diagnostics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2321,17 +2370,17 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimAgeClass]</Value>
+          type="q3:string">[dbo].[DimAgeClassUnemp]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2358,55 +2407,6 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Lookup DimRegion">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimRegion]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\Load from unemployment_clened">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load from unemployment_cleaned to FactUnemployment\LIA_DB_Diagnostics">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

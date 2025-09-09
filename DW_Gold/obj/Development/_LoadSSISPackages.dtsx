@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{F83C2F8D-77E4-4FDC-9CF1-4D727AA342A3}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{3087B6C7-A76C-4059-9E17-0F72C58500AA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -45,19 +45,36 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Dim\Execute Package Task - DimAgeClass"
+          DTS:refId="Package\Sequence Container - Dim\Execute Package Task - DimAgeClassEmp"
           DTS:CreationName="Microsoft.ExecutePackageTask"
           DTS:Description="Execute Package Task"
           DTS:DTSID="{349A149D-94EF-4FBA-8744-3E86B47E950A}"
           DTS:ExecutableType="Microsoft.ExecutePackageTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="Execute Package Task - DimAgeClass"
+          DTS:ObjectName="Execute Package Task - DimAgeClassEmp"
           DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:ObjectData>
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
-              <PackageName>DimAgeClass.dtsx</PackageName>
+              <PackageName>DimAgeClassEmp.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Dim\Execute Package Task - DimAgeClassUnemp"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3bc08119-25c6-4e4e-9c97-5bd0d911fe5e}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute Package Task - DimAgeClassUnemp"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>DimAgeClassUnemp.dtsx</PackageName>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -380,16 +397,20 @@
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="263,42"
-          Id="Package\Sequence Container - Dim\Execute Package Task - DimAgeClass"
-          TopLeft="96,72.6666666666667" />
+          Id="Package\Execute Package Task - _LoadTables"
+          TopLeft="447,62" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\Sequence Container - Dim\Execute Package Task - DimAgeClassEmp"
+          TopLeft="5,69.6666666666667" />
         <NodeLayout
           Size="325,42"
           Id="Package\Sequence Container - Dim\Execute Package Task - DimConsumptionCategory"
-          TopLeft="411.5,72.6666666666667" />
+          TopLeft="464.5,71.6666666666667" />
         <NodeLayout
           Size="246,42"
           Id="Package\Sequence Container - Dim\Execute Package Task - DimDate"
-          TopLeft="791,72.6666666666667" />
+          TopLeft="804,72.6666666666667" />
         <NodeLayout
           Size="248,42"
           Id="Package\Sequence Container - Dim\Execute Package Task - DimFlags"
@@ -414,11 +435,15 @@
           Size="192,42"
           Id="Package\Sequence Container - Dim\Execute Package Task - DimUnit"
           TopLeft="818,303.333333333333" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Sequence Container - Dim\Execute Package Task - DimAgeClassUnemp"
+          TopLeft="140,121.333333333333" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1067,399"
-          Size="1067,442"
+          PanelSize="1067,502"
+          Size="1067,545"
           Id="Package\Sequence Container - Dim"
           TopLeft="38,260" />
         <NodeLayout
@@ -459,21 +484,21 @@
           PanelSize="1065,372"
           Size="1065,415"
           Id="Package\Sequence Container - Fact"
-          TopLeft="40,762" />
+          TopLeft="38,896" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="572,702">
+          TopLeft="571,805">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60"
+              EndConnector="0,91"
               Start="0,0"
-              End="0,52.5">
+              End="0,83.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5" />
+                    End="0,83.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -482,10 +507,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="263,42"
-          Id="Package\Execute Package Task - _LoadTables"
-          TopLeft="447,62" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="575,104">

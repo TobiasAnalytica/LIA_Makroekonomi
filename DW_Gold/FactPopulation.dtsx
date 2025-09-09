@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{F37625C3-07A5-415F-8AAB-73385AAC1EF9}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{C4016B1C-685D-4094-8458-8AFC5408C77A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -84,18 +84,6 @@
                       cachedName="Sex_2"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]" />
                     <inputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[age]"
-                      cachedDataType="wstr"
-                      cachedLength="6"
-                      cachedName="age"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[age]" />
-                    <inputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Age class]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="Age class"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Age class]" />
-                    <inputColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
                       cachedDataType="wstr"
                       cachedLength="10"
@@ -146,7 +134,7 @@
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="401"
+                      length="339"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       name="ErrorDescription"
                       truncationRowDisposition="FailComponent">
@@ -155,13 +143,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[sex]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[sex]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[age]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[age]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Age class]}) ? "" : (DT_WSTR,50)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Age class]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) ? "" : (DT_WSTR,100)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Observation status]}) ? "" : (DT_WSTR,100)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Observation status]}),1,500)</property>
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[sex]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[sex]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) ? "" : (DT_WSTR,100)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Observation status]}) ? "" : (DT_WSTR,100)#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Observation status]}),1,500)</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(sex) ? "" : (DT_WSTR,10)sex) + "|" + (ISNULL(Sex_2) ? "" : (DT_WSTR,10)Sex_2) + "|" + (ISNULL(age) ? "" : (DT_WSTR,10)age) + "|" + (ISNULL([Age class]) ? "" : (DT_WSTR,50)[Age class]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity]) ? "" : (DT_WSTR,100)[Geopolitical entity]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status]) ? "" : (DT_WSTR,100)[Observation status]),1,500)</property>
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(sex) ? "" : (DT_WSTR,10)sex) + "|" + (ISNULL(Sex_2) ? "" : (DT_WSTR,10)Sex_2) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity]) ? "" : (DT_WSTR,100)[Geopolitical entity]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status]) ? "" : (DT_WSTR,100)[Observation status]),1,500)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -279,7 +267,7 @@
                     <inputColumn
                       refId="Package\Load from population_cleaned to FactPopulation\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
-                      cachedLength="401"
+                      cachedLength="339"
                       cachedName="ErrorDescription"
                       externalMetadataColumnId="Package\Load from population_cleaned to FactPopulation\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
@@ -491,26 +479,6 @@
                       name="Sex_2"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[age]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].ExternalColumns[age]"
-                      length="6"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[age]"
-                      name="age"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[Age class]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
-                      length="20"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[Age class]"
-                      name="Age class"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[Geopolitical entity]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -579,16 +547,6 @@
                       dataType="wstr"
                       length="7"
                       name="Sex_2" />
-                    <externalMetadataColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].ExternalColumns[age]"
-                      dataType="wstr"
-                      length="6"
-                      name="age" />
-                    <externalMetadataColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
-                      dataType="wstr"
-                      length="20"
-                      name="Age class" />
                     <externalMetadataColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity]"
                       dataType="wstr"
@@ -674,18 +632,6 @@
                       length="7"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Sex_2]"
                       name="Sex_2" />
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[age]"
-                      dataType="wstr"
-                      length="6"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[age]"
-                      name="age" />
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Age class]"
-                      dataType="wstr"
-                      length="20"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Age class]"
-                      name="Age class" />
                     <outputColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]"
                       dataType="wstr"
@@ -806,12 +752,6 @@
                       externalMetadataColumnId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
                     <inputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[AgeClassKey]"
-                      cachedDataType="i4"
-                      cachedName="AgeClassKey"
-                      externalMetadataColumnId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[AgeClassKey]"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]" />
-                    <inputColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].Columns[FlagKey]"
                       cachedDataType="i4"
                       cachedName="FlagKey"
@@ -845,10 +785,6 @@
                       dataType="i4"
                       name="RegionKey" />
                     <externalMetadataColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[AgeClassKey]"
-                      dataType="i4"
-                      name="AgeClassKey" />
-                    <externalMetadataColumn
                       refId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
                       dataType="i4"
                       name="FlagKey" />
@@ -877,165 +813,6 @@
                       refId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimAgeClass"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAgeClass]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAgeClass]) [refTable]
-where [refTable].[AgeClassAK] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AgeClassSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AgeClassAK" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[age]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Connections[OleDbConnection]"
-                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LocalHost.LIA_DW_Gold]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input].Columns[age]"
-                      cachedDataType="wstr"
-                      cachedLength="6"
-                      cachedName="age"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Load from population_clened.Outputs[OLE DB Source Output].Columns[age]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">AgeClassAK</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]"
-                      name="AgeClassKey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">AgeClassSK</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1861,19 +1638,14 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               startId="Package\Load from population_cleaned to FactPopulation\Lookup DimTimeFrequency.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output3]"
-              endId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Inputs[Lookup Input]"
+              endId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
-              startId="Package\Load from population_cleaned to FactPopulation\Lookup DimRegion.Outputs[Lookup Match Output]" />
+              startId="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output4]"
               endId="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output5]"
-              endId="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation.Inputs[OLE DB Destination Input]"
-              name="Lookup Match Output"
-              startId="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags.Outputs[Lookup Match Output]" />
+              startId="Package\Load from population_cleaned to FactPopulation\Lookup DimRegion.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load from population_cleaned to FactPopulation.Paths[OLE DB Source Error Output]"
               endId="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate.Inputs[Derived Column Input]"
@@ -1967,6 +1739,10 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="187,42"
+          Id="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation"
+          TopLeft="308.25,525" />
+        <NodeLayout
           Size="157,42"
           Id="Package\Load from population_cleaned to FactPopulation\Lookup DimDate"
           TopLeft="323.75,92" />
@@ -1979,18 +1755,6 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           Id="Package\Load from population_cleaned to FactPopulation\Lookup DimTimeFrequency"
           TopLeft="298.75,175" />
         <NodeLayout
-          Size="187,42"
-          Id="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation"
-          TopLeft="310.25,611" />
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass"
-          TopLeft="319.25,440" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags"
-          TopLeft="329,521" />
-        <NodeLayout
           Size="167,42"
           Id="Package\Load from population_cleaned to FactPopulation\Lookup DimRegion"
           TopLeft="318.75,350" />
@@ -1998,6 +1762,18 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           Size="216,42"
           Id="Package\Load from population_cleaned to FactPopulation\Load from population_clened"
           TopLeft="290.25,5" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load from population_cleaned to FactPopulation\LIA_DB_Diagnostics"
+          TopLeft="602.25,532" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags"
+          TopLeft="327,435" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate"
+          TopLeft="582.25,94" />
         <EdgeLayout
           Id="Package\Load from population_cleaned to FactPopulation.Paths[OLE DB Source Output]"
           TopLeft="400.25,47">
@@ -2021,56 +1797,68 @@ where [refTable].[TimeFrequencyAK] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output5]"
-          TopLeft="406.125,563">
+          Id="Package\Load from population_cleaned to FactPopulation.Paths[OLE DB Source Error Output]"
+          TopLeft="432.916666666667,47">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="260.833333333333,47"
               Start="0,0"
-              End="0,40.5">
+              End="260.833333333333,39.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,15.0073529411765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0073529411765"
+                    Point2="0,19.0073529411765"
+                    Point3="4,19.0073529411765" />
+                  <mssgle:LineSegment
+                    End="256.833333333333,19.0073529411765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="256.833333333333,19.0073529411765"
+                    Point2="260.833333333333,19.0073529411765"
+                    Point3="260.833333333333,23.0073529411765" />
+                  <mssgle:LineSegment
+                    End="260.833333333333,39.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.4453125,96.3827734375,11.609375"
+              BoundingBox="66.9827604166665,24.0073529411765,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output4]"
-          TopLeft="408.125,482">
+          TopLeft="404.375,392">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,39"
+              EndConnector="0,43"
               Start="0,0"
-              End="0,31.5">
+              End="0,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5" />
+                    End="0,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,9.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,11.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load from population_cleaned to FactPopulation.Paths[Lookup Match Output3]"
-          TopLeft="405,392">
+          TopLeft="404.125,477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2164,64 +1952,20 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="223,42"
-          Id="Package\Load from population_cleaned to FactPopulation\Derived Column - Concatenate"
-          TopLeft="582.25,94" />
-        <EdgeLayout
-          Id="Package\Load from population_cleaned to FactPopulation.Paths[OLE DB Source Error Output]"
-          TopLeft="432.916666666667,47">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="260.833333333333,47"
-              Start="0,0"
-              End="260.833333333333,39.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,15.0073529411765" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.0073529411765"
-                    Point2="0,19.0073529411765"
-                    Point3="4,19.0073529411765" />
-                  <mssgle:LineSegment
-                    End="256.833333333333,19.0073529411765" />
-                  <mssgle:CubicBezierSegment
-                    Point1="256.833333333333,19.0073529411765"
-                    Point2="260.833333333333,19.0073529411765"
-                    Point3="260.833333333333,23.0073529411765" />
-                  <mssgle:LineSegment
-                    End="260.833333333333,39.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="66.9827604166667,24.0073529411765,126.8678125,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="173,42"
-          Id="Package\Load from population_cleaned to FactPopulation\LIA_DB_Diagnostics"
-          TopLeft="609.25,612" />
         <EdgeLayout
           Id="Package\Load from population_cleaned to FactPopulation.Paths[Derived Column Output]"
-          TopLeft="694.75,136">
+          TopLeft="691.25,136">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,476"
+              EndConnector="0,396"
               Start="0,0"
-              End="0,468.5">
+              End="0,388.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,468.5" />
+                    End="0,388.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2233,6 +1977,19 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load from population_cleaned to FactPopulation\Lookup DimDate">
     <Properties>
@@ -2277,39 +2034,6 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load from population_cleaned to FactPopulation\Load to FactPopulation">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load from population_cleaned to FactPopulation\Lookup DimAgeClass">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load from population_cleaned to FactPopulation\Lookup DimRegion">
     <Properties>
       <Property>
@@ -2342,6 +2066,16 @@ where [refTable].[TimeFrequencyAK] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load from population_cleaned to FactPopulation\Lookup DimFlags">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -26,11 +26,10 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSOFFICE</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAT7Gw7hDQwkqNma7cv7I3kwAAAAACAAAAAAAQZgAAAAEAACAAAACbVqnUxwahmXk7x6FhjJsmAW71nNi6wzfcoVPfB69u2AAAAAAOgAAAAAIAACAAAAAyeZFtfgdqtzD2bqAEYwGNnwhPsiIn/MVX9bNdzADtFpAAAAC9hlR0B8tyjmweBxvKqepH/5L8n5CmvpOnqvcEawSgNo0x9bHvbJ3va3zVBWcBvBDH8eDrLLu/tcoB/72zYv1Exr44XE6F4v/CgTfg4wb8JuardrCj6gZyeVPap4yOKtE7drDxyBea7OtJDBUHgBf5PkIuZFFHOyFkKvb4mEBUQdftzJ30TlJhKGbTkAcQO/RAAAAAsZyZEet7a5JBKl7xLx3uhtN2lexprR9MXr2fK4neZjR3VkgTiuiVRPebGhXUvUT7y37/aRapZuvjNxAYE7Dlmw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAT7Gw7hDQwkqNma7cv7I3kwAAAAACAAAAAAAQZgAAAAEAACAAAACfDHy3c9uQTGfUW4b0Rd5ijyggYiPfDDVAaJspfM5uSgAAAAAOgAAAAAIAACAAAADZsuE1u3UkKyGqWkhFsAtIDqFnKIxHNcujHW8zmI1+fZAAAABeEeW9aYbT4raP3T3onwCtGMgaYnT7bEGeHajWsmVeQPOyxD0z9BXW9ojFHEgYN67qqDHtzxFJaHtlf3DYNCN8JSb6ljfzCONpPgcd8AN1AVMoaMs19ZWvFstwLRAgAnnjm4cHaLeULxd+WIrnbAudRwF908W2tjNw5zK6Lt3XMhfsPX6RtgnjTkDzVxm5nD9AAAAAEzZik49sQdDNLlvxceQSfsTd5Aj7xOUMnTVBIVpDcT8xCWZti0B0j+RO/1H+0OqUKuAgq6bUup0NKvPyXGmVDg==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="DimAgeClass.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimConsumptionCategory.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimDate.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="DimFlags.dtsx" SSIS:EntryPoint="1" />
@@ -49,6 +48,8 @@
           <SSIS:Package SSIS:Name="FactMoneyMarketInterestRates.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="_LoadSSISPackages.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="_LoadTables.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimAgeClassEmp.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="DimAgeClassUnemp.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LocalHost.LIA_DB_Silver.conmgr" />
@@ -354,23 +355,6 @@
             </SSIS:Parameter>
           </SSIS:ProjectConnectionParameters>
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="DimAgeClass.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{4475138B-383C-422B-8503-EA7E6AF089D2}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">DimAgeClass</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">21</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5E783D06-3E02-4B97-8F48-929BE5C0C73E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="DimConsumptionCategory.dtsx">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">{A673AEC4-92D9-4E15-95FD-B0859BAC5986}</SSIS:Property>
@@ -679,10 +663,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">28</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D62D3EC2-7CB9-4142-98AF-6EC8865E297A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2D5A6FD1-B01A-4655-9173-54B01586BE86}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -845,10 +829,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3CDEE9AF-4F53-4164-A7EE-D0010A894EBC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CD075E5D-DC0D-460D-810A-B7B7838BC518}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1011,10 +995,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F37625C3-07A5-415F-8AAB-73385AAC1EF9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C4016B1C-685D-4094-8458-8AFC5408C77A}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1509,10 +1493,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">9</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">7</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3176E25C-B3A2-4E2C-96CC-1741C70C5091}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{43013F3D-BA85-4110-BAD7-0ECE4860AAFE}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1841,10 +1825,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F83C2F8D-77E4-4FDC-9CF1-4D727AA342A3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3087B6C7-A76C-4059-9E17-0F72C58500AA}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1858,10 +1842,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{9F4590EA-F683-467E-9B9C-F29EBD4007DE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{EE782BA6-B4CD-4670-B8F2-63E9AC694EF4}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -2017,6 +2001,40 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DimAgeClassEmp.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{23E065F2-5E8D-4905-98D1-3AD506CB779E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimAgeClassEmp</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CD4789A5-2482-456D-8AF1-93EFF021091A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="DimAgeClassUnemp.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{68261E77-1A1A-4979-9C9B-064BC8272C60}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">DimAgeClassUnemp</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FA8D7425-9CE8-4112-8F41-6DB86C5ED00B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>

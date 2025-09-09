@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="136"
-  DTS:VersionGUID="{972D7FC3-2D13-46ED-9E4A-EA643DD1FEA5}">
+  DTS:VersionBuild="139"
+  DTS:VersionGUID="{9C8C51B1-E39B-44C8-9B2C-145E8DE10B23}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -55,7 +55,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create employment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -74,7 +74,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create gdp_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -131,7 +131,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create job_vacancies_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -169,7 +169,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create population_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -188,7 +188,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create unemployment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -211,22 +211,41 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClass"
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClassEmp"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{81dadd06-c52d-440f-9260-0d88bee9dbde}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="1033"
-          DTS:ObjectName="Create AgeClass"
+          DTS:ObjectName="Create AgeClassEmp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{916ED628-1AF9-458E-85AC-E6885B6F00FD}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.AgeClass', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.AgeClass;&#xA;&#xA;CREATE TABLE dbo.AgeClass (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.AgeClassEmp', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.AgeClassEmp;&#xA;&#xA;CREATE TABLE dbo.AgeClassEmp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClassUnemp"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{db9f6d2f-e9e6-4976-a189-cb0f67271567}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create AgeClassUnemp"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="12">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{916ED628-1AF9-458E-85AC-E6885B6F00FD}"
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.AgeClassUnemp', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.AgeClassUnemp;&#xA;&#xA;CREATE TABLE dbo.AgeClassUnemp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -238,7 +257,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create ConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -257,7 +276,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create employment_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -276,7 +295,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Flags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -295,7 +314,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create gdp_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -314,7 +333,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Gender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -333,7 +352,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create government_debt_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="13">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -352,7 +371,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create hicp_index_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="14">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -371,7 +390,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create job_vacancies_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="15">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -390,7 +409,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create money_market_interest_rates_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -409,14 +428,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create population_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{916ED628-1AF9-458E-85AC-E6885B6F00FD}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.population_cleaned', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.population_cleaned;&#xA;&#xA;CREATE TABLE dbo.population_cleaned (&#xA;      freq NCHAR(1) NOT NULL,         -- t.ex. A&#xA;     [Time frequency] NCHAR(10) NOT NULL,      -- t.ex. Annual    &#xA;     age NVARCHAR(6) NOT NULL,      -- t.ex. TOTAL&#xA;     [Age class] NVARCHAR(20) NOT NULL,     -- t.ex. Total       &#xA;     sex NCHAR(1) NOT NULL,      -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,     -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,         -- t.ex. SE&#xA;     [Geopolitical entity] NVARCHAR(120) NOT NULL,  -- t.ex. Sweden&#xA;     Date DATE NOT NULL,          -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,                       -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,         -- t.ex. p&#xA;     [Observation status] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                         -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.population_cleaned', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.population_cleaned;&#xA;&#xA;CREATE TABLE dbo.population_cleaned (&#xA;      freq NCHAR(1) NOT NULL,         -- t.ex. A&#xA;     [Time frequency] NCHAR(10) NOT NULL,      -- t.ex. Annual          &#xA;     sex NCHAR(1) NOT NULL,      -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,     -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,         -- t.ex. SE&#xA;     [Geopolitical entity] NVARCHAR(120) NOT NULL,  -- t.ex. Sweden&#xA;     Date DATE NOT NULL,          -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,                       -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,         -- t.ex. p&#xA;     [Observation status] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                         -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -428,7 +447,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Region"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -447,7 +466,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create SeasonalAdjustment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -466,7 +485,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create TimeFrequency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="15">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -485,7 +504,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create unemployment_cleaned"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -504,7 +523,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Unit"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -548,6 +567,10 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="259,42"
+          Id="Package\Create Diagnostics_ETL_Bronze_Silver"
+          TopLeft="442,5" />
+        <NodeLayout
           Size="199,42"
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create employment_raw"
           TopLeft="418.666666666667,56" />
@@ -587,13 +610,17 @@
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
           TopLeft="33,122" />
         <NodeLayout
-          Size="155,42"
-          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClass"
-          TopLeft="88,437.571428571428" />
+          Size="176,42"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClassEmp"
+          TopLeft="24,442.571428571428" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create AgeClassUnemp"
+          TopLeft="216,439" />
         <NodeLayout
           Size="216,42"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create ConsumptionCategory"
-          TopLeft="366,430" />
+          TopLeft="431,434" />
         <NodeLayout
           Size="213,42"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create employment_cleaned"
@@ -679,10 +706,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="259,42"
-          Id="Package\Create Diagnostics_ETL_Bronze_Silver"
-          TopLeft="442,5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="573.5,47">

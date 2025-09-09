@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package8"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{F45C28ED-AD1C-4B3C-B10F-E8A594249B41}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{12C62554-13C1-4A88-B37C-72A318FE3B35}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -34,14 +34,35 @@
           VSTAMinorVersion="0"
           Language="CSharp">
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("XLENT")]
+[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -493,35 +514,14 @@ namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("XLENT")]
-[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -844,18 +844,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       cachedName="Sex_2"
                       lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]" />
                     <inputColumn
-                      refId="Package\Load to population_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[age]"
-                      cachedDataType="wstr"
-                      cachedLength="6"
-                      cachedName="age"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[age]" />
-                    <inputColumn
-                      refId="Package\Load to population_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Age class]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="Age class"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Age class]" />
-                    <inputColumn
                       refId="Package\Load to population_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
                       cachedDataType="wstr"
                       cachedLength="10"
@@ -907,7 +895,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="401"
+                      length="339"
                       lineageId="Package\Load to population_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       name="ErrorDescription"
                       truncationRowDisposition="FailComponent">
@@ -916,13 +904,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[age]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[age]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Age class]}) ? "" : (DT_WSTR,50)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Age class]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) ? "" : (DT_WSTR,100)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Observation status]}) ? "" : (DT_WSTR,100)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Observation status]}),1,500)</property>
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) ? "" : (DT_WSTR,100)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Observation status]}) ? "" : (DT_WSTR,100)#{Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Observation status]}),1,500)</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(sex) ? "" : (DT_WSTR,10)sex) + "|" + (ISNULL(Sex_2) ? "" : (DT_WSTR,10)Sex_2) + "|" + (ISNULL(age) ? "" : (DT_WSTR,10)age) + "|" + (ISNULL([Age class]) ? "" : (DT_WSTR,50)[Age class]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity]) ? "" : (DT_WSTR,100)[Geopolitical entity]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status]) ? "" : (DT_WSTR,100)[Observation status]),1,500)</property>
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(sex) ? "" : (DT_WSTR,10)sex) + "|" + (ISNULL(Sex_2) ? "" : (DT_WSTR,10)Sex_2) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity]) ? "" : (DT_WSTR,100)[Geopolitical entity]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status]) ? "" : (DT_WSTR,100)[Observation status]),1,500)</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1040,7 +1028,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
                     <inputColumn
                       refId="Package\Load to population_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
-                      cachedLength="401"
+                      cachedLength="339"
                       cachedName="ErrorDescription"
                       externalMetadataColumnId="Package\Load to population_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       lineageId="Package\Load to population_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
@@ -1125,8 +1113,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
   CAST([Time frequency] AS NCHAR(10))       AS [Time frequency],
   CAST(sex AS NCHAR(1))                      AS sex,
   CAST([Sex_2] AS NVARCHAR(7))  AS Sex_2,
-  CAST(age AS NVARCHAR(6))                      AS age,
-  CAST([Age class] AS NVARCHAR(20))  AS [Age class],
   CAST(geo AS NVARCHAR(10))                       AS geo,
   CAST([Geopolitical entity] 
        AS NVARCHAR(120))                       AS [Geopolitical entity],
@@ -1230,26 +1216,6 @@ FROM dbo.population_raw;</property>
                       name="Sex_2"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[age]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].ExternalColumns[age]"
-                      length="6"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[age]"
-                      name="age"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[Age class]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
-                      length="20"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[Age class]"
-                      name="Age class"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
                       refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[geo]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -1341,16 +1307,6 @@ FROM dbo.population_raw;</property>
                       length="7"
                       name="Sex_2" />
                     <externalMetadataColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].ExternalColumns[age]"
-                      dataType="wstr"
-                      length="6"
-                      name="age" />
-                    <externalMetadataColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
-                      dataType="wstr"
-                      length="20"
-                      name="Age class" />
-                    <externalMetadataColumn
                       refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].ExternalColumns[geo]"
                       dataType="wstr"
                       length="10"
@@ -1414,18 +1370,6 @@ FROM dbo.population_raw;</property>
                       length="7"
                       lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]"
                       name="Sex_2" />
-                    <outputColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[age]"
-                      dataType="wstr"
-                      length="6"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[age]"
-                      name="age" />
-                    <outputColumn
-                      refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Age class]"
-                      dataType="wstr"
-                      length="20"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[Age class]"
-                      name="Age class" />
                     <outputColumn
                       refId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Error Output].Columns[geo]"
                       dataType="wstr"
@@ -1584,20 +1528,6 @@ FROM dbo.population_raw;</property>
                       externalMetadataColumnId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Sex_2]"
                       lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[Sex_2]" />
                     <inputColumn
-                      refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].Columns[age]"
-                      cachedDataType="wstr"
-                      cachedLength="6"
-                      cachedName="age"
-                      externalMetadataColumnId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[age]"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[age]" />
-                    <inputColumn
-                      refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].Columns[Age class]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="Age class"
-                      externalMetadataColumnId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Age class]"
-                      lineageId="Package\Load to population_cleaned\Load from population_raw.Outputs[OLE DB Source Output].Columns[Age class]" />
-                    <inputColumn
                       refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].Columns[geo]"
                       cachedDataType="wstr"
                       cachedLength="10"
@@ -1657,16 +1587,6 @@ FROM dbo.population_raw;</property>
                       dataType="wstr"
                       length="10"
                       name="Time frequency" />
-                    <externalMetadataColumn
-                      refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[age]"
-                      dataType="wstr"
-                      length="6"
-                      name="age" />
-                    <externalMetadataColumn
-                      refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Age class]"
-                      dataType="wstr"
-                      length="20"
-                      name="Age class" />
                     <externalMetadataColumn
                       refId="Package\Load to population_cleaned\Load to population_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[sex]"
                       dataType="wstr"
@@ -1933,28 +1853,6 @@ FROM dbo.population_raw;</property>
           Size="209,42"
           Id="Package\Load to population_cleaned\Load to population_cleaned"
           TopLeft="91,250" />
-        <EdgeLayout
-          Id="Package\Load to population_cleaned.Paths[OLE DB Source Output]"
-          TopLeft="197,114">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,136"
-              Start="0,0"
-              End="0,128.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,128.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
           Size="173,42"
           Id="Package\Load to population_cleaned\LIA_DB_Diagnostics"
@@ -1963,28 +1861,6 @@ FROM dbo.population_raw;</property>
           Size="223,42"
           Id="Package\Load to population_cleaned\Derived Column - Concatenate"
           TopLeft="387,143" />
-        <EdgeLayout
-          Id="Package\Load to population_cleaned.Paths[Derived Column Output]"
-          TopLeft="495,185">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,66"
-              Start="0,0"
-              End="0,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load to population_cleaned.Paths[OLE DB Source Error Output]"
           TopLeft="231,114">
@@ -2019,6 +1895,50 @@ FROM dbo.population_raw;</property>
             <mssgm:EdgeLabel
               BoundingBox="70.31609375,16.7360703812317,126.8678125,11.43359375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to population_cleaned.Paths[Derived Column Output]"
+          TopLeft="495,185">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to population_cleaned.Paths[OLE DB Source Output]"
+          TopLeft="197,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,136"
+              Start="0,0"
+              End="0,128.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,128.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
