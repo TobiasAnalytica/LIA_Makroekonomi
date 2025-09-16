@@ -1,0 +1,29 @@
+table DimInflationMeasure
+	lineageTag: 9fea9305-4fbf-43c5-9e41-124c13bbcf60
+
+	column MeasureName
+		lineageTag: e102326e-5c56-4415-b7fa-0a285dd79cfc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MeasureName]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimInflationMeasure = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "MeasureName", STRING,
+				    {
+				        { "MoM %" },
+				        { "YoY %" },
+				        { "3M Annualized %" },
+				        { "MoM 12M MA %" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = d07555b82a9948c9822e739730e94446
+

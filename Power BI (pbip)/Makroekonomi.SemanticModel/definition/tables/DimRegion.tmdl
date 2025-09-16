@@ -1,6 +1,14 @@
 table DimRegion
 	lineageTag: 78ce817a-3c57-4b2a-afce-73badddd5ee6
 
+	measure 'Regions – Selected (Count)' =
+			
+			COUNTROWS ( VALUES ( DimRegion[RegionSK] ) )
+			// Hur många regioner är valda just nu
+		formatString: 0
+		displayFolder: DAX
+		lineageTag: 741c35bf-f516-4224-a098-3ed1841afd00
+
 	column RegionSK
 		dataType: int64
 		formatString: 0

@@ -356,24 +356,16 @@ table FactGDP
 		displayFolder: DAX-GDP\Ranking
 		lineageTag: bc0807fb-ab55-40ce-94c8-5e3af7f589ba
 
-	measure 'Regions – Selected (Count)' =
-			
-			COUNTROWS ( VALUES ( DimRegion[Description] ) )
-			// Hur många regioner är valda just nu
-		formatString: 0
-		displayFolder: DAX-GDP\Ranking
-		lineageTag: 741c35bf-f516-4224-a098-3ed1841afd00
-
 	measure 'Latest Date – GDP (Common)' =
 			
 			VAR nRegions = [Regions – Selected (Count)]
-			VAR candidates =
+			VAR datesWithAll =
 			    FILTER (
 			        ALLSELECTED ( DimDate[Date] ),
 			        NOT ISBLANK ( [GDP – Value (Quarterly)] ) &&
 			        CALCULATE ( DISTINCTCOUNT ( FactGDP[RegionKey] ) ) = nRegions
 			    )
-			RETURN MAXX ( candidates, DimDate[Date] )
+			RETURN MAXX ( datesWithAll, DimDate[Date] )
 			// Senaste datum (kvartal) där ALLA valda regioner har BNP-värde
 		formatString: General Date
 		displayFolder: DAX-GDP\Dates
@@ -388,7 +380,7 @@ table FactGDP
 		displayFolder: DAX-GDP\Dates
 		lineageTag: a608ac4c-1ad0-46e7-8ea9-b2e574c43487
 
-	measure 'GDP – Value (EOP at Latest Common)' =
+	measure 'GDP – Value (EOP, Latest Common)' =
 			
 			VAR d = [Latest Date – GDP (Common)]
 			RETURN

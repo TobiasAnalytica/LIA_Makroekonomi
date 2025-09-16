@@ -1,40 +1,254 @@
 table FactHICPIndex
 	lineageTag: 0ec608eb-d98d-40fb-9edb-88fad421ef68
 
-	measure 'HICP Index I15' =
+	measure 'HICP – Index (At Date)' = ```
 			
-			CALCULATE(
-			    SELECTEDVALUE( FactHICPIndex[Value] ),
-			    FactHICPIndex[UnitKey] = 1
-			)
+			MAX ( FactHICPIndex[Value] )
+			-- Bas: index vid valt datum i aktuell filterkontext (kategori/land/basår)
 			
-			  -- total HICP Index, 2015=100
-		displayFolder: DAX
-		lineageTag: 56e83bd0-b3c2-4d98-98df-4842dcea454b
+			```
+		displayFolder: DAX-HICP\Base
+		lineageTag: f91764c0-7648-4a09-8c3a-7d43a18bafc6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'HICP Index I96' =
+	measure 'Latest Date – HICP' =
 			
 			CALCULATE (
-			    AVERAGE ( FactHICPIndex[Value] ),
-			    FactHICPIndex[UnitKey] = 2
+			    MAX ( DimDate[Date] ),
+			    FILTER ( ALLSELECTED ( DimDate[Date] ), NOT ISBLANK ( [HICP – Index (At Date)] ) )
 			)
-			  -- total HICP Index, 1996=100
-		displayFolder: DAX
-		lineageTag: 6f0dfb40-d365-418b-acd2-3798af3878cb
+			-- Hjälp: senaste månad med värde i vald kontext
+		formatString: General Date
+		displayFolder: DAX-HICP\Dates
+		lineageTag: cd2ed67e-84d4-4f9f-872f-e96ed15fa6fa
+
+	measure 'HICP – Index (EOP)' =
+			
+			VAR d = [Latest Date – HICP]
+			RETURN
+			    CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+			-- EOP (end-of-period): index på senaste datum i urvalet
+		displayFolder: DAX-HICP\Base
+		lineageTag: b12e9c73-f92e-49cb-a161-9624b46b5d5e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'HICP Index I05' =
+	measure 'HICP – Index (Prev Month)' =
 			
-			CALCULATE (
-			    AVERAGE ( FactHICPIndex[Value] ),
-			    FactHICPIndex[UnitKey] = 3
+			CALCULATE ( [HICP – Index (At Date)], DATEADD ( DimDate[Date], -1, MONTH ) )
+			-- Föregående månad
+		displayFolder: DAX-HICP\Base
+		lineageTag: be62bbe0-fcd1-4698-8da9-615f111d1cff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HICP – Index (Prev Year)' =
+			
+			CALCULATE ( [HICP – Index (At Date)], DATEADD ( DimDate[Date], -1, YEAR ) )
+			-- Föregående år (samma månad)
+		displayFolder: DAX-HICP\Base
+		lineageTag: 589d5b21-019f-4041-bb13-aeb695f9f8af
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflation – MoM %' =
+			
+			VAR prev = [HICP – Index (Prev Month)]
+			RETURN DIVIDE ( [HICP – Index (At Date)] - prev, prev )
+			-- Månatlig inflation (MoM) i procent: (Index_t / Index_{t-1}) - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: fa432931-17c2-48bf-96c5-2260680aea2c
+
+	measure 'Inflation – YoY %' =
+			
+			VAR prev = [HICP – Index (Prev Year)]
+			RETURN DIVIDE ( [HICP – Index (At Date)] - prev, prev )
+			-- Årstakt (YoY) i procent: (Index_t / Index_{t-12}) - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 054b330e-bda3-4247-b1b7-c937bc573636
+
+	measure 'Inflation – MoM Annualized %' =
+			
+			VAR prev = [HICP – Index (Prev Month)]
+			RETURN IF (
+			    NOT ISBLANK ( prev ),
+			    POWER ( DIVIDE ( [HICP – Index (At Date)], prev ), 12 ) - 1
 			)
-			  -- total HICP Index, 2005=100
-		displayFolder: DAX
-		lineageTag: 474e1782-fa6c-4052-b645-8079c5acc438
+			-- Annualiserad MoM (”run rate” från senaste månad): (Index_t / Index_{t-1})^12 - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 69379be2-f5aa-4698-8968-01dacc083704
+
+	measure 'Inflation – 3M Annualized %' =
+			
+			VAR prev3 =
+			    CALCULATE ( [HICP – Index (At Date)], DATEADD ( DimDate[Date], -3, MONTH ) )
+			RETURN IF ( NOT ISBLANK ( prev3 ), POWER ( DIVIDE ( [HICP – Index (At Date)], prev3 ), 4 ) - 1 )
+			-- Annualiserad 3M: (Index_t / Index_{t-3})^(12/3) - 1  ⇒ bättre signal än 1m
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: af5c2eb9-bc32-42bc-be46-a860fc66f489
+
+	measure 'Inflation – MoM % (12M MA)' =
+			
+			AVERAGEX (
+			    DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH ),
+			    [Inflation – MoM %]
+			)
+			-- 12M glidande medel av MoM (släta ut månadsbrus)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 2a7b21f3-310b-4938-baf6-345350f63b4a
+
+	measure 'Inflation – MoM Volatility (12M StDev)' =
+			
+			VAR Set12 = DATESINPERIOD ( DimDate[Date], MAX ( DimDate[Date] ), -12, MONTH )
+			RETURN
+			    STDEVX.S ( Set12, CALCULATE ( [Inflation – MoM %] ) )
+			-- Volatilitet: stdev för MoM senaste 12m (”hur hoppig” inflationen är)
+		displayFolder: DAX-HICP\Base
+		lineageTag: 43e211e3-b89b-4fb4-a579-49c372886133
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflation – Since Base (Selected Unit) %' =
+			
+			DIVIDE ( [HICP – Index (EOP)], 100 ) - 1
+			-- Ackumulerad prisförändring sedan valt basår (pedagogiskt mått; påverkas av DimUnit)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 33aa06df-f8f7-45cf-a819-4ed7894401b2
+
+	measure 'Inflation – MoM % (CP00)' =
+			
+			CALCULATE ( [Inflation – MoM %], KEEPFILTERS ( DimConsumptionCategory[ConsumptionCategoryAK] = "CP00" ) )
+			-- ”Headline” låst till total CP00 (bra för KPI som alltid ska vara total)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\KPI
+		lineageTag: 90972c36-cdb4-46c7-a838-5957aa4123cb
+
+	measure 'Inflation – YoY % (CP00)' =
+			
+			CALCULATE ( [Inflation – YoY % (Latest Common)], KEEPFILTERS ( DimConsumptionCategory[ConsumptionCategoryAK] = "CP00" ) )
+			-- ”Headline” låst till total CP00 (bra för KPI som alltid ska vara total)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\KPI
+		lineageTag: 28810635-6b44-4845-8113-6f5743fad4b8
+
+	measure 'Latest Date – HICP (Common)' =
+			
+			VAR SelectedRegions = VALUES ( DimRegion[RegionSK] )           -- byt kolumnnamn vid behov
+			VAR nRegionsFact =
+			    CALCULATE (
+			        DISTINCTCOUNT ( FactHICPIndex[RegionKey] ),
+			        REMOVEFILTERS ( DimDate ),                              -- ignorera datum när vi tar "målantalet"
+			        TREATAS ( SelectedRegions, FactHICPIndex[RegionKey] )   -- respektera regionval även om relationen är inaktiv
+			    )
+			VAR DatesWithAll =
+			    FILTER (
+			        ALLSELECTED ( DimDate[Date] ),                          -- respektera vald tidsperiod
+			        VAR cntAtDate =
+			            CALCULATE (
+			                DISTINCTCOUNT ( FactHICPIndex[RegionKey] ),
+			                TREATAS ( SelectedRegions, FactHICPIndex[RegionKey] )
+			            )
+			        RETURN cntAtDate = nRegionsFact                         -- kräver att alla valda regioner finns på datumet
+			    )
+			RETURN MAXX ( DatesWithAll, DimDate[Date] )
+			-- Senaste månad där ALLA valda regioner har HICP-värde
+		formatString: General Date
+		displayFolder: DAX-HICP\Dates
+		lineageTag: 86557ad1-d3fc-4277-b8c6-7de1ef904ebd
+
+	measure 'Latest Date Label – HICP (Common)' =
+			
+			FORMAT ( [Latest Date – HICP (Common)], "yyyy-MM" )
+			-- Etikett för visning
+		displayFolder: DAX-HICP\Dates
+		lineageTag: e3b54c68-4d5d-455c-9f31-f6236311c645
+
+	measure 'HICP – Index (EOP, Latest Common)' =
+			
+			VAR d = [Latest Date – HICP (Common)]
+			RETURN
+			    IF (
+			        ISBLANK ( d ),
+			        BLANK(),
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+			    )
+			-- Index på latest common (per entitet/land)
+		displayFolder: DAX-HICP\Base
+		lineageTag: 921be952-1569-4ed7-a2e4-ffb5b3576334
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflation – MoM % (Latest Common)' =
+			
+			VAR d = [Latest Date – HICP (Common)]
+			RETURN
+			IF (
+			    ISBLANK ( d ),
+			    BLANK(),
+			    VAR curr =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+			    VAR prevDate = EDATE ( d, -1 )
+			    VAR prev =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { prevDate }, DimDate[Date] ) )
+			    RETURN DIVIDE ( curr - prev, prev )
+			)
+			-- Månatlig inflation vid latest common: (Index_t / Index_{t-1}) - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: f9835bdc-b13e-468a-b10c-4e8e6962f30f
+
+	measure 'Inflation – YoY % (Latest Common)' =
+			
+			VAR d = [Latest Date – HICP (Common)]
+			RETURN
+			IF (
+			    ISBLANK ( d ),
+			    BLANK(),
+			    VAR curr =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+			    VAR prevDate = EDATE ( d, -12 )
+			    VAR prev =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { prevDate }, DimDate[Date] ) )
+			    RETURN DIVIDE ( curr - prev, prev )
+			)
+			-- Årstakt vid latest common: (Index_t / Index_{t-12}) - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 67ae4f32-15ec-4781-80a2-0a1362906189
+
+	measure 'Inflation – 3M Annualized % (Latest Common)' =
+			
+			VAR d = [Latest Date – HICP (Common)]
+			RETURN
+			IF (
+			    ISBLANK ( d ),
+			    BLANK(),
+			    VAR curr =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+			    VAR prevDate = EDATE ( d, -3 )
+			    VAR prev3 =
+			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { prevDate }, DimDate[Date] ) )
+			    RETURN IF ( NOT ISBLANK ( prev3 ), POWER ( DIVIDE ( curr, prev3 ), 4 ) - 1 )
+			)
+			-- Annualiserad 3M på latest common: (Index_t / Index_{t-3})^(12/3) - 1
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX-HICP\Base
+		lineageTag: 99f5eab1-205c-4d74-9988-747176a35dc9
+
+	measure 'Inflation – Since Base (Selected Unit) % (Latest Common)' =
+			
+			VAR idx = [HICP – Index (EOP, Latest Common)]
+			RETURN IF ( NOT ISBLANK ( idx ), DIVIDE ( idx, 100 ) - 1 )
+			-- Pedagogiskt: ackumulerad prisförändring sedan valt basår (på latest common)
+		displayFolder: DAX-HICP\Base
+		lineageTag: 73e36040-e388-4f32-a507-5f2e7525f0e9
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
