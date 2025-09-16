@@ -1,0 +1,112 @@
+table FactPopulation
+	lineageTag: 5e2eb75a-0e2b-47d6-88a6-ef5aefcdeb67
+
+	measure 'Population – Persons (Annual)' =
+			
+			SUM ( FactPopulation[Value] )
+		formatString: 0
+		displayFolder: DAX\Population
+		lineageTag: 07210c7d-f385-441e-80d4-c63ba2104610
+
+	measure 'Population – Persons (EOP,Annual)' =
+			
+			// End-of-period givet vald period
+			CALCULATE (
+			    [Population – Persons (Annual)],
+			    LASTNONBLANK ( DimDate[Date], [Population – Persons (Annual)] )
+			)
+		formatString: 0
+		displayFolder: DAX\Population
+		lineageTag: c3e0dd05-393e-49ae-b527-a84552060155
+
+	column FactPopulationKey
+		dataType: int64
+		formatString: 0
+		lineageTag: bc6588b1-dc26-44b0-a626-77c6835e568c
+		summarizeBy: count
+		sourceColumn: FactPopulationKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2874961c-11ca-4153-a645-ad7f6f3123f1
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeFrequencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: d2096479-88d7-4c52-947d-eb2f0cb3f2d6
+		summarizeBy: none
+		sourceColumn: TimeFrequencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d9c6e30-bddf-4222-90f6-a976be57e51f
+		summarizeBy: none
+		sourceColumn: GenderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: abfbcfd0-d8b3-42fd-aea2-4f7c3ea6e4ec
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: 95895ad9-5ea0-4739-9d50-db4d22783639
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 88a34bee-ac57-4f15-a6be-7c932722ad7f
+		summarizeBy: none
+		sourceColumn: FlagKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedGoldAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a60db943-4a08-4541-a7cf-06d4c78757a4
+		summarizeBy: none
+		sourceColumn: CreatedGoldAt
+
+		variation Variation
+			isDefault
+			relationship: fed37fae-8180-4a35-bab2-79eeb89cdbcc
+			defaultHierarchy: LocalDateTable_748048e8-a6d1-4268-acc8-e49a2f1f165f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPopulation = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_FactPopulation = LIA_DW_Gold{[Schema="dbo",Item="FactPopulation"]}[Data]
+				in
+				    dbo_FactPopulation
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

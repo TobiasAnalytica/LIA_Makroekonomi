@@ -1,0 +1,34 @@
+table 'View – GDP Options'
+	lineageTag: 343a4ae1-a3ff-4cb1-81c1-444eab69f48c
+
+	column ViewKey
+		formatString: 0
+		lineageTag: ffdd5359-77c0-4b93-a9eb-5c9e839abf20
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: [ViewKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ViewLabel
+		lineageTag: fd6f603d-41f4-4600-821b-1f15e9bb1736
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ViewLabel]
+		sortByColumn: ViewKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'View – GDP Options' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "ViewKey", INTEGER, "ViewLabel", STRING,
+				    { {1, "Kvartal"}, {2, "4Q"} }
+				)
+				
+				```
+
+	annotation PBI_Id = 3cf059b79e4543249f979445de3f1929
+

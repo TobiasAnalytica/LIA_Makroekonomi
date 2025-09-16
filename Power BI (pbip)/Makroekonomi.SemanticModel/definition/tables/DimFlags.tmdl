@@ -1,0 +1,42 @@
+table DimFlags
+	lineageTag: fd0a4aca-08c8-4b9a-99f2-80da4dc637f1
+
+	column FlagSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b577a49-a24d-4c1c-bb19-98a49c844f68
+		summarizeBy: none
+		sourceColumn: FlagSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagAK
+		dataType: string
+		lineageTag: b087bf86-e8f3-420d-9c8e-a066d7ee5966
+		summarizeBy: none
+		sourceColumn: FlagAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: f9affbe1-0786-465e-8814-aa2c3ccbccc5
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimFlags = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_DimFlags = LIA_DW_Gold{[Schema="dbo",Item="DimFlags"]}[Data]
+				in
+				    dbo_DimFlags
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

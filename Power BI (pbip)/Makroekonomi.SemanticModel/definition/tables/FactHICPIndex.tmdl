@@ -1,0 +1,141 @@
+table FactHICPIndex
+	lineageTag: 0ec608eb-d98d-40fb-9edb-88fad421ef68
+
+	measure 'HICP Index I15' =
+			
+			CALCULATE(
+			    SELECTEDVALUE( FactHICPIndex[Value] ),
+			    FactHICPIndex[UnitKey] = 1
+			)
+			
+			  -- total HICP Index, 2015=100
+		displayFolder: DAX
+		lineageTag: 56e83bd0-b3c2-4d98-98df-4842dcea454b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HICP Index I96' =
+			
+			CALCULATE (
+			    AVERAGE ( FactHICPIndex[Value] ),
+			    FactHICPIndex[UnitKey] = 2
+			)
+			  -- total HICP Index, 1996=100
+		displayFolder: DAX
+		lineageTag: 6f0dfb40-d365-418b-acd2-3798af3878cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'HICP Index I05' =
+			
+			CALCULATE (
+			    AVERAGE ( FactHICPIndex[Value] ),
+			    FactHICPIndex[UnitKey] = 3
+			)
+			  -- total HICP Index, 2005=100
+		displayFolder: DAX
+		lineageTag: 474e1782-fa6c-4052-b645-8079c5acc438
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FactHICPIndexKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 70a8a929-ee9c-4a1f-8289-03cadc75c841
+		summarizeBy: count
+		sourceColumn: FactHICPIndexKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f026c9e7-41b1-4a95-89ed-e8fa771d6d38
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeFrequencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bc00179-d57a-4aa2-bfab-ec7092425d33
+		summarizeBy: none
+		sourceColumn: TimeFrequencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d2830e7-9209-4da0-b445-4458791c44f6
+		summarizeBy: none
+		sourceColumn: UnitKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConsumptionCategoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e47652c-394f-4551-926d-1e1a85b4d05f
+		summarizeBy: none
+		sourceColumn: ConsumptionCategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 099f649f-9959-4b8e-aa47-12b9c2e5a4d6
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: 2e13795b-e695-43e8-83ba-171a2f290316
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column FlagKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6202d4c0-5f0e-402d-b04c-4037c8bcd0c5
+		summarizeBy: none
+		sourceColumn: FlagKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedGoldAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 230c5a52-8ec1-454a-8e24-86a825adb27e
+		summarizeBy: none
+		sourceColumn: CreatedGoldAt
+
+		variation Variation
+			isDefault
+			relationship: ca2dc507-a499-4694-ad4b-d4e125de2ecb
+			defaultHierarchy: LocalDateTable_a46234cd-4963-47e5-a4dc-f03f81d80e2e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactHICPIndex = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_FactHICPIndex = LIA_DW_Gold{[Schema="dbo",Item="FactHICPIndex"]}[Data]
+				in
+				    dbo_FactHICPIndex
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,188 @@
+table DimDate
+	lineageTag: b2eb9d23-e1cd-4cb9-970e-4e6b152afa7d
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: General Date
+		lineageTag: 3fdea93c-9602-4fa2-aede-544854828c8b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: ccc1057a-3c83-456f-a0df-7792308b44d9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		formatString: 0
+		lineageTag: d2f6f66f-003e-4336-809e-437d372bb380
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		formatString: 0
+		lineageTag: 22e6a394-5182-495a-abe7-0a4924e9794d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: d7df3611-a2ee-4a7f-a9c7-c00a466c341f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+		sortByColumn: QuarterNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		formatString: 0
+		lineageTag: 16ae9687-a90a-4412-8c7e-122afdd3eaca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DateKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNo
+		formatString: 0
+		lineageTag: 5b3033b4-c502-4490-bb8d-919673365192
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [QuarterNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 55c381cb-5d5e-4ccf-805a-3255c8cb262c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [YearQuarter]
+		sortByColumn: QuarterNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthText
+		lineageTag: 0a9159bf-0b08-4cfd-bcb0-c828ef151586
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthText]
+		sortByColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarterText
+		lineageTag: 4366058c-425f-4e76-a2b0-b0c095fd5ff9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearQuarterText]
+		sortByColumn: YearQuarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthEndDate
+		formatString: General Date
+		lineageTag: af4ba6e4-8df0-4ece-9951-36b8248a86bf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthEndDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterEndDate
+		formatString: General Date
+		lineageTag: 50e530a1-0821-4eab-b62a-acadd046b1c5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [QuarterEndDate]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsMonthEnd
+		formatString: 0
+		lineageTag: cc8c2fbb-cdc0-43db-a9a7-3c395a97368d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [IsMonthEnd]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsQuarterEnd
+		formatString: 0
+		lineageTag: e25819f7-9995-4316-947e-393ba31fdd81
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [IsQuarterEnd]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 363c8ac8-0ecb-49a4-af14-a5f583328719
+
+		level Year
+			lineageTag: 197c4e21-f367-4f21-b7e6-a049224d4f21
+			column: Year
+
+		level MonthNo
+			lineageTag: c5876ade-4507-48d7-ace2-86e0066ac13f
+			column: MonthNo
+
+		level QuarterNo
+			lineageTag: 31d0af68-ce7e-4d08-8392-96660840ee39
+			column: QuarterNo
+
+		level YearQuarterText
+			lineageTag: 817c53da-12b4-4857-adc9-db3d46fb7d0d
+			column: YearQuarterText
+
+	partition DimDate = calculated
+		mode: import
+		source = ```
+				
+				VAR MinDate = DATE(1960,1,1)
+				VAR MaxDate = EOMONTH(TODAY(),0)
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR(MinDate, MaxDate),
+				
+				    // Nycklar & grund
+				    "DateKey",       YEAR([Date]) * 10000 + MONTH([Date]) * 100 + DAY([Date]),
+				    "Year",          YEAR([Date]),
+				    "MonthNo",       MONTH([Date]),
+				    "YearMonth",     YEAR([Date]) * 100 + MONTH([Date]),         // ex 202401
+				    "YearMonthText", FORMAT([Date], "yyyy-MM"),
+				
+				    // Kvartal
+				    "QuarterNo",     QUARTER([Date]),                             // 1..4
+				    "Quarter",       "Q" & QUARTER([Date]),                       // "Q1".."Q4"
+				
+				    // Viktigt: sortnyckel + etikett för kvartal
+				    "YearQuarter",       YEAR([Date]) * 100 + QUARTER([Date]),    // ex 202401..202404 (heltal, korrekt sort)
+				    "YearQuarterText",   FORMAT([Date], "yyyy") & "-Q" & QUARTER([Date]),
+				
+				    // EOP/periodhjälp (valfritt men användbart)
+				    "MonthEndDate",   EOMONTH([Date], 0),
+				    "QuarterEndDate", EOMONTH( DATE(YEAR([Date]), QUARTER([Date]) * 3, 1), 0 ),
+				    "IsMonthEnd",     IF([Date] = EOMONTH([Date],0), 1, 0),
+				    "IsQuarterEnd",   IF([Date] = EOMONTH( DATE(YEAR([Date]), QUARTER([Date]) * 3, 1), 0 ), 1, 0)
+				)
+				
+				```
+
+	annotation PBI_Id = 5ea87cb5a1c34051854bcb9cd9877fa6
+

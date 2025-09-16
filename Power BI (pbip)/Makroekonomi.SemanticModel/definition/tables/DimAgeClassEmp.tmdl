@@ -1,0 +1,42 @@
+table DimAgeClassEmp
+	lineageTag: 2eea1b47-10ed-417d-a2bc-2a2995f2dfe3
+
+	column AgeClassSK
+		dataType: int64
+		formatString: 0
+		lineageTag: c509e2a1-6bee-43dc-8e2c-73c7693f53de
+		summarizeBy: none
+		sourceColumn: AgeClassSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column AgeClassAK
+		dataType: string
+		lineageTag: 29ee4e73-80af-4739-9b4f-cdb6f44f3c7e
+		summarizeBy: none
+		sourceColumn: AgeClassAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: fde39785-9af5-49f7-b31c-9fde919dc9bb
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAgeClassEmp = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_DimAgeClassEmp = LIA_DW_Gold{[Schema="dbo",Item="DimAgeClassEmp"]}[Data]
+				in
+				    dbo_DimAgeClassEmp
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

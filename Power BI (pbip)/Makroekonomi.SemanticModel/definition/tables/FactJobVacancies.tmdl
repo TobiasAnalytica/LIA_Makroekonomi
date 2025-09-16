@@ -1,0 +1,147 @@
+table FactJobVacancies
+	lineageTag: f61e7bc6-21ec-4db6-a69c-feda770b584b
+
+	measure 'Vacancies – Count (Quarterly)' = SUM ( FactJobVacancies[Value])
+		formatString: 0
+		displayFolder: DAX\Vacancies
+		lineageTag: ee2c7449-9673-4497-836d-3422173b3267
+
+	measure 'Vacancies – Count (Monthly FwdFill)' =
+			// Använder senaste kända kvartalsvärdet på månadsaxel
+			CALCULATE (
+			    [Vacancies – Count (Quarterly)],
+			    LASTNONBLANK ( VALUES ( DimDate[Date] ), [Vacancies – Count (Quarterly)])
+			)
+		formatString: 0
+		displayFolder: DAX\Vacancies
+		lineageTag: fe1b26cb-00e0-4458-b1a2-518807a98d36
+
+	measure 'Vacancies – Rate % (Eurostat, At Date)' =
+			// Eurostat-definition: JV / (JV + Employment)
+			DIVIDE (
+			    [Vacancies – Count (Monthly FwdFill)],
+			    [Vacancies – Count (Monthly FwdFill)] + [Employment – Persons (Monthly FwdFill)]
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX\Vacancies
+		lineageTag: 1a8edbe3-5a9d-415a-a191-1c72ec006d70
+
+	measure 'Vacancies – Proxy % (At Date)' =
+			// Proxy mot arbetskraft: JV / Labour Force
+			DIVIDE ( [Vacancies – Count (Monthly FwdFill)], [Labour Force (Safe)] )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX\Vacancies
+		lineageTag: 894c748c-5e69-4a86-aed8-28c5d6c879e1
+
+	measure 'Latest Date – Common (Unemp+Emp+Vac)' =
+			VAR DatesWithAll =
+			    FILTER (
+			        ALLSELECTED ( DimDate[Date] ),
+			        NOT ISBLANK ( CALCULATE ( [Unemployment – Persons (Monthly)] ) )
+			            && NOT ISBLANK ( CALCULATE ( [Employment – Persons (Monthly FwdFill)]) )
+			            && NOT ISBLANK ( CALCULATE ( [Vacancies – Count (Monthly FwdFill)]) )
+			    )
+			RETURN
+			    MAXX ( DatesWithAll, DimDate[Date] )
+		formatString: General Date
+		displayFolder: DAX\Vacancies
+		lineageTag: a02aad32-d52c-48c0-94ab-2a641b12c833
+
+	measure 'Scatter – X: Unemployment % (Latest Common)' =
+			VAR d = [Latest Date – Common (Unemp+Emp+Vac)]
+			RETURN
+			    CALCULATE ( [Unemployment – Rate % (EOP)], TREATAS ( { d }, DimDate[Date] ) )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX\Vacancies
+		lineageTag: 09bea55b-11ef-4516-a562-1c709070461e
+
+	measure 'Scatter – Y: Vacancies Proxy % (Latest Common)' =
+			VAR d = [Latest Date – Common (Unemp+Emp+Vac)]
+			RETURN
+			    CALCULATE ( [Vacancies – Proxy % (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: DAX\Vacancies
+		lineageTag: 0198ad7b-cc4c-4f3f-81a5-b977dc5cc6f0
+
+	column FactJobVacanciesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 2213c67f-a8ef-4e63-9f87-5336ea5e63bb
+		summarizeBy: count
+		sourceColumn: FactJobVacanciesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ccc1c275-20d8-4d09-bc13-56a58fad7400
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeFrequencyKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 144ae0b7-6ecc-42e4-bfd4-b8def0388053
+		summarizeBy: none
+		sourceColumn: TimeFrequencyKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9da788d9-9ef9-4302-ab41-369f86373109
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: de017ab3-e942-4693-9209-64bd164322d9
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column FlagKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a141cd4-638b-4358-b722-79782d03a6ed
+		summarizeBy: none
+		sourceColumn: FlagKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedGoldAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0b8643a9-f0b8-4214-8c7e-65e5b98754bb
+		summarizeBy: none
+		sourceColumn: CreatedGoldAt
+
+		variation Variation
+			isDefault
+			relationship: 748e8538-f1a3-4365-9eb7-bdc7b41a0e62
+			defaultHierarchy: LocalDateTable_6770d419-554c-4ae6-9b13-80331d73e707.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactJobVacancies = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_FactJobVacancies = LIA_DW_Gold{[Schema="dbo",Item="FactJobVacancies"]}[Data]
+				in
+				    dbo_FactJobVacancies
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

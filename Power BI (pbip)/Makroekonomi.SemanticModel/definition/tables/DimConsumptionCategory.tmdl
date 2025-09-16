@@ -1,0 +1,42 @@
+table DimConsumptionCategory
+	lineageTag: a42eb5a8-1204-40c8-9852-9d5878191b34
+
+	column ConsumptionCategorySK
+		dataType: int64
+		formatString: 0
+		lineageTag: 16c77b5a-c119-441d-822b-720b5dcecc33
+		summarizeBy: none
+		sourceColumn: ConsumptionCategorySK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConsumptionCategoryAK
+		dataType: string
+		lineageTag: 6d32c299-ec4c-4694-aff0-a5015d6e9f48
+		summarizeBy: none
+		sourceColumn: ConsumptionCategoryAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: cec6640e-9498-429e-bb51-1bd38460f864
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimConsumptionCategory = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    dbo_DimConsumptionCategory = LIA_DW_Gold{[Schema="dbo",Item="DimConsumptionCategory"]}[Data]
+				in
+				    dbo_DimConsumptionCategory
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
