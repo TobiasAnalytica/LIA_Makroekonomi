@@ -485,11 +485,10 @@ table FactGDP
 
 	measure 'Heatmap – Show (Common, Last 12Q)' = ```
 			
-			VAR dCell = MAX ( DimDate[Date] )
-			VAR dEnd  = [Latest Date – GDP (Common)]
-			VAR inWindow = dCell <= dEnd && dCell > EDATE ( dEnd, -36 )   -- 12 kvartal = 36 månader
+			VAR dCell = MAX ( DimDate[Date] ) 
+			VAR dEnd = [Latest Date – GDP (Common)] 
+			VAR inWindow = dCell <= dEnd && dCell > EDATE ( dEnd, -36 ) -- 12 kvartal = 36 månader 
 			RETURN IF ( inWindow && [Is Common Quarter – GDP] = 1, 1, 0 )
-			
 			```
 		formatString: 0
 		displayFolder: DAX-GDP\Heatmap

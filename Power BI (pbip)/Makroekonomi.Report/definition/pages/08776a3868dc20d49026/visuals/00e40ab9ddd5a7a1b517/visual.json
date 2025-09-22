@@ -1,0 +1,376 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "00e40ab9ddd5a7a1b517",
+  "position": {
+    "x": 1087,
+    "y": 651,
+    "z": 15000,
+    "height": 415,
+    "width": 820,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimRegion"
+                    }
+                  },
+                  "Property": "Description"
+                }
+              },
+              "queryRef": "DimRegion.Description",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "Bubble Size – Population (Latest Common)"
+                }
+              },
+              "queryRef": "FactGDP.Bubble Size – Population (Latest Common)",
+              "nativeQueryRef": "Befolkning (EOP, årlig)",
+              "displayName": "Befolkning (EOP, årlig)"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "GDP – Per Capita YoY Δ % (4Q Sum)"
+                }
+              },
+              "queryRef": "FactGDP.GDP – Per Capita YoY Δ % (4Q Sum)",
+              "nativeQueryRef": "BNP per capita YoY (4Q)",
+              "displayName": "BNP per capita YoY (4Q)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactUnemployment"
+                    }
+                  },
+                  "Property": "Unemployment – Rate % MoM Δ (pp)"
+                }
+              },
+              "queryRef": "FactUnemployment.Unemployment – Rate % MoM Δ (pp)",
+              "nativeQueryRef": "Arbetslöshet MoM (pp)",
+              "displayName": "Arbetslöshet MoM (pp)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactUnemployment"
+                    }
+                  },
+                  "Property": "Unemployment – Rate % YoY Δ (pp)"
+                }
+              },
+              "queryRef": "FactUnemployment.Unemployment – Rate % YoY Δ (pp)",
+              "nativeQueryRef": "Arbetslöshet YoY (pp)",
+              "displayName": "Arbetslöshet YoY (pp)"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "GDP – Per Capita (Latest Common)"
+                }
+              },
+              "queryRef": "FactGDP.GDP – Per Capita (Latest Common)",
+              "nativeQueryRef": "BNP per capita (€)",
+              "active": true,
+              "displayName": "BNP per capita (€)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "Unemployment – Rate % (EOP, Latest Common)"
+                }
+              },
+              "queryRef": "FactGDP.Unemployment – Rate % (EOP, Latest Common)",
+              "nativeQueryRef": "Arbetslöshet (%)",
+              "displayName": "Arbetslöshet (%)"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measure.Sales"
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#37A794'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measure.Mariginal"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BNP per capita (4Q, €)'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arbetslöshetsgrad (EOP, %)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "Title – Scatter: GDPpc vs Unemployment (Latest Common Year)"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactGDP"
+                    }
+                  },
+                  "Property": "Subtitle – Scatter: GDPpc vs Unemployment"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "22D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
