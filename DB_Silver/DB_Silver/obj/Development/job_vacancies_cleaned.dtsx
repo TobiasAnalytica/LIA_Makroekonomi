@@ -1,0 +1,1125 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/10/2025 9:53:30 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{BFC27A4D-C832-477C-97FB-786CAE90229E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package6"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{E91E3C04-00CB-4DA4-A1FD-4029CF4509AB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load to job_vacancies_cleaned"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{495E4622-8474-4744-86ED-D48EF41DEF7E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load to job_vacancies_cleaned"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_VALUE]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="OBS_VALUE"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Observation status (Flag) V2 structure"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[CONF_STATUS]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="CONF_STATUS"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CONF_STATUS]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Confidentiality status (flag)]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="Confidentiality status (flag)"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="429"
+                      lineageId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) ? "" : (DT_WSTR,100)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) ? "" : (DT_WSTR,100)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CONF_STATUS]}) ? "" : (DT_WSTR,10)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CONF_STATUS]}) + "|" + ([ISNULL](#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]}) ? "" : (DT_WSTR,100)#{Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]}),1,500)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : (DT_WSTR,100)[Geopolitical entity (reporting)]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : (DT_WSTR,100)[Observation status (Flag) V2 structure]) + "|" + (ISNULL(CONF_STATUS) ? "" : (DT_WSTR,10)CONF_STATUS) + "|" + (ISNULL([Confidentiality status (flag)]) ? "" : (DT_WSTR,100)[Confidentiality status (flag)]),1,500)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LIA_DB_Diagnostics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_DB_Silver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="429"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load from job_vacancies_raw"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+  -- blir DT_WSTR i SSIS
+  CAST(freq AS NCHAR(1))                       AS freq,
+  CAST([Time frequency] AS NCHAR(10))       AS [Time frequency],
+  CAST(geo AS NVARCHAR(10))                       AS geo,
+  CAST([Geopolitical entity (reporting)] 
+       AS NVARCHAR(120))                       AS [Geopolitical entity (reporting)],
+
+  CAST(
+    DATEFROMPARTS(
+      CAST(LEFT(TIME_PERIOD,4) AS INT),
+      CASE RIGHT(TIME_PERIOD,2)
+        WHEN 'Q1' THEN  1
+        WHEN 'Q2' THEN  4
+        WHEN 'Q3' THEN  7
+        WHEN 'Q4' THEN 10
+      END,
+      1
+    ) 
+  AS DATE)                                     AS Date,
+
+  OBS_VALUE                AS OBS_VALUE,
+
+  CAST(
+    COALESCE(NULLIF(OBS_FLAG, ''), N'a')
+  AS NVARCHAR(5))                                 AS OBS_FLAG,
+
+  CAST(
+    COALESCE(
+      NULLIF([Observation status (Flag) V2 structure], ''), 
+      N'actual'
+    )
+  AS NVARCHAR(50))                             AS [Observation status (Flag) V2 structure],
+  CAST(CONF_STATUS AS NVARCHAR(1)) AS CONF_STATUS,
+  CAST([Confidentiality status (flag)] AS NVARCHAR(12)) AS [Confidentiality status (flag)],
+
+  CreatedBronzeAt
+FROM dbo.job_vacancies_raw;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Connections[OleDbConnection]"
+                  connectionManagerID="{F0FC0D67-D690-49CA-AF80-78816002DB1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Bronze]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[freq]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      length="1"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[freq]"
+                      name="freq"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      length="10"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      name="Time frequency"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[geo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      length="10"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[geo]"
+                      name="geo"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      length="120"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      length="5"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      length="50"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CONF_STATUS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[CONF_STATUS]"
+                      length="1"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CONF_STATUS]"
+                      name="CONF_STATUS"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Confidentiality status (flag)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Confidentiality status (flag)]"
+                      length="12"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Confidentiality status (flag)]"
+                      name="Confidentiality status (flag)"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      dataType="wstr"
+                      length="100"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      name="Observation status (Flag) V2 structure" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[CONF_STATUS]"
+                      dataType="wstr"
+                      length="1"
+                      name="CONF_STATUS" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].ExternalColumns[Confidentiality status (flag)]"
+                      dataType="wstr"
+                      length="12"
+                      name="Confidentiality status (flag)" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      name="freq" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      name="Time frequency" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      name="geo" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CONF_STATUS]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CONF_STATUS]"
+                      name="CONF_STATUS" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]"
+                      name="Confidentiality status (flag)" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to job_vacancies_cleaned"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[job_vacancies_cleaned]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Time frequency]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Geopolitical entity (reporting)]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
+                      cachedDataType="i4"
+                      cachedName="OBS_VALUE"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Observation status (Flag) V2 structure"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedBronzeAt"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[CONF_STATUS]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="CONF_STATUS"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CONF_FLAG]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[CONF_STATUS]" />
+                    <inputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].Columns[Confidentiality status (flag)]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="Confidentiality status (flag)"
+                      externalMetadataColumnId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Confidentiality status (flag)]"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output].Columns[Confidentiality status (flag)]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      dataType="i4"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      name="Observation status (Flag) V2 structure" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CONF_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      name="CONF_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Confidentiality status (flag)]"
+                      dataType="wstr"
+                      length="50"
+                      name="Confidentiality status (flag)" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load to job_vacancies_cleaned.Paths[Derived Column Output]"
+              endId="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load to job_vacancies_cleaned.Paths[OLE DB Source Error Output]"
+              endId="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Error Output]" />
+            <path
+              refId="Package\Load to job_vacancies_cleaned.Paths[OLE DB Source Output]"
+              endId="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate job_vacancies_cleaned"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1B77AF87-E3B3-41BF-89EF-A7A15D351BDF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate job_vacancies_cleaned"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE job_vacancies_cleaned;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{3F3FE478-C55C-4494-B2BC-5BEFD9B1FDFE}"
+      DTS:From="Package\SQL truncate job_vacancies_cleaned"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load to job_vacancies_cleaned" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Load to job_vacancies_cleaned"
+          TopLeft="90,210" />
+        <NodeLayout
+          Size="251,42"
+          Id="Package\SQL truncate job_vacancies_cleaned"
+          TopLeft="78,82" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="203,124">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load to job_vacancies_cleaned">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned"
+          TopLeft="176,322" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw"
+          TopLeft="178,79" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load to job_vacancies_cleaned\Derived Column - Concatenate"
+          TopLeft="477,213" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics"
+          TopLeft="495,321" />
+        <EdgeLayout
+          Id="Package\Load to job_vacancies_cleaned.Paths[OLE DB Source Output]"
+          TopLeft="288,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,201"
+              Start="0,0"
+              End="0,193.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,193.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to job_vacancies_cleaned.Paths[OLE DB Source Error Output]"
+          TopLeft="322.666666666667,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="265.833333333333,92"
+              Start="0,0"
+              End="265.833333333333,84.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.2003626473255" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.2003626473255"
+                    Point2="0,37.2003626473255"
+                    Point3="4,37.2003626473255" />
+                  <mssgle:LineSegment
+                    End="261.833333333333,37.2003626473255" />
+                  <mssgle:CubicBezierSegment
+                    Point1="261.833333333333,37.2003626473255"
+                    Point2="265.833333333333,37.2003626473255"
+                    Point3="265.833333333333,41.2003626473255" />
+                  <mssgle:LineSegment
+                    End="265.833333333333,84.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="69.4827604166667,42.2003626473255,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to job_vacancies_cleaned.Paths[Derived Column Output]"
+          TopLeft="585,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to job_vacancies_cleaned\Load to job_vacancies_cleaned">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to job_vacancies_cleaned\Load from job_vacancies_raw">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to job_vacancies_cleaned\LIA_DB_Diagnostics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

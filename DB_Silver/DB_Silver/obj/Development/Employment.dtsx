@@ -1,0 +1,1204 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/10/2025 9:53:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{1B6733E0-1059-40BA-82F6-0F6964395A48}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="25"
+  DTS:VersionGUID="{06F2B401-103D-45E0-874F-C14A6BF60A8F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load to employment_cleaned"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B267E5C3-2F69-4178-B828-5D164F0A06FF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load to employment_cleaned"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load to employment_cleaned\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_VALUE]"
+                      cachedDataType="i4"
+                      cachedName="OBS_VALUE"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[sex]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="sex"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[sex]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Sex_2]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Sex_2"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[age]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="age"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[age]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Age class]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Age class"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Age class]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="Observation status (Flag) V2 structure"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="320"
+                      lineageId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[sex]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[age]}) ? "" : (DT_WSTR,10)#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[age]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Age class]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Age class]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) ? "" : #{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) + "|" + ([ISNULL](#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Date]},10)),1,500)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : freq) + "|" + (ISNULL([Time frequency]) ? "" : [Time frequency]) + "|" + (ISNULL(geo) ? "" : geo) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : OBS_FLAG) + "|" + (ISNULL(sex) ? "" : sex) + "|" + (ISNULL(Sex_2) ? "" : Sex_2) + "|" + (ISNULL(age) ? "" : (DT_WSTR,10)age) + "|" + (ISNULL([Age class]) ? "" : [Age class]) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : [Geopolitical entity (reporting)]) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : [Observation status (Flag) V2 structure]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)),1,500)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LIA_DB_Diagnostics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_Silver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="320"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to employment_cleaned\Load from employment_raw"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load from employment_raw"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+  -- blir DT_WSTR i SSIS
+  CAST(freq AS NCHAR(1))                       AS freq,
+  CAST([Time frequency] AS NCHAR(10))       AS [Time frequency],
+  CAST(sex AS NCHAR(1))                      AS sex,
+  CAST([Sex_2] AS NVARCHAR(7))  AS Sex_2,
+  CAST(age AS NVARCHAR(6))                      AS age,
+  CAST([Age class] AS NVARCHAR(20))  AS [Age class],
+  CAST(geo AS NVARCHAR(10))                       AS geo,
+  CAST([Geopolitical entity (reporting)] 
+       AS NVARCHAR(120))                       AS [Geopolitical entity (reporting)],
+
+  CAST(
+    DATEFROMPARTS(
+      CAST(LEFT(TIME_PERIOD,4) AS INT),
+      CASE RIGHT(TIME_PERIOD,2)
+        WHEN 'Q1' THEN  1
+        WHEN 'Q2' THEN  4
+        WHEN 'Q3' THEN  7
+        WHEN 'Q4' THEN 10
+      END,
+      1
+    ) 
+  AS DATE)                                     AS Date,
+
+  CAST(
+    CAST(OBS_VALUE AS DECIMAL(18,4)) * 1000
+  AS INT)                                   AS OBS_VALUE,
+
+  CAST(
+    COALESCE(NULLIF(OBS_FLAG, ''), N'a')
+  AS NVARCHAR(10))                                 AS OBS_FLAG,
+
+  CAST(
+    COALESCE(
+      NULLIF([Observation status (Flag) V2 structure], ''), 
+      N'actual'
+    )
+  AS NVARCHAR(70))                             AS [Observation status (Flag) V2 structure],
+
+  CreatedBronzeAt
+FROM dbo.employment_raw;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to employment_cleaned\Load from employment_raw.Connections[OleDbConnection]"
+                  connectionManagerID="{F0FC0D67-D690-49CA-AF80-78816002DB1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Bronze]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[freq]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      length="1"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[freq]"
+                      name="freq"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[geo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[geo]"
+                      name="geo"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[sex]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[sex]"
+                      length="1"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[sex]"
+                      name="sex"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Sex_2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Sex_2]"
+                      length="7"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Sex_2]"
+                      name="Sex_2"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[age]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[age]"
+                      length="6"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[age]"
+                      name="age"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Age class]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
+                      length="20"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Age class]"
+                      name="Age class"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      name="Time frequency"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      length="120"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      length="70"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      dataType="i4"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="10"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="70"
+                      name="Observation status (Flag) V2 structure" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[sex]"
+                      dataType="wstr"
+                      length="1"
+                      name="sex" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Sex_2]"
+                      dataType="wstr"
+                      length="7"
+                      name="Sex_2" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[age]"
+                      dataType="wstr"
+                      length="6"
+                      name="age" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].ExternalColumns[Age class]"
+                      dataType="wstr"
+                      length="20"
+                      name="Age class" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      name="freq" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      name="geo" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[sex]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[sex]"
+                      name="sex" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Sex_2]"
+                      name="Sex_2" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[age]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[age]"
+                      name="age" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Age class]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Age class]"
+                      name="Age class" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      name="Time frequency" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="70"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load to employment_cleaned\Load to employment_cleaned"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to employment_cleaned"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[employment_cleaned]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load to employment_cleaned\Load to employment_cleaned.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Time frequency]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Geopolitical entity (reporting)]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
+                      cachedDataType="i4"
+                      cachedName="OBS_VALUE"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="OBS_FLAG"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="70"
+                      cachedName="Observation status (Flag) V2 structure"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedBronzeAt"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[sex]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="sex"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[sex]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[sex]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Sex_2]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="Sex_2"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Sex_2]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Sex_2]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[age]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="age"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[age]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[age]" />
+                    <inputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].Columns[Age class]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Age class"
+                      externalMetadataColumnId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Age class]"
+                      lineageId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output].Columns[Age class]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[sex]"
+                      dataType="wstr"
+                      length="1"
+                      name="sex" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Sex_2]"
+                      dataType="wstr"
+                      length="7"
+                      name="Sex_2" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[age]"
+                      dataType="wstr"
+                      length="6"
+                      name="age" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Age class]"
+                      dataType="wstr"
+                      length="20"
+                      name="Age class" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_VALUE]"
+                      dataType="i4"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="10"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="70"
+                      name="Observation status (Flag) V2 structure" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load to employment_cleaned\Load to employment_cleaned.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Load to employment_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load to employment_cleaned\Load to employment_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load to employment_cleaned\Load to employment_cleaned.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load to employment_cleaned.Paths[Derived Column Output]"
+              endId="Package\Load to employment_cleaned\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Load to employment_cleaned\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load to employment_cleaned.Paths[OLE DB Source Error Output]"
+              endId="Package\Load to employment_cleaned\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Error Output]" />
+            <path
+              refId="Package\Load to employment_cleaned.Paths[OLE DB Source Output]"
+              endId="Package\Load to employment_cleaned\Load to employment_cleaned.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load to employment_cleaned\Load from employment_raw.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate employment_cleaned"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{34D6A0ED-FEE0-44A4-98A2-4EB93255D418}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate employment_cleaned"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE employment_cleaned;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{FFFC3B9A-A3A2-4EEA-B6CF-2702E93D1C61}"
+      DTS:From="Package\SQL truncate employment_cleaned"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Load to employment_cleaned" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Load to employment_cleaned"
+          TopLeft="124,219" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\SQL truncate employment_cleaned"
+          TopLeft="110,93" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="232.25,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load to employment_cleaned">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\Load to employment_cleaned\Load from employment_raw"
+          TopLeft="171,92" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\Load to employment_cleaned\Load to employment_cleaned"
+          TopLeft="162,282" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Load to employment_cleaned\LIA_DB_Diagnostics"
+          TopLeft="482,284" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Load to employment_cleaned\Derived Column - Concatenate"
+          TopLeft="464,176" />
+        <EdgeLayout
+          Id="Package\Load to employment_cleaned.Paths[OLE DB Source Error Output]"
+          TopLeft="311,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="264.5,42"
+              Start="0,0"
+              End="264.5,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.9887640449438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.9887640449438"
+                    Point2="0,16.9887640449438"
+                    Point3="4,16.9887640449438" />
+                  <mssgle:LineSegment
+                    End="260.5,16.9887640449438" />
+                  <mssgle:CubicBezierSegment
+                    Point1="260.5,16.9887640449438"
+                    Point2="264.5,16.9887640449438"
+                    Point3="264.5,20.9887640449438" />
+                  <mssgle:LineSegment
+                    End="264.5,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="68.81609375,21.9887640449438,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to employment_cleaned.Paths[Derived Column Output]"
+          TopLeft="572,218">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load to employment_cleaned.Paths[OLE DB Source Output]"
+          TopLeft="274,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,148"
+              Start="0,0"
+              End="0,140.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,140.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to employment_cleaned\Load from employment_raw">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to employment_cleaned\Load to employment_cleaned">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load to employment_cleaned\LIA_DB_Diagnostics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
