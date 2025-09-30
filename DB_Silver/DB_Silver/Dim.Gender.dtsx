@@ -11,20 +11,20 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package10"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{DB90A576-B598-44E6-AD0C-328F22FD5E01}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{8831B948-D4FF-4EEE-AE5F-48090969514A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Load to Gender"
+      DTS:refId="Package\DF_DimGender"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{84C39B07-AA21-402B-B190-E4C74387E557}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load to Gender"
+      DTS:ObjectName="DF_DimGender"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -32,7 +32,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Load to Gender\Derived Column - Concatenate"
+              refId="Package\DF_DimGender\Derived Column - Concatenate"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -40,41 +40,41 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="7"
                       cachedName="Description"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Gender]"
+                      refId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Gender]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="Gender"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Gender]" />
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Gender]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="8"
-                      lineageId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      lineageId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       name="ErrorDescription"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -82,7 +82,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Gender]} + #{Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Gender]} + #{Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,7 +120,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load to Gender\LIA_DB_Diagnostics"
+              refId="Package\DF_DimGender\LIA_DB_Diagnostics"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to Gender\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimGender\LIA_DB_Diagnostics.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,51 +185,51 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      externalMetadataColumnId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      externalMetadataColumnId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
                       cachedLength="8"
                       cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      externalMetadataColumnId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       dataType="wstr"
                       length="500"
                       name="ErrorDescription" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
                   </externalMetadataColumns>
@@ -237,22 +237,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to Gender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimGender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimGender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to Gender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimGender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimGender\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -261,11 +261,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load to Gender\Load employment_cleaned"
+              refId="Package\DF_DimGender\Load FactEmployment"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Load employment_cleaned"
+              name="Load FactEmployment"
               usesDispositions="true"
               version="7">
               <properties>
@@ -289,7 +289,7 @@
     SELECT
         CAST(sex AS NCHAR(1)) AS Gender,
         CAST(Sex_2 AS NVARCHAR(7)) AS Description
-      FROM employment_cleaned
+      FROM Fact.Employment
 )
 SELECT DISTINCT
        Gender,
@@ -319,7 +319,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to Gender\Load employment_cleaned.Connections[OleDbConnection]"
+                  refId="Package\DF_DimGender\Load FactEmployment.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -327,72 +327,72 @@ SELECT DISTINCT
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="7"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Gender]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Gender]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                      externalMetadataColumnId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
                       length="1"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Gender]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Gender]"
                       name="Gender"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="7"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].ExternalColumns[Gender]"
                       dataType="wstr"
                       length="1"
                       name="Gender" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="7"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                      refId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Gender]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output].Columns[Gender]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output].Columns[Gender]"
                       name="Gender" />
                   </outputColumns>
                   <externalMetadataColumns />
@@ -400,11 +400,11 @@ SELECT DISTINCT
               </outputs>
             </component>
             <component
-              refId="Package\Load to Gender\Load to Gender"
+              refId="Package\DF_DimGender\Load to DimGender"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Load to Gender"
+              name="Load to DimGender"
               usesDispositions="true"
               version="4">
               <properties>
@@ -415,7 +415,7 @@ SELECT DISTINCT
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Gender]</property>
+                  name="OpenRowset">[Dim].[Gender]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -457,7 +457,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to Gender\Load to Gender.Connections[OleDbConnection]"
+                  refId="Package\DF_DimGender\Load to DimGender.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -465,41 +465,41 @@ SELECT DISTINCT
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].Columns[Description]"
+                      refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="7"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Description]" />
+                      externalMetadataColumnId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].Columns[Gender]"
+                      refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].Columns[Gender]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="Gender"
-                      externalMetadataColumnId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
-                      lineageId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output].Columns[Gender]" />
+                      externalMetadataColumnId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output].Columns[Gender]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
                       dataType="wstr"
                       length="1"
                       name="Gender" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="7"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      refId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
                       dataType="dbTimeStamp"
                       name="CreatedSilverAt" />
                   </externalMetadataColumns>
@@ -507,22 +507,22 @@ SELECT DISTINCT
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to Gender\Load to Gender.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimGender\Load to DimGender.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to Gender\Load to Gender.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimGender\Load to DimGender.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Load to Gender.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimGender\Load to DimGender.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to Gender\Load to Gender.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimGender\Load to DimGender.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to Gender\Load to Gender.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimGender\Load to DimGender.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -533,39 +533,39 @@ SELECT DISTINCT
           </components>
           <paths>
             <path
-              refId="Package\Load to Gender.Paths[Derived Column Output]"
-              endId="Package\Load to Gender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              refId="Package\DF_DimGender.Paths[Derived Column Output]"
+              endId="Package\DF_DimGender\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Load to Gender\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimGender\Derived Column - Concatenate.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load to Gender.Paths[OLE DB Source Error Output]"
-              endId="Package\Load to Gender\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              refId="Package\DF_DimGender.Paths[OLE DB Source Error Output]"
+              endId="Package\DF_DimGender\Derived Column - Concatenate.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Error Output]" />
             <path
-              refId="Package\Load to Gender.Paths[OLE DB Source Output]"
-              endId="Package\Load to Gender\Load to Gender.Inputs[OLE DB Destination Input]"
+              refId="Package\DF_DimGender.Paths[OLE DB Source Output]"
+              endId="Package\DF_DimGender\Load to DimGender.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\Load to Gender\Load employment_cleaned.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimGender\Load FactEmployment.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate Gender"
+      DTS:refId="Package\SQL truncate DimGender"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{ECDA5372-23EB-428D-AB3B-B3139DEB1DF7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate Gender"
+      DTS:ObjectName="SQL truncate DimGender"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE Gender;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Dim.Gender;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -574,10 +574,10 @@ SELECT DISTINCT
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{3CD57354-CAFF-4EDA-AFFC-A75E3FB2B5AD}"
-      DTS:From="Package\SQL truncate Gender"
+      DTS:From="Package\SQL truncate DimGender"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Load to Gender" />
+      DTS:To="Package\DF_DimGender" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -592,16 +592,16 @@ SELECT DISTINCT
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="152,42"
-          Id="Package\Load to Gender"
-          TopLeft="70,215" />
+          Size="150,42"
+          Id="Package\DF_DimGender"
+          TopLeft="83,215" />
         <NodeLayout
-          Size="178,42"
-          Id="Package\SQL truncate Gender"
+          Size="196,42"
+          Id="Package\SQL truncate DimGender"
           TopLeft="60,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="147.5,102">
+          TopLeft="158,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -625,40 +625,40 @@ SELECT DISTINCT
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load to Gender">
+    design-time-name="Package\DF_DimGender">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="173,42"
-          Id="Package\Load to Gender\LIA_DB_Diagnostics"
+          Id="Package\DF_DimGender\LIA_DB_Diagnostics"
           TopLeft="419,256" />
         <NodeLayout
-          Size="152,42"
-          Id="Package\Load to Gender\Load to Gender"
-          TopLeft="168,256" />
+          Size="170,42"
+          Id="Package\DF_DimGender\Load to DimGender"
+          TopLeft="112,255" />
         <NodeLayout
           Size="223,42"
-          Id="Package\Load to Gender\Derived Column - Concatenate"
+          Id="Package\DF_DimGender\Derived Column - Concatenate"
           TopLeft="401,148" />
         <NodeLayout
-          Size="205,42"
-          Id="Package\Load to Gender\Load employment_cleaned"
+          Size="183,42"
+          Id="Package\DF_DimGender\Load FactEmployment"
           TopLeft="138,56" />
         <EdgeLayout
-          Id="Package\Load to Gender.Paths[OLE DB Source Output]"
-          TopLeft="242.25,98">
+          Id="Package\DF_DimGender.Paths[OLE DB Source Output]"
+          TopLeft="198.666666666667,98">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,158"
+              EndConnector="0,157"
               Start="0,0"
-              End="0,150.5">
+              End="0,149.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,150.5" />
+                    End="0,149.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -668,43 +668,43 @@ SELECT DISTINCT
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load to Gender.Paths[OLE DB Source Error Output]"
-          TopLeft="273.333333333333,98">
+          Id="Package\DF_DimGender.Paths[OLE DB Source Error Output]"
+          TopLeft="258.666666666667,98">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="239.166666666667,50"
+              EndConnector="253.833333333333,50"
               Start="0,0"
-              End="239.166666666667,42.5">
+              End="253.833333333333,42.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.2323330106486" />
+                    End="0,16.2600216684724" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.2323330106486"
-                    Point2="0,20.2323330106486"
-                    Point3="4,20.2323330106486" />
+                    Point1="0,16.2600216684724"
+                    Point2="0,20.2600216684724"
+                    Point3="4,20.2600216684724" />
                   <mssgle:LineSegment
-                    End="235.166666666667,20.2323330106486" />
+                    End="249.833333333333,20.2600216684724" />
                   <mssgle:CubicBezierSegment
-                    Point1="235.166666666667,20.2323330106486"
-                    Point2="239.166666666667,20.2323330106486"
-                    Point3="239.166666666667,24.2323330106486" />
+                    Point1="249.833333333333,20.2600216684724"
+                    Point2="253.833333333333,20.2600216684724"
+                    Point3="253.833333333333,24.2600216684724" />
                   <mssgle:LineSegment
-                    End="239.166666666667,42.5" />
+                    End="253.833333333333,42.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="56.1494270833334,25.2323330106486,126.8678125,11.43359375"
+              BoundingBox="63.4827604166667,25.2600216684724,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load to Gender.Paths[Derived Column Output]"
+          Id="Package\DF_DimGender.Paths[Derived Column Output]"
           TopLeft="509,190">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -729,7 +729,7 @@ SELECT DISTINCT
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to Gender\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimGender\LIA_DB_Diagnostics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -742,7 +742,7 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to Gender\Load to Gender">
+    design-time-name="Package\DF_DimGender\Load to DimGender">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -755,7 +755,7 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to Gender\Load employment_cleaned">
+    design-time-name="Package\DF_DimGender\Load FactEmployment">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

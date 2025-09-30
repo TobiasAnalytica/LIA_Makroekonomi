@@ -1,0 +1,1880 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/25/2025 10:16:08 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{914F94CF-8993-421B-8438-17C475B2FCA6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{0B07E4AB-1B85-4FE7-96D0-CE2CE7E91F3C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BC921F51-A6B5-44CC-9B94-BF25191BBD76}"
+      DTS:ObjectName="LocalHost.LIA_DB_Diagnostics">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=LIA_DB_Diagnostics;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{BC921F51-A6B5-44CC-9B94-BF25191BBD76}LocalHost.LIA_DB_Diagnostics;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_FactGovernmentDebt"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{ad814b7c-ff7c-4694-a96f-7ada8f1409d6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_FactGovernmentDebt"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[freq]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Time frequency]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Time frequency"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Time frequency]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[geo]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Geopolitical entity (reporting)]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="Geopolitical entity (reporting)"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_VALUE]"
+                      cachedDataType="i8"
+                      cachedName="OBS_VALUE"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Observation status (Flag) V2 structure]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Observation status (Flag) V2 structure"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="317"
+                      lineageId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[freq]}) ? "" : (DT_WSTR,10)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[freq]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) ? "" : (DT_WSTR,20)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Time frequency]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[geo]}) ? "" : (DT_WSTR,20)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[geo]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) ? "" : (DT_WSTR,100)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Date]}) ? "" : [LEFT]((DT_WSTR,20)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Date]},10)) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) ? "" : (DT_WSTR,40)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) ? "" : (DT_WSTR,10)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]}) + "|" + ([ISNULL](#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}) ? "" : (DT_WSTR,100)#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]}),1,500)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : (DT_WSTR,100)[Geopolitical entity (reporting)]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : (DT_WSTR,100)[Observation status (Flag) V2 structure]),1,500)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="LIA_DB_Diagnostics"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_DW_Gold]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="317"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load from FactGovernmentDebt"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Fact].[GovernmentDebt]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Connections[OleDbConnection]"
+                  connectionManagerID="{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[freq]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      length="1"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[freq]"
+                      name="freq"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      length="10"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Time frequency]"
+                      name="Time frequency"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[geo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      length="10"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[geo]"
+                      name="geo"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      length="120"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      length="5"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      length="50"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
+                      name="CreatedSilverAt"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      name="freq" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      name="Time frequency" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      name="geo" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      name="Geopolitical entity (reporting)" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[OBS_VALUE]"
+                      dataType="i8"
+                      name="OBS_VALUE" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      name="OBS_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      name="Observation status (Flag) V2 structure" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[freq]"
+                      name="freq" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Time frequency]"
+                      name="Time frequency" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[geo]"
+                      name="geo" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Geopolitical entity (reporting)]"
+                      name="Geopolitical entity (reporting)" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      dataType="i8"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
+                      name="OBS_VALUE" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      dataType="wstr"
+                      length="5"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      name="OBS_FLAG" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
+                      name="Observation status (Flag) V2 structure" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
+                      name="CreatedSilverAt" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Load to FactGovernmentDebt"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Fact].[GovernmentDebt]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].Columns[OBS_VALUE]"
+                      cachedDataType="i8"
+                      cachedName="OBS_VALUE"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_VALUE]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].Columns[TimeFrequencyKey]"
+                      cachedDataType="i4"
+                      cachedName="TimeFrequencyKey"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequencyKey]"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].Columns[RegionKey]"
+                      cachedDataType="i4"
+                      cachedName="RegionKey"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].Columns[FlagKey]"
+                      cachedDataType="i4"
+                      cachedName="FlagKey"
+                      externalMetadataColumnId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[Value]"
+                      dataType="i8"
+                      name="Value" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[CreatedGoldAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedGoldAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequencyKey]"
+                      dataType="i4"
+                      name="TimeFrequencyKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
+                      dataType="i4"
+                      name="RegionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
+                      dataType="i4"
+                      name="FlagKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input].ExternalColumns[FactGovernmentDebtKey]"
+                      dataType="i4"
+                      name="FactGovernmentDebtKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Lookup DimDate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimDate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Date]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Date]) [refTable]
+where [refTable].[DateValue] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateValue" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="YearNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfWeek" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="WeekNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="QuarterNumber" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DayName" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DateValue</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Lookup DimFlags"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimFlags"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Flags]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Flags]) [refTable]
+where [refTable].[FlagAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="FlagSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FlagAK" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="70" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_FLAG]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input].Columns[OBS_FLAG]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="OBS_FLAG"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[OBS_FLAG]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">FlagAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      name="FlagKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">FlagSK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Lookup DimRegion"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimRegion"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Region]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Region]) [refTable]
+where [refTable].[RegionAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="RegionSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RegionAK" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="120" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StartDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EndDate" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[geo]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input].Columns[geo]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="geo"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[geo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">RegionAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      name="RegionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">RegionSK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup DimTimeFrequency"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[TimeFrequency]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[TimeFrequency]) [refTable]
+where [refTable].[TimeFrequencyAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TimeFrequencySK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TimeFrequencyAK" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[freq]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input].Columns[freq]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="freq"
+                      lineageId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output].Columns[freq]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TimeFrequencyAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      name="TimeFrequencyKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TimeFrequencySK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[Derived Column Output]"
+              endId="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output]"
+              endId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_FactGovernmentDebt\Lookup DimDate.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output1]"
+              endId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output2]"
+              endId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_FactGovernmentDebt\Lookup DimRegion.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output3]"
+              endId="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_FactGovernmentDebt\Lookup DimFlags.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[OLE DB Source Error Output]"
+              endId="Package\DF_FactGovernmentDebt\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Error Output]" />
+            <path
+              refId="Package\DF_FactGovernmentDebt.Paths[OLE DB Source Output]"
+              endId="Package\DF_FactGovernmentDebt\Lookup DimDate.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate FactGovernmentDebt"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c29ac95f-850b-41ba-a1c7-70b07d776e0a}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate FactGovernmentDebt"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Fact.GovernmentDebt;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7c006b8c-21cd-43d0-8929-87024d348ff0}"
+      DTS:From="Package\SQL truncate FactGovernmentDebt"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF_FactGovernmentDebt" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="197,42"
+          Id="Package\DF_FactGovernmentDebt"
+          TopLeft="146,269" />
+        <NodeLayout
+          Size="243,42"
+          Id="Package\SQL truncate FactGovernmentDebt"
+          TopLeft="123,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="244.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,167"
+              Start="0,0"
+              End="0,159.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,159.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_FactGovernmentDebt">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="157,42"
+          Id="Package\DF_FactGovernmentDebt\Lookup DimDate"
+          TopLeft="323.75,92" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\DF_FactGovernmentDebt\Lookup DimRegion"
+          TopLeft="316.75,258" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt"
+          TopLeft="282,17" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\DF_FactGovernmentDebt\Lookup DimFlags"
+          TopLeft="323,342" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency"
+          TopLeft="298.75,175" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt"
+          TopLeft="298.25,442" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DF_FactGovernmentDebt\Derived Column - Concatenate"
+          TopLeft="602,90" />
+        <NodeLayout
+          Size="173,42"
+          Id="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics"
+          TopLeft="637,439" />
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output2]"
+          TopLeft="401.375,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output1]"
+          TopLeft="401.25,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output]"
+          TopLeft="402.25,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[Derived Column Output]"
+          TopLeft="713.5,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10,307"
+              Start="0,0"
+              End="10,299.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,149.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,149.5"
+                    Point2="0,153.5"
+                    Point3="4,153.5" />
+                  <mssgle:LineSegment
+                    End="6,153.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6,153.5"
+                    Point2="10,153.5"
+                    Point3="10,157.5" />
+                  <mssgle:LineSegment
+                    End="10,299.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[OLE DB Source Output]"
+          TopLeft="360,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.25,33"
+              Start="0,0"
+              End="42.25,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,9.33678756476684" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,9.33678756476684"
+                    Point2="0,13.3367875647668"
+                    Point3="4,13.3367875647668" />
+                  <mssgle:LineSegment
+                    End="38.25,13.3367875647668" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.25,13.3367875647668"
+                    Point2="42.25,13.3367875647668"
+                    Point3="42.25,17.3367875647668" />
+                  <mssgle:LineSegment
+                    End="42.25,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[OLE DB Source Error Output]"
+          TopLeft="434,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="279.5,31"
+              Start="0,0"
+              End="279.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.52849740932642" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.52849740932642"
+                    Point2="0,12.5284974093264"
+                    Point3="4,12.5284974093264" />
+                  <mssgle:LineSegment
+                    End="275.5,12.5284974093264" />
+                  <mssgle:CubicBezierSegment
+                    Point1="275.5,12.5284974093264"
+                    Point2="279.5,12.5284974093264"
+                    Point3="279.5,16.5284974093264" />
+                  <mssgle:LineSegment
+                    End="279.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="76.31609375,17.5284974093264,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactGovernmentDebt.Paths[Lookup Match Output3]"
+          TopLeft="404.625,384">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,19.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Lookup DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[Date]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Lookup DimRegion">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[Region]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Load from FactGovernmentDebt">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Lookup DimFlags">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[Flags]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Lookup DimTimeFrequency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[TimeFrequency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\Load to FactGovernmentDebt">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactGovernmentDebt\LIA_DB_Diagnostics">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

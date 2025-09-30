@@ -11,20 +11,20 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim TimeFrequency"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{53143E2F-66FF-4F3A-9241-635AC24111CC}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{4855A046-FD5A-4B40-BA2C-AB0B4A260857}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Load to TimeFrequency"
+      DTS:refId="Package\DF_DimTimeFrequency"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{30DDB115-9D0D-461B-B73F-99AB4B080593}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load to TimeFrequency"
+      DTS:ObjectName="DF_DimTimeFrequency"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -32,7 +32,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Load to TimeFrequency\Derived Column - Concatenate"
+              refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -40,41 +40,41 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Description"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[TimeFrequency]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="TimeFrequency"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]" />
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="11"
-                      lineageId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       name="ErrorDescription"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -82,7 +82,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]} + #{Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]} + #{Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,7 +120,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics"
+              refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,51 +185,51 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
                       cachedLength="11"
                       cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       dataType="wstr"
                       length="500"
                       name="ErrorDescription" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
                   </externalMetadataColumns>
@@ -237,22 +237,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -261,11 +261,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\Load to TimeFrequency\Load all *_cleaned tables"
+              refId="Package\DF_DimTimeFrequency\Load all Fact* tables"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Load all *_cleaned tables"
+              name="Load all Fact* tables"
               usesDispositions="true"
               version="7">
               <properties>
@@ -286,21 +286,21 @@
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH AllTimeFrequency AS (
-    SELECT CAST(freq AS NCHAR(1)) AS TimeFrequency, CAST([Time Frequency] AS NVARCHAR(10)) AS Description FROM gdp_cleaned
+    SELECT CAST(freq AS NCHAR(1)) AS TimeFrequency, CAST([Time Frequency] AS NVARCHAR(10)) AS Description FROM Fact.GDP
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM employment_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.Employment
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM unemployment_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.Unemployment
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM population_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.Population
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM job_vacancies_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.JobVacancies
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM money_market_interest_rates_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.MoneyMarketInterestRates
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM hicp_index_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.HICPIndex
     UNION ALL
-    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM government_debt_cleaned
+    SELECT CAST(freq AS NCHAR(1)), CAST([Time Frequency] AS NVARCHAR(10)) FROM Fact.GovernmentDebt
 )
 SELECT DISTINCT
        TimeFrequency,
@@ -330,7 +330,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Connections[OleDbConnection]"
+                  refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -338,71 +338,71 @@ SELECT DISTINCT
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
                       length="1"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
                       name="TimeFrequency"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="10"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
                       dataType="wstr"
                       length="1"
                       name="TimeFrequency" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="10"
                       name="Description" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
                       name="TimeFrequency" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -411,11 +411,11 @@ SELECT DISTINCT
               </outputs>
             </component>
             <component
-              refId="Package\Load to TimeFrequency\Load to TimeFrequency"
+              refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Load to TimeFrequency"
+              name="Load to DimTimeFrequency"
               usesDispositions="true"
               version="4">
               <properties>
@@ -426,7 +426,7 @@ SELECT DISTINCT
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[TimeFrequency]</property>
+                  name="OpenRowset">[Dim].[TimeFrequency]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -468,7 +468,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load to TimeFrequency\Load to TimeFrequency.Connections[OleDbConnection]"
+                  refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -476,41 +476,41 @@ SELECT DISTINCT
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].Columns[TimeFrequency]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="TimeFrequency"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequency]"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequency]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]" />
                     <inputColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output].Columns[Description]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output].Columns[Description]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequency]"
                       dataType="wstr"
                       length="1"
                       name="TimeFrequency" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="10"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
                       dataType="dbTimeStamp"
                       name="CreatedSilverAt" />
                   </externalMetadataColumns>
@@ -518,22 +518,22 @@ SELECT DISTINCT
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load to TimeFrequency\Load to TimeFrequency.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Load to TimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load to TimeFrequency\Load to TimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load to TimeFrequency\Load to TimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -544,39 +544,39 @@ SELECT DISTINCT
           </components>
           <paths>
             <path
-              refId="Package\Load to TimeFrequency.Paths[Derived Column Output]"
-              endId="Package\Load to TimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              refId="Package\DF_DimTimeFrequency.Paths[Derived Column Output]"
+              endId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\Load to TimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Load to TimeFrequency.Paths[OLE DB Source Error Output]"
-              endId="Package\Load to TimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              refId="Package\DF_DimTimeFrequency.Paths[OLE DB Source Error Output]"
+              endId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Error Output]" />
             <path
-              refId="Package\Load to TimeFrequency.Paths[OLE DB Source Output]"
-              endId="Package\Load to TimeFrequency\Load to TimeFrequency.Inputs[OLE DB Destination Input]"
+              refId="Package\DF_DimTimeFrequency.Paths[OLE DB Source Output]"
+              endId="Package\DF_DimTimeFrequency\Load to DimTimeFrequency.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\Load to TimeFrequency\Load all *_cleaned tables.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimTimeFrequency\Load all Fact* tables.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate TimeFrequency"
+      DTS:refId="Package\SQL truncate DimTimeFrequency"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{D20BF9F8-489E-4043-8C80-10B635250CEC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate TimeFrequency"
+      DTS:ObjectName="SQL truncate DimTimeFrequency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE TimeFrequency;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Dim.TimeFrequency;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -585,10 +585,10 @@ SELECT DISTINCT
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{6B30E6D7-47F8-4C84-A3CF-D38167E3D512}"
-      DTS:From="Package\SQL truncate TimeFrequency"
+      DTS:From="Package\SQL truncate DimTimeFrequency"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Load to TimeFrequency" />
+      DTS:To="Package\DF_DimTimeFrequency" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -603,16 +603,16 @@ SELECT DISTINCT
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="190,42"
-          Id="Package\Load to TimeFrequency"
-          TopLeft="70,194" />
+          Size="188,42"
+          Id="Package\DF_DimTimeFrequency"
+          TopLeft="76,194" />
         <NodeLayout
-          Size="215,42"
-          Id="Package\SQL truncate TimeFrequency"
+          Size="234,42"
+          Id="Package\SQL truncate DimTimeFrequency"
           TopLeft="60,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="166.25,102">
+          TopLeft="173.5,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -636,40 +636,52 @@ SELECT DISTINCT
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Load to TimeFrequency">
+    design-time-name="Package\DF_DimTimeFrequency">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="173,42"
-          Id="Package\Load to TimeFrequency\LIA_DB_Diagnostics"
+          Id="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics"
           TopLeft="448,278" />
         <NodeLayout
-          Size="190,42"
-          Id="Package\Load to TimeFrequency\Load to TimeFrequency"
+          Size="208,42"
+          Id="Package\DF_DimTimeFrequency\Load to DimTimeFrequency"
           TopLeft="143,277" />
         <NodeLayout
           Size="223,42"
-          Id="Package\Load to TimeFrequency\Derived Column - Concatenate"
+          Id="Package\DF_DimTimeFrequency\Derived Column - Concatenate"
           TopLeft="430,170" />
         <NodeLayout
-          Size="198,42"
-          Id="Package\Load to TimeFrequency\Load all *_cleaned tables"
+          Size="175,42"
+          Id="Package\DF_DimTimeFrequency\Load all Fact* tables"
           TopLeft="141,70" />
         <EdgeLayout
-          Id="Package\Load to TimeFrequency.Paths[OLE DB Source Output]"
-          TopLeft="239,112">
+          Id="Package\DF_DimTimeFrequency.Paths[OLE DB Source Output]"
+          TopLeft="200.666666666667,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,165"
+              EndConnector="46.3333333333333,165"
               Start="0,0"
-              End="0,157.5">
+              End="46.3333333333333,157.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,157.5" />
+                    End="0,62.8969422423556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,62.8969422423556"
+                    Point2="0,66.8969422423556"
+                    Point3="4,66.8969422423556" />
+                  <mssgle:LineSegment
+                    End="42.3333333333333,66.8969422423556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42.3333333333333,66.8969422423556"
+                    Point2="46.3333333333333,66.8969422423556"
+                    Point3="46.3333333333333,70.8969422423556" />
+                  <mssgle:LineSegment
+                    End="46.3333333333333,157.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -679,43 +691,43 @@ SELECT DISTINCT
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load to TimeFrequency.Paths[OLE DB Source Error Output]"
-          TopLeft="271.666666666667,112">
+          Id="Package\DF_DimTimeFrequency.Paths[OLE DB Source Error Output]"
+          TopLeft="256.333333333333,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="269.833333333333,58"
+              EndConnector="285.166666666667,58"
               Start="0,0"
-              End="269.833333333333,50.5">
+              End="285.166666666667,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4789579158317" />
+                    End="0,19.515288788222" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4789579158317"
-                    Point2="0,23.4789579158317"
-                    Point3="4,23.4789579158317" />
+                    Point1="0,19.515288788222"
+                    Point2="0,23.515288788222"
+                    Point3="4,23.515288788222" />
                   <mssgle:LineSegment
-                    End="265.833333333333,23.4789579158317" />
+                    End="281.166666666667,23.515288788222" />
                   <mssgle:CubicBezierSegment
-                    Point1="265.833333333333,23.4789579158317"
-                    Point2="269.833333333333,23.4789579158317"
-                    Point3="269.833333333333,27.4789579158317" />
+                    Point1="281.166666666667,23.515288788222"
+                    Point2="285.166666666667,23.515288788222"
+                    Point3="285.166666666667,27.515288788222" />
                   <mssgle:LineSegment
-                    End="269.833333333333,50.5" />
+                    End="285.166666666667,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="71.4827604166667,28.4789579158317,126.8678125,11.43359375"
+              BoundingBox="79.1494270833334,28.515288788222,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load to TimeFrequency.Paths[Derived Column Output]"
+          Id="Package\DF_DimTimeFrequency.Paths[Derived Column Output]"
           TopLeft="538,212">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -740,7 +752,7 @@ SELECT DISTINCT
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to TimeFrequency\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -753,7 +765,7 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to TimeFrequency\Load to TimeFrequency">
+    design-time-name="Package\DF_DimTimeFrequency\Load to DimTimeFrequency">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -766,7 +778,7 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load to TimeFrequency\Load all *_cleaned tables">
+    design-time-name="Package\DF_DimTimeFrequency\Load all Fact* tables">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
