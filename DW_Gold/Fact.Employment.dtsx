@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Fact Employment"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{D25D4AD8-34A8-469F-8D50-483C0D4974FA}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{EA06ED6C-271B-4158-841E-9938F8B59A52}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -334,6 +334,165 @@
               </outputs>
             </component>
             <component
+              refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimAgeClassEmp"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[AgeClassEmp]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[AgeClassEmp]) [refTable]
+where [refTable].[AgeClassAK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AgeClassSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AgeClassAK" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_FactEmployment\OLE_SRC_FactEmployment.Outputs[OLE DB Source Output].Columns[age]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Connections[OleDbConnection]"
+                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input].Columns[age]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="age"
+                      lineageId="Package\DF_FactEmployment\OLE_SRC_FactEmployment.Outputs[OLE DB Source Output].Columns[age]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AgeClassAK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Match Output].Columns[AgeClassKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Match Output].Columns[AgeClassKey]"
+                      name="AgeClassKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AgeClassSK</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\DF_FactEmployment\LKP_DimDate"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -492,170 +651,11 @@ where [refTable].[DateValue] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DF_FactEmployment\Lookup DimAgeClass"
+              refId="Package\DF_FactEmployment\LKP_DimFlags"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimAgeClass"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[AgeClassEmp]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[AgeClassEmp]) [refTable]
-where [refTable].[AgeClassAK] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AgeClassSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AgeClassAK" dataType="DT_WSTR" length="6" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Description" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_FactEmployment\OLE_SRC_FactEmployment.Outputs[OLE DB Source Output].Columns[age]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_FactEmployment\Lookup DimAgeClass.Connections[OleDbConnection]"
-                  connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input].Columns[age]"
-                      cachedDataType="wstr"
-                      cachedLength="6"
-                      cachedName="age"
-                      lineageId="Package\DF_FactEmployment\OLE_SRC_FactEmployment.Outputs[OLE DB Source Output].Columns[age]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">AgeClassAK</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]"
-                      name="AgeClassKey"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">AgeClassSK</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_FactEmployment\Lookup DimFlags"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimFlags"
+              name="LKP_DimFlags"
               usesDispositions="true"
               version="6">
               <properties>
@@ -719,7 +719,7 @@ where [refTable].[FlagAK] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_FactEmployment\Lookup DimFlags.Connections[OleDbConnection]"
+                  refId="Package\DF_FactEmployment\LKP_DimFlags.Connections[OleDbConnection]"
                   connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
                   description="Connection manager used to access lookup data."
@@ -727,11 +727,11 @@ where [refTable].[FlagAK] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input]"
+                  refId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input].Columns[OBS_FLAG]"
+                      refId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input].Columns[OBS_FLAG]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="OBS_FLAG"
@@ -753,18 +753,18 @@ where [refTable].[FlagAK] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]"
                       name="FlagKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -778,30 +778,30 @@ where [refTable].[FlagAK] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup No Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Error Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -810,11 +810,11 @@ where [refTable].[FlagAK] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DF_FactEmployment\Lookup DimGender"
+              refId="Package\DF_FactEmployment\LKP_DimGender"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimGender"
+              name="LKP_DimGender"
               usesDispositions="true"
               version="6">
               <properties>
@@ -878,7 +878,7 @@ where [refTable].[GenderAK] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_FactEmployment\Lookup DimGender.Connections[OleDbConnection]"
+                  refId="Package\DF_FactEmployment\LKP_DimGender.Connections[OleDbConnection]"
                   connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
                   description="Connection manager used to access lookup data."
@@ -886,11 +886,11 @@ where [refTable].[GenderAK] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input]"
+                  refId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input].Columns[sex]"
+                      refId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input].Columns[sex]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="sex"
@@ -912,18 +912,18 @@ where [refTable].[GenderAK] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Match Output].Columns[GenderKey]"
+                      refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Match Output].Columns[GenderKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Match Output].Columns[GenderKey]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Match Output].Columns[GenderKey]"
                       name="GenderKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -937,30 +937,30 @@ where [refTable].[GenderAK] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup No Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Error Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -969,11 +969,11 @@ where [refTable].[GenderAK] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DF_FactEmployment\Lookup DimRegion"
+              refId="Package\DF_FactEmployment\LKP_DimRegion"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimRegion"
+              name="LKP_DimRegion"
               usesDispositions="true"
               version="6">
               <properties>
@@ -1037,7 +1037,7 @@ where [refTable].[RegionAK] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_FactEmployment\Lookup DimRegion.Connections[OleDbConnection]"
+                  refId="Package\DF_FactEmployment\LKP_DimRegion.Connections[OleDbConnection]"
                   connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
                   description="Connection manager used to access lookup data."
@@ -1045,11 +1045,11 @@ where [refTable].[RegionAK] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input]"
+                  refId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input].Columns[geo]"
+                      refId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input].Columns[geo]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="geo"
@@ -1071,18 +1071,18 @@ where [refTable].[RegionAK] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]"
                       name="RegionKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1096,30 +1096,30 @@ where [refTable].[RegionAK] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup No Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Error Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1128,11 +1128,11 @@ where [refTable].[RegionAK] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DF_FactEmployment\Lookup DimTimeFrequency"
+              refId="Package\DF_FactEmployment\LKP_DimTimeFrequency"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup DimTimeFrequency"
+              name="LKP_DimTimeFrequency"
               usesDispositions="true"
               version="6">
               <properties>
@@ -1196,7 +1196,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Connections[OleDbConnection]"
+                  refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Connections[OleDbConnection]"
                   connectionManagerID="{A017A1D6-82C4-449D-8C3E-61DF27798648}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DW_Gold]"
                   description="Connection manager used to access lookup data."
@@ -1204,11 +1204,11 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+                  refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input].Columns[freq]"
+                      refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input].Columns[freq]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="freq"
@@ -1230,18 +1230,18 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]"
                       name="TimeFrequencyKey"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1255,30 +1255,30 @@ where [refTable].[TimeFrequencyAK] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup No Match Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Error Output]"
+                  refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input]">
+                  synchronousInputId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1375,31 +1375,31 @@ where [refTable].[TimeFrequencyAK] = ?</property>
                       cachedDataType="i4"
                       cachedName="TimeFrequencyKey"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequencyKey]"
-                      lineageId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]" />
+                      lineageId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Match Output].Columns[TimeFrequencyKey]" />
                     <inputColumn
                       refId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].Columns[GenderKey]"
                       cachedDataType="i4"
                       cachedName="GenderKey"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].ExternalColumns[GenderKey]"
-                      lineageId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Match Output].Columns[GenderKey]" />
+                      lineageId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Match Output].Columns[GenderKey]" />
                     <inputColumn
                       refId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].Columns[RegionKey]"
                       cachedDataType="i4"
                       cachedName="RegionKey"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
-                      lineageId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
+                      lineageId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
                     <inputColumn
                       refId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].Columns[AgeClassKey]"
                       cachedDataType="i4"
                       cachedName="AgeClassKey"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].ExternalColumns[AgeClassKey]"
-                      lineageId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Match Output].Columns[AgeClassKey]" />
+                      lineageId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Match Output].Columns[AgeClassKey]" />
                     <inputColumn
                       refId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].Columns[FlagKey]"
                       cachedDataType="i4"
                       cachedName="FlagKey"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input].ExternalColumns[FlagKey]"
-                      lineageId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]" />
+                      lineageId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Match Output].Columns[FlagKey]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1846,34 +1846,34 @@ where [refTable].[TimeFrequencyAK] = ?</property>
               startId="Package\DF_FactEmployment\Derived Column - Concatenate.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output]"
-              endId="Package\DF_FactEmployment\Lookup DimRegion.Inputs[Lookup Input]"
+              endId="Package\DF_FactEmployment\LKP_DimRegion.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DF_FactEmployment\Lookup DimGender.Outputs[Lookup Match Output]" />
+              startId="Package\DF_FactEmployment\LKP_DimGender.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output1]"
-              endId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Inputs[Lookup Input]"
+              endId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\DF_FactEmployment\LKP_DimDate.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output2]"
-              endId="Package\DF_FactEmployment\Lookup DimGender.Inputs[Lookup Input]"
+              endId="Package\DF_FactEmployment\LKP_DimGender.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DF_FactEmployment\Lookup DimTimeFrequency.Outputs[Lookup Match Output]" />
+              startId="Package\DF_FactEmployment\LKP_DimTimeFrequency.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output3]"
-              endId="Package\DF_FactEmployment\Lookup DimAgeClass.Inputs[Lookup Input]"
+              endId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DF_FactEmployment\Lookup DimRegion.Outputs[Lookup Match Output]" />
+              startId="Package\DF_FactEmployment\LKP_DimRegion.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output4]"
-              endId="Package\DF_FactEmployment\Lookup DimFlags.Inputs[Lookup Input]"
+              endId="Package\DF_FactEmployment\LKP_DimFlags.Inputs[Lookup Input]"
               name="Lookup Match Output"
-              startId="Package\DF_FactEmployment\Lookup DimAgeClass.Outputs[Lookup Match Output]" />
+              startId="Package\DF_FactEmployment\LKP_DimAgeClassEmp.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[Lookup Match Output5]"
               endId="Package\DF_FactEmployment\OLE_DST_FactEmployment.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
-              startId="Package\DF_FactEmployment\Lookup DimFlags.Outputs[Lookup Match Output]" />
+              startId="Package\DF_FactEmployment\LKP_DimFlags.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_FactEmployment.Paths[OLE DB Source Error Output]"
               endId="Package\DF_FactEmployment\Derived Column - Concatenate.Inputs[Derived Column Input]"
@@ -1967,48 +1967,48 @@ where [refTable].[TimeFrequencyAK] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="167,42"
-          Id="Package\DF_FactEmployment\Lookup DimRegion"
-          TopLeft="318.75,350" />
+          Size="193,42"
+          Id="Package\DF_FactEmployment\LKP_DimTimeFrequency"
+          TopLeft="298.75,175" />
         <NodeLayout
-          Size="207,42"
-          Id="Package\DF_FactEmployment\OLE_SRC_FactEmployment"
-          TopLeft="290.25,5" />
+          Size="184,42"
+          Id="Package\DF_FactEmployment\LKP_DimAgeClassEmp"
+          TopLeft="303.25,441" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\DF_FactEmployment\LKP_DimFlags"
+          TopLeft="329,521" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\DF_FactEmployment\LKP_DimRegion"
+          TopLeft="318.75,350" />
         <NodeLayout
           Size="207,42"
           Id="Package\DF_FactEmployment\OLE_DST_FactEmployment"
           TopLeft="307.25,611" />
         <NodeLayout
-          Size="143,42"
-          Id="Package\DF_FactEmployment\LKP_DimDate"
-          TopLeft="323.75,92" />
-        <NodeLayout
-          Size="169,42"
-          Id="Package\DF_FactEmployment\Lookup DimGender"
-          TopLeft="321.25,261" />
-        <NodeLayout
           Size="207,42"
-          Id="Package\DF_FactEmployment\Lookup DimTimeFrequency"
-          TopLeft="298.75,175" />
+          Id="Package\DF_FactEmployment\OLE_SRC_FactEmployment"
+          TopLeft="290.25,5" />
         <NodeLayout
           Size="173,42"
           Id="Package\DF_FactEmployment\LIA_DB_Diagnostics"
           TopLeft="598,618" />
         <NodeLayout
+          Size="143,42"
+          Id="Package\DF_FactEmployment\LKP_DimDate"
+          TopLeft="323.75,92" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DF_FactEmployment\LKP_DimGender"
+          TopLeft="321.25,261" />
+        <NodeLayout
           Size="223,42"
           Id="Package\DF_FactEmployment\Derived Column - Concatenate"
           TopLeft="567.25,91" />
-        <NodeLayout
-          Size="177,42"
-          Id="Package\DF_FactEmployment\Lookup DimAgeClass"
-          TopLeft="320.25,440" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\DF_FactEmployment\Lookup DimFlags"
-          TopLeft="329,521" />
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output]"
-          TopLeft="404,303">
+          TopLeft="397,303">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2124,79 +2124,91 @@ where [refTable].[TimeFrequencyAK] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output5]"
-          TopLeft="409.625,563">
+          TopLeft="401.5,563">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="9.25,48"
               Start="0,0"
-              End="0,40.5">
+              End="9.25,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="5.25,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.25,24"
+                    Point2="9.25,24"
+                    Point3="9.25,28" />
+                  <mssgle:LineSegment
+                    End="9.25,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.4453125,96.3827734375,11.609375"
+              BoundingBox="-43.56638671875,29,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output4]"
-          TopLeft="408.625,482">
+          TopLeft="398.375,483">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,39"
+              EndConnector="0,38"
               Start="0,0"
-              End="0,31.5">
+              End="0,30.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5" />
+                    End="0,30.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,9.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,9.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output3]"
-          TopLeft="405.5,392">
+          TopLeft="395.25,392">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48"
+              EndConnector="0,49"
               Start="0,0"
-              End="0,40.5">
+              End="0,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5" />
+                    End="0,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.4453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,14.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output2]"
-          TopLeft="404,217">
+          TopLeft="397,217">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2220,7 +2232,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[Lookup Match Output1]"
-          TopLeft="398.75,134">
+          TopLeft="395.25,134">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2246,7 +2258,76 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\Lookup DimRegion">
+    design-time-name="Package\DF_FactEmployment\LKP_DimTimeFrequency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[TimeFrequency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactEmployment\LKP_DimAgeClassEmp">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[AgeClassEmp]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactEmployment\LKP_DimFlags">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[Flags]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactEmployment\LKP_DimRegion">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -2269,6 +2350,19 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\DF_FactEmployment\OLE_DST_FactEmployment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\DF_FactEmployment\OLE_SRC_FactEmployment">
     <Properties>
       <Property>
@@ -2282,7 +2376,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\OLE_DST_FactEmployment">
+    design-time-name="Package\DF_FactEmployment\LIA_DB_Diagnostics">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2318,7 +2412,7 @@ where [refTable].[TimeFrequencyAK] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\Lookup DimGender">
+    design-time-name="Package\DF_FactEmployment\LKP_DimGender">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -2329,88 +2423,6 @@ where [refTable].[TimeFrequencyAK] = ?</property>
         <Name>UsedTableName</Name>
         <Value
           type="q3:string">[Dim].[Gender]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\Lookup DimTimeFrequency">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Dim].[TimeFrequency]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\LIA_DB_Diagnostics">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\Lookup DimAgeClass">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Dim].[AgeClassEmp]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_FactEmployment\Lookup DimFlags">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Dim].[Flags]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>

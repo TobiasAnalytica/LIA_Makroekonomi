@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim AgeClassUnemp"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{B2A3B885-432D-4DA3-A492-1E703174A210}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{76B61675-01B5-4AD4-AD33-0C4C82FA8080}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -49,13 +49,13 @@
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="Description"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
                       refId="Package\DF_DimAgeClassUnemp\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[AgeClass]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="AgeClass"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]" />
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -82,7 +82,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]} + #{Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]} + #{Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -196,13 +196,13 @@
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       externalMetadataColumnId="Package\DF_DimAgeClassUnemp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
                       refId="Package\DF_DimAgeClassUnemp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       externalMetadataColumnId="Package\DF_DimAgeClassUnemp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
                       refId="Package\DF_DimAgeClassUnemp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
@@ -261,144 +261,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="Load FactUnemployment"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
-        CAST(age AS NVARCHAR(6)) AS AgeClass,
-        CAST([Age class] AS NVARCHAR(20)) AS Description
-      FROM Fact.Unemployment</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Connections[OleDbConnection]"
-                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
-                      length="20"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]"
-                      name="Description"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[AgeClass]"
-                      length="6"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]"
-                      name="AgeClass"
-                      truncationRowDisposition="RedirectRow" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
-                      dataType="wstr"
-                      length="20"
-                      name="Description" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[AgeClass]"
-                      dataType="wstr"
-                      length="6"
-                      name="AgeClass" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]"
-                      dataType="wstr"
-                      length="20"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]"
-                      name="Description" />
-                    <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]"
-                      dataType="wstr"
-                      length="6"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]"
-                      name="AgeClass" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp"
+              refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="Load to DimAgeClassUnemp"
+              name="OLE_DST_DimAgeClassUnemp"
               usesDispositions="true"
               version="4">
               <properties>
@@ -451,7 +318,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Connections[OleDbConnection]"
+                  refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -459,41 +326,41 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].Columns[Description]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="Description"
-                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]" />
+                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].Columns[AgeClass]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].Columns[AgeClass]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="AgeClass"
-                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]" />
+                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
                       dataType="wstr"
                       length="20"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
                       dataType="wstr"
                       length="6"
                       name="AgeClass" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
                       dataType="dbTimeStamp"
                       name="CreatedSilverAt" />
                   </externalMetadataColumns>
@@ -501,24 +368,157 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC_FactUnemployment"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+        CAST(age AS NVARCHAR(6)) AS AgeClass,
+        CAST([Age class] AS NVARCHAR(20)) AS Description
+      FROM Fact.Unemployment</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="20"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[AgeClass]"
+                      length="6"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].Columns[AgeClass]"
+                      name="AgeClass"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="20"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output].ExternalColumns[AgeClass]"
+                      dataType="wstr"
+                      length="6"
+                      name="AgeClass" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output].Columns[AgeClass]"
+                      name="AgeClass" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -535,12 +535,12 @@
               refId="Package\DF_DimAgeClassUnemp.Paths[OLE DB Source Error Output]"
               endId="Package\DF_DimAgeClassUnemp\Derived Column - Concatenate.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DF_DimAgeClassUnemp.Paths[OLE DB Source Output]"
-              endId="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimAgeClassUnemp\Load FactUnemployment.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -628,20 +628,20 @@
           Id="Package\DF_DimAgeClassUnemp\LIA_DB_Diagnostics"
           TopLeft="497,258" />
         <NodeLayout
-          Size="196,42"
-          Id="Package\DF_DimAgeClassUnemp\Load FactUnemployment"
+          Size="219,42"
+          Id="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment"
           TopLeft="75,48" />
         <NodeLayout
           Size="223,42"
           Id="Package\DF_DimAgeClassUnemp\Derived Column - Concatenate"
           TopLeft="479,150" />
         <NodeLayout
-          Size="212,42"
-          Id="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp"
+          Size="223,42"
+          Id="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp"
           TopLeft="38,253" />
         <EdgeLayout
           Id="Package\DF_DimAgeClassUnemp.Paths[OLE DB Source Output]"
-          TopLeft="142.833333333333,90">
+          TopLeft="149.416666666667,90">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -736,7 +736,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimAgeClassUnemp\Load FactUnemployment">
+    design-time-name="Package\DF_DimAgeClassUnemp\OLE_SRC_FactUnemployment">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -744,7 +744,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimAgeClassUnemp\Load to DimAgeClassUnemp">
+    design-time-name="Package\DF_DimAgeClassUnemp\OLE_DST_DimAgeClassUnemp">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
