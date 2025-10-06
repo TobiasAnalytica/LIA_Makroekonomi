@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package12"
   DTS:PackageType="5"
-  DTS:VersionBuild="9"
-  DTS:VersionGUID="{9ED32282-5EBA-498A-836F-C67FA44D0F2B}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{70125723-3F8B-42C7-8691-856EFF44E4D4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -49,13 +49,13 @@
                       cachedDataType="wstr"
                       cachedLength="80"
                       cachedName="Description"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
                       refId="Package\DF_DimSeasonalAdjustment\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Seasonal adjustment]"
                       cachedDataType="wstr"
                       cachedLength="3"
                       cachedName="Seasonal adjustment"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]" />
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -82,7 +82,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]} + #{Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]} + #{Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -196,13 +196,13 @@
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
                       refId="Package\DF_DimSeasonalAdjustment\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
                       refId="Package\DF_DimSeasonalAdjustment\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
@@ -261,11 +261,142 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimSeasonalAdjustment\Load FactGDP"
+              refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_DimSeasonalAdjustment"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dim].[SeasonalAdjustment]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].Columns[Seasonal adjustment]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="Seasonal adjustment"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Seasonal adjustment]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Seasonal adjustment]"
+                      dataType="wstr"
+                      length="3"
+                      name="Seasonal adjustment" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="80"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="Load FactGDP"
+              name="OLE_SRC_FactGDP"
               usesDispositions="true"
               version="7">
               <properties>
@@ -319,7 +450,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Connections[OleDbConnection]"
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -327,204 +458,73 @@ SELECT DISTINCT
               </connections>
               <outputs>
                 <output
-                  refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="80"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Seasonal adjustment]"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Seasonal adjustment]"
                       length="3"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]"
                       name="Seasonal adjustment"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="80"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Seasonal adjustment]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output].ExternalColumns[Seasonal adjustment]"
                       dataType="wstr"
                       length="3"
                       name="Seasonal adjustment" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]"
                       dataType="wstr"
                       length="3"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Seasonal adjustment]"
                       name="Seasonal adjustment" />
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                     <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="80"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Load to DimSeasonalAdjustment"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[Dim].[SeasonalAdjustment]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Connections[OleDbConnection]"
-                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].Columns[Description]"
-                      cachedDataType="wstr"
-                      cachedLength="80"
-                      cachedName="Description"
-                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Description]" />
-                    <inputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].Columns[Seasonal adjustment]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="Seasonal adjustment"
-                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Seasonal adjustment]"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output].Columns[Seasonal adjustment]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Seasonal adjustment]"
-                      dataType="wstr"
-                      length="3"
-                      name="Seasonal adjustment" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      dataType="wstr"
-                      length="80"
-                      name="Description" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -541,12 +541,12 @@ SELECT DISTINCT
               refId="Package\DF_DimSeasonalAdjustment.Paths[OLE DB Source Error Output]"
               endId="Package\DF_DimSeasonalAdjustment\Derived Column - Concatenate.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DF_DimSeasonalAdjustment.Paths[OLE DB Source Output]"
-              endId="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimSeasonalAdjustment\Load FactGDP.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -634,20 +634,20 @@ SELECT DISTINCT
           Id="Package\DF_DimSeasonalAdjustment\LIA_DB_Diagnostics"
           TopLeft="500,254" />
         <NodeLayout
-          Size="232,42"
-          Id="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment"
-          TopLeft="165,254" />
+          Size="168,42"
+          Id="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP"
+          TopLeft="225,45" />
         <NodeLayout
           Size="223,42"
           Id="Package\DF_DimSeasonalAdjustment\Derived Column - Concatenate"
           TopLeft="482,146" />
         <NodeLayout
-          Size="145,42"
-          Id="Package\DF_DimSeasonalAdjustment\Load FactGDP"
-          TopLeft="225,45" />
+          Size="243,42"
+          Id="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment"
+          TopLeft="165,254" />
         <EdgeLayout
           Id="Package\DF_DimSeasonalAdjustment.Paths[OLE DB Source Output]"
-          TopLeft="277.833333333333,87">
+          TopLeft="284.416666666667,87">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -669,37 +669,37 @@ SELECT DISTINCT
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimSeasonalAdjustment.Paths[OLE DB Source Error Output]"
-          TopLeft="320.333333333333,87">
+          TopLeft="335.666666666667,87">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="273.166666666667,59"
+              EndConnector="257.833333333333,59"
               Start="0,0"
-              End="273.166666666667,51.5">
+              End="257.833333333333,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.9863574351978" />
+                    End="0,19.9339622641509" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.9863574351978"
-                    Point2="0,23.9863574351978"
-                    Point3="4,23.9863574351978" />
+                    Point1="0,19.9339622641509"
+                    Point2="0,23.9339622641509"
+                    Point3="4,23.9339622641509" />
                   <mssgle:LineSegment
-                    End="269.166666666667,23.9863574351978" />
+                    End="253.833333333333,23.9339622641509" />
                   <mssgle:CubicBezierSegment
-                    Point1="269.166666666667,23.9863574351978"
-                    Point2="273.166666666667,23.9863574351978"
-                    Point3="273.166666666667,27.9863574351978" />
+                    Point1="253.833333333333,23.9339622641509"
+                    Point2="257.833333333333,23.9339622641509"
+                    Point3="257.833333333333,27.9339622641509" />
                   <mssgle:LineSegment
-                    End="273.166666666667,51.5" />
+                    End="257.833333333333,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="73.1494270833334,28.9863574351978,126.8678125,11.43359375"
+              BoundingBox="65.4827604166667,28.9339622641509,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -742,7 +742,15 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimSeasonalAdjustment\Load to DimSeasonalAdjustment">
+    design-time-name="Package\DF_DimSeasonalAdjustment\OLE_SRC_FactGDP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_DimSeasonalAdjustment\OLE_DST_DimSeasonalAdjustment">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -751,14 +759,6 @@ SELECT DISTINCT
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_DimSeasonalAdjustment\Load FactGDP">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

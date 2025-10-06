@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim Region"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{4E9F61E3-525C-4FBD-B56B-D89CF9A71FCD}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{924A8491-167C-4A5F-9A81-35ED28341CEE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -336,140 +336,6 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimRegion\Load from DimRegion"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="Load from DimRegion"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[Dim].[Region]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_DimRegion\Load from DimRegion.Connections[OleDbConnection]"
-                  connectionManagerID="{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Region]"
-                      length="10"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]"
-                      name="Region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Description]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Description]"
-                      length="120"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Description]"
-                      name="Description"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Region]"
-                      dataType="wstr"
-                      length="10"
-                      name="Region" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Description]"
-                      dataType="wstr"
-                      length="120"
-                      name="Description" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[Region]"
-                      dataType="wstr"
-                      length="10"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[Region]"
-                      name="Region" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[Description]"
-                      dataType="wstr"
-                      length="120"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Error Output].Columns[Description]"
-                      name="Description" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\DF_DimRegion\OLE DB Command"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -515,7 +381,7 @@
                       cachedLength="10"
                       cachedName="Region"
                       externalMetadataColumnId="Package\DF_DimRegion\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]" />
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_DimRegion\OLE DB Command.Inputs[OLE DB Command Input].Columns[EndDate]"
                       cachedDataType="dbTimeStamp"
@@ -578,6 +444,140 @@
                       lineageId="Package\DF_DimRegion\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimRegion\OLE_SRC_DimRegion"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC_DimRegion"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dim].[Region]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Connections[OleDbConnection]"
+                  connectionManagerID="{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      length="10"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="120"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="10"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="120"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -649,7 +649,7 @@
                       cachedLength="120"
                       cachedName="Description"
                       externalMetadataColumnId="Package\DF_DimRegion\Slowly Changing Dimension Type 2.Inputs[Slowly Changing Dimension Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -663,7 +663,7 @@
                       cachedLength="10"
                       cachedName="Region"
                       externalMetadataColumnId="Package\DF_DimRegion\Slowly Changing Dimension Type 2.Inputs[Slowly Changing Dimension Input].ExternalColumns[RegionAK]"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -763,7 +763,7 @@
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -777,7 +777,7 @@
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="Description"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
                       <properties>
                         <property
                           containsID="true"
@@ -799,7 +799,7 @@
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -813,7 +813,7 @@
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="Description"
-                      lineageId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
+                      lineageId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output].Columns[Description]">
                       <properties>
                         <property
                           containsID="true"
@@ -886,7 +886,7 @@
               refId="Package\DF_DimRegion.Paths[OLE DB Source Output]"
               endId="Package\DF_DimRegion\Slowly Changing Dimension Type 2.Inputs[Slowly Changing Dimension Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimRegion\Load from DimRegion.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\DF_DimRegion.Paths[Union All Output 1]"
               endId="Package\DF_DimRegion\Derived Column 1.Inputs[Derived Column Input]"
@@ -922,82 +922,36 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="166,42"
+          Id="Package\DF_DimRegion\OLE DB Command"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
           Size="244,42"
           Id="Package\DF_DimRegion\Slowly Changing Dimension Type 2"
           TopLeft="110.5,107.5" />
         <NodeLayout
-          Size="181,42"
-          Id="Package\DF_DimRegion\Load from DimRegion"
+          Size="179,42"
+          Id="Package\DF_DimRegion\OLE_SRC_DimRegion"
           TopLeft="142,5.5" />
-        <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[OLE DB Source Output]"
-          TopLeft="232.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DF_DimRegion\Derived Column 1"
+          TopLeft="151,515.5" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\DF_DimRegion\Union All"
+          TopLeft="172,413.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\DF_DimRegion\Insert Destination"
+          TopLeft="151,617.5" />
         <NodeLayout
           Size="154,42"
           Id="Package\DF_DimRegion\Derived Column"
           TopLeft="17.5,209.5" />
         <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[Historical Attribute Inserts Output]"
-          TopLeft="193.166666666667,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-98.6666666666667,60"
-              Start="0,0"
-              End="-98.6666666666667,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2345276872964" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2345276872964"
-                    Point2="0,24.2345276872964"
-                    Point3="-4,24.2345276872964" />
-                  <mssgle:LineSegment
-                    End="-94.6666666666667,24.2345276872964" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-94.6666666666667,24.2345276872964"
-                    Point2="-98.6666666666667,24.2345276872964"
-                    Point3="-98.6666666666667,28.2345276872964" />
-                  <mssgle:LineSegment
-                    End="-98.6666666666667,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-124.389720052083,29.2345276872964,150.1127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\DF_DimRegion\OLE DB Command"
-          TopLeft="5.50000000000003,311.5" />
-        <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[Derived Column Output]"
-          TopLeft="91.5,251.5">
+          Id="Package\DF_DimRegion.Paths[Union All Output 1]"
+          TopLeft="232.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1017,10 +971,62 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="121,42"
-          Id="Package\DF_DimRegion\Union All"
-          TopLeft="172,413.5" />
+        <EdgeLayout
+          Id="Package\DF_DimRegion.Paths[OLE DB Source Output]"
+          TopLeft="232,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimRegion.Paths[OLE DB Command Output]"
+          TopLeft="88.5,353.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.166666666667,60"
+              Start="0,0"
+              End="125.166666666667,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5301794453507"
+                    Point2="0,35.5301794453507"
+                    Point3="4,35.5301794453507" />
+                  <mssgle:LineSegment
+                    End="121.166666666667,35.5301794453507" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.166666666667,35.5301794453507"
+                    Point2="125.166666666667,35.5301794453507"
+                    Point3="125.166666666667,39.5301794453507" />
+                  <mssgle:LineSegment
+                    End="125.166666666667,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[New Output]"
           TopLeft="271.833333333333,149.5">
@@ -1058,46 +1064,44 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[OLE DB Command Output]"
-          TopLeft="88.5,353.5">
+          Id="Package\DF_DimRegion.Paths[Historical Attribute Inserts Output]"
+          TopLeft="193.166666666667,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="125.166666666667,60"
+              EndConnector="-98.6666666666667,60"
               Start="0,0"
-              End="125.166666666667,52.5">
+              End="-98.6666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5301794453507" />
+                    End="0,20.2345276872964" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.5301794453507"
-                    Point2="0,35.5301794453507"
-                    Point3="4,35.5301794453507" />
+                    Point1="0,20.2345276872964"
+                    Point2="0,24.2345276872964"
+                    Point3="-4,24.2345276872964" />
                   <mssgle:LineSegment
-                    End="121.166666666667,35.5301794453507" />
+                    End="-94.6666666666667,24.2345276872964" />
                   <mssgle:CubicBezierSegment
-                    Point1="121.166666666667,35.5301794453507"
-                    Point2="125.166666666667,35.5301794453507"
-                    Point3="125.166666666667,39.5301794453507" />
+                    Point1="-94.6666666666667,24.2345276872964"
+                    Point2="-98.6666666666667,24.2345276872964"
+                    Point3="-98.6666666666667,28.2345276872964" />
                   <mssgle:LineSegment
-                    End="125.166666666667,52.5" />
+                    End="-98.6666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-124.389720052083,29.2345276872964,150.1127734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\DF_DimRegion\Derived Column 1"
-          TopLeft="151,515.5" />
         <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[Union All Output 1]"
-          TopLeft="232.5,455.5">
+          Id="Package\DF_DimRegion.Paths[Derived Column Output1]"
+          TopLeft="232.5,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1117,13 +1121,9 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\DF_DimRegion\Insert Destination"
-          TopLeft="151,617.5" />
         <EdgeLayout
-          Id="Package\DF_DimRegion.Paths[Derived Column Output1]"
-          TopLeft="232.5,557.5">
+          Id="Package\DF_DimRegion.Paths[Derived Column Output]"
+          TopLeft="91.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1193,7 +1193,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimRegion\Load from DimRegion">
+    design-time-name="Package\DF_DimRegion\OLE_SRC_DimRegion">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

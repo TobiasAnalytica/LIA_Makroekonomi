@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="149"
-  DTS:VersionGUID="{43A9A83B-7C48-4605-B25F-8C862737308F}">
+  DTS:VersionBuild="156"
+  DTS:VersionGUID="{C5D5E492-B740-410D-9EEB-F66A6D20B901}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -47,6 +47,44 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create dboTargetInflation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{eb139d92-789e-4b56-a7f3-24a34aaaf71e}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create dboTargetInflation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="17">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 FROM sys.tables &#xA;    WHERE name = 'TargetInflation' AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE dbo.TargetInflation(&#xA;        TargetId       int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region    nvarchar(100) NOT NULL,   -- kanoniskt namn som matchar DimRegion.Description&#xA;        FromDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret,&#xA;        CONSTRAINT UQ_TargetInflation_Region_From UNIQUE (Region, FromDate)&#xA;    );&#xA;&#xA;    CREATE NONCLUSTERED INDEX IX_TargetInflation_RegionDate&#xA;        ON dbo.TargetInflation(Region, FromDate);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create dboTargetInflation_In"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{53fbae75-5fbc-435d-960c-5c4cf102d6f2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create dboTargetInflation_In"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="18">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 FROM sys.tables &#xA;    WHERE name = 'TargetInflation_In' AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE dbo.TargetInflation_In(&#xA;        Region    nvarchar(100) NOT NULL,&#xA;        FromDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;    );&#xA;END;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
           DTS:refId="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create DimAgeClassEmp"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
@@ -55,7 +93,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimAgeClassEmp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="15">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -74,7 +112,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimAgeClassUnemp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -93,7 +131,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -112,7 +150,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimFlags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -131,7 +169,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimGender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="12">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -150,7 +188,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimRegion"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -207,7 +245,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create DimUnit"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -226,7 +264,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Fact Employment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -245,7 +283,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Fact GDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -264,7 +302,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create Fact Unemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -283,7 +321,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create FactGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -302,7 +340,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create FactHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="13">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -321,7 +359,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create FactJobVacancies"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="14">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -340,7 +378,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create FactMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="15">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -359,7 +397,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create FactPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="16">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -449,7 +487,7 @@
         <NodeLayout
           Size="213,42"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create FactGovernmentDebt"
-          TopLeft="432.6875,297.5" />
+          TopLeft="327.6875,297.5" />
         <NodeLayout
           Size="183,42"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create FactHICPIndex"
@@ -466,11 +504,19 @@
           Size="182,42"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create FactPopulation"
           TopLeft="53.6875,177.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create dboTargetInflation"
+          TopLeft="838,302" />
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver\Create dboTargetInflation_In"
+          TopLeft="607,300" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1074,653"
-          Size="1074,696"
+          PanelSize="1074,741"
+          Size="1074,784"
           Id="Package\Sequence Container - Create silver tables - LIA_DB_Silver"
           TopLeft="28,123" />
         <EdgeLayout

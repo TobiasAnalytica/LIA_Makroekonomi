@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="143"
-  DTS:VersionGUID="{AC21CFCC-9734-4FEF-8065-CBDEC88DA00F}">
+  DTS:VersionBuild="153"
+  DTS:VersionGUID="{584C2741-49CB-4582-8702-C374C286925B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -36,7 +36,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create employment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -55,7 +55,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create gdp_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -74,7 +74,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create government_debt_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -93,7 +93,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create hicp_index_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -131,7 +131,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create money_market_interest_rates_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -150,7 +150,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create population_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -158,6 +158,25 @@
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
               SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.population_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.population_raw;&#xA;&#xA;CREATE TABLE dbo.population_raw (&#xA;    STRUCTURE        NVARCHAR(100) NULL,  -- V2 structure&#xA;    STRUCTURE_ID                NVARCHAR(100) NULL,&#xA;    STRUCTURE_NAME         NVARCHAR(255) NULL,&#xA;    freq                         NVARCHAR(50)  NULL,  -- t.ex. A&#xA;    [Time frequency]             NVARCHAR(50)  NULL,&#xA;    unit                         NVARCHAR(50)  NULL,  -- t.ex. NR&#xA;    [Unit of measure]            NVARCHAR(100) NULL,&#xA;    age                          NVARCHAR(50)  NULL,  -- t.ex. TOTAL&#xA;    [Age class]                  NVARCHAR(100) NULL,&#xA;    sex                          NVARCHAR(50)  NULL,  -- t.ex. T&#xA;    [Sex_2]                        NVARCHAR(100) NULL,&#xA;    geo                          NVARCHAR(50)  NULL,  -- t.ex. EU27_2020&#xA;    [Geopolitical entity]        NVARCHAR(200) NULL,&#xA;    TIME_PERIOD                  NVARCHAR(100) NOT NULL,  -- t.ex. 2024&#xA;    [Time]                       NVARCHAR(100) NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                    NVARCHAR(100) NULL,&#xA;    [Observation value]          NVARCHAR(100) NULL,      -- rå strängversion&#xA;    OBS_FLAG                     NVARCHAR(10)  NULL,&#xA;    [Observation status]         NVARCHAR(50)  NULL,&#xA;    CONF_STATUS                  NVARCHAR(50)  NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status]     NVARCHAR(50)  NULL,&#xA;    CreatedBronzeAt              DATETIME      NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;-- Om du vill ha unikt index på kombinationen geo + TIME_PERIOD:&#xA;--CREATE UNIQUE INDEX UX_BronzePop_geo_TIME_PERIOD &#xA;--    ON dbo.population_raw(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create target_inflation_raw"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{38c20bba-269f-4f34-8d56-e9f47ff40aec}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create target_inflation_raw"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'target_inflation_raw' &#xA;      AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [dbo].[target_inflation_raw]( &#xA;        RowId           int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region     nvarchar(255)  NULL,&#xA;        FromDate        date           NULL,&#xA;        TargetPercent   decimal(5,2)   NULL,&#xA;        Notes           nvarchar(255)  NULL,&#xA;        CreatedBronzeAt datetime       NOT NULL DEFAULT GETDATE()&#xA;    );&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -169,7 +188,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create unemployment_raw"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -211,6 +230,10 @@
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create hicp_index_raw"
           TopLeft="35,260" />
         <NodeLayout
+          Size="208,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create target_inflation_raw"
+          TopLeft="797,264" />
+        <NodeLayout
           Size="209,42"
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create job_vacancies_raw"
           TopLeft="429.166666666667,158" />
@@ -229,8 +252,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1085,354"
-          Size="1085,397"
+          PanelSize="1085,361"
+          Size="1085,404"
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
           TopLeft="31,64" />
       </GraphLayout>
