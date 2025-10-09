@@ -26,26 +26,29 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">WINDOWSOFFICE</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAT7Gw7hDQwkqNma7cv7I3kwAAAAACAAAAAAAQZgAAAAEAACAAAABg3r2VJuXR4GGtF48gGG5hmkD7XPKmBzyuyMfzM4mp0AAAAAAOgAAAAAIAACAAAABsZBYhtRLeIHcEh2xvHvtChYJ+URqfcxjaEjsMJxJ9lpAAAAC2kN6eQpfndaGS1bRA85/rLNmDaDq1+pUs6YmJYDLs9HlR0iHfxGT8qVLW9vp+OcN2weDJkMV9V3WARFYnk7t0gw8c1kuV2ObS7oyz7qyR3jhL6QQHpW0IclwZ1UclbBxXhXqMFXLzqAvWxOim/xf43+0zCHK0TReCOHWSDlnn3152njX1hl2pzky7siTLvqlAAAAAB/bujyB7/uedER2BrzhjuFK1/B0FksK2Hww0s4C9/H5VeWeV5KijVEGOc5sAul+HCcz0kzWP11E8UQXzdwT/sg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPP80FFmNIE27P8qf57z1MAAAAAACAAAAAAAQZgAAAAEAACAAAABEVul1mjDyivQxvwfD0HloD6j4OiHlnaISZlcURi6duQAAAAAOgAAAAAIAACAAAABzlUWyBi+N0bNnl7X0OMZSgWqSHnIfqGEXJjkiOzUuY5AAAABBe560/0UTUiqHARbAEebQKB8AeO97Wocxc+WioKAdPHBJC9QZF6rhVUErwEp5/M8LOL8v7si1WrDO+feTUKluEAbAoohn2bt7jERWk01XU7Lz6HPOcm7fwYdQsTLGyu2xFI2n3wj3uBZvk22HgLiFYzGCL8uwTJSO7gSxqKeprdb/ewpjKsmk53Bid8Xck4BAAAAAH+9LYzLzxRxXX4ktxrx1d7JyLSlvYa7R5F6jOmp28501LaADfNRPUK6R4H/n9LlTWGcqgqMEZ85s2YhWri/+2Q==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="_LoadSSISPackagesBronze.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="employment_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="gdp_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="government_debt_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="hicp_index_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="job_vacancies_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="money_market_interest_rates_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="population_raw.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="unemployment_raw.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="_CreateTablesBronze.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="target_inflation_raw.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawGDP.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawEmployment.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawUnemployment.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawPopulation.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawJobVacancies.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawMoneyMarketInterestRates.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawGovernmentDebt.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawHICPIndex.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawHICPTarget.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawConfigGroup.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="RawRegionGroupBridge.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="LIA_DB_Bronze.conmgr" />
           <SSIS:ConnectionManager SSIS:Name="LIA_DB_Diagnostics.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="InflationTargets.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="XL_InflationTarget.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="XL_EUGroupsBridgeConfig.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -315,7 +318,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -330,7 +333,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.ConnectionString">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -345,7 +348,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.ExcelFilePath">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.ExcelFilePath">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -360,7 +363,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.FirstRowHasColumnName">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.FirstRowHasColumnName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -375,7 +378,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -389,7 +392,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.Password">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -403,7 +406,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -418,7 +421,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -433,7 +436,124 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.Excel Connection Manager.UserName">
+            <SSIS:Parameter SSIS:Name="CM.XL_InflationTarget.UserName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.ConnectionString">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\workspace\Makroekonomi\EUGroupsBridgeConfig.xlsx;Extended Properties="Excel 12.0 XML;HDR=YES";</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.ExcelFilePath">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\workspace\Makroekonomi\EUGroupsBridgeConfig.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.FirstRowHasColumnName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">true</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.InitialCatalog">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.Password">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.RetainSameConnection">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.ServerName">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="CreationName">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\workspace\Makroekonomi\EUGroupsBridgeConfig.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+              </SSIS:Properties>
+            </SSIS:Parameter>
+            <SSIS:Parameter SSIS:Name="CM.XL_EUGroupsBridgeConfig.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -455,146 +575,10 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">25</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2EF549E1-7BEE-4526-AF61-B5393B476D94}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="employment_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{8B5B60A9-3766-4B99-97CB-FAC1EC06FC0E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Employment</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2CB192D9-1B7D-4846-A811-C9A0BD7040E1}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="gdp_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{D9B03676-E02B-4434-BE4A-ACE7F81103DC}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">GDP</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">30</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{3A33A583-C569-4BDD-A4D1-66345B0E26E7}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="government_debt_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{63B17B4A-B713-4F28-86F4-DCDB9F5632FC}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">GovernmentDebt</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">26</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{8C162B3D-56C9-45FD-934C-FA26DD6FE34D}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="hicp_index_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{46EA390E-0755-42AE-B83D-C59DF669B352}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">HICPIndex</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{E89F3450-BAEF-45D5-8B65-75ACBEC75E19}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="job_vacancies_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{B05E9A92-BF42-4DFC-8752-39EBCFF2D24A}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">JobVacancies</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{D6E1CC7F-36CC-4907-90D7-5EBA4C84A97E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="money_market_interest_rates_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{D1853C3C-69D3-45C0-B74E-3F12B3EC9172}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package7</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">13</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{5C1C380E-8B67-4FB9-897D-1B9F5C91DB27}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="population_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{FD60D4FD-2BDD-46AE-B751-F6FD7355A59B}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package8</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">20</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{83944056-5490-412F-B162-9859D68F4699}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="unemployment_raw.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{B0D9C931-FFD2-4B80-ACC3-810378CAF7CC}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package9</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F650892A-F20D-4F85-A49B-A434BB09AA1B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{3EA12AD7-18A9-4084-8BE0-AD8A1B2141EC}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -608,10 +592,10 @@
                 <SSIS:Property SSIS:Name="Name">_CreateTablesBronze</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">153</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">180</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{584C2741-49CB-4582-8702-C374C286925B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{66B28A45-5AD0-44EF-B848-8539A08578E7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -619,16 +603,152 @@
               </SSIS:Properties>
               <SSIS:Parameters />
             </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="target_inflation_raw.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="RawGDP.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{689AB003-E1E9-4CFC-97EF-2ADF88E34101}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">target_inflation_raw</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{E50F847C-7EFC-474B-B431-D057F913A3BE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawGDP</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">37</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8F1C0AC9-0B19-4062-91DB-E3B75F81A2DA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawEmployment.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{78B6D94B-E718-4D2B-986B-61A443EED748}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawEmployment</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">30</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{8F27FF83-0165-48ED-A987-E0B7F9CC8429}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawUnemployment.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{00E099F9-7CE4-48C8-A563-F13045BEC117}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawUnemployment</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{F3EC54BF-B1DA-40E0-9B72-95AFBBBB0210}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{90C0B45E-32C2-44FB-9685-E8B1520F1FF5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawPopulation.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{657B7058-F231-4E57-9E23-9E87CC3591E6}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawPopulation</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{01BF2536-4FE2-4F6A-90D3-9BD1CD625985}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawJobVacancies.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{8CFC664E-6B7B-4B95-8638-1159B63EF2BC}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawJobVacancies</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">14</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{9FD6F03D-ED95-4910-9F51-4643B85ECF14}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawMoneyMarketInterestRates.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{51928978-D004-49A1-A087-653FD7427C16}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawMoneyMarketInterestRates</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{63F380E0-808E-4CA0-8857-E13BE5865870}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawGovernmentDebt.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{F7289A71-B9F3-41B7-B00D-72BA7857CAE3}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawGovernmentDebt</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">33</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{690818FF-7F35-4291-B200-59E41BF0192C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawHICPIndex.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{5AC6305B-F6CD-4129-9A8F-299D3C5F9116}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawHICP</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{4764942A-0E7B-4C95-BE64-908FA064841C}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawHICPTarget.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{6249AF0B-D1CC-4935-A12C-F619480BC192}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">RawTargetInflation</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">18</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{33A3B724-9C41-44C4-BC8C-D568B485B787}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -650,6 +770,40 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawConfigGroup.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{49C474EA-19CF-4E31-84FA-3837E3F7780E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B3F90ADE-D52D-4689-A3C6-63AA099CCB37}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="RawRegionGroupBridge.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{CF3FF295-7539-477C-81BF-CEC3C8030AE8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">3</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{B959921F-C877-4E95-9B23-54B5D078B3A5}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>

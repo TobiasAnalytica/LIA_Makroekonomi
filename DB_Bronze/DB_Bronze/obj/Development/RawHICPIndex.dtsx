@@ -1,85 +1,64 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="6/10/2025 9:53:34 AM"
+  DTS:CreationDate="6/10/2025 9:53:29 AM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="WINDOWSOFFICE"
   DTS:CreatorName="WINDOWSOFFICE\Tobias E"
-  DTS:DTSID="{B0D9C931-FFD2-4B80-ACC3-810378CAF7CC}"
+  DTS:DTSID="{5AC6305B-F6CD-4129-9A8F-299D3C5F9116}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5397.1"
   DTS:LocaleID="1053"
-  DTS:ObjectName="Package9"
+  DTS:ObjectName="RawHICP"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{14917732-E34C-4E33-A9A2-3DB548EE3B22}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{4764942A-0E7B-4C95-BE64-908FA064841C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate unemployment_raw"
+      DTS:refId="Package\SQL_truncate_HICPIndex"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{65619FDC-6A1D-43FD-8CEB-0E030A48CA15}"
+      DTS:DTSID="{E3D7CF6A-4ABC-4442-93DE-7119789025D8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate unemployment_raw"
+      DTS:ObjectName="SQL_truncate_HICPIndex"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-          SQLTask:SqlStatementSource="TRUNCATE TABLE unemployment_raw;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Raw.HICPIndex;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\ST_unemployment_raw"
+      DTS:refId="Package\ST_RawHICPIndex"
       DTS:CreationName="Microsoft.ScriptTask"
       DTS:Description="Script Task"
-      DTS:DTSID="{2A2F5E07-B203-4AA3-BD0F-1C3624766164}"
+      DTS:DTSID="{B467ECF9-4422-4A66-B2FB-247E5E23589C}"
       DTS:ExecutableType="Microsoft.ScriptTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="ST_unemployment_raw"
+      DTS:ObjectName="ST_RawHICPIndex"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <ScriptProject
-          Name="ST_1469538b14124af196ab5d03019d1c60"
+          Name="ST_e643296d99124a48b33cd936324f5ce9"
           VSTAMajorVersion="16"
           VSTAMinorVersion="0"
           Language="CSharp">
           <ProjectItem
-            Name="Properties\AssemblyInfo.cs"
-            Encoding="UTF8"><![CDATA[using System.Reflection;
-using System.Runtime.CompilerServices;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("XLENT")]
-[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
-[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.resx"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
@@ -202,137 +181,138 @@ using System.Runtime.CompilerServices;
           <ProjectItem
             Name="ScriptMain.cs"
             Encoding="UTF8"><![CDATA[#region Namespaces
-// Importera nödvändiga .NET-bibliotek för HTTP-anrop, databasåtkomst, CSV-parsing etc.
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Data.SqlClient;
-using System.Globalization;
-using Microsoft.VisualBasic.FileIO;                // TextFieldParser för enkel CSV-parsing
-using Microsoft.SqlServer.Dts.Runtime;             // DTS-objekt för SSIS-uppgifter
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
+using System;  // Grundläggande systemfunktioner
+using System.Net;  // Hantering av nätverksprotokoll och säkerhetsinställningar
+using System.Net.Http;  // HTTP-klient för att skicka förfrågningar
+using System.Data.SqlClient;  // SQL Server-anslutning och kommandon
+using System.Globalization;  // Hantering av kultur- och formatinställningar
+using Microsoft.VisualBasic.FileIO;  // TextFieldParser för CSV-parsning (paket: Microsoft.VisualBasic)
+using Microsoft.SqlServer.Dts.Runtime;  // SSIS Runtime-objekt (Dts, Events, etc.)
+using System.IO;  // Fil- och strömhantering
+using System.Collections.Generic;  // Generiska samlingar (ej använt men kvar för framtida behov)
+using System.Text;  // Textkodning och stränghantering
 #endregion
 
 namespace ST_a0807b8b059845579c8797e5a472b130
 {
-    // Markerar huvudklassen som SSIS Script Task-entrypoint
+    // Anger inmatningspunkten för SSIS Script Task
     [Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
     public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
     {
-        // Huvudmetod som exekveras av SSIS
+        /// <summary>
+        /// Huvudmetod som körs av SSIS-paketet.
+        /// Fångar eventuella fel och sätter TaskResult.
+        /// </summary>
         public void Main()
         {
             try
             {
-                // Anropa metoden som hämtar och infogar arbetslöshetsdata
-                FetchAndInsertUnemploymentData();
-                // Rapportera till SSIS att allt lyckades
+                // Hämta och skriv in HICP-indexdata från Eurostats API
+                FetchAndInsertHICPData();
+
+                // Om allt gick bra, sätt resultatet till Success
                 Dts.TaskResult = (int)ScriptResults.Success;
             }
             catch (Exception ex)
             {
-                // Vid fel, logga ett error event i SSIS med undantagsdetaljer
+                // Vid fel: logga ett felmeddelande och markera Task som failure
                 Dts.Events.FireError(
-                    0,                        // errorCode
-                    "Script Task",           // source
-                    ex.ToString(),           // meddelande (inklusive stacktrace)
-                    string.Empty,            // helpFile
-                    0                        // helpContext
+                    0,                  // error ID
+                    "Script Task",    // kategori
+                    ex.ToString(),      // felbeskrivning
+                    string.Empty,       // nodnamn
+                    0                   // radnummer
                 );
-                // Rapportera till SSIS att uppgiften misslyckades
                 Dts.TaskResult = (int)ScriptResults.Failure;
             }
         }
 
         /// <summary>
-        /// Hämtar CSV-data från Eurostat-API:t och lägger in varje rad i tabellen unemployment_raw.
+        /// Hämtar HICP-indexdata som CSV från Eurostats API och skriver in i ett SQL Server-databasbord.
         /// </summary>
-        private void FetchAndInsertUnemploymentData()
+        private void FetchAndInsertHICPData()
         {
-            // Säkerställ att TLS 1.2 används för HTTPS-anrop
+            // Tvinga TLS 1.2 för säker kommunikation
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            // Bygg URL för API-anropet med önskade parametrar (frekvens, justering, geografi, etc.)
-            var apiUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/une_rt_m/1.0/*.*.*.*.*.*?" +
+            // Sätt upp URL för Eurostats API-fråga med önskade parametrar
+            var apiUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/prc_hicp_midx/1.0/*.*.*.*?" +
                          "c[freq]=M&" +
-                         "c[s_adj]=NSA&" +
-                         "c[age]=TOTAL,Y_LT25,Y25-74&" +
-                         "c[unit]=THS_PER&" +
-                         "c[sex]=M,F&" +
-                         "c[geo]=EU27_2020,BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,IS,NO,CH,UK,TR,US,JP&" +
-                         // Om ni vill specificera tidsperiod via kod kan ni avkommentera nedan:
-                         // "c[TIME_PERIOD]=1995-01,1995-02,...,2025-04&" +
+                         "c[unit]=I96,I05,I15&" +
+                         "c[coicop]=CP00,CP01,CP02,CP03,CP04,CP05,CP06,CP07,CP08,CP09,CP10,CP11,CP12&" +
+                         "c[geo]=EU,EU27_2020,EU28,EA,EA20,EA19,BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,EEA,IS,NO,CH,UK,ME,MK,AL,RS,TR,XK,US&" +
                          "compress=false&format=csvdata&formatVersion=2.0&lang=en&labels=name";
 
-            // Skriv ut den kompletta URL:en som debug-information till SSIS
+            // Logga URL för felsökning utan att avbryta exekveringen
             bool fireAgain = false;
-            Dts.Events.FireInformation(0, "Debug", apiUrl, String.Empty, 0, ref fireAgain);
+            Dts.Events.FireInformation(
+                0,          // information ID
+                "Debug",   // kategori
+                apiUrl,     // meddelande
+                String.Empty,
+                0,
+                ref fireAgain
+            );
 
-            // Skapa HttpClient för att göra GET-anrop
+            // Skapa HttpClient för att hämta data
             using (var client = new HttpClient())
             {
-                // Synkront hämta CSV-svaret som en sträng
+                // ⬇️ Timeout inställning – öka till 10 minuter
+                client.Timeout = TimeSpan.FromMinutes(10);
+
+                // Hämta CSV-data som sträng
                 var csvData = client.GetStringAsync(apiUrl).Result;
 
-                // Dela upp texten i rader (hantera både Windows- och Unix-radslut)
+                // Dela upp data i rader baserat på radbrytningar
                 var lines = csvData.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
 
-                // Om det inte finns minst en headerrad + en datapunkt, avbryt
-                if (lines.Length < 2) return;
+                // Om inga rader eller bara header, avbryt
+                if (lines.Length < 2)
+                    return;
 
                 // Anslut till SQL Server-databasen DW_Bronze
                 using (var conn = new SqlConnection("Data Source=.;Initial Catalog=LIA_DB_Bronze;Integrated Security=SSPI;"))
                 {
                     conn.Open();
 
-                    // Iterera över varje rad, från rad 1 (rad 0 är header)
+                    // Loopa igenom varje rad, hoppa över header (i = 1)
                     for (int i = 1; i < lines.Length; i++)
                     {
                         var line = lines[i];
-
-                        // Hoppa över blankrader
                         if (string.IsNullOrWhiteSpace(line))
                             continue;
 
-                        // Använd TextFieldParser för att parsa CSV-raden
                         using (var parser = new TextFieldParser(new StringReader(line)))
                         {
-                            parser.SetDelimiters(",");              // Kommaseparerade värden
-                            parser.HasFieldsEnclosedInQuotes = true; // Tillåt fält i citationstecken
-                            string[] cols = parser.ReadFields();     // Läs alla kolumner
+                            parser.SetDelimiters(",");
+                            parser.HasFieldsEnclosedInQuotes = true;
+                            string[] cols = parser.ReadFields();
 
-                            // Kontrollera att vi fick minst 23 kolumner enligt API-spec
-                            if (cols.Length < 23)
+                            // Säkerställ att vi har tillräckligt med kolumner
+                            if (cols.Length < 19)
                                 continue;
 
-                            // Mappa varje kolumn till en variabel för tydlighet
+                            // Mappa varje CSV-kolumn till en variabel
                             var structure = cols[0];
                             var structureId = cols[1];
                             var structureName = cols[2];
                             var freq = cols[3];
                             var timeFreq = cols[4];
-                            var s_adj = cols[5];
-                            var seasonalAdjustment = cols[6];
-                            var age = cols[7];
-                            var ageLabel = cols[8];
-                            var unit = cols[9];
-                            var unitOfMeasure = cols[10];
-                            var sex = cols[11];
-                            var sexLabel = cols[12];
-                            var geo = cols[13];
-                            var geopoliticalEntity = cols[14];
-                            var timePeriod = cols[15];
-                            var time = cols[16];
-                            var obsValueStr = cols[17];
-                            var observationValue = cols[18];
-                            var obsFlag = cols[19];
-                            var observationStatusFlag = cols[20];
-                            var confStatus = cols[21];
-                            var confidentialityStatus = cols[22];
+                            var unit = cols[5];
+                            var unitOfMeasure = cols[6];
+                            var coicop = cols[7];
+                            var classification = cols[8];
+                            var geo = cols[9];
+                            var geopoliticalEntity = cols[10];
+                            var timePeriod = cols[11];
+                            var time = cols[12];
+                            var obsValueStr = cols[13];
+                            var observationValue = cols[14];
+                            var obsFlag = cols[15];
+                            var observationStatusFlag = cols[16];
+                            var confStatus = cols[17];
+                            var confidentialityStatus = cols[18];
 
-                            // Förbered parametern för numeriskt värde (DB null om ogiltigt)
                             object obsValueParam = DBNull.Value;
                             if (!string.IsNullOrEmpty(obsValueStr) &&
                                 decimal.TryParse(obsValueStr, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal obsVal))
@@ -340,36 +320,20 @@ namespace ST_a0807b8b059845579c8797e5a472b130
                                 obsValueParam = obsVal;
                             }
 
-                            // Bygg SQL INSERT-kommando med parametrar
+                            // Infoga dataposten i tabellen hicp_index_raw
                             using (var cmd = new SqlCommand(
-                                "INSERT INTO unemployment_raw (" +
-                                "[STRUCTURE],[STRUCTURE_ID],[STRUCTURE_NAME],[freq],[Time frequency]," +
-                                "[s_adj],[Seasonal adjustment],[age],[Age class],[unit]," +
-                                "[Unit of measure],[sex],[Sex_2],[geo],[Geopolitical entity (reporting)]," +
-                                "[TIME_PERIOD],[Time],[OBS_VALUE],[Observation value],[OBS_FLAG]," +
-                                "[Observation status (Flag) V2 structure],[CONF_STATUS],[Confidentiality status (flag)]" +
-                                ") VALUES (" +
-                                "@structure,@structureId,@structureName,@freq,@timeFreq," +
-                                "@s_adj,@seasonalAdjustment,@age,@ageLabel,@unit," +
-                                "@unitOfMeasure,@sex,@sexLabel,@geo,@geopoliticalEntity," +
-                                "@timePeriod,@time,@obsValueParam,@observationValue,@obsFlag," +
-                                "@observationStatusFlag,@confStatus,@confidentialityStatus" +
-                                ")", conn))
+                                "INSERT INTO Raw.HICPIndex ([STRUCTURE], [STRUCTURE_ID], [STRUCTURE_NAME], [freq], [Time frequency], [unit], [Unit of measure], [coicop], [Classification of individual consumption by purpose (COICOP)], [geo], [Geopolitical entity (reporting)], [TIME_PERIOD], [Time], [OBS_VALUE], [Observation value], [OBS_FLAG], [Observation status (Flag) V2 structure], [CONF_STATUS], [Confidentiality status (flag)]) " +
+                                "VALUES (@structure, @structureId, @structureName, @freq, @timeFreq, @unit, @unitOfMeasure, @coicop, @classification, @geo, @geopoliticalEntity, @timePeriod, @time, @obsValueParam, @observationValue, @obsFlag, @observationStatusFlag, @confStatus, @confidentialityStatus)", conn))
                             {
-                                // Lägg till alla parametrar med korrekt värde
                                 cmd.Parameters.AddWithValue("@structure", structure);
                                 cmd.Parameters.AddWithValue("@structureId", structureId);
                                 cmd.Parameters.AddWithValue("@structureName", structureName);
                                 cmd.Parameters.AddWithValue("@freq", freq);
                                 cmd.Parameters.AddWithValue("@timeFreq", timeFreq);
-                                cmd.Parameters.AddWithValue("@s_adj", s_adj);
-                                cmd.Parameters.AddWithValue("@seasonalAdjustment", seasonalAdjustment);
-                                cmd.Parameters.AddWithValue("@age", age);
-                                cmd.Parameters.AddWithValue("@ageLabel", ageLabel);
                                 cmd.Parameters.AddWithValue("@unit", unit);
                                 cmd.Parameters.AddWithValue("@unitOfMeasure", unitOfMeasure);
-                                cmd.Parameters.AddWithValue("@sex", sex);
-                                cmd.Parameters.AddWithValue("@sexLabel", sexLabel);
+                                cmd.Parameters.AddWithValue("@coicop", coicop);
+                                cmd.Parameters.AddWithValue("@classification", classification);
                                 cmd.Parameters.AddWithValue("@geo", geo);
                                 cmd.Parameters.AddWithValue("@geopoliticalEntity", geopoliticalEntity);
                                 cmd.Parameters.AddWithValue("@timePeriod", timePeriod);
@@ -381,16 +345,18 @@ namespace ST_a0807b8b059845579c8797e5a472b130
                                 cmd.Parameters.AddWithValue("@confStatus", confStatus);
                                 cmd.Parameters.AddWithValue("@confidentialityStatus", confidentialityStatus);
 
-                                // Kör SQL-kommandot för att infoga raden
                                 cmd.ExecuteNonQuery();
                             }
                         }
-                    } // for-loop slut
-                } // using SqlConnection
-            } // using HttpClient
+                    }
+                }
+            }
         }
 
-        // Enumeration för tydligare hantering av returvärden till SSIS
+        /// <summary>
+        /// Enum för att underlätta hantering av SSIS result-koder.
+        /// Success = 0, Failure = 1
+        /// </summary>
         enum ScriptResults
         {
             Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
@@ -399,27 +365,7 @@ namespace ST_a0807b8b059845579c8797e5a472b130
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Project"
-            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
-<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
-  <msb:PropertyGroup>
-    <msb:CodeName>ST_1469538b14124af196ab5d03019d1c60</msb:CodeName>
-    <msb:Language>msBuild</msb:Language>
-    <msb:DisplayName>ST_1469538b14124af196ab5d03019d1c60</msb:DisplayName>
-    <msb:ProjectId>{437B4C6C-4492-44E7-8CE6-7EFE1EB86A80}</msb:ProjectId>
-  </msb:PropertyGroup>
-  <msb:ItemGroup>
-    <msb:Project Include="ST_1469538b14124af196ab5d03019d1c60.csproj" />
-    <msb:File Include="ScriptMain.cs" />
-    <msb:File Include="Properties\Settings.settings" />
-    <msb:File Include="Properties\AssemblyInfo.cs" />
-    <msb:File Include="Properties\Resources.resx" />
-    <msb:File Include="Properties\Resources.Designer.cs" />
-    <msb:File Include="Properties\Settings.Designer.cs" />
-  </msb:ItemGroup>
-</c:Project>]]></ProjectItem>
-          <ProjectItem
-            Name="ST_1469538b14124af196ab5d03019d1c60.csproj"
+            Name="ST_e643296d99124a48b33cd936324f5ce9.csproj"
             Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
@@ -432,7 +378,7 @@ namespace ST_a0807b8b059845579c8797e5a472b130
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ST_1bc261a74e824dd7bef462487d5d99f2</RootNamespace>
-    <AssemblyName>ST_1469538b14124af196ab5d03019d1c60</AssemblyName>
+    <AssemblyName>ST_e643296d99124a48b33cd936324f5ce9</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
@@ -507,6 +453,26 @@ namespace ST_a0807b8b059845579c8797e5a472b130
   </ProjectExtensions>
 </Project>]]></ProjectItem>
           <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_e643296d99124a48b33cd936324f5ce9</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_e643296d99124a48b33cd936324f5ce9</msb:DisplayName>
+    <msb:ProjectId>{951FC3F7-F064-4CC9-B1B3-DFF78C713AB1}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_e643296d99124a48b33cd936324f5ce9.csproj" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+    <msb:File Include="ScriptMain.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
             Name="Properties\Settings.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
 // <auto-generated>
@@ -536,14 +502,35 @@ namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
     }
 }]]></ProjectItem>
           <ProjectItem
-            Name="Properties\Settings.settings"
-            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
-</SettingsFile>]]></ProjectItem>
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("XLENT")]
+[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
           <ProjectItem
             Name="Properties\Resources.Designer.cs"
             Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
@@ -613,195 +600,195 @@ namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
     }
 }]]></ProjectItem>
           <BinaryItem
-            Name="ST_1469538b14124af196ab5d03019d1c60.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+            Name="ST_e643296d99124a48b33cd936324f5ce9.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDAGJnSWgAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAYkEA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKIg5WgAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAlkEA
 AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABBBAABPAAAAAGAAAIwEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAERBAABPAAAAAGAAAIwEAAAAAAAAAAAAAAAAAAAA
 AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAaCEAAAAgAAAAIgAAAAIA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAnCEAAAAgAAAAIgAAAAIA
 AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIwEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABE
-QQAAAAAAAEgAAAACAAUAUCUAAAgbAAABAAAAAAAAAFhAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAB4
+QQAAAAAAAEgAAAACAAUA+CQAAJQbAAABAAAAAAAAAIxAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBgBHAAAAAQAAEQIoAgAABgIoEAAAChZvEQAACt4yCgIo
 EAAACm8SAAAKFnIBAABwBm8TAAAKfhQAAAoWbxUAAAomAigQAAAKF28RAAAK3gAqAAEQAAAAAAAA
-FBQAMg8AAAEbMAcAxAMAAAIAABEgAAwAACgWAAAKchkAAHAKFgsCKBAAAApvEgAAChZy9gIAcAZ+
-FAAAChYSAW8XAAAKcxgAAAoMCAZvGQAACm8aAAAKGI0gAAABJRZyAgMAcKIlF3IIAwBwohZvGwAA
-Cg0JjmkYLwXdWAMAAHIMAwBwcxwAAAoTBBEEbx0AAAoXEwU4GwMAAAkRBZoTBhEGKB4AAAo6AwMA
-ABEGcx8AAApzIAAAChMHEQcXjSAAAAElFnKZAwBwom8hAAAKEQcXbyIAAAoRB28jAAAKEwgRCI5p
-HxcvBd3CAgAAEQgWmhMJEQgXmhMKEQgYmhMLEQgZmhMMEQgamhMNEQgbmhMOEQgcmhMPEQgdmhMQ
-EQgemhMREQgfCZoTEhEIHwqaExMRCB8LmhMUEQgfDJoTFREIHw2aExYRCB8OmhMXEQgfD5oTGBEI
-HxCaExkRCB8RmhMaEQgfEpoTGxEIHxOaExwRCB8UmhMdEQgfFZoTHhEIHxaaEx9+JAAAChMgERoo
-JQAACi0eERog/wEAACgmAAAKEiEoJwAACiwJESGMFAAAARMgcp0DAHARBHMoAAAKEyIRIm8pAAAK
-csoIAHARCW8qAAAKJhEibykAAApy4AgAcBEKbyoAAAomESJvKQAACnL6CABwEQtvKgAACiYRIm8p
-AAAKchgJAHARDG8qAAAKJhEibykAAApyJAkAcBENbyoAAAomESJvKQAACnI4CQBwEQ5vKgAACiYR
-Im8pAAAKckYJAHARD28qAAAKJhEibykAAApybgkAcBEQbyoAAAomESJvKQAACnJ4CQBwERFvKgAA
-CiYRIm8pAAAKcowJAHAREm8qAAAKJhEibykAAApymAkAcBETbyoAAAomESJvKQAACnK2CQBwERRv
-KgAACiYRIm8pAAAKcsAJAHARFW8qAAAKJhEibykAAApy1AkAcBEWbyoAAAomESJvKQAACnLeCQBw
-ERdvKgAACiYRIm8pAAAKcgYKAHARGG8qAAAKJhEibykAAApyHgoAcBEZbyoAAAomESJvKQAACnIq
-CgBwESBvKgAACiYRIm8pAAAKckgKAHARG28qAAAKJhEibykAAApybAoAcBEcbyoAAAomESJvKQAA
-CnJ+CgBwER1vKgAACiYRIm8pAAAKcqwKAHARHm8qAAAKJhEibykAAApyxAoAcBEfbyoAAAomESJv
-KwAACibeGBEiLAcRIm8sAAAK3BEHLAcRB28sAAAK3BEFF1gTBREFCY5pP9v8///eFhEELAcRBG8s
-AAAK3AgsBghvLAAACtwqQWQAAAIAAACtAQAA1gEAAIMDAAAMAAAAAAAAAAIAAACmAAAA6QIAAI8D
-AAAMAAAAAAAAAAIAAAB3AAAANgMAAK0DAAAMAAAAAAAAAAIAAAA3AAAAggMAALkDAAAKAAAAAAAA
-AB4CKC0AAAoqHgIoLgAACiqufgEAAAQtHnLyCgBw0AMAAAIoLwAACm8wAAAKczEAAAqAAQAABH4B
-AAAEKhp+AgAABCoeAoACAAAEKhp+AwAABCoeAigyAAAKKi5zCQAABoADAAAEKgAAQlNKQgEAAQAA
-AAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA/AQAACN+AABoBQAAAAgAACNTdHJpbmdzAAAAAGgN
-AABkCwAAI1VTAMwYAAAQAAAAI0dVSUQAAADcGAAALAIAACNCbG9iAAAAAAAAAAIAAAFXHaIJCQMA
-AAD6ATMAFgAAAQAAADEAAAAFAAAABgAAAAoAAAABAAAAMgAAAAIAAAAQAAAAAgAAAAIAAAADAAAA
-BAAAAAEAAAABAAAABgAAAAEAAAABAAAAAABEBAEAAAAAAAYA6QIdBgYAeAMdBgYANQL/BQ8AkQYA
-AAYAYgLqBAYAzALqBAYArQLqBAYAXwPqBAYACQPqBAYAIgPqBAYAeQLqBAYAlAKpAwoAPQPrAwoA
-owHrAwYALgWIBA4AxwdXBRIAIAWxBxYAywVjAAYAcweIBAYAFASIBBIA6wCxBwYAjwSIBAYAGAL/
-BQYAkwU9BgYASwXVBBoA6AEuBBoASQIuBBoAvwHABAYA/QEdBgoAHATrAwoAtwXrAwYAxQOIBBoA
-owV6BxoASQF6BwYASQADBwYAGgeIBBIAEwU4BQYAZwVZAAYAdAVZAAYAbASIBAYAzwbVBAYAfwWI
-BBIA/ASxBxIA2wWxBxIA4QA4BQYAGQGIBAYAWQGIBAYAJQGIBAYA1gfqBAAAAABQAAAAAAABAAEA
-AQAQAKUEAQA5AAEAAQAAABAARAagBk0AAQAEAAABEAD6BqAGcQADAAgAAwEAAFoHAABZAAQACwAR
-AJQEIgERAH4BJgERAAkBKgEGBoAALgFWgEoHMQFWgF4BMQFQIAAAAACGAKsEBgABALQgAAAAAIEA
-lAAGAAEA6CQAAAAAhhjyBQYAAQDwJAAAAACDGPIFBgABAPgkAAAAAJMIjwU1AQEAJCUAAAAAkwhm
-AboAAQArJQAAAACTCHIBOgEBADMlAAAAAJYIiwdAAQIAOiUAAAAAhhjyBQYAAgBCJQAAAACRGPgF
-RQECAAAAAQCjAwkA8gUBABEA8gUGABkA8gUKACkA8gUQADEA8gUQADkA8gUQAEEA8gUQAEkA8gUQ
-AFEA8gUQAFkA8gUQAGEA8gUQAGkA8gUGALkA8gUGANkA8gUVAOkA8gUGAHEAUgcgAPEAogcBAPEA
-aAclAJkAwwMqAAEB9wcuAPkA6AUxAAkBcwRnAPkAsARuAIEA8gUGAIEA0gB5AAwAlweKAAEBhQeP
-AIkA8gUQACkBoAQGAAEB9gCZADEB8gUQAJEA8gWeAJEAPAelAJEA3AarAJEAEgawAEEBnQO1AAEB
-7weZAMkAjgG6AKEA3wG/AKkA8gXNAKkALQfUAFkBlgPaAGkB3wfiAHEB1wEGAHEA8gUGAJkA8gUG
-AHkBNwHmAHkB0gfvAMEA8gX1AOEA8gUGAAgAFAAYAQgAGAAdASkAcwCAAS4ACwBYAS4AEwBhAS4A
-GwCAAS4AIwCJAS4AKwCyAS4AMwCyAS4AOwC4AS4AQwCJAS4ASwDDAS4AUwCyAS4AWwDfAUMAYwAd
-AUkAcwCAAWEAewAdAWMAawAdARsAOgADAAEABAADAAAAkwVJAQAAmwFOAQAAjwdTAQIABQADAAIA
-BgAFAAEABwAFAAIACAAHAIMABIAAAAEAAABNJEFeAAAAAAAAJQAAAAQAAAAAAAAAAAAAAP0AswAA
-AAAAEAAAAAAAAAAAAAAABgHMAwAAAAAEAAAAAAAAAAAAAAAPAVcFAAAAAAQAAAAAAAAAAAAAAP0A
-iAAAAAAACgAAAAAAAAAAAAAADwG8AAAAAAAEAAAAAAAAAAAAAAD9AIgEAAAAAAAAAAABAAAATgYA
-AAUAAgAAAABTVF9hMDgwN2I4YjA1OTg0NTU3OWM4Nzk3ZTVhNDcyYjEzMABTVF8xNDY5NTM4YjE0
-MTI0YWYxOTZhYjVkMDMwMTlkMWM2MABUYXNrYDEAPE1vZHVsZT4AU3lzdGVtLklPAE1pY3Jvc29m
-dC5WaXN1YWxCYXNpYy5GaWxlSU8AdmFsdWVfXwBTeXN0ZW0uRGF0YQBGZXRjaEFuZEluc2VydFVu
-ZW1wbG95bWVudERhdGEAbXNjb3JsaWIATWljcm9zb2Z0LlZpc3VhbEJhc2ljAEdldFN0cmluZ0Fz
-eW5jAERiQ29tbWFuZABTcWxDb21tYW5kAElzTnVsbE9yV2hpdGVTcGFjZQBkZWZhdWx0SW5zdGFu
-Y2UASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAU2VjdXJp
-dHlQcm90b2NvbFR5cGUARmFpbHVyZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJjZUN1
-bHR1cmUAZ2V0X0ludmFyaWFudEN1bHR1cmUAVlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEFw
-cGxpY2F0aW9uU2V0dGluZ3NCYXNlAERpc3Bvc2UAVHJ5UGFyc2UARWRpdG9yQnJvd3NhYmxlU3Rh
-dGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0
-ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRp
-dGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0
-dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlv
-bkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVj
-dEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5
-UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
-aXR5QXR0cmlidXRlAEFkZFdpdGhWYWx1ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5n
-AFRvU3RyaW5nAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2Vy
-dmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAERlY2ltYWwAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVt
-LkNvbXBvbmVudE1vZGVsAFNUXzE0Njk1MzhiMTQxMjRhZjE5NmFiNWQwMzAxOWQxYzYwLmRsbABE
-Qk51bGwAc2V0X1NlY3VyaXR5UHJvdG9jb2wAU3lzdGVtAEVudW0AcmVzb3VyY2VNYW4AT3BlbgBT
-Y3JpcHRNYWluAEZpcmVJbmZvcm1hdGlvbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xv
-YmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBTcWxQYXJhbWV0ZXJDb2xsZWN0aW9uAERiQ29u
-bmVjdGlvbgBTcWxDb25uZWN0aW9uAEV4Y2VwdGlvbgBTeXN0ZW0uRGF0YS5Db21tb24AQ3VsdHVy
-ZUluZm8AU3lzdGVtLk5ldC5IdHRwAFN0cmluZ1JlYWRlcgBUZXh0UmVhZGVyAElGb3JtYXRQcm92
-aWRlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAFNlcnZpY2VQb2ludE1hbmFnZXIARXZlbnRzT2JqZWN0
-V3JhcHBlcgBUZXh0RmllbGRQYXJzZXIAU3FsUGFyYW1ldGVyAEZpcmVFcnJvcgAuY3RvcgAuY2N0
-b3IAU3lzdGVtLkRpYWdub3N0aWNzAFJlYWRGaWVsZHMAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJT
-ZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNUXzFiYzI2MWE3NGU4MjRkZDdiZWY0NjI0ODdkNWQ5
-OWYyLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTVF8xYmMy
-NjFhNzRlODI0ZGQ3YmVmNDYyNDg3ZDVkOTlmMi5Qcm9wZXJ0aWVzAE51bWJlclN0eWxlcwBzZXRf
-SGFzRmllbGRzRW5jbG9zZWRJblF1b3RlcwBTZXR0aW5ncwBTeXN0ZW0uVGhyZWFkaW5nLlRhc2tz
-AFN0cmluZ1NwbGl0T3B0aW9ucwBnZXRfUGFyYW1ldGVycwBTZXREZWxpbWl0ZXJzAFN1Y2Nlc3MA
-Z2V0X0R0cwBTY3JpcHRSZXN1bHRzAGdldF9FdmVudHMAT2JqZWN0AFN5c3RlbS5OZXQAU3BsaXQA
-Z2V0X0RlZmF1bHQAZ2V0X1Jlc3VsdABzZXRfVGFza1Jlc3VsdABTeXN0ZW0uRGF0YS5TcWxDbGll
-bnQASHR0cENsaWVudABnZXRfQXNzZW1ibHkARXhlY3V0ZU5vblF1ZXJ5AElzTnVsbE9yRW1wdHkA
-AAAAABdTAGMAcgBpAHAAdAAgAFQAYQBzAGsAAILbaAB0AHQAcABzADoALwAvAGUAYwAuAGUAdQBy
-AG8AcABhAC4AZQB1AC8AZQB1AHIAbwBzAHQAYQB0AC8AYQBwAGkALwBkAGkAcwBzAGUAbQBpAG4A
-YQB0AGkAbwBuAC8AcwBkAG0AeAAvADMALgAwAC8AZABhAHQAYQAvAGQAYQB0AGEAZgBsAG8AdwAv
-AEUAUwBUAEEAVAAvAHUAbgBlAF8AcgB0AF8AbQAvADEALgAwAC8AKgAuACoALgAqAC4AKgAuACoA
-LgAqAD8AYwBbAGYAcgBlAHEAXQA9AE0AJgBjAFsAcwBfAGEAZABqAF0APQBOAFMAQQAmAGMAWwBh
-AGcAZQBdAD0AVABPAFQAQQBMACwAWQBfAEwAVAAyADUALABZADIANQAtADcANAAmAGMAWwB1AG4A
-aQB0AF0APQBUAEgAUwBfAFAARQBSACYAYwBbAHMAZQB4AF0APQBNACwARgAmAGMAWwBnAGUAbwBd
-AD0ARQBVADIANwBfADIAMAAyADAALABCAEUALABCAEcALABDAFoALABEAEsALABEAEUALABFAEUA
-LABJAEUALABFAEwALABFAFMALABGAFIALABIAFIALABJAFQALABDAFkALABMAFYALABMAFQALABM
-AFUALABIAFUALABNAFQALABOAEwALABBAFQALABQAEwALABQAFQALABSAE8ALABTAEkALABTAEsA
-LABGAEkALABTAEUALABJAFMALABOAE8ALABDAEgALABVAEsALABUAFIALABVAFMALABKAFAAJgBj
-AG8AbQBwAHIAZQBzAHMAPQBmAGEAbABzAGUAJgBmAG8AcgBtAGEAdAA9AGMAcwB2AGQAYQB0AGEA
-JgBmAG8AcgBtAGEAdABWAGUAcgBzAGkAbwBuAD0AMgAuADAAJgBsAGEAbgBnAD0AZQBuACYAbABh
-AGIAZQBsAHMAPQBuAGEAbQBlAAELRABlAGIAdQBnAAAFDQAKAAADCgAAgItEAGEAdABhACAAUwBv
-AHUAcgBjAGUAPQAuADsASQBuAGkAdABpAGEAbAAgAEMAYQB0AGEAbABvAGcAPQBMAEkAQQBfAEQA
-QgBfAEIAcgBvAG4AegBlADsASQBuAHQAZQBnAHIAYQB0AGUAZAAgAFMAZQBjAHUAcgBpAHQAeQA9
-AFMAUwBQAEkAOwAAAywAAIUrSQBOAFMARQBSAFQAIABJAE4AVABPACAAdQBuAGUAbQBwAGwAbwB5
-AG0AZQBuAHQAXwByAGEAdwAgACgAWwBTAFQAUgBVAEMAVABVAFIARQBdACwAWwBTAFQAUgBVAEMA
-VABVAFIARQBfAEkARABdACwAWwBTAFQAUgBVAEMAVABVAFIARQBfAE4AQQBNAEUAXQAsAFsAZgBy
-AGUAcQBdACwAWwBUAGkAbQBlACAAZgByAGUAcQB1AGUAbgBjAHkAXQAsAFsAcwBfAGEAZABqAF0A
-LABbAFMAZQBhAHMAbwBuAGEAbAAgAGEAZABqAHUAcwB0AG0AZQBuAHQAXQAsAFsAYQBnAGUAXQAs
-AFsAQQBnAGUAIABjAGwAYQBzAHMAXQAsAFsAdQBuAGkAdABdACwAWwBVAG4AaQB0ACAAbwBmACAA
-bQBlAGEAcwB1AHIAZQBdACwAWwBzAGUAeABdACwAWwBTAGUAeABfADIAXQAsAFsAZwBlAG8AXQAs
-AFsARwBlAG8AcABvAGwAaQB0AGkAYwBhAGwAIABlAG4AdABpAHQAeQAgACgAcgBlAHAAbwByAHQA
-aQBuAGcAKQBdACwAWwBUAEkATQBFAF8AUABFAFIASQBPAEQAXQAsAFsAVABpAG0AZQBdACwAWwBP
-AEIAUwBfAFYAQQBMAFUARQBdACwAWwBPAGIAcwBlAHIAdgBhAHQAaQBvAG4AIAB2AGEAbAB1AGUA
-XQAsAFsATwBCAFMAXwBGAEwAQQBHAF0ALABbAE8AYgBzAGUAcgB2AGEAdABpAG8AbgAgAHMAdABh
-AHQAdQBzACAAKABGAGwAYQBnACkAIABWADIAIABzAHQAcgB1AGMAdAB1AHIAZQBdACwAWwBDAE8A
-TgBGAF8AUwBUAEEAVABVAFMAXQAsAFsAQwBvAG4AZgBpAGQAZQBuAHQAaQBhAGwAaQB0AHkAIABz
-AHQAYQB0AHUAcwAgACgAZgBsAGEAZwApAF0AKQAgAFYAQQBMAFUARQBTACAAKABAAHMAdAByAHUA
-YwB0AHUAcgBlACwAQABzAHQAcgB1AGMAdAB1AHIAZQBJAGQALABAAHMAdAByAHUAYwB0AHUAcgBl
-AE4AYQBtAGUALABAAGYAcgBlAHEALABAAHQAaQBtAGUARgByAGUAcQAsAEAAcwBfAGEAZABqACwA
-QABzAGUAYQBzAG8AbgBhAGwAQQBkAGoAdQBzAHQAbQBlAG4AdAAsAEAAYQBnAGUALABAAGEAZwBl
-AEwAYQBiAGUAbAAsAEAAdQBuAGkAdAAsAEAAdQBuAGkAdABPAGYATQBlAGEAcwB1AHIAZQAsAEAA
-cwBlAHgALABAAHMAZQB4AEwAYQBiAGUAbAAsAEAAZwBlAG8ALABAAGcAZQBvAHAAbwBsAGkAdABp
-AGMAYQBsAEUAbgB0AGkAdAB5ACwAQAB0AGkAbQBlAFAAZQByAGkAbwBkACwAQAB0AGkAbQBlACwA
-QABvAGIAcwBWAGEAbAB1AGUAUABhAHIAYQBtACwAQABvAGIAcwBlAHIAdgBhAHQAaQBvAG4AVgBh
-AGwAdQBlACwAQABvAGIAcwBGAGwAYQBnACwAQABvAGIAcwBlAHIAdgBhAHQAaQBvAG4AUwB0AGEA
-dAB1AHMARgBsAGEAZwAsAEAAYwBvAG4AZgBTAHQAYQB0AHUAcwAsAEAAYwBvAG4AZgBpAGQAZQBu
-AHQAaQBhAGwAaQB0AHkAUwB0AGEAdAB1AHMAKQAAFUAAcwB0AHIAdQBjAHQAdQByAGUAABlAAHMA
-dAByAHUAYwB0AHUAcgBlAEkAZAAAHUAAcwB0AHIAdQBjAHQAdQByAGUATgBhAG0AZQAAC0AAZgBy
-AGUAcQAAE0AAdABpAG0AZQBGAHIAZQBxAAANQABzAF8AYQBkAGoAACdAAHMAZQBhAHMAbwBuAGEA
-bABBAGQAagB1AHMAdABtAGUAbgB0AAAJQABhAGcAZQAAE0AAYQBnAGUATABhAGIAZQBsAAALQAB1
-AG4AaQB0AAAdQAB1AG4AaQB0AE8AZgBNAGUAYQBzAHUAcgBlAAAJQABzAGUAeAAAE0AAcwBlAHgA
-TABhAGIAZQBsAAAJQABnAGUAbwAAJ0AAZwBlAG8AcABvAGwAaQB0AGkAYwBhAGwARQBuAHQAaQB0
-AHkAABdAAHQAaQBtAGUAUABlAHIAaQBvAGQAAAtAAHQAaQBtAGUAAB1AAG8AYgBzAFYAYQBsAHUA
-ZQBQAGEAcgBhAG0AACNAAG8AYgBzAGUAcgB2AGEAdABpAG8AbgBWAGEAbAB1AGUAABFAAG8AYgBz
-AEYAbABhAGcAAC1AAG8AYgBzAGUAcgB2AGEAdABpAG8AbgBTAHQAYQB0AHUAcwBGAGwAYQBnAAAX
-QABjAG8AbgBmAFMAdABhAHQAdQBzAAAtQABjAG8AbgBmAGkAZABlAG4AdABpAGEAbABpAHQAeQBT
-AHQAYQB0AHUAcwAAcVMAVABfADEAYgBjADIANgAxAGEANwA0AGUAOAAyADQAZABkADcAYgBlAGYA
-NAA2ADIANAA4ADcAZAA1AGQAOQA5AGYAMgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBv
-AHUAcgBjAGUAcwAAGhggsQwzbkGWHZKtFB+iQQAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERaQQH
-ARI9BCAAEnkEIAASfQMgAA4CBg4IIAUCCA4ODggsByMOAhJBHQ4SRQgOEkkdDg4ODg4ODg4ODg4O
-Dg4ODg4ODg4ODg4OHBFRElUGAAEBEYCJCiAGAQgODg4IEAIJIAEVEoCNAQ4OBhUSgI0BDgQgABMA
-CSACHQ4dDhGAkQQAAQIOBiABARKAnQUgAQEdDgQgAQECBCAAHQ4EBhKAoQQAABJlDQAEAg4RgKUS
-gKkQEVEGIAIBDhJFBSAAEoCtByACEoCxDhwDIAAICAABEoC9EYDBBSAAEoDFByACAQ4SgMUIt3pc
-Vhk04IkIiYRdzYCAzJEIsD9ffxHVCjoEAAAAAAQBAAAAAwYSYQMGEmUDBhIQAgYIAwYRFAQAABJh
-BQABARJlBAAAEhADAAABBAgAEmEECAASZQQIABIQCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhj
-ZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF8xYmMyNjFhNzRlODI0ZGQ3YmVmNDYyNDg3ZDVk
-OTlmMgAABQEAAAAACgEABVhMRU5UAAAbAQAWQ29weXJpZ2h0IEAgWExFTlQgMjAyNQAASQEAGi5O
-RVRGcmFtZXdvcmssVmVyc2lvbj12NC43AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZy
-YW1ld29yayA0LjcAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
-ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
-S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
-ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAOEEAAAAAAAAAAAAAUkEAAAAgAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAERBAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
-EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+FBQAMg8AAAEbMAcAbAMAAAIAABEgAAwAACgWAAAKchkAAHAKFgsCKBAAAApvEgAAChZyegMAcAZ+
+FAAAChYSAW8XAAAKcxgAAAoMCCMAAAAAAAAkQCgZAAAKbxoAAAoIBm8bAAAKbxwAAAoYjSAAAAEl
+FnKGAwBwoiUXcowDAHCiFm8dAAAKDQmOaRgvBd3sAgAAcpADAHBzHgAAChMEEQRvHwAAChcTBTiv
+AgAACREFmhMGEQYoIAAACjqXAgAAEQZzIQAACnMiAAAKEwcRBxeNIAAAASUWch0EAHCibyMAAAoR
+BxdvJAAAChEHbyUAAAoTCBEIjmkfEy8F3VYCAAARCBaaEwkRCBeaEwoRCBiaEwsRCBmaEwwRCBqa
+Ew0RCBuaEw4RCByaEw8RCB2aExARCB6aExERCB8JmhMSEQgfCpoTExEIHwuaExQRCB8MmhMVEQgf
+DZoTFhEIHw6aExcRCB8PmhMYEQgfEJoTGREIHxGaExoRCB8SmhMbfiYAAAoTHBEWKCcAAAotHhEW
+IP8BAAAoKAAAChIdKCkAAAosCREdjBQAAAETHHIhBABwEQRzKgAAChMeER5vKwAACnJiCQBwEQlv
+LAAACiYRHm8rAAAKcngJAHARCm8sAAAKJhEebysAAApykgkAcBELbywAAAomER5vKwAACnKwCQBw
+EQxvLAAACiYRHm8rAAAKcrwJAHARDW8sAAAKJhEebysAAApy0AkAcBEObywAAAomER5vKwAACnLc
+CQBwEQ9vLAAACiYRHm8rAAAKcvoJAHAREG8sAAAKJhEebysAAApyCgoAcBERbywAAAomER5vKwAA
+CnIqCgBwERJvLAAACiYRHm8rAAAKcjQKAHARE28sAAAKJhEebysAAApyXAoAcBEUbywAAAomER5v
+KwAACnJ0CgBwERVvLAAACiYRHm8rAAAKcoAKAHARHG8sAAAKJhEebysAAApyngoAcBEXbywAAAom
+ER5vKwAACnLCCgBwERhvLAAACiYRHm8rAAAKctQKAHARGW8sAAAKJhEebysAAApyAgsAcBEabywA
+AAomER5vKwAACnIaCwBwERtvLAAACiYRHm8tAAAKJt4YER4sBxEeby4AAArcEQcsBxEHby4AAArc
+EQUXWBMFEQUJjmk/R/3//94WEQQsBxEEby4AAArcCCwGCG8uAAAK3CpBZAAAAgAAAKUBAACGAQAA
+KwMAAAwAAAAAAAAAAgAAALoAAAB9AgAANwMAAAwAAAAAAAAAAgAAAIsAAADKAgAAVQMAAAwAAAAA
+AAAAAgAAADcAAAAqAwAAYQMAAAoAAAAAAAAAHgIoLwAACioeAigwAAAKKq5+AQAABC0eckgLAHDQ
+AwAAAigxAAAKbzIAAApzMwAACoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKh4CKDQA
+AAoqLnMJAAAGgAMAAAQqAABCU0pCAQABAAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAAAQBQAA
+I34AAHwFAAAYCAAAI1N0cmluZ3MAAAAAlA0AALwLAAAjVVMAUBkAABAAAAAjR1VJRAAAAGAZAAA0
+AgAAI0Jsb2IAAAAAAAAAAgAAAVcdogkJAwAAAPoBMwAWAAABAAAAMgAAAAUAAAAGAAAACgAAAAEA
+AAA0AAAAAgAAABAAAAACAAAAAgAAAAMAAAAEAAAAAQAAAAEAAAAGAAAAAQAAAAEAAAAAADwEAQAA
+AAAABgDhAh4GBgBwAx4GBgAtAgAGDwCSBgAABgBaAusEBgDEAusEBgClAusEBgBXA+sEBgABA+sE
+BgAaA+sEBgBxAusEBgCMAqEDCgA1A+MDCgCbAeMDBgAvBYAEDgDUB1gFEgAhBb4HFgDMBWMABgCA
+B4AEBgAMBIAEEgDjAL4HBgCHBIAEBgAQAgAGBgCUBT4GBgBMBdYEGgDgASYEGgBBAiYEGgC3AcEE
+BgD1AR4GCgAUBOMDCgC4BeMDBgC9A4AEGgCkBYcHGgBBAYcHBgCYBIAEBgAlABAHBgAnB4AEEgAU
+BTkFBgBoBVkABgB1BVkABgBkBIAEBgDQBtYEBgCABYAEEgD9BL4HEgDcBb4HEgDZADkFBgARAYAE
+BgBRAYAEBgAdAYAEBgDvB+sEAAAAAFAAAAAAAAEAAQABABAApgQBADkAAQABAAAAEABFBqEGTQAB
+AAQAAAEQAAcHoQZxAAMACAADAQAAZwcAAFkABAALABEAjAQsAREAdgEwAREAAQE0AQYGgAA4AVaA
+Vwc7AVaAVgE7AVAgAAAAAIYArAQGAAEAtCAAAAAAgQCUAAYAAQCQJAAAAACGGPMFBgABAJgkAAAA
+AIMY8wUGAAEAoCQAAAAAkwiQBT8BAQDMJAAAAACTCF4BxAABANMkAAAAAJMIagFEAQEA2yQAAAAA
+lgiYB0oBAgDiJAAAAACGGPMFBgACAOokAAAAAJEY+QVPAQIAAAABAJsDCQDzBQEAEQDzBQYAGQDz
+BQoAKQDzBRAAMQDzBRAAOQDzBRAAQQDzBRAASQDzBRAAUQDzBRAAWQDzBRAAYQDzBRAAaQDzBQYA
+uQDzBQYA2QDzBRUA6QDzBQYAcQBfByAA8QCvBwEA8QB1ByUAmQC7AyoAAQEQCC4A+QDpBTEACQFr
+BGMA+QCxBGoAgQDzBQYAGQH7BnUAgQDfB3wAgQDKAIMADACkB5QAAQGSB5kAiQDzBRAAMQGhBAYA
+AQHuAKMAOQHzBRAAkQDzBagAkQBJB68AkQDdBrUAkQATBroASQGVA78AAQEICKMAyQCGAcQAoQDX
+AckAqQDzBdcAqQA6B94AYQGOA+QAcQH4B+wAeQHPAQYAcQDzBQYAmQDzBQYAgQEvAfAAgQHrB/kA
+wQDzBf8A4QDzBQYACAAUACIBCAAYACcBKQBzAIoBLgALAGIBLgATAGsBLgAbAIoBLgAjAJMBLgAr
+ALwBLgAzALwBLgA7AMIBLgBDAJMBLgBLAM0BLgBTALwBLgBbAOkBQwBjACcBSQBzAIoBYQB7ACcB
+YwBrACcBGwA6AAMAAQAEAAMAAACUBVMBAACTAVgBAACcB10BAgAFAAMAAgAGAAUAAQAHAAUAAgAI
+AAcAjQAEgAAAAQAAAMMkYXIAAAAAAAAsAAAABAAAAAAAAAAAAAAABwGrAAAAAAAQAAAAAAAAAAAA
+AAAQAcQDAAAAAAQAAAAAAAAAAAAAABkBWAUAAAAABAAAAAAAAAAAAAAABwGIAAAAAAAKAAAAAAAA
+AAAAAAAZAbQAAAAAAAQAAAAAAAAAAAAAAAcBgAQAAAAAAAAAAAEAAABPBgAABQACAAAAAAAAU1Rf
+YTA4MDdiOGIwNTk4NDU1NzljODc5N2U1YTQ3MmIxMzAAVGFza2AxAFNUX2U2NDMyOTZkOTkxMjRh
+NDhiMzNjZDkzNjMyNGY1Y2U5ADxNb2R1bGU+AFN5c3RlbS5JTwBNaWNyb3NvZnQuVmlzdWFsQmFz
+aWMuRmlsZUlPAHZhbHVlX18AU3lzdGVtLkRhdGEARmV0Y2hBbmRJbnNlcnRISUNQRGF0YQBtc2Nv
+cmxpYgBNaWNyb3NvZnQuVmlzdWFsQmFzaWMAR2V0U3RyaW5nQXN5bmMARGJDb21tYW5kAFNxbENv
+bW1hbmQASXNOdWxsT3JXaGl0ZVNwYWNlAGRlZmF1bHRJbnN0YW5jZQBJRGlzcG9zYWJsZQBSdW50
+aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBTZWN1cml0eVByb3RvY29sVHlwZQBGYWls
+dXJlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAHJlc291cmNlQ3VsdHVyZQBnZXRfSW52YXJpYW50
+Q3VsdHVyZQBWU1RBUlRTY3JpcHRPYmplY3RNb2RlbEJhc2UAQXBwbGljYXRpb25TZXR0aW5nc0Jh
+c2UARGlzcG9zZQBUcnlQYXJzZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRl
+ZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmlidXRlAERlYnVnZ2FibGVBdHRyaWJ1
+dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5VGl0bGVBdHRyaWJ1dGUAQXNzZW1i
+bHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3JrQXR0cmlidXRlAEFzc2VtYmx5Q29u
+ZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0aW9uQXR0cmlidXRlAENvbXBpbGF0
+aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9kdWN0QXR0cmlidXRlAEFzc2VtYmx5
+Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRUYXNrRW50cnlQb2ludEF0dHJpYnV0ZQBBc3Nl
+bWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAQWRkV2l0
+aFZhbHVlAHZhbHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAVG9TdHJpbmcATWljcm9zb2Z0
+LlNxbFNlcnZlci5TY3JpcHRUYXNrAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlRhc2tzLlNjcmlw
+dFRhc2sARGVjaW1hbABTY3JpcHRPYmplY3RNb2RlbABTeXN0ZW0uQ29tcG9uZW50TW9kZWwAU1Rf
+ZTY0MzI5NmQ5OTEyNGE0OGIzM2NkOTM2MzI0ZjVjZTkuZGxsAERCTnVsbABzZXRfU2VjdXJpdHlQ
+cm90b2NvbABTeXN0ZW0ARW51bQByZXNvdXJjZU1hbgBUaW1lU3BhbgBPcGVuAFNjcmlwdE1haW4A
+RmlyZUluZm9ybWF0aW9uAFN5c3RlbS5Db25maWd1cmF0aW9uAFN5c3RlbS5HbG9iYWxpemF0aW9u
+AFN5c3RlbS5SZWZsZWN0aW9uAFNxbFBhcmFtZXRlckNvbGxlY3Rpb24ARGJDb25uZWN0aW9uAFNx
+bENvbm5lY3Rpb24ARXhjZXB0aW9uAFN5c3RlbS5EYXRhLkNvbW1vbgBDdWx0dXJlSW5mbwBTeXN0
+ZW0uTmV0Lkh0dHAAU3RyaW5nUmVhZGVyAFRleHRSZWFkZXIASUZvcm1hdFByb3ZpZGVyAGdldF9S
+ZXNvdXJjZU1hbmFnZXIAU2VydmljZVBvaW50TWFuYWdlcgBFdmVudHNPYmplY3RXcmFwcGVyAFRl
+eHRGaWVsZFBhcnNlcgBTcWxQYXJhbWV0ZXIARmlyZUVycm9yAC5jdG9yAC5jY3RvcgBTeXN0ZW0u
+RGlhZ25vc3RpY3MAUmVhZEZpZWxkcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5
+c3RlbS5SZXNvdXJjZXMAU1RfMWJjMjYxYTc0ZTgyNGRkN2JlZjQ2MjQ4N2Q1ZDk5ZjIuUHJvcGVy
+dGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNUXzFiYzI2MWE3NGU4MjRk
+ZDdiZWY0NjI0ODdkNWQ5OWYyLlByb3BlcnRpZXMATnVtYmVyU3R5bGVzAHNldF9IYXNGaWVsZHNF
+bmNsb3NlZEluUXVvdGVzAEZyb21NaW51dGVzAFNldHRpbmdzAFN5c3RlbS5UaHJlYWRpbmcuVGFz
+a3MAU3RyaW5nU3BsaXRPcHRpb25zAGdldF9QYXJhbWV0ZXJzAFNldERlbGltaXRlcnMAU3VjY2Vz
+cwBnZXRfRHRzAFNjcmlwdFJlc3VsdHMAZ2V0X0V2ZW50cwBPYmplY3QAU3lzdGVtLk5ldABTcGxp
+dABnZXRfRGVmYXVsdABnZXRfUmVzdWx0AHNldF9UYXNrUmVzdWx0AFN5c3RlbS5EYXRhLlNxbENs
+aWVudABIdHRwQ2xpZW50AHNldF9UaW1lb3V0AGdldF9Bc3NlbWJseQBFeGVjdXRlTm9uUXVlcnkA
+SXNOdWxsT3JFbXB0eQAAAAAXUwBjAHIAaQBwAHQAIABUAGEAcwBrAACDX2gAdAB0AHAAcwA6AC8A
+LwBlAGMALgBlAHUAcgBvAHAAYQAuAGUAdQAvAGUAdQByAG8AcwB0AGEAdAAvAGEAcABpAC8AZABp
+AHMAcwBlAG0AaQBuAGEAdABpAG8AbgAvAHMAZABtAHgALwAzAC4AMAAvAGQAYQB0AGEALwBkAGEA
+dABhAGYAbABvAHcALwBFAFMAVABBAFQALwBwAHIAYwBfAGgAaQBjAHAAXwBtAGkAZAB4AC8AMQAu
+ADAALwAqAC4AKgAuACoALgAqAD8AYwBbAGYAcgBlAHEAXQA9AE0AJgBjAFsAdQBuAGkAdABdAD0A
+SQA5ADYALABJADAANQAsAEkAMQA1ACYAYwBbAGMAbwBpAGMAbwBwAF0APQBDAFAAMAAwACwAQwBQ
+ADAAMQAsAEMAUAAwADIALABDAFAAMAAzACwAQwBQADAANAAsAEMAUAAwADUALABDAFAAMAA2ACwA
+QwBQADAANwAsAEMAUAAwADgALABDAFAAMAA5ACwAQwBQADEAMAAsAEMAUAAxADEALABDAFAAMQAy
+ACYAYwBbAGcAZQBvAF0APQBFAFUALABFAFUAMgA3AF8AMgAwADIAMAAsAEUAVQAyADgALABFAEEA
+LABFAEEAMgAwACwARQBBADEAOQAsAEIARQAsAEIARwAsAEMAWgAsAEQASwAsAEQARQAsAEUARQAs
+AEkARQAsAEUATAAsAEUAUwAsAEYAUgAsAEgAUgAsAEkAVAAsAEMAWQAsAEwAVgAsAEwAVAAsAEwA
+VQAsAEgAVQAsAE0AVAAsAE4ATAAsAEEAVAAsAFAATAAsAFAAVAAsAFIATwAsAFMASQAsAFMASwAs
+AEYASQAsAFMARQAsAEUARQBBACwASQBTACwATgBPACwAQwBIACwAVQBLACwATQBFACwATQBLACwA
+QQBMACwAUgBTACwAVABSACwAWABLACwAVQBTACYAYwBvAG0AcAByAGUAcwBzAD0AZgBhAGwAcwBl
+ACYAZgBvAHIAbQBhAHQAPQBjAHMAdgBkAGEAdABhACYAZgBvAHIAbQBhAHQAVgBlAHIAcwBpAG8A
+bgA9ADIALgAwACYAbABhAG4AZwA9AGUAbgAmAGwAYQBiAGUAbABzAD0AbgBhAG0AZQAAC0QAZQBi
+AHUAZwAABQ0ACgAAAwoAAICLRABhAHQAYQAgAFMAbwB1AHIAYwBlAD0ALgA7AEkAbgBpAHQAaQBh
+AGwAIABDAGEAdABhAGwAbwBnAD0ATABJAEEAXwBEAEIAXwBCAHIAbwBuAHoAZQA7AEkAbgB0AGUA
+ZwByAGEAdABlAGQAIABTAGUAYwB1AHIAaQB0AHkAPQBTAFMAUABJADsAAAMsAACFP0kATgBTAEUA
+UgBUACAASQBOAFQATwAgAFIAYQB3AC4ASABJAEMAUABJAG4AZABlAHgAIAAoAFsAUwBUAFIAVQBD
+AFQAVQBSAEUAXQAsACAAWwBTAFQAUgBVAEMAVABVAFIARQBfAEkARABdACwAIABbAFMAVABSAFUA
+QwBUAFUAUgBFAF8ATgBBAE0ARQBdACwAIABbAGYAcgBlAHEAXQAsACAAWwBUAGkAbQBlACAAZgBy
+AGUAcQB1AGUAbgBjAHkAXQAsACAAWwB1AG4AaQB0AF0ALAAgAFsAVQBuAGkAdAAgAG8AZgAgAG0A
+ZQBhAHMAdQByAGUAXQAsACAAWwBjAG8AaQBjAG8AcABdACwAIABbAEMAbABhAHMAcwBpAGYAaQBj
+AGEAdABpAG8AbgAgAG8AZgAgAGkAbgBkAGkAdgBpAGQAdQBhAGwAIABjAG8AbgBzAHUAbQBwAHQA
+aQBvAG4AIABiAHkAIABwAHUAcgBwAG8AcwBlACAAKABDAE8ASQBDAE8AUAApAF0ALAAgAFsAZwBl
+AG8AXQAsACAAWwBHAGUAbwBwAG8AbABpAHQAaQBjAGEAbAAgAGUAbgB0AGkAdAB5ACAAKAByAGUA
+cABvAHIAdABpAG4AZwApAF0ALAAgAFsAVABJAE0ARQBfAFAARQBSAEkATwBEAF0ALAAgAFsAVABp
+AG0AZQBdACwAIABbAE8AQgBTAF8AVgBBAEwAVQBFAF0ALAAgAFsATwBiAHMAZQByAHYAYQB0AGkA
+bwBuACAAdgBhAGwAdQBlAF0ALAAgAFsATwBCAFMAXwBGAEwAQQBHAF0ALAAgAFsATwBiAHMAZQBy
+AHYAYQB0AGkAbwBuACAAcwB0AGEAdAB1AHMAIAAoAEYAbABhAGcAKQAgAFYAMgAgAHMAdAByAHUA
+YwB0AHUAcgBlAF0ALAAgAFsAQwBPAE4ARgBfAFMAVABBAFQAVQBTAF0ALAAgAFsAQwBvAG4AZgBp
+AGQAZQBuAHQAaQBhAGwAaQB0AHkAIABzAHQAYQB0AHUAcwAgACgAZgBsAGEAZwApAF0AKQAgAFYA
+QQBMAFUARQBTACAAKABAAHMAdAByAHUAYwB0AHUAcgBlACwAIABAAHMAdAByAHUAYwB0AHUAcgBl
+AEkAZAAsACAAQABzAHQAcgB1AGMAdAB1AHIAZQBOAGEAbQBlACwAIABAAGYAcgBlAHEALAAgAEAA
+dABpAG0AZQBGAHIAZQBxACwAIABAAHUAbgBpAHQALAAgAEAAdQBuAGkAdABPAGYATQBlAGEAcwB1
+AHIAZQAsACAAQABjAG8AaQBjAG8AcAAsACAAQABjAGwAYQBzAHMAaQBmAGkAYwBhAHQAaQBvAG4A
+LAAgAEAAZwBlAG8ALAAgAEAAZwBlAG8AcABvAGwAaQB0AGkAYwBhAGwARQBuAHQAaQB0AHkALAAg
+AEAAdABpAG0AZQBQAGUAcgBpAG8AZAAsACAAQAB0AGkAbQBlACwAIABAAG8AYgBzAFYAYQBsAHUA
+ZQBQAGEAcgBhAG0ALAAgAEAAbwBiAHMAZQByAHYAYQB0AGkAbwBuAFYAYQBsAHUAZQAsACAAQABv
+AGIAcwBGAGwAYQBnACwAIABAAG8AYgBzAGUAcgB2AGEAdABpAG8AbgBTAHQAYQB0AHUAcwBGAGwA
+YQBnACwAIABAAGMAbwBuAGYAUwB0AGEAdAB1AHMALAAgAEAAYwBvAG4AZgBpAGQAZQBuAHQAaQBh
+AGwAaQB0AHkAUwB0AGEAdAB1AHMAKQAAFUAAcwB0AHIAdQBjAHQAdQByAGUAABlAAHMAdAByAHUA
+YwB0AHUAcgBlAEkAZAAAHUAAcwB0AHIAdQBjAHQAdQByAGUATgBhAG0AZQAAC0AAZgByAGUAcQAA
+E0AAdABpAG0AZQBGAHIAZQBxAAALQAB1AG4AaQB0AAAdQAB1AG4AaQB0AE8AZgBNAGUAYQBzAHUA
+cgBlAAAPQABjAG8AaQBjAG8AcAAAH0AAYwBsAGEAcwBzAGkAZgBpAGMAYQB0AGkAbwBuAAAJQABn
+AGUAbwAAJ0AAZwBlAG8AcABvAGwAaQB0AGkAYwBhAGwARQBuAHQAaQB0AHkAABdAAHQAaQBtAGUA
+UABlAHIAaQBvAGQAAAtAAHQAaQBtAGUAAB1AAG8AYgBzAFYAYQBsAHUAZQBQAGEAcgBhAG0AACNA
+AG8AYgBzAGUAcgB2AGEAdABpAG8AbgBWAGEAbAB1AGUAABFAAG8AYgBzAEYAbABhAGcAAC1AAG8A
+YgBzAGUAcgB2AGEAdABpAG8AbgBTAHQAYQB0AHUAcwBGAGwAYQBnAAAXQABjAG8AbgBmAFMAdABh
+AHQAdQBzAAAtQABjAG8AbgBmAGkAZABlAG4AdABpAGEAbABpAHQAeQBTAHQAYQB0AHUAcwAAcVMA
+VABfADEAYgBjADIANgAxAGEANwA0AGUAOAAyADQAZABkADcAYgBlAGYANAA2ADIANAA4ADcAZAA1
+AGQAOQA5AGYAMgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAABq
+668k3w4xSrGPg4UM/aV+AAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFpBAcBEj0EIAASeQQgABJ9
+AyAADgIGDgggBQIIDg4OCCgHHw4CEkEdDhJFCA4SSR0ODg4ODg4ODg4ODg4ODg4ODg4ODhwRURJV
+BgABARGAiQogBgEIDg4OCBACBgABEYCNDQYgAQERgI0JIAEVEoCRAQ4OBhUSgJEBDgQgABMACSAC
+HQ4dDhGAlQQAAQIOBiABARKAoQUgAQEdDgQgAQECBCAAHQ4EBhKApQQAABJlDQAEAg4RgKkSgK0Q
+EVEGIAIBDhJFBSAAEoCxByACEoC1DhwDIAAICAABEoDBEYDFBSAAEoDJByACAQ4SgMkIt3pcVhk0
+4IkIiYRdzYCAzJEIsD9ffxHVCjoEAAAAAAQBAAAAAwYSYQMGEmUDBhIQAgYIAwYRFAQAABJhBQAB
+ARJlBAAAEhADAAABBAgAEmEECAASZQQIABIQCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0
+aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF8xYmMyNjFhNzRlODI0ZGQ3YmVmNDYyNDg3ZDVkOTlm
+MgAABQEAAAAACgEABVhMRU5UAAAbAQAWQ29weXJpZ2h0IEAgWExFTlQgMjAyNQAASQEAGi5ORVRG
+cmFtZXdvcmssVmVyc2lvbj12NC43AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1l
+d29yayA0LjcAtAAAAM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVy
+LCBtc2NvcmxpYiwgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRv
+a2VuPWI3N2E1YzU2MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQC
+AAAAAAAAAAAAAABQQURQQURQtAAAAGxBAAAAAAAAAAAAAIZBAAAAIAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAB4QQAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
 AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
 AC4EAAAAAAAAAAAAAC4ENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
-AAABAAAAAQBBXk0kAAABAEFeTSQ/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AAABAAAAAQBhcsMkAAABAGFywyQ/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
 AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
 sASOAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABqAwAAAQAwADAAMAAwADAANABi
 ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAALAAGAAEAQwBvAG0AcABhAG4AeQBOAGEA
 bQBlAAAAAABYAEwARQBOAFQAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAA
 AAAAUwBUAF8AMQBiAGMAMgA2ADEAYQA3ADQAZQA4ADIANABkAGQANwBiAGUAZgA0ADYAMgA0ADgA
 NwBkADUAZAA5ADkAZgAyAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
-ADkAMgA5ADMALgAyADQAMQAyADkAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAA
-UwBUAF8AMQA0ADYAOQA1ADMAOABiADEANAAxADIANABhAGYAMQA5ADYAYQBiADUAZAAwADMAMAAx
-ADkAZAAxAGMANgAwAC4AZABsAGwAAABSABcAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQA
+ADkANAAxADEALgAyADkAMgA4ADEAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAA
+UwBUAF8AZQA2ADQAMwAyADkANgBkADkAOQAxADIANABhADQAOABiADMAMwBjAGQAOQAzADYAMwAy
+ADQAZgA1AGMAZQA5AC4AZABsAGwAAABSABcAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQA
 AABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIABYAEwARQBOAFQAIAAyADAAMgA1AAAAAAAqAAEAAQBM
 AGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEA
-bABGAGkAbABlAG4AYQBtAGUAAABTAFQAXwAxADQANgA5ADUAMwA4AGIAMQA0ADEAMgA0AGEAZgAx
-ADkANgBhAGIANQBkADAAMwAwADEAOQBkADEAYwA2ADAALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQA
+bABGAGkAbABlAG4AYQBtAGUAAABTAFQAXwBlADYANAAzADIAOQA2AGQAOQA5ADEAMgA0AGEANAA4
+AGIAMwAzAGMAZAA5ADMANgAzADIANABmADUAYwBlADkALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQA
 dQBjAHQATgBhAG0AZQAAAAAAUwBUAF8AMQBiAGMAMgA2ADEAYQA3ADQAZQA4ADIANABkAGQANwBi
 AGUAZgA0ADYAMgA0ADgANwBkADUAZAA5ADkAZgAyAAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUA
-cgBzAGkAbwBuAAAAMQAuADAALgA5ADIAOQAzAC4AMgA0ADEAMgA5AAAAAABGAA8AAQBBAHMAcwBl
-AG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA5ADIAOQAzAC4AMgA0ADEAMgA5AAAA
+cgBzAGkAbwBuAAAAMQAuADAALgA5ADQAMQAxAC4AMgA5ADIAOAAxAAAAAABGAA8AAQBBAHMAcwBl
+AG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA5ADQAMQAxAC4AMgA5ADIAOAAxAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAABkMQAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAACYMQAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -819,11 +806,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{89027EED-FB1D-40BB-A7F4-7263C08A0FA3}"
-      DTS:From="Package\SQL truncate unemployment_raw"
+      DTS:DTSID="{E0DC5C52-650F-44FC-A821-299483CEB06B}"
+      DTS:From="Package\SQL_truncate_HICPIndex"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\ST_unemployment_raw" />
+      DTS:To="Package\ST_RawHICPIndex" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -838,27 +825,27 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="190,42"
-          Id="Package\ST_unemployment_raw"
-          TopLeft="89.3333333333333,195.111111111111" />
+          Size="199,42"
+          Id="Package\SQL_truncate_HICPIndex"
+          TopLeft="75,59" />
         <NodeLayout
-          Size="237,42"
-          Id="Package\SQL truncate unemployment_raw"
-          TopLeft="67,60" />
+          Size="167,42"
+          Id="Package\ST_RawHICPIndex"
+          TopLeft="91,175" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="184.916666666667,102">
+          TopLeft="174.5,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,93.1111111111111"
+              EndConnector="0,74"
               Start="0,0"
-              End="0,85.6111111111111">
+              End="0,66.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,85.6111111111111" />
+                    End="0,66.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

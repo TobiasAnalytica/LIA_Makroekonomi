@@ -1,0 +1,874 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/10/2025 9:53:34 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{00E099F9-7CE4-48C8-A563-F13045BEC117}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="RawUnemployment"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{90C0B45E-32C2-44FB-9685-E8B1520F1FF5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SQL_truncate_RawUnemployment"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{65619FDC-6A1D-43FD-8CEB-0E030A48CA15}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_truncate_RawUnemployment"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Raw.Unemployment;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ST_RawUnemployment"
+      DTS:CreationName="Microsoft.ScriptTask"
+      DTS:Description="Script Task"
+      DTS:DTSID="{2A2F5E07-B203-4AA3-BD0F-1C3624766164}"
+      DTS:ExecutableType="Microsoft.ScriptTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ST_RawUnemployment"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ScriptProject
+          Name="ST_1469538b14124af196ab5d03019d1c60"
+          VSTAMajorVersion="16"
+          VSTAMinorVersion="0"
+          Language="CSharp">
+          <ProjectItem
+            Name="Properties\Settings.settings"
+            Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.resx"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+          <ProjectItem
+            Name="ScriptMain.cs"
+            Encoding="UTF8"><![CDATA[#region Namespaces
+// Importera nödvändiga .NET-bibliotek för HTTP-anrop, databasåtkomst, CSV-parsing etc.
+using System;
+using System.Net;
+using System.Net.Http;
+using System.Data.SqlClient;
+using System.Globalization;
+using Microsoft.VisualBasic.FileIO;                // TextFieldParser för enkel CSV-parsing
+using Microsoft.SqlServer.Dts.Runtime;             // DTS-objekt för SSIS-uppgifter
+using System.IO;
+using System.Collections.Generic;
+using System.Text;
+#endregion
+
+namespace ST_a0807b8b059845579c8797e5a472b130
+{
+    // Markerar huvudklassen som SSIS Script Task-entrypoint
+    [Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+    public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+    {
+        // Huvudmetod som exekveras av SSIS
+        public void Main()
+        {
+            try
+            {
+                // Anropa metoden som hämtar och infogar arbetslöshetsdata
+                FetchAndInsertUnemploymentData();
+                // Rapportera till SSIS att allt lyckades
+                Dts.TaskResult = (int)ScriptResults.Success;
+            }
+            catch (Exception ex)
+            {
+                // Vid fel, logga ett error event i SSIS med undantagsdetaljer
+                Dts.Events.FireError(
+                    0,                        // errorCode
+                    "Script Task",           // source
+                    ex.ToString(),           // meddelande (inklusive stacktrace)
+                    string.Empty,            // helpFile
+                    0                        // helpContext
+                );
+                // Rapportera till SSIS att uppgiften misslyckades
+                Dts.TaskResult = (int)ScriptResults.Failure;
+            }
+        }
+
+        /// <summary>
+        /// Hämtar CSV-data från Eurostat-API:t och lägger in varje rad i tabellen unemployment_raw.
+        /// </summary>
+        private void FetchAndInsertUnemploymentData()
+        {
+            // Säkerställ att TLS 1.2 används för HTTPS-anrop
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+            // Bygg URL för API-anropet med önskade parametrar (frekvens, justering, geografi, etc.)
+            var apiUrl = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/une_rt_m/1.0/*.*.*.*.*.*?" +
+                         "c[freq]=M&" +
+                         "c[s_adj]=NSA&" +
+                         "c[age]=TOTAL,Y_LT25,Y25-74&" +
+                         "c[unit]=THS_PER&" +
+                         "c[sex]=M,F&" +
+                         "c[geo]=EU27_2020,BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,IS,NO,CH,UK,TR,US,JP&" +
+                         // Om ni vill specificera tidsperiod via kod kan ni avkommentera nedan:
+                         // "c[TIME_PERIOD]=1995-01,1995-02,...,2025-04&" +
+                         "compress=false&format=csvdata&formatVersion=2.0&lang=en&labels=name";
+
+            // Skriv ut den kompletta URL:en som debug-information till SSIS
+            bool fireAgain = false;
+            Dts.Events.FireInformation(0, "Debug", apiUrl, String.Empty, 0, ref fireAgain);
+
+            // Skapa HttpClient för att göra GET-anrop
+            using (var client = new HttpClient())
+            {
+                // Synkront hämta CSV-svaret som en sträng
+                var csvData = client.GetStringAsync(apiUrl).Result;
+
+                // Dela upp texten i rader (hantera både Windows- och Unix-radslut)
+                var lines = csvData.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+                // Om det inte finns minst en headerrad + en datapunkt, avbryt
+                if (lines.Length < 2) return;
+
+                // Anslut till SQL Server-databasen DW_Bronze
+                using (var conn = new SqlConnection("Data Source=.;Initial Catalog=LIA_DB_Bronze;Integrated Security=SSPI;"))
+                {
+                    conn.Open();
+
+                    // Iterera över varje rad, från rad 1 (rad 0 är header)
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        var line = lines[i];
+
+                        // Hoppa över blankrader
+                        if (string.IsNullOrWhiteSpace(line))
+                            continue;
+
+                        // Använd TextFieldParser för att parsa CSV-raden
+                        using (var parser = new TextFieldParser(new StringReader(line)))
+                        {
+                            parser.SetDelimiters(",");              // Kommaseparerade värden
+                            parser.HasFieldsEnclosedInQuotes = true; // Tillåt fält i citationstecken
+                            string[] cols = parser.ReadFields();     // Läs alla kolumner
+
+                            // Kontrollera att vi fick minst 23 kolumner enligt API-spec
+                            if (cols.Length < 23)
+                                continue;
+
+                            // Mappa varje kolumn till en variabel för tydlighet
+                            var structure = cols[0];
+                            var structureId = cols[1];
+                            var structureName = cols[2];
+                            var freq = cols[3];
+                            var timeFreq = cols[4];
+                            var s_adj = cols[5];
+                            var seasonalAdjustment = cols[6];
+                            var age = cols[7];
+                            var ageLabel = cols[8];
+                            var unit = cols[9];
+                            var unitOfMeasure = cols[10];
+                            var sex = cols[11];
+                            var sexLabel = cols[12];
+                            var geo = cols[13];
+                            var geopoliticalEntity = cols[14];
+                            var timePeriod = cols[15];
+                            var time = cols[16];
+                            var obsValueStr = cols[17];
+                            var observationValue = cols[18];
+                            var obsFlag = cols[19];
+                            var observationStatusFlag = cols[20];
+                            var confStatus = cols[21];
+                            var confidentialityStatus = cols[22];
+
+                            // Förbered parametern för numeriskt värde (DB null om ogiltigt)
+                            object obsValueParam = DBNull.Value;
+                            if (!string.IsNullOrEmpty(obsValueStr) &&
+                                decimal.TryParse(obsValueStr, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal obsVal))
+                            {
+                                obsValueParam = obsVal;
+                            }
+
+                            // Bygg SQL INSERT-kommando med parametrar
+                            using (var cmd = new SqlCommand(
+                                "INSERT INTO Raw.Unemployment (" +
+                                "[STRUCTURE],[STRUCTURE_ID],[STRUCTURE_NAME],[freq],[Time frequency]," +
+                                "[s_adj],[Seasonal adjustment],[age],[Age class],[unit]," +
+                                "[Unit of measure],[sex],[Sex_2],[geo],[Geopolitical entity (reporting)]," +
+                                "[TIME_PERIOD],[Time],[OBS_VALUE],[Observation value],[OBS_FLAG]," +
+                                "[Observation status (Flag) V2 structure],[CONF_STATUS],[Confidentiality status (flag)]" +
+                                ") VALUES (" +
+                                "@structure,@structureId,@structureName,@freq,@timeFreq," +
+                                "@s_adj,@seasonalAdjustment,@age,@ageLabel,@unit," +
+                                "@unitOfMeasure,@sex,@sexLabel,@geo,@geopoliticalEntity," +
+                                "@timePeriod,@time,@obsValueParam,@observationValue,@obsFlag," +
+                                "@observationStatusFlag,@confStatus,@confidentialityStatus" +
+                                ")", conn))
+                            {
+                                // Lägg till alla parametrar med korrekt värde
+                                cmd.Parameters.AddWithValue("@structure", structure);
+                                cmd.Parameters.AddWithValue("@structureId", structureId);
+                                cmd.Parameters.AddWithValue("@structureName", structureName);
+                                cmd.Parameters.AddWithValue("@freq", freq);
+                                cmd.Parameters.AddWithValue("@timeFreq", timeFreq);
+                                cmd.Parameters.AddWithValue("@s_adj", s_adj);
+                                cmd.Parameters.AddWithValue("@seasonalAdjustment", seasonalAdjustment);
+                                cmd.Parameters.AddWithValue("@age", age);
+                                cmd.Parameters.AddWithValue("@ageLabel", ageLabel);
+                                cmd.Parameters.AddWithValue("@unit", unit);
+                                cmd.Parameters.AddWithValue("@unitOfMeasure", unitOfMeasure);
+                                cmd.Parameters.AddWithValue("@sex", sex);
+                                cmd.Parameters.AddWithValue("@sexLabel", sexLabel);
+                                cmd.Parameters.AddWithValue("@geo", geo);
+                                cmd.Parameters.AddWithValue("@geopoliticalEntity", geopoliticalEntity);
+                                cmd.Parameters.AddWithValue("@timePeriod", timePeriod);
+                                cmd.Parameters.AddWithValue("@time", time);
+                                cmd.Parameters.AddWithValue("@obsValueParam", obsValueParam);
+                                cmd.Parameters.AddWithValue("@observationValue", observationValue);
+                                cmd.Parameters.AddWithValue("@obsFlag", obsFlag);
+                                cmd.Parameters.AddWithValue("@observationStatusFlag", observationStatusFlag);
+                                cmd.Parameters.AddWithValue("@confStatus", confStatus);
+                                cmd.Parameters.AddWithValue("@confidentialityStatus", confidentialityStatus);
+
+                                // Kör SQL-kommandot för att infoga raden
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                    } // for-loop slut
+                } // using SqlConnection
+            } // using HttpClient
+        }
+
+        // Enumeration för tydligare hantering av returvärden till SSIS
+        enum ScriptResults
+        {
+            Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+            Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="ST_1469538b14124af196ab5d03019d1c60.csproj"
+            Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F5FF3E4A-91AF-4BBE-864D-6AD5F9C92AFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_1bc261a74e824dd7bef462487d5d99f2</RootNamespace>
+    <AssemblyName>ST_1469538b14124af196ab5d03019d1c60</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST160</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Project"
+            Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+  <msb:PropertyGroup>
+    <msb:CodeName>ST_1469538b14124af196ab5d03019d1c60</msb:CodeName>
+    <msb:Language>msBuild</msb:Language>
+    <msb:DisplayName>ST_1469538b14124af196ab5d03019d1c60</msb:DisplayName>
+    <msb:ProjectId>{26128502-65D3-4E32-BB75-263BFAF68213}</msb:ProjectId>
+  </msb:PropertyGroup>
+  <msb:ItemGroup>
+    <msb:Project Include="ST_1469538b14124af196ab5d03019d1c60.csproj" />
+    <msb:File Include="ScriptMain.cs" />
+    <msb:File Include="Properties\Settings.settings" />
+    <msb:File Include="Properties\AssemblyInfo.cs" />
+    <msb:File Include="Properties\Resources.resx" />
+    <msb:File Include="Properties\Resources.Designer.cs" />
+    <msb:File Include="Properties\Settings.Designer.cs" />
+  </msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Settings.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Settings.get_Default():ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Sett" +
+    "ings")]
+
+namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\AssemblyInfo.cs"
+            Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("XLENT")]
+[assembly: AssemblyProduct("ST_1bc261a74e824dd7bef462487d5d99f2")]
+[assembly: AssemblyCopyright("Copyright @ XLENT 2025")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+          <ProjectItem
+            Name="Properties\Resources.Designer.cs"
+            Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_1bc261a74e824dd7bef462487d5d99f2.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_1bc261a74e824dd7bef462487d5d99f2.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+          <BinaryItem
+            Name="ST_1469538b14124af196ab5d03019d1c60.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDANEi5WgAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAYkEA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAABBBAABPAAAAAGAAAIwEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAaCEAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAIwEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABE
+QQAAAAAAAEgAAAACAAUAUCUAAAgbAAABAAAAAAAAAFhAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBgBHAAAAAQAAEQIoAgAABgIoEAAAChZvEQAACt4yCgIo
+EAAACm8SAAAKFnIBAABwBm8TAAAKfhQAAAoWbxUAAAomAigQAAAKF28RAAAK3gAqAAEQAAAAAAAA
+FBQAMg8AAAEbMAcAxAMAAAIAABEgAAwAACgWAAAKchkAAHAKFgsCKBAAAApvEgAAChZy9gIAcAZ+
+FAAAChYSAW8XAAAKcxgAAAoMCAZvGQAACm8aAAAKGI0gAAABJRZyAgMAcKIlF3IIAwBwohZvGwAA
+Cg0JjmkYLwXdWAMAAHIMAwBwcxwAAAoTBBEEbx0AAAoXEwU4GwMAAAkRBZoTBhEGKB4AAAo6AwMA
+ABEGcx8AAApzIAAAChMHEQcXjSAAAAElFnKZAwBwom8hAAAKEQcXbyIAAAoRB28jAAAKEwgRCI5p
+HxcvBd3CAgAAEQgWmhMJEQgXmhMKEQgYmhMLEQgZmhMMEQgamhMNEQgbmhMOEQgcmhMPEQgdmhMQ
+EQgemhMREQgfCZoTEhEIHwqaExMRCB8LmhMUEQgfDJoTFREIHw2aExYRCB8OmhMXEQgfD5oTGBEI
+HxCaExkRCB8RmhMaEQgfEpoTGxEIHxOaExwRCB8UmhMdEQgfFZoTHhEIHxaaEx9+JAAAChMgERoo
+JQAACi0eERog/wEAACgmAAAKEiEoJwAACiwJESGMFAAAARMgcp0DAHARBHMoAAAKEyIRIm8pAAAK
+csoIAHARCW8qAAAKJhEibykAAApy4AgAcBEKbyoAAAomESJvKQAACnL6CABwEQtvKgAACiYRIm8p
+AAAKchgJAHARDG8qAAAKJhEibykAAApyJAkAcBENbyoAAAomESJvKQAACnI4CQBwEQ5vKgAACiYR
+Im8pAAAKckYJAHARD28qAAAKJhEibykAAApybgkAcBEQbyoAAAomESJvKQAACnJ4CQBwERFvKgAA
+CiYRIm8pAAAKcowJAHAREm8qAAAKJhEibykAAApymAkAcBETbyoAAAomESJvKQAACnK2CQBwERRv
+KgAACiYRIm8pAAAKcsAJAHARFW8qAAAKJhEibykAAApy1AkAcBEWbyoAAAomESJvKQAACnLeCQBw
+ERdvKgAACiYRIm8pAAAKcgYKAHARGG8qAAAKJhEibykAAApyHgoAcBEZbyoAAAomESJvKQAACnIq
+CgBwESBvKgAACiYRIm8pAAAKckgKAHARG28qAAAKJhEibykAAApybAoAcBEcbyoAAAomESJvKQAA
+CnJ+CgBwER1vKgAACiYRIm8pAAAKcqwKAHARHm8qAAAKJhEibykAAApyxAoAcBEfbyoAAAomESJv
+KwAACibeGBEiLAcRIm8sAAAK3BEHLAcRB28sAAAK3BEFF1gTBREFCY5pP9v8///eFhEELAcRBG8s
+AAAK3AgsBghvLAAACtwqQWQAAAIAAACtAQAA1gEAAIMDAAAMAAAAAAAAAAIAAACmAAAA6QIAAI8D
+AAAMAAAAAAAAAAIAAAB3AAAANgMAAK0DAAAMAAAAAAAAAAIAAAA3AAAAggMAALkDAAAKAAAAAAAA
+AB4CKC0AAAoqHgIoLgAACiqufgEAAAQtHnLyCgBw0AMAAAIoLwAACm8wAAAKczEAAAqAAQAABH4B
+AAAEKhp+AgAABCoeAoACAAAEKhp+AwAABCoeAigyAAAKKi5zCQAABoADAAAEKgAAQlNKQgEAAQAA
+AAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA/AQAACN+AABoBQAAAAgAACNTdHJpbmdzAAAAAGgN
+AABkCwAAI1VTAMwYAAAQAAAAI0dVSUQAAADcGAAALAIAACNCbG9iAAAAAAAAAAIAAAFXHaIJCQMA
+AAD6ATMAFgAAAQAAADEAAAAFAAAABgAAAAoAAAABAAAAMgAAAAIAAAAQAAAAAgAAAAIAAAADAAAA
+BAAAAAEAAAABAAAABgAAAAEAAAABAAAAAABEBAEAAAAAAAYA6QIdBgYAeAMdBgYANQL/BQ8AkQYA
+AAYAYgLqBAYAzALqBAYArQLqBAYAXwPqBAYACQPqBAYAIgPqBAYAeQLqBAYAlAKpAwoAPQPrAwoA
+owHrAwYALgWIBA4AxwdXBRIAIAWxBxYAywVjAAYAcweIBAYAFASIBBIA6wCxBwYAjwSIBAYAGAL/
+BQYAkwU9BgYASwXVBBoA6AEuBBoASQIuBBoAvwHABAYA/QEdBgoAHATrAwoAtwXrAwYAxQOIBBoA
+owV6BxoASQF6BwYASQADBwYAGgeIBBIAEwU4BQYAZwVZAAYAdAVZAAYAbASIBAYAzwbVBAYAfwWI
+BBIA/ASxBxIA2wWxBxIA4QA4BQYAGQGIBAYAWQGIBAYAJQGIBAYA1gfqBAAAAABQAAAAAAABAAEA
+AQAQAKUEAQA5AAEAAQAAABAARAagBk0AAQAEAAABEAD6BqAGcQADAAgAAwEAAFoHAABZAAQACwAR
+AJQEIgERAH4BJgERAAkBKgEGBoAALgFWgEoHMQFWgF4BMQFQIAAAAACGAKsEBgABALQgAAAAAIEA
+lAAGAAEA6CQAAAAAhhjyBQYAAQDwJAAAAACDGPIFBgABAPgkAAAAAJMIjwU1AQEAJCUAAAAAkwhm
+AboAAQArJQAAAACTCHIBOgEBADMlAAAAAJYIiwdAAQIAOiUAAAAAhhjyBQYAAgBCJQAAAACRGPgF
+RQECAAAAAQCjAwkA8gUBABEA8gUGABkA8gUKACkA8gUQADEA8gUQADkA8gUQAEEA8gUQAEkA8gUQ
+AFEA8gUQAFkA8gUQAGEA8gUQAGkA8gUGALkA8gUGANkA8gUVAOkA8gUGAHEAUgcgAPEAogcBAPEA
+aAclAJkAwwMqAAEB9wcuAPkA6AUxAAkBcwRnAPkAsARuAIEA8gUGAIEA0gB5AAwAlweKAAEBhQeP
+AIkA8gUQACkBoAQGAAEB9gCZADEB8gUQAJEA8gWeAJEAPAelAJEA3AarAJEAEgawAEEBnQO1AAEB
+7weZAMkAjgG6AKEA3wG/AKkA8gXNAKkALQfUAFkBlgPaAGkB3wfiAHEB1wEGAHEA8gUGAJkA8gUG
+AHkBNwHmAHkB0gfvAMEA8gX1AOEA8gUGAAgAFAAYAQgAGAAdASkAcwCAAS4ACwBYAS4AEwBhAS4A
+GwCAAS4AIwCJAS4AKwCyAS4AMwCyAS4AOwC4AS4AQwCJAS4ASwDDAS4AUwCyAS4AWwDfAUMAYwAd
+AUkAcwCAAWEAewAdAWMAawAdARsAOgADAAEABAADAAAAkwVJAQAAmwFOAQAAjwdTAQIABQADAAIA
+BgAFAAEABwAFAAIACAAHAIMABIAAAAEAAADDJHhzAAAAAAAAJQAAAAQAAAAAAAAAAAAAAP0AswAA
+AAAAEAAAAAAAAAAAAAAABgHMAwAAAAAEAAAAAAAAAAAAAAAPAVcFAAAAAAQAAAAAAAAAAAAAAP0A
+iAAAAAAACgAAAAAAAAAAAAAADwG8AAAAAAAEAAAAAAAAAAAAAAD9AIgEAAAAAAAAAAABAAAATgYA
+AAUAAgAAAABTVF9hMDgwN2I4YjA1OTg0NTU3OWM4Nzk3ZTVhNDcyYjEzMABTVF8xNDY5NTM4YjE0
+MTI0YWYxOTZhYjVkMDMwMTlkMWM2MABUYXNrYDEAPE1vZHVsZT4AU3lzdGVtLklPAE1pY3Jvc29m
+dC5WaXN1YWxCYXNpYy5GaWxlSU8AdmFsdWVfXwBTeXN0ZW0uRGF0YQBGZXRjaEFuZEluc2VydFVu
+ZW1wbG95bWVudERhdGEAbXNjb3JsaWIATWljcm9zb2Z0LlZpc3VhbEJhc2ljAEdldFN0cmluZ0Fz
+eW5jAERiQ29tbWFuZABTcWxDb21tYW5kAElzTnVsbE9yV2hpdGVTcGFjZQBkZWZhdWx0SW5zdGFu
+Y2UASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUAU2VjdXJp
+dHlQcm90b2NvbFR5cGUARmFpbHVyZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQByZXNvdXJjZUN1
+bHR1cmUAZ2V0X0ludmFyaWFudEN1bHR1cmUAVlNUQVJUU2NyaXB0T2JqZWN0TW9kZWxCYXNlAEFw
+cGxpY2F0aW9uU2V0dGluZ3NCYXNlAERpc3Bvc2UAVHJ5UGFyc2UARWRpdG9yQnJvd3NhYmxlU3Rh
+dGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0
+ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRp
+dGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0
+dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlv
+bkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVj
+dEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0VGFza0VudHJ5
+UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
+aXR5QXR0cmlidXRlAEFkZFdpdGhWYWx1ZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5n
+AFRvU3RyaW5nAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0VGFzawBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAERlY2ltYWwAU2NyaXB0T2JqZWN0TW9kZWwAU3lzdGVt
+LkNvbXBvbmVudE1vZGVsAFNUXzE0Njk1MzhiMTQxMjRhZjE5NmFiNWQwMzAxOWQxYzYwLmRsbABE
+Qk51bGwAc2V0X1NlY3VyaXR5UHJvdG9jb2wAU3lzdGVtAEVudW0AcmVzb3VyY2VNYW4AT3BlbgBT
+Y3JpcHRNYWluAEZpcmVJbmZvcm1hdGlvbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xv
+YmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBTcWxQYXJhbWV0ZXJDb2xsZWN0aW9uAERiQ29u
+bmVjdGlvbgBTcWxDb25uZWN0aW9uAEV4Y2VwdGlvbgBTeXN0ZW0uRGF0YS5Db21tb24AQ3VsdHVy
+ZUluZm8AU3lzdGVtLk5ldC5IdHRwAFN0cmluZ1JlYWRlcgBUZXh0UmVhZGVyAElGb3JtYXRQcm92
+aWRlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAFNlcnZpY2VQb2ludE1hbmFnZXIARXZlbnRzT2JqZWN0
+V3JhcHBlcgBUZXh0RmllbGRQYXJzZXIAU3FsUGFyYW1ldGVyAEZpcmVFcnJvcgAuY3RvcgAuY2N0
+b3IAU3lzdGVtLkRpYWdub3N0aWNzAFJlYWRGaWVsZHMAU3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJT
+ZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNUXzFiYzI2MWE3NGU4MjRkZDdiZWY0NjI0ODdkNWQ5
+OWYyLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1Z2dpbmdNb2RlcwBTVF8xYmMy
+NjFhNzRlODI0ZGQ3YmVmNDYyNDg3ZDVkOTlmMi5Qcm9wZXJ0aWVzAE51bWJlclN0eWxlcwBzZXRf
+SGFzRmllbGRzRW5jbG9zZWRJblF1b3RlcwBTZXR0aW5ncwBTeXN0ZW0uVGhyZWFkaW5nLlRhc2tz
+AFN0cmluZ1NwbGl0T3B0aW9ucwBnZXRfUGFyYW1ldGVycwBTZXREZWxpbWl0ZXJzAFN1Y2Nlc3MA
+Z2V0X0R0cwBTY3JpcHRSZXN1bHRzAGdldF9FdmVudHMAT2JqZWN0AFN5c3RlbS5OZXQAU3BsaXQA
+Z2V0X0RlZmF1bHQAZ2V0X1Jlc3VsdABzZXRfVGFza1Jlc3VsdABTeXN0ZW0uRGF0YS5TcWxDbGll
+bnQASHR0cENsaWVudABnZXRfQXNzZW1ibHkARXhlY3V0ZU5vblF1ZXJ5AElzTnVsbE9yRW1wdHkA
+AAAAABdTAGMAcgBpAHAAdAAgAFQAYQBzAGsAAILbaAB0AHQAcABzADoALwAvAGUAYwAuAGUAdQBy
+AG8AcABhAC4AZQB1AC8AZQB1AHIAbwBzAHQAYQB0AC8AYQBwAGkALwBkAGkAcwBzAGUAbQBpAG4A
+YQB0AGkAbwBuAC8AcwBkAG0AeAAvADMALgAwAC8AZABhAHQAYQAvAGQAYQB0AGEAZgBsAG8AdwAv
+AEUAUwBUAEEAVAAvAHUAbgBlAF8AcgB0AF8AbQAvADEALgAwAC8AKgAuACoALgAqAC4AKgAuACoA
+LgAqAD8AYwBbAGYAcgBlAHEAXQA9AE0AJgBjAFsAcwBfAGEAZABqAF0APQBOAFMAQQAmAGMAWwBh
+AGcAZQBdAD0AVABPAFQAQQBMACwAWQBfAEwAVAAyADUALABZADIANQAtADcANAAmAGMAWwB1AG4A
+aQB0AF0APQBUAEgAUwBfAFAARQBSACYAYwBbAHMAZQB4AF0APQBNACwARgAmAGMAWwBnAGUAbwBd
+AD0ARQBVADIANwBfADIAMAAyADAALABCAEUALABCAEcALABDAFoALABEAEsALABEAEUALABFAEUA
+LABJAEUALABFAEwALABFAFMALABGAFIALABIAFIALABJAFQALABDAFkALABMAFYALABMAFQALABM
+AFUALABIAFUALABNAFQALABOAEwALABBAFQALABQAEwALABQAFQALABSAE8ALABTAEkALABTAEsA
+LABGAEkALABTAEUALABJAFMALABOAE8ALABDAEgALABVAEsALABUAFIALABVAFMALABKAFAAJgBj
+AG8AbQBwAHIAZQBzAHMAPQBmAGEAbABzAGUAJgBmAG8AcgBtAGEAdAA9AGMAcwB2AGQAYQB0AGEA
+JgBmAG8AcgBtAGEAdABWAGUAcgBzAGkAbwBuAD0AMgAuADAAJgBsAGEAbgBnAD0AZQBuACYAbABh
+AGIAZQBsAHMAPQBuAGEAbQBlAAELRABlAGIAdQBnAAAFDQAKAAADCgAAgItEAGEAdABhACAAUwBv
+AHUAcgBjAGUAPQAuADsASQBuAGkAdABpAGEAbAAgAEMAYQB0AGEAbABvAGcAPQBMAEkAQQBfAEQA
+QgBfAEIAcgBvAG4AegBlADsASQBuAHQAZQBnAHIAYQB0AGUAZAAgAFMAZQBjAHUAcgBpAHQAeQA9
+AFMAUwBQAEkAOwAAAywAAIUrSQBOAFMARQBSAFQAIABJAE4AVABPACAAUgBhAHcALgBVAG4AZQBt
+AHAAbABvAHkAbQBlAG4AdAAgACgAWwBTAFQAUgBVAEMAVABVAFIARQBdACwAWwBTAFQAUgBVAEMA
+VABVAFIARQBfAEkARABdACwAWwBTAFQAUgBVAEMAVABVAFIARQBfAE4AQQBNAEUAXQAsAFsAZgBy
+AGUAcQBdACwAWwBUAGkAbQBlACAAZgByAGUAcQB1AGUAbgBjAHkAXQAsAFsAcwBfAGEAZABqAF0A
+LABbAFMAZQBhAHMAbwBuAGEAbAAgAGEAZABqAHUAcwB0AG0AZQBuAHQAXQAsAFsAYQBnAGUAXQAs
+AFsAQQBnAGUAIABjAGwAYQBzAHMAXQAsAFsAdQBuAGkAdABdACwAWwBVAG4AaQB0ACAAbwBmACAA
+bQBlAGEAcwB1AHIAZQBdACwAWwBzAGUAeABdACwAWwBTAGUAeABfADIAXQAsAFsAZwBlAG8AXQAs
+AFsARwBlAG8AcABvAGwAaQB0AGkAYwBhAGwAIABlAG4AdABpAHQAeQAgACgAcgBlAHAAbwByAHQA
+aQBuAGcAKQBdACwAWwBUAEkATQBFAF8AUABFAFIASQBPAEQAXQAsAFsAVABpAG0AZQBdACwAWwBP
+AEIAUwBfAFYAQQBMAFUARQBdACwAWwBPAGIAcwBlAHIAdgBhAHQAaQBvAG4AIAB2AGEAbAB1AGUA
+XQAsAFsATwBCAFMAXwBGAEwAQQBHAF0ALABbAE8AYgBzAGUAcgB2AGEAdABpAG8AbgAgAHMAdABh
+AHQAdQBzACAAKABGAGwAYQBnACkAIABWADIAIABzAHQAcgB1AGMAdAB1AHIAZQBdACwAWwBDAE8A
+TgBGAF8AUwBUAEEAVABVAFMAXQAsAFsAQwBvAG4AZgBpAGQAZQBuAHQAaQBhAGwAaQB0AHkAIABz
+AHQAYQB0AHUAcwAgACgAZgBsAGEAZwApAF0AKQAgAFYAQQBMAFUARQBTACAAKABAAHMAdAByAHUA
+YwB0AHUAcgBlACwAQABzAHQAcgB1AGMAdAB1AHIAZQBJAGQALABAAHMAdAByAHUAYwB0AHUAcgBl
+AE4AYQBtAGUALABAAGYAcgBlAHEALABAAHQAaQBtAGUARgByAGUAcQAsAEAAcwBfAGEAZABqACwA
+QABzAGUAYQBzAG8AbgBhAGwAQQBkAGoAdQBzAHQAbQBlAG4AdAAsAEAAYQBnAGUALABAAGEAZwBl
+AEwAYQBiAGUAbAAsAEAAdQBuAGkAdAAsAEAAdQBuAGkAdABPAGYATQBlAGEAcwB1AHIAZQAsAEAA
+cwBlAHgALABAAHMAZQB4AEwAYQBiAGUAbAAsAEAAZwBlAG8ALABAAGcAZQBvAHAAbwBsAGkAdABp
+AGMAYQBsAEUAbgB0AGkAdAB5ACwAQAB0AGkAbQBlAFAAZQByAGkAbwBkACwAQAB0AGkAbQBlACwA
+QABvAGIAcwBWAGEAbAB1AGUAUABhAHIAYQBtACwAQABvAGIAcwBlAHIAdgBhAHQAaQBvAG4AVgBh
+AGwAdQBlACwAQABvAGIAcwBGAGwAYQBnACwAQABvAGIAcwBlAHIAdgBhAHQAaQBvAG4AUwB0AGEA
+dAB1AHMARgBsAGEAZwAsAEAAYwBvAG4AZgBTAHQAYQB0AHUAcwAsAEAAYwBvAG4AZgBpAGQAZQBu
+AHQAaQBhAGwAaQB0AHkAUwB0AGEAdAB1AHMAKQAAFUAAcwB0AHIAdQBjAHQAdQByAGUAABlAAHMA
+dAByAHUAYwB0AHUAcgBlAEkAZAAAHUAAcwB0AHIAdQBjAHQAdQByAGUATgBhAG0AZQAAC0AAZgBy
+AGUAcQAAE0AAdABpAG0AZQBGAHIAZQBxAAANQABzAF8AYQBkAGoAACdAAHMAZQBhAHMAbwBuAGEA
+bABBAGQAagB1AHMAdABtAGUAbgB0AAAJQABhAGcAZQAAE0AAYQBnAGUATABhAGIAZQBsAAALQAB1
+AG4AaQB0AAAdQAB1AG4AaQB0AE8AZgBNAGUAYQBzAHUAcgBlAAAJQABzAGUAeAAAE0AAcwBlAHgA
+TABhAGIAZQBsAAAJQABnAGUAbwAAJ0AAZwBlAG8AcABvAGwAaQB0AGkAYwBhAGwARQBuAHQAaQB0
+AHkAABdAAHQAaQBtAGUAUABlAHIAaQBvAGQAAAtAAHQAaQBtAGUAAB1AAG8AYgBzAFYAYQBsAHUA
+ZQBQAGEAcgBhAG0AACNAAG8AYgBzAGUAcgB2AGEAdABpAG8AbgBWAGEAbAB1AGUAABFAAG8AYgBz
+AEYAbABhAGcAAC1AAG8AYgBzAGUAcgB2AGEAdABpAG8AbgBTAHQAYQB0AHUAcwBGAGwAYQBnAAAX
+QABjAG8AbgBmAFMAdABhAHQAdQBzAAAtQABjAG8AbgBmAGkAZABlAG4AdABpAGEAbABpAHQAeQBT
+AHQAYQB0AHUAcwAAcVMAVABfADEAYgBjADIANgAxAGEANwA0AGUAOAAyADQAZABkADcAYgBlAGYA
+NAA2ADIANAA4ADcAZAA1AGQAOQA5AGYAMgAuAFAAcgBvAHAAZQByAHQAaQBlAHMALgBSAGUAcwBv
+AHUAcgBjAGUAcwAA1+7ni6EVm068sT+yb8++jAAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERaQQH
+ARI9BCAAEnkEIAASfQMgAA4CBg4IIAUCCA4ODggsByMOAhJBHQ4SRQgOEkkdDg4ODg4ODg4ODg4O
+Dg4ODg4ODg4ODg4OHBFRElUGAAEBEYCJCiAGAQgODg4IEAIJIAEVEoCNAQ4OBhUSgI0BDgQgABMA
+CSACHQ4dDhGAkQQAAQIOBiABARKAnQUgAQEdDgQgAQECBCAAHQ4EBhKAoQQAABJlDQAEAg4RgKUS
+gKkQEVEGIAIBDhJFBSAAEoCtByACEoCxDhwDIAAICAABEoC9EYDBBSAAEoDFByACAQ4SgMUIt3pc
+Vhk04IkIiYRdzYCAzJEIsD9ffxHVCjoEAAAAAAQBAAAAAwYSYQMGEmUDBhIQAgYIAwYRFAQAABJh
+BQABARJlBAAAEhADAAABBAgAEmEECAASZQQIABIQCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhj
+ZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTVF8xYmMyNjFhNzRlODI0ZGQ3YmVmNDYyNDg3ZDVk
+OTlmMgAABQEAAAAACgEABVhMRU5UAAAbAQAWQ29weXJpZ2h0IEAgWExFTlQgMjAyNQAASQEAGi5O
+RVRGcmFtZXdvcmssVmVyc2lvbj12NC43AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZy
+YW1ld29yayA0LjcAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
+ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
+ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAOEEAAAAAAAAAAAAAUkEAAAAgAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAERBAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+AC4EAAAAAAAAAAAAAC4ENAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQB4c8MkAAABAHhzwyQ/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sASOAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAABqAwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAALAAGAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAABYAEwARQBOAFQAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAA
+AAAAUwBUAF8AMQBiAGMAMgA2ADEAYQA3ADQAZQA4ADIANABkAGQANwBiAGUAZgA0ADYAMgA0ADgA
+NwBkADUAZAA5ADkAZgAyAAAAPgAPAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
+ADkANAAxADEALgAyADkANQA2ADAAAAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAA
+UwBUAF8AMQA0ADYAOQA1ADMAOABiADEANAAxADIANABhAGYAMQA5ADYAYQBiADUAZAAwADMAMAAx
+ADkAZAAxAGMANgAwAC4AZABsAGwAAABSABcAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQA
+AABDAG8AcAB5AHIAaQBnAGgAdAAgAEAAIABYAEwARQBOAFQAIAAyADAAMgA1AAAAAAAqAAEAAQBM
+AGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAAAHgAKAABAE8AcgBpAGcAaQBuAGEA
+bABGAGkAbABlAG4AYQBtAGUAAABTAFQAXwAxADQANgA5ADUAMwA4AGIAMQA0ADEAMgA0AGEAZgAx
+ADkANgBhAGIANQBkADAAMwAwADEAOQBkADEAYwA2ADAALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQA
+dQBjAHQATgBhAG0AZQAAAAAAUwBUAF8AMQBiAGMAMgA2ADEAYQA3ADQAZQA4ADIANABkAGQANwBi
+AGUAZgA0ADYAMgA0ADgANwBkADUAZAA5ADkAZgAyAAAAQgAPAAEAUAByAG8AZAB1AGMAdABWAGUA
+cgBzAGkAbwBuAAAAMQAuADAALgA5ADQAMQAxAC4AMgA5ADUANgAwAAAAAABGAA8AAQBBAHMAcwBl
+AG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA5ADQAMQAxAC4AMgA5ADUANgAwAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAABkMQAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</BinaryItem>
+        </ScriptProject>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{89027EED-FB1D-40BB-A7F4-7263C08A0FA3}"
+      DTS:From="Package\SQL_truncate_RawUnemployment"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\ST_RawUnemployment" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="240,42"
+          Id="Package\SQL_truncate_RawUnemployment"
+          TopLeft="67,60" />
+        <NodeLayout
+          Size="188,42"
+          Id="Package\ST_RawUnemployment"
+          TopLeft="89.3333333333333,195.111111111111" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="185.166666666667,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93.111111111111"
+              Start="0,0"
+              End="0,85.611111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85.611111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,557 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2025 10:33:46 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{D0D37E27-CB35-4692-AC9E-CEDD59DFF72B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{0A549BD9-FADD-4D59-B4DA-F6C065E58459}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_employment_category_hierarchy_raw"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DD249282-D5CD-4709-932A-F3A291B4441A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_employment_category_hierarchy_raw"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_employment_category_hierarchy_raw"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[employment_category_hierarchy_raw]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Connections[OleDbConnection]"
+                  connectionManagerID="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Bronze]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[Region]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Region"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Region]" />
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[RegionSort]"
+                      cachedDataType="r8"
+                      cachedName="RegionSort"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[RegionSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[RegionSort]" />
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[AgeClass]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="AgeClass"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClass]" />
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[AgeClassSort]"
+                      cachedDataType="r8"
+                      cachedName="AgeClassSort"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[AgeClassSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClassSort]" />
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[Gender]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Gender"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Gender]" />
+                    <inputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].Columns[GenderSort]"
+                      cachedDataType="r8"
+                      cachedName="GenderSort"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[GenderSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[GenderSort]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[RowId]"
+                      dataType="i4"
+                      name="RowId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[RegionSort]"
+                      dataType="i4"
+                      name="RegionSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[AgeClass]"
+                      dataType="wstr"
+                      length="255"
+                      name="AgeClass" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[AgeClassSort]"
+                      dataType="i4"
+                      name="AgeClassSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[GenderSort]"
+                      dataType="i4"
+                      name="GenderSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedBronzeAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="XL_SRC_EmploymentCategoryHierarchy"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Hierarchy$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Connections[OleDbConnection]"
+                  connectionManagerID="{59D868FF-CAFF-4018-83A4-082E1894AE8B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[XL_SRC_EmploymentCategoryHierarchy]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Region]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[RegionSort]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[RegionSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[RegionSort]"
+                      name="RegionSort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClass]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[AgeClass]"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClass]"
+                      name="AgeClass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClassSort]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[AgeClassSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[AgeClassSort]"
+                      name="AgeClassSort"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[Gender]"
+                      name="Gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[GenderSort]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[GenderSort]"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].Columns[GenderSort]"
+                      name="GenderSort"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[RegionSort]"
+                      dataType="r8"
+                      name="RegionSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[AgeClass]"
+                      dataType="wstr"
+                      length="255"
+                      name="AgeClass" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[AgeClassSort]"
+                      dataType="r8"
+                      name="AgeClassSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output].ExternalColumns[GenderSort]"
+                      dataType="r8"
+                      name="GenderSort" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[RegionSort]"
+                      dataType="r8"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[RegionSort]"
+                      name="RegionSort" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[AgeClass]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[AgeClass]"
+                      name="AgeClass" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[AgeClassSort]"
+                      dataType="r8"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[AgeClassSort]"
+                      name="AgeClassSort" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[Gender]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[Gender]"
+                      name="Gender" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[GenderSort]"
+                      dataType="r8"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[GenderSort]"
+                      name="GenderSort" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_employment_category_hierarchy_raw.Paths[Excel Source Output]"
+              endId="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL truncate employment_category_hierarchy_raw"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7c751779-a76f-4931-8953-62e45e20cae1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL truncate employment_category_hierarchy_raw"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE employment_category_hierarchy_raw;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D18E7767-A6E3-43DF-840A-8F2887E4E64F}"
+      DTS:From="Package\SQL truncate employment_category_hierarchy_raw"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF_employment_category_hierarchy_raw" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="275,42"
+          Id="Package\DF_employment_category_hierarchy_raw"
+          TopLeft="145,234" />
+        <NodeLayout
+          Size="320,42"
+          Id="Package\SQL truncate employment_category_hierarchy_raw"
+          TopLeft="126,59" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="284.25,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,133"
+              Start="0,0"
+              End="0,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_employment_category_hierarchy_raw">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="306,42"
+          Id="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw"
+          TopLeft="197,225" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy"
+          TopLeft="221,50" />
+        <EdgeLayout
+          Id="Package\DF_employment_category_hierarchy_raw.Paths[Excel Source Output]"
+          TopLeft="352,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,133"
+              Start="0,0"
+              End="0,125.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,125.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_employment_category_hierarchy_raw\OLE_DST_employment_category_hierarchy_raw">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_employment_category_hierarchy_raw\XL_SRC_EmploymentCategoryHierarchy">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

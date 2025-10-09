@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim AgeClassEmp"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{400F2A75-4F10-4D79-AC0A-AB43F7F48A73}">
+  DTS:VersionBuild="22"
+  DTS:VersionGUID="{43599181-0288-4FC1-9712-09F5703CFD9B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,26 +32,26 @@
           version="1">
           <components>
             <component
-              refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate"
+              refId="Package\DF_DimAgeClassEmp\DC_Concatenate"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column - Concatenate"
+              name="DC_Concatenate"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="Description"
                       lineageId="Package\DF_DimAgeClassEmp\OLE_SRC_FactEmployment.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[AgeClass]"
+                      refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input].Columns[AgeClass]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="AgeClass"
@@ -62,19 +62,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="26"
-                      lineageId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      lineageId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
                       name="ErrorDescription"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,11 +120,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics"
+              refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="LIA_DB_Diagnostics"
+              name="OLE_DST_Diagnostics_DB_Silver"
               usesDispositions="true"
               version="4">
               <properties>
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,51 +185,51 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       lineageId="Package\DF_DimAgeClassEmp\OLE_SRC_FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       lineageId="Package\DF_DimAgeClassEmp\OLE_SRC_FactEmployment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
                       cachedDataType="wstr"
                       cachedLength="26"
                       cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      externalMetadataColumnId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       dataType="wstr"
                       length="500"
                       name="ErrorDescription" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
                   </externalMetadataColumns>
@@ -237,22 +237,22 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -528,12 +528,12 @@
           <paths>
             <path
               refId="Package\DF_DimAgeClassEmp.Paths[Derived Column Output]"
-              endId="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimAgeClassEmp\DC_Concatenate.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_DimAgeClassEmp.Paths[OLE DB Source Error Output]"
-              endId="Package\DF_DimAgeClassEmp\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              endId="Package\DF_DimAgeClassEmp\DC_Concatenate.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
               startId="Package\DF_DimAgeClassEmp\OLE_SRC_FactEmployment.Outputs[OLE DB Source Error Output]" />
             <path
@@ -546,13 +546,13 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate DimAgeClassEmp"
+      DTS:refId="Package\SQL_truncate_DimAgeClassEmp"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{2BC05C00-96E1-4743-8FFB-EB707F2B72FC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate DimAgeClassEmp"
+      DTS:ObjectName="SQL_truncate_DimAgeClassEmp"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -568,7 +568,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{ED3702FB-BD51-4139-9264-2033447DE91A}"
-      DTS:From="Package\SQL truncate DimAgeClassEmp"
+      DTS:From="Package\SQL_truncate_DimAgeClassEmp"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\DF_DimAgeClassEmp" />
@@ -588,25 +588,25 @@
         <NodeLayout
           Size="179,42"
           Id="Package\DF_DimAgeClassEmp"
-          TopLeft="70,215" />
+          TopLeft="84,216" />
         <NodeLayout
-          Size="206,42"
-          Id="Package\SQL truncate DimAgeClassEmp"
+          Size="230,42"
+          Id="Package\SQL_truncate_DimAgeClassEmp"
           TopLeft="60,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="161.25,102">
+          TopLeft="174.25,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,113"
+              EndConnector="0,114"
               Start="0,0"
-              End="0,105.5">
+              End="0,106.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,105.5" />
+                    End="0,106.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -624,16 +624,16 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics"
-          TopLeft="497,258" />
+          Size="233,42"
+          Id="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver"
+          TopLeft="439,259" />
         <NodeLayout
           Size="207,42"
           Id="Package\DF_DimAgeClassEmp\OLE_SRC_FactEmployment"
           TopLeft="75,48" />
         <NodeLayout
-          Size="223,42"
-          Id="Package\DF_DimAgeClassEmp\Derived Column - Concatenate"
+          Size="157,42"
+          Id="Package\DF_DimAgeClassEmp\DC_Concatenate"
           TopLeft="479,150" />
         <NodeLayout
           Size="210,42"
@@ -667,9 +667,9 @@
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="378.833333333333,60"
+              EndConnector="345.833333333333,60"
               Start="0,0"
-              End="378.833333333333,52.5">
+              End="345.833333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -680,37 +680,37 @@
                     Point2="0,24.2761265580058"
                     Point3="4,24.2761265580058" />
                   <mssgle:LineSegment
-                    End="374.833333333333,24.2761265580058" />
+                    End="341.833333333333,24.2761265580058" />
                   <mssgle:CubicBezierSegment
-                    Point1="374.833333333333,24.2761265580058"
-                    Point2="378.833333333333,24.2761265580058"
-                    Point3="378.833333333333,28.2761265580058" />
+                    Point1="341.833333333333,24.2761265580058"
+                    Point2="345.833333333333,24.2761265580058"
+                    Point3="345.833333333333,28.2761265580058" />
                   <mssgle:LineSegment
-                    End="378.833333333333,52.5" />
+                    End="345.833333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="125.982760416667,29.2761265580058,126.8678125,11.43359375"
+              BoundingBox="109.482760416667,29.2761265580058,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimAgeClassEmp.Paths[Derived Column Output]"
-          TopLeft="587,192">
+          TopLeft="556.5,192">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,66"
+              EndConnector="0,67"
               Start="0,0"
-              End="0,58.5">
+              End="0,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5" />
+                    End="0,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -723,7 +723,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimAgeClassEmp\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimAgeClassEmp\OLE_DST_Diagnostics_DB_Silver">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

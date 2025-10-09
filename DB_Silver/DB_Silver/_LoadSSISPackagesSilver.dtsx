@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackagesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{643C9F01-5307-4DB1-BDF8-E82D14671993}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{76F5E2FA-3429-40D5-A8C5-E323F299680C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -209,6 +209,40 @@
       DTS:ObjectName="Sequence Container - Load Silver Fact">
       <DTS:Variables />
       <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{8DA82F39-C11F-4DC7-AE82-30B9AE0ADC66}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_BridgeRegionGroup"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Bridge.RegionGroup.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_DimConfigGroup"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3E4E5F1B-5982-4063-A328-30088DC6C864}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_DimConfigGroup"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Dim.ConfigGroup.dtsx</PackageName>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_FactEmployment"
           DTS:CreationName="Microsoft.ExecutePackageTask"
@@ -456,28 +490,48 @@
         <NodeLayout
           Size="195,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactUnemployment"
-          TopLeft="378.5,247.5" />
+          TopLeft="400.5,246.5" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
+          TopLeft="42,341" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_DimConfigGroup"
+          TopLeft="400,345" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1083,346"
-          Size="1083,389"
+          PanelSize="1083,466"
+          Size="1083,509"
           Id="Package\Sequence Container - Load Silver Fact"
           TopLeft="29,187" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="569.75,576">
+          TopLeft="1112,441.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,83"
+              EndConnector="0,462"
               Start="0,0"
-              End="0,75.5">
+              End="7.5,462">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,75.5" />
+                    End="18.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.5,0"
+                    Point2="22.5,0"
+                    Point3="22.5,4" />
+                  <mssgle:LineSegment
+                    End="22.5,458" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,458"
+                    Point2="22.5,462"
+                    Point3="18.5,462" />
+                  <mssgle:LineSegment
+                    End="7.5,462" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

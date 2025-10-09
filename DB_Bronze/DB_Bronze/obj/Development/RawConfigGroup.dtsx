@@ -1,0 +1,797 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2025 11:41:29 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{49C474EA-19CF-4E31-84FA-3837E3F7780E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{95E7F234-46C0-4A70-A23D-F628CB82A7D4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_RawConfigGroup"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{cf969b0d-47d6-4117-88ef-465d54a737e6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_RawConfigGroup"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_RawConfigGroup\Derived Column - Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column - Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[group_key]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_key"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_key]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[group_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_name"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_name]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[group_sort]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_sort"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_sort]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,500)((DT_WSTR,100)#{Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_key]} + " | " + [TRIM]([REPLACENULL]((DT_WSTR,300)#{Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_name]},"")) + " | " + (DT_WSTR,100)#{Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_sort]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,500)((DT_WSTR,100)group_key + " | " + TRIM(REPLACENULL((DT_WSTR,300)group_name,"")) + " | " + (DT_WSTR,100)group_sort)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_Diagnostics_DB_Bronze"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_DB_Bronze]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Connections[OleDbConnection]"
+                  connectionManagerID="{1526A1A1-661B-48A2-916E-36893FC832FB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_RawConfigGroup"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Raw].[ConfigGroup]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Connections[OleDbConnection]"
+                  connectionManagerID="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Bronze]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].Columns[group_key]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_key"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_key]"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_key]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].Columns[group_name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_name"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_name]"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_name]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].Columns[group_sort]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="group_sort"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_sort]"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_sort]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[RowId]"
+                      dataType="i4"
+                      name="RowId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_key]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_key" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[group_sort]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_sort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="XL_SRC_EUGroupsBridgeConfig"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">DimConfigGroup$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Connections[OleDbConnection]"
+                  connectionManagerID="{5ED28D30-6DC6-4957-9750-5128FFBA51DE}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[XL_EUGroupsBridgeConfig]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_key]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_key]"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_key]"
+                      name="group_key"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_name]"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_name]"
+                      name="group_name"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_sort]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_sort]"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].Columns[group_sort]"
+                      name="group_sort"
+                      truncationRowDisposition="RedirectRow" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_key]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_key" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output].ExternalColumns[group_sort]"
+                      dataType="wstr"
+                      length="255"
+                      name="group_sort" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_key]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_key]"
+                      name="group_key" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_name]"
+                      name="group_name" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_sort]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[group_sort]"
+                      name="group_sort" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_RawConfigGroup.Paths[Derived Column Output]"
+              endId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_RawConfigGroup.Paths[Excel Source Error Output]"
+              endId="Package\DF_RawConfigGroup\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              name="Excel Source Error Output"
+              startId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output]" />
+            <path
+              refId="Package\DF_RawConfigGroup.Paths[Excel Source Output]"
+              endId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_truncate_RawConfigGroup"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3935606c-6b1b-4391-8700-7e1912ac4d13}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_truncate_RawConfigGroup"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Raw.ConfigGroup;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{69978683-f75e-498e-8446-27bd79e502d2}"
+      DTS:From="Package\SQL_truncate_RawConfigGroup"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF_RawConfigGroup" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\DF_RawConfigGroup"
+          TopLeft="87,239" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\SQL_truncate_RawConfigGroup"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="174.25,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,137"
+              Start="0,0"
+              End="0,129.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,129.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_RawConfigGroup">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="227,42"
+          Id="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig"
+          TopLeft="263,60" />
+        <NodeLayout
+          Size="208,42"
+          Id="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup"
+          TopLeft="240,239" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DF_RawConfigGroup\Derived Column - Concatenate"
+          TopLeft="587,141" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze"
+          TopLeft="578,240" />
+        <EdgeLayout
+          Id="Package\DF_RawConfigGroup.Paths[Excel Source Output]"
+          TopLeft="342,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,137"
+              Start="0,0"
+              End="0,129.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,129.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_RawConfigGroup.Paths[Excel Source Error Output]"
+          TopLeft="413,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="285.5,39"
+              Start="0,0"
+              End="285.5,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7637795275591" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.7637795275591"
+                    Point2="0,15.7637795275591"
+                    Point3="4,15.7637795275591" />
+                  <mssgle:LineSegment
+                    End="281.5,15.7637795275591" />
+                  <mssgle:CubicBezierSegment
+                    Point1="281.5,15.7637795275591"
+                    Point2="285.5,15.7637795275591"
+                    Point3="285.5,19.7637795275591" />
+                  <mssgle:LineSegment
+                    End="285.5,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="84.89861328125,20.7637795275591,115.7027734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_RawConfigGroup.Paths[Derived Column Output]"
+          TopLeft="698.25,183">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

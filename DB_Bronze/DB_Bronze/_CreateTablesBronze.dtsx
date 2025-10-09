@@ -11,12 +11,31 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="153"
-  DTS:VersionGUID="{584C2741-49CB-4582-8702-C374C286925B}">
+  DTS:VersionBuild="186"
+  DTS:VersionGUID="{E2819AFA-4A4A-4F07-AC85-4A3DA7FE44DF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Create Diagnostics_Bronze"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a87ed9ae-e66e-4765-9895-b84199f8b8c8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="1033"
+      DTS:ObjectName="Create Diagnostics_Bronze"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DB_Bronze', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Diagnostics_DB_Bronze;&#xA;&#xA;CREATE TABLE dbo.Diagnostics_DB_Bronze (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -28,108 +47,13 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create employment_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawConfigGroup"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{37CB75C4-44A8-4D70-ABCB-0D33D8AD58C3}"
+          DTS:DTSID="{deb642f1-e874-44dd-a397-7489e19b2a7a}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="1033"
-          DTS:ObjectName="Create employment_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.employment_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.employment_raw;&#xA;GO&#xA;&#xA;CREATE TABLE dbo.employment_raw (&#xA;    STRUCTURE                               NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                            NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                          NVARCHAR(255)  NULL,&#xA;    freq                                    NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;    [Time frequency]                        NVARCHAR(50)   NULL,&#xA;    indic_em                                NVARCHAR(50)   NULL,  -- sysselsättningsindikator-kod (EMP_LFS)&#xA;    [Employment indicator]                  NVARCHAR(100)  NULL,  -- beskrivning av indikator&#xA;    s_adj                                   NVARCHAR(50)   NULL,  -- NSA/SA&#xA;    [Seasonal adjustment]                   NVARCHAR(100)  NULL,&#xA;    sex                                     NVARCHAR(10)   NULL,  -- M/F&#xA;    [Sex_2]                                   NVARCHAR(50)   NULL,  -- Male/Female&#xA;    age                                     NVARCHAR(50)   NULL,  -- Y20-64&#xA;    [Age class]                             NVARCHAR(100)  NULL,&#xA;    unit                                    NVARCHAR(50)   NULL,  -- THS_PER&#xA;    [Unit of measure]                       NVARCHAR(100)  NULL,&#xA;    geo                                     NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;    [Geopolitical entity (reporting)]       NVARCHAR(200)  NULL,&#xA;    TIME_PERIOD                             NVARCHAR(100)  NOT NULL,  -- t.ex. 2003-Q1&#xA;    [Time]                                  NVARCHAR(100)  NULL,      -- textuell period&#xA;    OBS_VALUE                               NVARCHAR(100)  NULL,      -- rå strängversion av värde&#xA;    [Observation value]                     NVARCHAR(100)  NULL,      -- värde med etikett&#xA;    OBS_FLAG                                NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure] NVARCHAR(70)  NULL,&#xA;    CONF_STATUS                             NVARCHAR(50)   NULL,      -- konfidentialitetskod&#xA;    [Confidentiality status (flag)]         NVARCHAR(50)   NULL,&#xA;    CreatedBronzeAt                         DATETIME       NOT NULL  DEFAULT GETDATE()&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create gdp_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{A4DC51C3-DDE3-456A-9445-423BD759E98B}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create gdp_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.gdp_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.gdp_raw;&#xA;&#xA;CREATE TABLE dbo.gdp_raw (&#xA;    STRUCTURE                      NVARCHAR(100) NULL,  -- V2 structure&#xA;    STRUCTURE_ID                  NVARCHAR(100) NULL,&#xA;    STRUCTURE_NAME                NVARCHAR(255) NULL,&#xA;    freq                           NVARCHAR(50)  NULL,  -- t.ex. Q&#xA;    [Time frequency]               NVARCHAR(50)  NULL,&#xA;    unit                           NVARCHAR(50)  NULL,  -- t.ex. CP_MEUR&#xA;    [Unit of measure]              NVARCHAR(100) NULL,&#xA;    s_adj                          NVARCHAR(50)  NULL,  -- NSA/SA&#xA;    [Seasonal adjustment]          NVARCHAR(100) NULL,&#xA;    na_item                        NVARCHAR(50)  NULL,  -- B1GQ&#xA;    [National accounts indicator (ESA 2010)]  NVARCHAR(200) NULL,&#xA;    geo                            NVARCHAR(50)  NULL,  -- t.ex. SE, EU27_2020&#xA;    [Geopolitical entity (reporting)]   NVARCHAR(200) NULL,&#xA;    TIME_PERIOD                    NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-Q1&#xA;    [Time]                         NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                      NVARCHAR(100)  NULL,&#xA;    [Observation value]            NVARCHAR(100) NULL,      -- rå strängversion&#xA;    OBS_FLAG                       NVARCHAR(10)  NULL,&#xA;    [Observation status (Flag) V2 structure]  NVARCHAR(70) NULL,&#xA;    CONF_STATUS                    NVARCHAR(50)  NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status (flag)]    NVARCHAR(50) NULL,&#xA;    CreatedBronzeAt                DATETIME      NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create government_debt_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{F52DA1E7-1FDD-4C04-B579-1F84F647F2B2}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create government_debt_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.government_debt_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.government_debt_raw;&#xA;&#xA;CREATE TABLE dbo.government_debt_raw (&#xA;    STRUCTURE                                  NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                               NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                             NVARCHAR(255)  NULL,&#xA;    freq                                       NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;    [Time frequency]                           NVARCHAR(50)   NULL,&#xA;    na_item                                    NVARCHAR(50)   NULL,  -- GD&#xA;    [National accounts indicator (ESA 2010)]   NVARCHAR(200)  NULL,&#xA;    sector                                     NVARCHAR(50)   NULL,  -- S13&#xA;    [Sector_2]                                   NVARCHAR(200)  NULL,&#xA;    unit                                       NVARCHAR(50)   NULL,  -- MIO_EUR&#xA;    [Unit of measure]                          NVARCHAR(100)  NULL,&#xA;    geo                                        NVARCHAR(50)   NULL,  -- t.ex. SE, EU27_2020&#xA;    [Geopolitical entity (reporting)]          NVARCHAR(200)  NULL,&#xA;    TIME_PERIOD                                NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-Q1&#xA;    [Time]                                     NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                                  NVARCHAR(100)  NULL,      -- numeriskt värde&#xA;    [Observation value]                        NVARCHAR(100)  NULL,      -- rå strängversion&#xA;    OBS_FLAG                                   NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure]   NVARCHAR(50)   NULL,&#xA;    CONF_STATUS                                NVARCHAR(50)   NULL,      -- Confidentiality status (flag) kod&#xA;    [Confidentiality status (flag)]            NVARCHAR(50)   NULL,      -- etikett för konfidentialitet&#xA;    CreatedBronzeAt                            DATETIME       NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create hicp_index_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{56D4BDE2-E46B-43F7-BEAC-F75DD4BD490B}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create hicp_index_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.hicp_index_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.hicp_index_raw;&#xA;GO&#xA;&#xA;CREATE TABLE dbo.hicp_index_raw (&#xA;    STRUCTURE                                        NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                                     NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                                   NVARCHAR(255)  NULL,&#xA;    freq                                             NVARCHAR(50)   NULL,  -- t.ex. M&#xA;    [Time frequency]                                 NVARCHAR(50)   NULL,&#xA;    unit                                             NVARCHAR(50)   NULL,  -- t.ex. I15&#xA;    [Unit of measure]                                NVARCHAR(100)  NULL,&#xA;    coicop                                           NVARCHAR(50)   NULL,  -- CP00&#xA;    [Classification of individual consumption by purpose (COICOP)]&#xA;                                                     NVARCHAR(200)  NULL,&#xA;    geo                                              NVARCHAR(50)   NULL,  -- t.ex. SE, EU27_2020&#xA;    [Geopolitical entity (reporting)]                NVARCHAR(200)  NULL,&#xA;    TIME_PERIOD                                      NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-05&#xA;    [Time]                                           NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                                        NVARCHAR(100)  NULL,      -- numeriskt värde som sträng&#xA;    [Observation value]                              NVARCHAR(100)  NULL,      -- etikettad version&#xA;    OBS_FLAG                                         NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure]         NVARCHAR(50)   NULL,&#xA;    CONF_STATUS                                      NVARCHAR(50)   NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status (flag)]                  NVARCHAR(50)   NULL,&#xA;    CreatedBronzeAt                                  DATETIME       NOT NULL  DEFAULT GETDATE()&#xA;);&#xA;GO&#xA;&#xA;-- Om du vill ha ett unikt index på kombinationen geo + TIME_PERIOD:&#xA;-- CREATE UNIQUE INDEX UX_BronzeHICP_geo_TIME_PERIOD &#xA;--     ON dbo.hicp_index_raw (geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create job_vacancies_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{F3CC70D6-2B27-4D80-91C0-EBE705875948}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create job_vacancies_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.job_vacancies_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.job_vacancies_raw;&#xA;GO&#xA;&#xA;CREATE TABLE dbo.job_vacancies_raw (&#xA;    STRUCTURE                       NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                             NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                        NVARCHAR(255)  NULL,&#xA;    freq                                                   NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;    [Time frequency]                                 NVARCHAR(50)   NULL,&#xA;    s_adj                                                 NVARCHAR(50)   NULL,  -- NSA/SA&#xA;    [Seasonal adjustment]                         NVARCHAR(100)  NULL,&#xA;    nace_r2                                              NVARCHAR(50)   NULL,  -- NACE Rev. 2-kod&#xA;    [Statistical classification of economic activities in the European Community (NACE Rev. 2)]  &#xA;                                                             NVARCHAR(255)  NULL,  -- beskrivning av NACE-kod&#xA;    sizeclas                                              NVARCHAR(50)   NULL,  -- TOTAL, ST, SK osv.&#xA;    [Size classes in number of employees] NVARCHAR(100)  NULL,  -- beskrivning av storleksklass&#xA;    indic_em                                             NVARCHAR(50)   NULL,  -- JOBVAC&#xA;    [Employment indicator]                     NVARCHAR(100)  NULL,  -- beskrivning av indikator&#xA;    geo                                                   NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;    [Geopolitical entity (reporting)]         NVARCHAR(200)  NULL,  -- lands-/regionsnamn&#xA;    TIME_PERIOD                              NVARCHAR(100)  NOT NULL,  -- t.ex. 2022-Q1&#xA;    [Time]                                               NVARCHAR(100)  NULL,      -- textuell period&#xA;    OBS_VALUE                                     NVARCHAR(100)  NULL,      -- rå strängversion av värde&#xA;    [Observation value]                           NVARCHAR(100)  NULL,      -- värde med etikett&#xA;    OBS_FLAG                                       NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure] NVARCHAR(50)   NULL,&#xA;    CONF_STATUS                                  NVARCHAR(50)   NULL,      -- konfidentialitetskod&#xA;    [Confidentiality status (flag)]                 NVARCHAR(50)   NULL,&#xA;    CreatedBronzeAt                                 DATETIME       NOT NULL  DEFAULT GETDATE()&#xA;);&#xA;GO&#xA;&#xA;-- Om du vill ha unikt index på kombinationen geo + TIME_PERIOD:&#xA;-- CREATE UNIQUE INDEX UX_job_vacancies_raw_geo_TIME_PERIOD &#xA;--     ON dbo.job_vacancies_raw(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create money_market_interest_rates_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{BF2BFF12-A589-4C6C-ADDB-7BD3A4F4DF00}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create money_market_interest_rates_raw"
+          DTS:ObjectName="Create RawConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="1">
           <DTS:Variables />
@@ -138,17 +62,17 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.money_market_interest_rates_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.money_market_interest_rates_raw;&#xA;&#xA;CREATE TABLE dbo.money_market_interest_rates_raw (&#xA;    STRUCTURE                             NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                          NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                        NVARCHAR(255)  NULL,&#xA;    freq                                   NVARCHAR(50)   NULL,  -- t.ex. M&#xA;    [Time frequency]                      NVARCHAR(50)   NULL,&#xA;    int_rt                                 NVARCHAR(50)   NULL,  -- t.ex. IRT_M1&#xA;    [Interest rate]                       NVARCHAR(100)  NULL,&#xA;    geo                                    NVARCHAR(50)   NULL,  -- t.ex. SE, EA&#xA;    [Geopolitical entity (reporting)]     NVARCHAR(200)  NULL,&#xA;    TIME_PERIOD                           NVARCHAR(100)  NOT NULL,  -- t.ex. 1995-01&#xA;    [Time]                                NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                             NVARCHAR(100)  NULL,&#xA;    [Observation value]                   NVARCHAR(100)  NULL,      -- rå strängversion&#xA;    OBS_FLAG                              NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure]  NVARCHAR(50)   NULL,&#xA;    CONF_STATUS                           NVARCHAR(50)   NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status (flag)]       NVARCHAR(50)   NULL,&#xA;    CreatedBronzeAt                       DATETIME       NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;-- Exempel på unikt index om du vill säkerställa en rad per geo + TIME_PERIOD&#xA;-- CREATE UNIQUE INDEX UX_MoneyMarketIR_geo_TIME_PERIOD&#xA;--     ON dbo.money_market_interest_rates_raw(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF NOT EXISTS ( &#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'ConfigGroup' &#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.ConfigGroup(&#xA;  RowId INT IDENTITY(1,1) PRIMARY KEY,&#xA;  group_key  NVARCHAR(255) NULL,&#xA;  group_name NVARCHAR(255) NULL,&#xA;  group_sort NVARCHAR(255) NULL,&#xA;  CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create population_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawEmployment"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{F1A5A2E8-5984-4F20-9EAC-F4EF82FD949B}"
+          DTS:DTSID="{37CB75C4-44A8-4D70-ABCB-0D33D8AD58C3}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="1033"
-          DTS:ObjectName="Create population_raw"
+          DTS:ObjectName="Create RawEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="2">
           <DTS:Variables />
@@ -157,36 +81,17 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.population_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.population_raw;&#xA;&#xA;CREATE TABLE dbo.population_raw (&#xA;    STRUCTURE        NVARCHAR(100) NULL,  -- V2 structure&#xA;    STRUCTURE_ID                NVARCHAR(100) NULL,&#xA;    STRUCTURE_NAME         NVARCHAR(255) NULL,&#xA;    freq                         NVARCHAR(50)  NULL,  -- t.ex. A&#xA;    [Time frequency]             NVARCHAR(50)  NULL,&#xA;    unit                         NVARCHAR(50)  NULL,  -- t.ex. NR&#xA;    [Unit of measure]            NVARCHAR(100) NULL,&#xA;    age                          NVARCHAR(50)  NULL,  -- t.ex. TOTAL&#xA;    [Age class]                  NVARCHAR(100) NULL,&#xA;    sex                          NVARCHAR(50)  NULL,  -- t.ex. T&#xA;    [Sex_2]                        NVARCHAR(100) NULL,&#xA;    geo                          NVARCHAR(50)  NULL,  -- t.ex. EU27_2020&#xA;    [Geopolitical entity]        NVARCHAR(200) NULL,&#xA;    TIME_PERIOD                  NVARCHAR(100) NOT NULL,  -- t.ex. 2024&#xA;    [Time]                       NVARCHAR(100) NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;    OBS_VALUE                    NVARCHAR(100) NULL,&#xA;    [Observation value]          NVARCHAR(100) NULL,      -- rå strängversion&#xA;    OBS_FLAG                     NVARCHAR(10)  NULL,&#xA;    [Observation status]         NVARCHAR(50)  NULL,&#xA;    CONF_STATUS                  NVARCHAR(50)  NULL,      -- Confidentiality status (flag)&#xA;    [Confidentiality status]     NVARCHAR(50)  NULL,&#xA;    CreatedBronzeAt              DATETIME      NOT NULL DEFAULT GETDATE()&#xA;);&#xA;&#xA;-- Om du vill ha unikt index på kombinationen geo + TIME_PERIOD:&#xA;--CREATE UNIQUE INDEX UX_BronzePop_geo_TIME_PERIOD &#xA;--    ON dbo.population_raw(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.Employment', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.Employment;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'Employment' &#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.Employment (&#xA;        RowId                                   INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                               NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID                            NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                          NVARCHAR(255)  NULL,&#xA;&#xA;        freq                                    NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;        [Time frequency]                        NVARCHAR(50)   NULL,&#xA;&#xA;        indic_em                                NVARCHAR(50)   NULL,  -- sysselsättningsindikator-kod (EMP_LFS)&#xA;        [Employment indicator]                  NVARCHAR(100)  NULL,  -- beskrivning av indikator&#xA;&#xA;        s_adj                                   NVARCHAR(50)   NULL,  -- NSA/SA&#xA;        [Seasonal adjustment]                   NVARCHAR(100)  NULL,&#xA;&#xA;        sex                                     NVARCHAR(10)   NULL,  -- M/F&#xA;        [Sex_2]                                 NVARCHAR(50)   NULL,  -- Male/Female&#xA;&#xA;        age                                     NVARCHAR(50)   NULL,  -- Y20-64&#xA;        [Age class]                             NVARCHAR(100)  NULL,&#xA;&#xA;        unit                                    NVARCHAR(50)   NULL,  -- THS_PER&#xA;        [Unit of measure]                       NVARCHAR(100)  NULL,&#xA;&#xA;        geo                                     NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;        [Geopolitical entity (reporting)]       NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                             NVARCHAR(100)  NOT NULL,  -- t.ex. 2003-Q1&#xA;        [Time]                                  NVARCHAR(100)  NULL,      -- textuell period&#xA;&#xA;        OBS_VALUE                               NVARCHAR(100)  NULL,      -- rå strängversion av värde&#xA;        [Observation value]                     NVARCHAR(100)  NULL,      -- värde med etikett&#xA;&#xA;        OBS_FLAG                                NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure] NVARCHAR(70)  NULL,&#xA;&#xA;        CONF_STATUS                             NVARCHAR(50)   NULL,      -- konfidentialitetskod&#xA;        [Confidentiality status (flag)]         NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create target_inflation_raw"
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawGDP"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{38c20bba-269f-4f34-8d56-e9f47ff40aec}"
+          DTS:DTSID="{A4DC51C3-DDE3-456A-9445-423BD759E98B}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="1033"
-          DTS:ObjectName="Create target_inflation_raw"
-          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
-          <DTS:Variables />
-          <DTS:LoggingOptions
-            DTS:FilterKind="0" />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'target_inflation_raw' &#xA;      AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [dbo].[target_inflation_raw]( &#xA;        RowId           int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region     nvarchar(255)  NULL,&#xA;        FromDate        date           NULL,&#xA;        TargetPercent   decimal(5,2)   NULL,&#xA;        Notes           nvarchar(255)  NULL,&#xA;        CreatedBronzeAt datetime       NOT NULL DEFAULT GETDATE()&#xA;    );&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create unemployment_raw"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{AF53892C-9336-4C0A-8E98-A1964D19DF56}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="1033"
-          DTS:ObjectName="Create unemployment_raw"
+          DTS:ObjectName="Create RawGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
           DTS:ThreadHint="3">
           <DTS:Variables />
@@ -195,12 +100,174 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.unemployment_raw', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.unemployment_raw;&#xA;GO&#xA;&#xA;CREATE TABLE dbo.unemployment_raw (&#xA;    STRUCTURE                               NVARCHAR(100)  NULL,  -- V2 structure&#xA;    STRUCTURE_ID                            NVARCHAR(100)  NULL,&#xA;    STRUCTURE_NAME                          NVARCHAR(255)  NULL,&#xA;    freq                                    NVARCHAR(50)   NULL,  -- t.ex. M&#xA;    [Time frequency]                        NVARCHAR(50)   NULL,&#xA;    s_adj                                   NVARCHAR(50)   NULL,  -- NSA/SA&#xA;    [Seasonal adjustment]                   NVARCHAR(100)  NULL,&#xA;    age                                     NVARCHAR(50)   NULL,  -- TOTAL, Y15-24, …&#xA;    [Age class]                             NVARCHAR(100)  NULL,&#xA;    unit                                    NVARCHAR(50)   NULL,  -- THS_PER&#xA;    [Unit of measure]                       NVARCHAR(100)  NULL,&#xA;    sex                                     NVARCHAR(10)   NULL,  -- M/F&#xA;    [Sex_2]                                   NVARCHAR(50)   NULL,  -- Male/Female&#xA;    geo                                     NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;    [Geopolitical entity (reporting)]       NVARCHAR(200)  NULL,&#xA;    TIME_PERIOD                             NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-05&#xA;    [Time]                                  NVARCHAR(100)  NULL,      -- Samma eller mer detaljerat&#xA;    OBS_VALUE                               NVARCHAR(100) NULL,      -- Faktiskt numeric value&#xA;    [Observation value]                     NVARCHAR(100)  NULL,      -- Rå strängversion&#xA;    OBS_FLAG                                NVARCHAR(10)   NULL,&#xA;    [Observation status (Flag) V2 structure] NVARCHAR(70)  NULL,&#xA;    CONF_STATUS                             NVARCHAR(50)   NULL,      -- Confidentiality code&#xA;    [Confidentiality status (flag)]         NVARCHAR(50)   NULL,&#xA;    CreatedBronzeAt                         DATETIME       NOT NULL  DEFAULT GETDATE()&#xA;);&#xA;GO&#xA;&#xA;-- Om du vill ha unikt index på kombinationen geo + TIME_PERIOD:&#xA;-- CREATE UNIQUE INDEX UX_unemployment_raw_geo_TIME_PERIOD &#xA;--     ON dbo.unemployment_raw(geo, TIME_PERIOD);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.GDPt', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.GDP;&#xA;GO&#xA;&#xA;-- Skapa Raw.GDP om den inte finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'GDP'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.GDP (&#xA;        RowId INT IDENTITY(1,1) PRIMARY KEY,&#xA;&#xA;        STRUCTURE                           NVARCHAR(100)  NULL,   -- V2 structure&#xA;        STRUCTURE_ID                        NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                      NVARCHAR(255)  NULL,&#xA;&#xA;        freq                                NVARCHAR(50)   NULL,   -- t.ex. Q&#xA;        [Time frequency]                    NVARCHAR(50)   NULL,&#xA;&#xA;        unit                                NVARCHAR(50)   NULL,   -- t.ex. CP_MEUR&#xA;        [Unit of measure]                   NVARCHAR(100)  NULL,&#xA;&#xA;        s_adj                               NVARCHAR(50)   NULL,   -- NSA / SA&#xA;        [Seasonal adjustment]               NVARCHAR(100)  NULL,&#xA;&#xA;        na_item                             NVARCHAR(50)   NULL,   -- B1GQ&#xA;        [National accounts indicator (ESA 2010)] NVARCHAR(200) NULL,&#xA;&#xA;        geo                                 NVARCHAR(50)   NULL,   -- t.ex. SE, EU27_2020&#xA;        [Geopolitical entity (reporting)]   NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                         NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-Q1&#xA;        [Time]                              NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;&#xA;        OBS_VALUE                           NVARCHAR(100)  NULL,&#xA;        [Observation value]                 NVARCHAR(100)  NULL,      -- rå strängversion&#xA;&#xA;        OBS_FLAG                            NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure] NVARCHAR(70) NULL,&#xA;&#xA;        CONF_STATUS                         NVARCHAR(50)   NULL,      -- Confidentiality status (flag)&#xA;        [Confidentiality status (flag)]     NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawGovernmentDebt"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F52DA1E7-1FDD-4C04-B579-1F84F647F2B2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawGovernmentDebt"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.GovernmentDebt', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.GovernmentDebt;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'GovernmentDebt'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.GovernmentDebt&#xA;    (&#xA;        RowId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                                NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID                             NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                           NVARCHAR(255)  NULL,&#xA;&#xA;        freq                                     NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;        [Time frequency]                         NVARCHAR(50)   NULL,&#xA;&#xA;        na_item                                  NVARCHAR(50)   NULL,  -- GD&#xA;        [National accounts indicator (ESA 2010)] NVARCHAR(200)  NULL,&#xA;&#xA;        sector                                   NVARCHAR(50)   NULL,  -- S13&#xA;        [Sector_2]                               NVARCHAR(200)  NULL,&#xA;&#xA;        unit                                     NVARCHAR(50)   NULL,  -- MIO_EUR&#xA;        [Unit of measure]                        NVARCHAR(100)  NULL,&#xA;&#xA;        geo                                      NVARCHAR(50)   NULL,  -- t.ex. SE, EU27_2020&#xA;        [Geopolitical entity (reporting)]        NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                              NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-Q1&#xA;        [Time]                                   NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;&#xA;        OBS_VALUE                                NVARCHAR(100)  NULL,      -- numeriskt värde&#xA;        [Observation value]                      NVARCHAR(100)  NULL,      -- rå strängversion&#xA;&#xA;        OBS_FLAG                                 NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure] NVARCHAR(50)   NULL,&#xA;&#xA;        CONF_STATUS                              NVARCHAR(50)   NULL,      -- Confidentiality status (flag) kod&#xA;        [Confidentiality status (flag)]          NVARCHAR(50)   NULL,      -- etikett för konfidentialitet&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawHICPIndex"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{56D4BDE2-E46B-43F7-BEAC-F75DD4BD490B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawHICPIndex"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.HICPIndex', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.HICPIndex;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'HICPIndex'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.HICPIndex&#xA;    (&#xA;        RowId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                                NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID                             NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                           NVARCHAR(255)  NULL,&#xA;&#xA;        freq                                     NVARCHAR(50)   NULL,  -- t.ex. M&#xA;        [Time frequency]                         NVARCHAR(50)   NULL,&#xA;&#xA;        unit                                     NVARCHAR(50)   NULL,  -- t.ex. I15&#xA;        [Unit of measure]                        NVARCHAR(100)  NULL,&#xA;&#xA;        coicop                                   NVARCHAR(50)   NULL,  -- CP00&#xA;        [Classification of individual consumption by purpose (COICOP)]&#xA;                                                NVARCHAR(200)  NULL,&#xA;&#xA;        geo                                      NVARCHAR(50)   NULL,  -- t.ex. SE, EU27_2020&#xA;        [Geopolitical entity (reporting)]        NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                              NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-05&#xA;        [Time]                                   NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;&#xA;        OBS_VALUE                                NVARCHAR(100)  NULL,      -- numeriskt värde som sträng&#xA;        [Observation value]                      NVARCHAR(100)  NULL,      -- etikettad version&#xA;&#xA;        OBS_FLAG                                 NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure] NVARCHAR(50)   NULL,&#xA;&#xA;        CONF_STATUS                              NVARCHAR(50)   NULL,      -- Confidentiality status (flag)&#xA;        [Confidentiality status (flag)]          NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawHICPTarget"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{38c20bba-269f-4f34-8d56-e9f47ff40aec}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawHICPTarget"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="6">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS ( &#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'HICPTarget' &#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE [Raw].[HICPTarget]( &#xA;        RowId           int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region          nvarchar(255)  NULL,&#xA;        FromDate        date           NULL,&#xA;        TargetPercent   decimal(5,2)   NULL,&#xA;        Notes           nvarchar(255)  NULL,&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawJobVacancies"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F3CC70D6-2B27-4D80-91C0-EBE705875948}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawJobVacancies"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="7">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.JobVacancies', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.JobVacancies;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'JobVacancies'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.JobVacancies&#xA;    (&#xA;        RowId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE        NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID     NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME   NVARCHAR(255)  NULL,&#xA;&#xA;        freq             NVARCHAR(50)   NULL,  -- t.ex. Q&#xA;        [Time frequency] NVARCHAR(50)   NULL,&#xA;&#xA;        s_adj            NVARCHAR(50)   NULL,  -- NSA/SA&#xA;        [Seasonal adjustment] NVARCHAR(100)  NULL,&#xA;&#xA;        nace_r2          NVARCHAR(50)   NULL,  -- NACE Rev. 2-kod&#xA;        [Statistical classification of economic activities in the European Community (NACE Rev. 2)]&#xA;                        NVARCHAR(255)  NULL,   -- beskrivning av NACE-kod&#xA;&#xA;        sizeclas         NVARCHAR(50)   NULL,  -- TOTAL, ST, SK osv.&#xA;        [Size classes in number of employees]&#xA;                        NVARCHAR(100)  NULL,   -- beskrivning av storleksklass&#xA;&#xA;        indic_em         NVARCHAR(50)   NULL,  -- JOBVAC&#xA;        [Employment indicator]&#xA;                        NVARCHAR(100)  NULL,   -- beskrivning av indikator&#xA;&#xA;        geo              NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;        [Geopolitical entity (reporting)]&#xA;                        NVARCHAR(200)  NULL,   -- lands-/regionsnamn&#xA;&#xA;        TIME_PERIOD      NVARCHAR(100)  NOT NULL,  -- t.ex. 2022-Q1&#xA;        [Time]           NVARCHAR(100)  NULL,      -- textuell period&#xA;&#xA;        OBS_VALUE        NVARCHAR(100)  NULL,      -- rå strängversion av värde&#xA;        [Observation value]&#xA;                        NVARCHAR(100)  NULL,      -- värde med etikett&#xA;&#xA;        OBS_FLAG         NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure]&#xA;                        NVARCHAR(50)   NULL,&#xA;&#xA;        CONF_STATUS      NVARCHAR(50)   NULL,      -- konfidentialitetskod&#xA;        [Confidentiality status (flag)]&#xA;                        NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawMoneyMarketInterestRates"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{BF2BFF12-A589-4C6C-ADDB-7BD3A4F4DF00}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawMoneyMarketInterestRates"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="8">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.MoneyMarketInterestRates', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.MoneyMarketInterestRates;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'MoneyMarketInterestRates'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.MoneyMarketInterestRates&#xA;    (&#xA;        RowId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                         NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID                      NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                    NVARCHAR(255)  NULL,&#xA;&#xA;        freq                              NVARCHAR(50)   NULL,  -- t.ex. M&#xA;        [Time frequency]                  NVARCHAR(50)   NULL,&#xA;&#xA;        int_rt                            NVARCHAR(50)   NULL,  -- t.ex. IRT_M1&#xA;        [Interest rate]                   NVARCHAR(100)  NULL,&#xA;&#xA;        geo                               NVARCHAR(50)   NULL,  -- t.ex. SE, EA&#xA;        [Geopolitical entity (reporting)] NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                       NVARCHAR(100)  NOT NULL,  -- t.ex. 1995-01&#xA;        [Time]                            NVARCHAR(100)  NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;&#xA;        OBS_VALUE                         NVARCHAR(100)  NULL,&#xA;        [Observation value]               NVARCHAR(100)  NULL,      -- rå strängversion&#xA;&#xA;        OBS_FLAG                          NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure]&#xA;                                          NVARCHAR(50)   NULL,&#xA;&#xA;        CONF_STATUS                       NVARCHAR(50)   NULL,      -- Confidentiality status (flag)&#xA;        [Confidentiality status (flag)]   NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawPopulation"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F1A5A2E8-5984-4F20-9EAC-F4EF82FD949B}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawPopulation"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="9">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.Population', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.Population;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'Population' &#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.Population&#xA;    (&#xA;        RowId                     INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                 NVARCHAR(100) NULL,   -- V2 structure&#xA;        STRUCTURE_ID              NVARCHAR(100) NULL,&#xA;        STRUCTURE_NAME            NVARCHAR(255) NULL,&#xA;&#xA;        freq                      NVARCHAR(50)  NULL,   -- t.ex. A&#xA;        [Time frequency]          NVARCHAR(50)  NULL,&#xA;&#xA;        unit                      NVARCHAR(50)  NULL,   -- t.ex. NR&#xA;        [Unit of measure]         NVARCHAR(100) NULL,&#xA;&#xA;        age                       NVARCHAR(50)  NULL,   -- t.ex. TOTAL&#xA;        [Age class]               NVARCHAR(100) NULL,&#xA;&#xA;        sex                       NVARCHAR(50)  NULL,   -- t.ex. T&#xA;        [Sex_2]                   NVARCHAR(100) NULL,&#xA;&#xA;        geo                       NVARCHAR(50)  NULL,   -- t.ex. EU27_2020&#xA;        [Geopolitical entity]     NVARCHAR(200) NULL,&#xA;&#xA;        TIME_PERIOD               NVARCHAR(100) NOT NULL,  -- t.ex. 2024&#xA;        [Time]                    NVARCHAR(100) NULL,      -- samma som TIME_PERIOD eller mer detaljerat&#xA;&#xA;        OBS_VALUE                 NVARCHAR(100) NULL,&#xA;        [Observation value]       NVARCHAR(100) NULL,      -- rå strängversion&#xA;&#xA;        OBS_FLAG                  NVARCHAR(10)  NULL,&#xA;        [Observation status]      NVARCHAR(50)  NULL,&#xA;&#xA;        CONF_STATUS               NVARCHAR(50)  NULL,      -- Confidentiality status (flag)&#xA;        [Confidentiality status]  NVARCHAR(50)  NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawRegionGroupBridge"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e3399b28-c2ac-449b-8894-35efbef32de3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawRegionGroupBridge"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="10">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS ( &#xA;    SELECT 1 &#xA;    FROM sys.tables &#xA;    WHERE name = 'RegionGroupBridge' &#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.RegionGroupBridge(&#xA;      RowId INT IDENTITY(1,1) PRIMARY KEY,&#xA;      group_key  NVARCHAR(255) NULL,&#xA;      region_ak  NVARCHAR(255) NULL, -- t.ex. 'SE'&#xA;      country_name NVARCHAR(255) NULL,&#xA;      CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawUnemployment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{AF53892C-9336-4C0A-8E98-A1964D19DF56}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="1033"
+          DTS:ObjectName="Create RawUnemployment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FA84E54E-7358-4536-AA66-67F6F9BFAE32}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Raw') IS NULL&#xA;    EXEC('CREATE SCHEMA Raw');&#xA;GO&#xA;&#xA;-- DROP om tabellen finns&#xA;IF OBJECT_ID('Raw.Unemployment', 'U') IS NOT NULL&#xA;    DROP TABLE Raw.Unemployment;&#xA;GO&#xA;&#xA;-- Skapa tabellen endast om den inte redan finns&#xA;IF NOT EXISTS ( &#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'Unemployment'&#xA;      AND schema_id = SCHEMA_ID('Raw')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Raw.Unemployment&#xA;    (&#xA;        RowId                                   INT IDENTITY(1,1) NOT NULL PRIMARY KEY,&#xA;&#xA;        STRUCTURE                               NVARCHAR(100)  NULL,  -- V2 structure&#xA;        STRUCTURE_ID                            NVARCHAR(100)  NULL,&#xA;        STRUCTURE_NAME                          NVARCHAR(255)  NULL,&#xA;&#xA;        freq                                    NVARCHAR(50)   NULL,  -- t.ex. M&#xA;        [Time frequency]                        NVARCHAR(50)   NULL,&#xA;&#xA;        s_adj                                   NVARCHAR(50)   NULL,  -- NSA/SA&#xA;        [Seasonal adjustment]                   NVARCHAR(100)  NULL,&#xA;&#xA;        age                                     NVARCHAR(50)   NULL,  -- TOTAL, Y15-24, …&#xA;        [Age class]                             NVARCHAR(100)  NULL,&#xA;&#xA;        unit                                    NVARCHAR(50)   NULL,  -- THS_PER&#xA;        [Unit of measure]                       NVARCHAR(100)  NULL,&#xA;&#xA;        sex                                     NVARCHAR(10)   NULL,  -- M/F&#xA;        [Sex_2]                                 NVARCHAR(50)   NULL,  -- Male/Female&#xA;&#xA;        geo                                     NVARCHAR(50)   NULL,  -- SE, EU27_2020, …&#xA;        [Geopolitical entity (reporting)]       NVARCHAR(200)  NULL,&#xA;&#xA;        TIME_PERIOD                             NVARCHAR(100)  NOT NULL,  -- t.ex. 2024-05&#xA;        [Time]                                  NVARCHAR(100)  NULL,      -- Samma eller mer detaljerat&#xA;&#xA;        OBS_VALUE                               NVARCHAR(100)  NULL,      -- Faktiskt numeric value (rå sträng)&#xA;        [Observation value]                     NVARCHAR(100)  NULL,      -- Rå strängversion&#xA;&#xA;        OBS_FLAG                                NVARCHAR(10)   NULL,&#xA;        [Observation status (Flag) V2 structure] NVARCHAR(70)  NULL,&#xA;&#xA;        CONF_STATUS                             NVARCHAR(50)   NULL,      -- Confidentiality code&#xA;        [Confidentiality status (flag)]         NVARCHAR(50)   NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0D398E32-C0E7-4905-B6BF-11B14747EFC6}"
+      DTS:From="Package\Create Diagnostics_Bronze"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -212,50 +279,84 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="199,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create employment_raw"
+          Size="204,42"
+          Id="Package\Create Diagnostics_Bronze"
+          TopLeft="469,28" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawConfigGroup"
+          TopLeft="41,471" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawEmployment"
           TopLeft="418.666666666667,56" />
         <NodeLayout
-          Size="154,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create gdp_raw"
+          Size="153,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawGDP"
           TopLeft="35,56" />
         <NodeLayout
-          Size="219,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create government_debt_raw"
+          Size="213,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawGovernmentDebt"
           TopLeft="424.666666666667,259" />
         <NodeLayout
-          Size="186,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create hicp_index_raw"
+          Size="183,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawHICPIndex"
           TopLeft="35,260" />
         <NodeLayout
-          Size="208,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create target_inflation_raw"
-          TopLeft="797,264" />
+          Size="187,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawHICPTarget"
+          TopLeft="31,367" />
         <NodeLayout
-          Size="209,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create job_vacancies_raw"
+          Size="195,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawJobVacancies"
           TopLeft="429.166666666667,158" />
         <NodeLayout
-          Size="284,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create money_market_interest_rates_raw"
+          Size="259,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawMoneyMarketInterestRates"
           TopLeft="769.041666666667,156" />
         <NodeLayout
-          Size="185,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create population_raw"
+          Size="182,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawPopulation"
           TopLeft="35,158" />
         <NodeLayout
-          Size="211,42"
-          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create unemployment_raw"
+          Size="224,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawRegionGroupBridge"
+          TopLeft="395,478" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze\Create RawUnemployment"
           TopLeft="791.041666666667,56" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1085,361"
-          Size="1085,404"
+          PanelSize="1085,588"
+          Size="1085,631"
           Id="Package\Sequence Container - Create bronze tables - LIA_DB_Bronze"
-          TopLeft="31,64" />
+          TopLeft="33,115" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="573.25,70">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>

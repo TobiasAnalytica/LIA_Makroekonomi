@@ -1,0 +1,2132 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/8/2025 12:42:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{34D99DD7-DAD6-4136-B6CF-57CED41DE6F6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{D4A4F870-625E-456B-8892-05A30B93F213}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_DimConfigGroup"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D50E8B0A-645A-4B9F-B5D4-06461B2B4EB2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_DimConfigGroup"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="CS_GoodRows_or_Rejects"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[GoodRows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="GoodRows"
+                  synchronousInputId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="RedirectRow">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]} == 1 &amp;&amp; ![ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) &amp;&amp; [LEN](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) &gt; 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">IsValid == 1 &amp;&amp; !ISNULL(GroupName) &amp;&amp; LEN(GroupName) &gt; 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Rejects]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Rejects"
+                  synchronousInputId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="RedirectRow">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]} == 0 || [ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]}) || [ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) || [LEN](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) == 0 || [ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">IsValid == 0 || ISNULL(GroupKey) || ISNULL(GroupName) || LEN(GroupName) == 0 || ISNULL(GroupSort)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\DC_Concatenate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_Concatenate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      name="ErrorDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,500)((DT_WSTR,10)#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupKey]} + " | " + [TRIM]([REPLACENULL]((DT_WSTR,300)#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupName]},"")) + " | " + (DT_WSTR,10)#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,500)((DT_WSTR,10)GroupKey + " | " + TRIM(REPLACENULL((DT_WSTR,300)GroupName,"")) + " | " + (DT_WSTR,10)GroupSort)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_CS_ErrorReason"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="51"
+                      lineageId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Conditional Split error (see ErrorCode/ErrorColumn)"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Conditional Split error (see ErrorCode/ErrorColumn)"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\DC_ErrorReason"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_ErrorReason"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,500)([ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]}) ? "Invalid GroupKey" : ([ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) || [LEN](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]}) == 0 ? "Missing/empty GroupName" : ([ISNULL](#{Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]}) ? "Invalid GroupSort" : "Validation failed")))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,500)(ISNULL(GroupKey) ? "Invalid GroupKey" : (ISNULL(GroupName) || LEN(GroupName) == 0 ? "Missing/empty GroupName" : (ISNULL(GroupSort) ? "Invalid GroupSort" : "Validation failed")))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_Diagnostics_DB_Silver"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Diagnostics_DB_Silver]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorDescription"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="wstr"
+                      length="100"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      dataType="dbTimeStamp"
+                      name="CreatedErrorAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_DimConfigGroup"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Dim].[ConfigGroup]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupName]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupSort]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronsAt]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupKey]"
+                      dataType="i4"
+                      name="GroupKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupName]"
+                      dataType="wstr"
+                      length="120"
+                      name="GroupName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupSort]"
+                      dataType="i4"
+                      name="GroupSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronsAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronsAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_rejConfigGroup"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[rej].[ConfigGroup]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Connections[OleDbConnection]"
+                  connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupKeySrc]"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupNameSrc]"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupName]" />
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupSortSrc]"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupSort]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[RejectId]"
+                      dataType="i4"
+                      name="RejectId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupKeySrc]"
+                      dataType="wstr"
+                      length="50"
+                      name="GroupKeySrc" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupNameSrc]"
+                      dataType="wstr"
+                      length="120"
+                      name="GroupNameSrc" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupSortSrc]"
+                      dataType="wstr"
+                      length="50"
+                      name="GroupSortSrc" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC_RawConfigGroup"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    TRY_CONVERT(int, LTRIM(RTRIM(r.group_key)))                                       AS GroupKey,
+    CA.GroupName,
+    TRY_CONVERT(int, LTRIM(RTRIM(r.group_sort)))                                      AS GroupSort,
+    TRY_CONVERT(datetime2(0), NULLIF(LTRIM(RTRIM(r.CreatedBronzeAt)), N''))           AS CreatedBronzeAt,
+    CASE 
+        WHEN TRY_CONVERT(int, LTRIM(RTRIM(r.group_key))) IS NULL
+          OR CA.GroupName IS NULL OR CA.GroupName = N''
+          OR TRY_CONVERT(int, LTRIM(RTRIM(r.group_sort))) IS NULL
+        THEN 0 ELSE 1
+    END                                                                               AS IsValid
+FROM Raw.ConfigGroup r
+CROSS APPLY (
+    SELECT
+        GroupName = CONVERT(NVARCHAR(120),
+                        LEFT(
+                            LTRIM(RTRIM(
+                                REPLACE(
+                                    REPLACE(ISNULL(r.group_name, N''), NCHAR(8211), N'-'),
+                                    NCHAR(160), N' '
+                                )
+                            )),
+                            120
+                        )
+                    )
+) CA;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Connections[OleDbConnection]"
+                  connectionManagerID="{F0FC0D67-D690-49CA-AF80-78816002DB1C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Bronze]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupKey]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]"
+                      name="GroupKey"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupName]"
+                      length="255"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]"
+                      name="GroupName"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupSort]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]"
+                      name="GroupSort"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupKey]"
+                      dataType="i4"
+                      name="GroupKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupName]"
+                      dataType="wstr"
+                      length="120"
+                      name="GroupName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[GroupSort]"
+                      dataType="i4"
+                      name="GroupSort" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupKey]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupKey]"
+                      name="GroupKey" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupName]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupName]"
+                      name="GroupName" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]"
+                      name="GroupSort" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupSort]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorReason"
+                      lineageId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupSort]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]"
+                      name="GroupKey" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupName]"
+                      name="GroupName" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupSort]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[GroupSort]"
+                      name="GroupSort" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]"
+                      name="ErrorReason" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimConfigGroup\Union All 1"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All 1"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupSort]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorDescription]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorDescription"
+                      lineageId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[GroupSort]"
+                      cachedDataType="i4"
+                      cachedName="GroupSort"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupSort]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorColumn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[GroupName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="GroupName"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output].Columns[GroupName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="51"
+                      cachedName="ErrorReason"
+                      lineageId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]"
+                      name="GroupKey" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupName]"
+                      name="GroupName" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupSort]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupSort]"
+                      name="GroupSort" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      name="ErrorCode" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      name="ErrorColumn" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]"
+                      name="ErrorDescription" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Conditional Split Default Output]"
+              endId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 2]"
+              name="Conditional Split Default Output"
+              startId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Default Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Conditional Split Error Output]"
+              endId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Inputs[Derived Column Input]"
+              name="Conditional Split Error Output"
+              startId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Derived Column Output]"
+              endId="Package\DF_DimConfigGroup\Union All.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\DF_DimConfigGroup\DC_ErrorReason.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Derived Column Output1]"
+              endId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 1]"
+              name="Derived Column Output"
+              startId="Package\DF_DimConfigGroup\DC_Concatenate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Derived Column Output2]"
+              endId="Package\DF_DimConfigGroup\Union All 1.Inputs[Union All Input 2]"
+              name="Derived Column Output"
+              startId="Package\DF_DimConfigGroup\DC_CS_ErrorReason.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[GoodRows]"
+              endId="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup.Inputs[OLE DB Destination Input]"
+              name="GoodRows"
+              startId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[GoodRows]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[OLE DB Source Error Output]"
+              endId="Package\DF_DimConfigGroup\DC_Concatenate.Inputs[Derived Column Input]"
+              name="OLE DB Source Error Output"
+              startId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Error Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[OLE DB Source Output]"
+              endId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Rejects]"
+              endId="Package\DF_DimConfigGroup\DC_ErrorReason.Inputs[Derived Column Input]"
+              name="Rejects"
+              startId="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects.Outputs[Rejects]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Union All Output 1]"
+              endId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\DF_DimConfigGroup\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\DF_DimConfigGroup.Paths[Union All Output 11]"
+              endId="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\DF_DimConfigGroup\Union All 1.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_truncate_DimConfigGroup"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8C368698-8F1F-49C9-A909-1201FDC7C5AB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_truncate_DimConfigGroup"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE Dim.ConfigGroup;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{98271D37-8DF3-401D-8959-B061A19957B0}"
+      DTS:From="Package\SQL_truncate_DimConfigGroup"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF_DimConfigGroup" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\DF_DimConfigGroup"
+          TopLeft="332,213" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\SQL_truncate_DimConfigGroup"
+          TopLeft="307,67" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="419.75,109">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,104"
+              Start="0,0"
+              End="0,96.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,96.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF_DimConfigGroup">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup"
+          TopLeft="171,529" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\DF_DimConfigGroup\DC_Concatenate"
+          TopLeft="1236,168" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup"
+          TopLeft="240,52" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver"
+          TopLeft="1203,435" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[OLE DB Source Error Output]"
+          TopLeft="376.666666666667,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="937.833333333333,74"
+              Start="0,0"
+              End="937.833333333333,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9405560882071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9405560882071"
+                    Point2="0,29.9405560882071"
+                    Point3="4,29.9405560882071" />
+                  <mssgle:LineSegment
+                    End="933.833333333333,29.9405560882071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="933.833333333333,29.9405560882071"
+                    Point2="937.833333333333,29.9405560882071"
+                    Point3="937.833333333333,33.9405560882071" />
+                  <mssgle:LineSegment
+                    End="937.833333333333,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="405.482760416667,34.9405560882071,126.8678125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="202,42"
+          Id="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects"
+          TopLeft="208,196" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[OLE DB Source Output]"
+          TopLeft="309.666666666667,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102"
+              Start="0,0"
+              End="0,94.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,94.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[GoodRows]"
+          TopLeft="275.333333333333,238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,291"
+              Start="0,0"
+              End="0,283.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,283.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.03509765625,136.87548828125,48.0701953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DF_DimConfigGroup\DC_ErrorReason"
+          TopLeft="588,302" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Rejects]"
+          TopLeft="341.333333333333,238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="324.666666666667,64"
+              Start="0,0"
+              End="324.666666666667,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.901768172888" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.901768172888"
+                    Point2="0,25.901768172888"
+                    Point3="4,25.901768172888" />
+                  <mssgle:LineSegment
+                    End="320.666666666667,25.901768172888" />
+                  <mssgle:CubicBezierSegment
+                    Point1="320.666666666667,25.901768172888"
+                    Point2="324.666666666667,25.901768172888"
+                    Point3="324.666666666667,29.901768172888" />
+                  <mssgle:LineSegment
+                    End="324.666666666667,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="145.815755208333,30.901768172888,33.03515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\DF_DimConfigGroup\Union All"
+          TopLeft="608,418" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output]"
+          TopLeft="667.25,344">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="200,42"
+          Id="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup"
+          TopLeft="567,532" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Union All Output 1]"
+          TopLeft="667.75,460">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Conditional Split Default Output]"
+          TopLeft="357.5,238">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="292.166666666667,180"
+              Start="0,0"
+              End="292.166666666667,172.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.4214297805112" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,73.4214297805112"
+                    Point2="0,77.4214297805112"
+                    Point3="4,77.4214297805112" />
+                  <mssgle:LineSegment
+                    End="288.166666666667,77.4214297805112" />
+                  <mssgle:CubicBezierSegment
+                    Point1="288.166666666667,77.4214297805112"
+                    Point2="292.166666666667,77.4214297805112"
+                    Point3="292.166666666667,81.4214297805112" />
+                  <mssgle:LineSegment
+                    End="292.166666666667,172.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="75.4694270833333,82.4214297805112,141.2278125,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DF_DimConfigGroup\DC_CS_ErrorReason"
+          TopLeft="888,200" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Conditional Split Error Output]"
+          TopLeft="410,219">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="478,0"
+              Start="0,0"
+              End="470.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="470.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="169.55609375,5,131.3878125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\DF_DimConfigGroup\Union All 1"
+          TopLeft="1248,317" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output1]"
+          TopLeft="1313.75,210">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,107"
+              Start="0,0"
+              End="0,99.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,99.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output2]"
+          TopLeft="975,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="317.666666666667,75"
+              Start="0,0"
+              End="317.666666666667,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4528875379939"
+                    Point2="0,44.4528875379939"
+                    Point3="4,44.4528875379939" />
+                  <mssgle:LineSegment
+                    End="313.666666666667,44.4528875379939" />
+                  <mssgle:CubicBezierSegment
+                    Point1="313.666666666667,44.4528875379939"
+                    Point2="317.666666666667,44.4528875379939"
+                    Point3="317.666666666667,48.4528875379939" />
+                  <mssgle:LineSegment
+                    End="317.666666666667,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Union All Output 11]"
+          TopLeft="1316.25,359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_DimConfigGroup\OLE_DST_Diagnostics_DB_Silver">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
