@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim Region"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{924A8491-167C-4A5F-9A81-35ED28341CEE}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{9889504C-1174-45F2-8E75-502BB95CB6DA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -42,6 +42,80 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\DF_DimRegion\DC_Timestamp"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_Timestamp"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_DimRegion\DC_Timestamp.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_DimRegion\DC_Timestamp.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Output].Columns[StartDate]"
+                      dataType="dbTimeStamp"
+                      description="StartDate"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_DBTIMESTAMP)(@[User::LastDate])</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::LastDate])</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_DimRegion\DC_Timestamp.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\DF_DimRegion\Derived Column"
               componentClassID="Microsoft.DerivedColumn"
@@ -109,80 +183,6 @@
                       refId="Package\DF_DimRegion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_DimRegion\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_DimRegion\Derived Column 1"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column 1"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\DF_DimRegion\Derived Column 1.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\DF_DimRegion\Derived Column 1.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]"
-                      dataType="dbTimeStamp"
-                      description="StartDate"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]"
-                      name="StartDate"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_DBTIMESTAMP)(@[User::LastDate])</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[User::LastDate])</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_DimRegion\Derived Column 1.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -281,7 +281,7 @@
                       cachedDataType="dbTimeStamp"
                       cachedName="StartDate"
                       externalMetadataColumnId="Package\DF_DimRegion\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[StartDate]"
-                      lineageId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Output].Columns[StartDate]" />
+                      lineageId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Output].Columns[StartDate]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -866,7 +866,7 @@
               refId="Package\DF_DimRegion.Paths[Derived Column Output1]"
               endId="Package\DF_DimRegion\Insert Destination.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\DF_DimRegion\Derived Column 1.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimRegion\DC_Timestamp.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_DimRegion.Paths[Historical Attribute Inserts Output]"
               endId="Package\DF_DimRegion\Derived Column.Inputs[Derived Column Input]"
@@ -889,7 +889,7 @@
               startId="Package\DF_DimRegion\OLE_SRC_DimRegion.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\DF_DimRegion.Paths[Union All Output 1]"
-              endId="Package\DF_DimRegion\Derived Column 1.Inputs[Derived Column Input]"
+              endId="Package\DF_DimRegion\DC_Timestamp.Inputs[Derived Column Input]"
               name="Union All Output 1"
               startId="Package\DF_DimRegion\Union All.Outputs[Union All Output 1]" />
           </paths>
@@ -922,10 +922,6 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="166,42"
-          Id="Package\DF_DimRegion\OLE DB Command"
-          TopLeft="5.50000000000003,311.5" />
-        <NodeLayout
           Size="244,42"
           Id="Package\DF_DimRegion\Slowly Changing Dimension Type 2"
           TopLeft="110.5,107.5" />
@@ -934,8 +930,12 @@
           Id="Package\DF_DimRegion\OLE_SRC_DimRegion"
           TopLeft="142,5.5" />
         <NodeLayout
-          Size="163,42"
-          Id="Package\DF_DimRegion\Derived Column 1"
+          Size="166,42"
+          Id="Package\DF_DimRegion\OLE DB Command"
+          TopLeft="5.50000000000003,311.5" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DF_DimRegion\DC_Timestamp"
           TopLeft="151,515.5" />
         <NodeLayout
           Size="121,42"
@@ -951,7 +951,7 @@
           TopLeft="17.5,209.5" />
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[Union All Output 1]"
-          TopLeft="232.5,455.5">
+          TopLeft="229.25,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1101,7 +1101,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[Derived Column Output1]"
-          TopLeft="232.5,557.5">
+          TopLeft="229.25,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

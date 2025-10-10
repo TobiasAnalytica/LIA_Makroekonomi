@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{C96E48C4-9D93-4765-ADC6-761CFC459F9D}">
+  DTS:VersionBuild="54"
+  DTS:VersionGUID="{605C4A36-1AA0-4932-BF9A-8852341A35F8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -155,93 +155,6 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_BridgeRegionGroup\DC_Concatenate"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="DC_Concatenate"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input].Columns[GroupKey]"
-                      cachedDataType="i4"
-                      cachedName="GroupKey"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[GroupKey]" />
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input].Columns[RegionAK]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="RegionAK"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[RegionAK]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      length="500"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
-                      name="ErrorDescription"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)((DT_WSTR,100)#{Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[GroupKey]} + " | " + [TRIM]([REPLACENULL]((DT_WSTR,400)#{Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[RegionAK]},"")))</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">(DT_WSTR,500)((DT_WSTR,100)GroupKey + " | " + TRIM(REPLACENULL((DT_WSTR,400)RegionAK,"")))</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\DF_BridgeRegionGroup\DC_CS_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -316,31 +229,31 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_BridgeRegionGroup\DC_ErrorReason"
+              refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="DC_ErrorReason"
+              name="DC_CS_Rejects_ErrorReason"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input]"
+                  refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[GroupKey]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input].Columns[GroupKey]"
                       cachedDataType="i4"
                       cachedName="GroupKey"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]" />
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[RegionAK]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input].Columns[RegionAK]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="RegionAK"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]" />
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input].Columns[CountryName]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input].Columns[CountryName]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="CountryName"
@@ -351,19 +264,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Output]"
+                  refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="500"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       name="ErrorReason"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -384,23 +297,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -409,15 +322,15 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion"
+              refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="DC_ErrorReason_Unknown_RegionAK_in_DimRegion"
+              name="DC_LKP_DimRegion_ErrorReason"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Inputs[Derived Column Input]"
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -425,93 +338,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Output]"
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Output].Columns[ErrorReason]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      length="30"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Output].Columns[ErrorReason]"
-                      name="ErrorReason"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">"Unknown RegionAK in Dim.Region"</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">"Unknown RegionAK in Dim.Region"</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="DC_LKP_ErrorReason"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="40"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       name="ErrorReason"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -532,23 +371,184 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_LKP_NoMatch_ErrorReason"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="30"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"Unknown RegionAK in Dim.Region"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"Unknown RegionAK in Dim.Region"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_RawRegionGroupBridge_ErrorReason"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[GroupKey]" />
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input].Columns[RegionAK]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="RegionAK"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[RegionAK]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="500"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,500)((DT_WSTR,100)#{Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[GroupKey]} + " | " + [TRIM]([REPLACENULL]((DT_WSTR,400)#{Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[RegionAK]},"")))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,500)((DT_WSTR,100)GroupKey + " | " + TRIM(REPLACENULL((DT_WSTR,400)RegionAK,"")))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -943,20 +943,20 @@ where [refTable].[Region] = ?</property>
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]" />
                     <inputColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="500"
-                      cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]" />
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -971,14 +971,14 @@ where [refTable].[Region] = ?</property>
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                    <externalMetadataColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorReason" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1084,34 +1084,34 @@ where [refTable].[Region] = ?</property>
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]" />
                     <inputColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="500"
                       cachedName="ErrorReason"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[ErrorReason]" />
                     <inputColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].Columns[GroupKey]"
                       cachedDataType="i4"
                       cachedName="GroupKey"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].ExternalColumns[GroupKeySrc]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]" />
                     <inputColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].Columns[RegionAK]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="RegionAK"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].ExternalColumns[RegionAKSrc]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]" />
                     <inputColumn
                       refId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].Columns[CountryName]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="CountryName"
                       externalMetadataColumnId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input].ExternalColumns[CountryNameSrc]"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1373,330 +1373,19 @@ CROSS APPLY (
               </outputs>
             </component>
             <component
-              refId="Package\DF_BridgeRegionGroup\Union All"
+              refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All"
+              name="UA_Diagnostics_DB_Silver"
               version="1">
               <inputs>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1]"
+                  refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1]"
                   name="Union All Input 1">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[GroupKey]"
-                      cachedDataType="i4"
-                      cachedName="GroupKey"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[RegionAK]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="RegionAK"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[CountryName]"
-                      cachedDataType="wstr"
-                      cachedLength="120"
-                      cachedName="CountryName"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[IsValid]"
-                      cachedDataType="i4"
-                      cachedName="IsValid"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1].Columns[ErrorReason]"
-                      cachedDataType="wstr"
-                      cachedLength="30"
-                      cachedName="ErrorReason"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Output].Columns[ErrorReason]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2]"
-                  hasSideEffects="true"
-                  name="Union All Input 2">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[GroupKey]"
-                      cachedDataType="i4"
-                      cachedName="GroupKey"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[RegionAK]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="RegionAK"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[CountryName]"
-                      cachedDataType="wstr"
-                      cachedLength="120"
-                      cachedName="CountryName"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[IsValid]"
-                      cachedDataType="i4"
-                      cachedName="IsValid"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2].Columns[ErrorReason]"
-                      cachedDataType="wstr"
-                      cachedLength="500"
-                      cachedName="ErrorReason"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3]"
-                  hasSideEffects="true"
-                  name="Union All Input 3">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3].Columns[GroupKey]"
-                      cachedDataType="i4"
-                      cachedName="GroupKey"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3].Columns[RegionAK]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="RegionAK"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3].Columns[CountryName]"
-                      cachedDataType="wstr"
-                      cachedLength="120"
-                      cachedName="CountryName"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3].Columns[IsValid]"
-                      cachedDataType="i4"
-                      cachedName="IsValid"
-                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]}</property>
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 4]"
-                  dangling="true"
-                  hasSideEffects="true"
-                  name="Union All Input 4">
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1]"
-                  name="Union All Output 1">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[GroupKey]"
-                      name="GroupKey" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]"
-                      dataType="wstr"
-                      length="10"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[RegionAK]"
-                      name="RegionAK" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]"
-                      dataType="wstr"
-                      length="120"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CountryName]"
-                      name="CountryName" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp2"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
-                      name="CreatedBronzeAt" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]"
-                      dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[IsValid]"
-                      name="IsValid" />
-                    <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]"
-                      dataType="wstr"
-                      length="500"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1].Columns[ErrorReason]"
-                      name="ErrorReason" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_BridgeRegionGroup\Union All 1"
-              componentClassID="Microsoft.UnionAll"
-              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
-              name="Union All 1"
-              version="1">
-              <inputs>
-                <input
-                  refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1]"
-                  name="Union All Input 1">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[GroupKey]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[GroupKey]"
                       cachedDataType="i4"
                       cachedName="GroupKey"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[GroupKey]">
@@ -1705,11 +1394,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[GroupKey]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[RegionAK]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[RegionAK]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="RegionAK"
@@ -1719,11 +1408,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[RegionAK]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[CountryName]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[CountryName]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="CountryName"
@@ -1733,11 +1422,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CountryName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]">
@@ -1746,11 +1435,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[IsValid]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[IsValid]">
@@ -1759,11 +1448,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[IsValid]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[ErrorCode]">
@@ -1772,11 +1461,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]">
@@ -1785,33 +1474,33 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1].Columns[ErrorDescription]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="500"
-                      cachedName="ErrorDescription"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]">
+                      cachedName="ErrorReason"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3]"
+                  refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3]"
                   hasSideEffects="true"
                   name="Union All Input 3">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[GroupKey]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[GroupKey]"
                       cachedDataType="i4"
                       cachedName="GroupKey"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
@@ -1820,11 +1509,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[GroupKey]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[RegionAK]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[RegionAK]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="RegionAK"
@@ -1834,11 +1523,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[RegionAK]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[CountryName]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[CountryName]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="CountryName"
@@ -1848,11 +1537,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CountryName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
@@ -1861,11 +1550,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[IsValid]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
@@ -1874,11 +1563,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[IsValid]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       lineageId="Package\DF_BridgeRegionGroup\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorCode]">
@@ -1887,11 +1576,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       lineageId="Package\DF_BridgeRegionGroup\LKP_DimRegion.Outputs[Lookup Error Output].Columns[ErrorColumn]">
@@ -1900,33 +1589,33 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3].Columns[ErrorReason]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="40"
                       cachedName="ErrorReason"
-                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2]"
+                  refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2]"
                   hasSideEffects="true"
                   name="Union All Input 2">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[GroupKey]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[GroupKey]"
                       cachedDataType="i4"
                       cachedName="GroupKey"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
@@ -1935,11 +1624,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[GroupKey]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[RegionAK]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[RegionAK]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="RegionAK"
@@ -1949,11 +1638,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[RegionAK]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[CountryName]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[CountryName]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="CountryName"
@@ -1963,11 +1652,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CountryName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
@@ -1976,11 +1665,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[IsValid]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
                       lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
@@ -1989,11 +1678,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[IsValid]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
                       lineageId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorCode]">
@@ -2002,11 +1691,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
                       lineageId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output].Columns[ErrorColumn]">
@@ -2015,11 +1704,11 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2].Columns[ErrorReason]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="51"
                       cachedName="ErrorReason"
@@ -2029,14 +1718,14 @@ CROSS APPLY (
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]}</property>
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 4]"
+                  refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 4]"
                   dangling="true"
                   hasSideEffects="true"
                   name="Union All Input 4">
@@ -2045,52 +1734,363 @@ CROSS APPLY (
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1]"
+                  refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1]"
                   name="Union All Output 1">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[GroupKey]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[GroupKey]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[GroupKey]"
                       name="GroupKey" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[RegionAK]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[RegionAK]"
                       dataType="wstr"
                       length="4000"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[RegionAK]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[RegionAK]"
                       name="RegionAK" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CountryName]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CountryName]"
                       dataType="wstr"
                       length="120"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CountryName]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CountryName]"
                       name="CountryName" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
                       dataType="dbTimeStamp2"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
                       name="CreatedBronzeAt" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[IsValid]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[IsValid]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[IsValid]"
                       name="IsValid" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorCode]"
                       name="ErrorCode" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorColumn]"
                       name="ErrorColumn" />
                     <outputColumn
-                      refId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]"
+                      refId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]"
                       dataType="wstr"
                       length="500"
-                      lineageId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1].Columns[ErrorDescription]"
-                      name="ErrorDescription" />
+                      lineageId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1].Columns[ErrorReason]"
+                      name="ErrorReason" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="UA_rejBridgeRegionGroup"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[RegionAK]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="RegionAK"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="CountryName"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="ErrorReason"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[RegionAK]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="RegionAK"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="CountryName"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="500"
+                      cachedName="ErrorReason"
+                      lineageId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[ErrorReason]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3].Columns[GroupKey]"
+                      cachedDataType="i4"
+                      cachedName="GroupKey"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[GroupKey]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3].Columns[RegionAK]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="RegionAK"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[RegionAK]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="120"
+                      cachedName="CountryName"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CountryName]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAt"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output].Columns[IsValid]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[IsValid]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 4]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[GroupKey]"
+                      name="GroupKey" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[RegionAK]"
+                      name="RegionAK" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]"
+                      dataType="wstr"
+                      length="120"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CountryName]"
+                      name="CountryName" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      lineageId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1].Columns[ErrorReason]"
+                      name="ErrorReason" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2100,7 +2100,7 @@ CROSS APPLY (
           <paths>
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Conditional Split Default Output]"
-              endId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 3]"
+              endId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 3]"
               name="Conditional Split Default Output"
               startId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Default Output]" />
             <path
@@ -2110,27 +2110,27 @@ CROSS APPLY (
               startId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[Conditional Split Error Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Derived Column Output]"
-              endId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 1]"
+              endId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 1]"
               name="Derived Column Output"
-              startId="Package\DF_BridgeRegionGroup\DC_Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Derived Column Output1]"
-              endId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 3]"
+              endId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 3]"
               name="Derived Column Output"
-              startId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Outputs[Derived Column Output]" />
+              startId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Derived Column Output2]"
-              endId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 1]"
+              endId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 1]"
               name="Derived Column Output"
-              startId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Outputs[Derived Column Output]" />
+              startId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Derived Column Output3]"
-              endId="Package\DF_BridgeRegionGroup\Union All.Inputs[Union All Input 2]"
+              endId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Outputs[Derived Column Output]" />
+              startId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Derived Column Output4]"
-              endId="Package\DF_BridgeRegionGroup\Union All 1.Inputs[Union All Input 2]"
+              endId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Inputs[Union All Input 2]"
               name="Derived Column Output"
               startId="Package\DF_BridgeRegionGroup\DC_CS_ErrorReason.Outputs[Derived Column Output]" />
             <path
@@ -2140,7 +2140,7 @@ CROSS APPLY (
               startId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[GoodRows]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Lookup Error Output]"
-              endId="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason.Inputs[Derived Column Input]"
+              endId="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason.Inputs[Derived Column Input]"
               name="Lookup Error Output"
               startId="Package\DF_BridgeRegionGroup\LKP_DimRegion.Outputs[Lookup Error Output]" />
             <path
@@ -2150,12 +2150,12 @@ CROSS APPLY (
               startId="Package\DF_BridgeRegionGroup\LKP_DimRegion.Outputs[Lookup Match Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Lookup No Match Output]"
-              endId="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion.Inputs[Derived Column Input]"
+              endId="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason.Inputs[Derived Column Input]"
               name="Lookup No Match Output"
               startId="Package\DF_BridgeRegionGroup\LKP_DimRegion.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[OLE DB Source Error Output]"
-              endId="Package\DF_BridgeRegionGroup\DC_Concatenate.Inputs[Derived Column Input]"
+              endId="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
               startId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Error Output]" />
             <path
@@ -2165,31 +2165,31 @@ CROSS APPLY (
               startId="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Rejects]"
-              endId="Package\DF_BridgeRegionGroup\DC_ErrorReason.Inputs[Derived Column Input]"
+              endId="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason.Inputs[Derived Column Input]"
               name="Rejects"
               startId="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects.Outputs[Rejects]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Union All Output 1]"
               endId="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
               name="Union All Output 1"
-              startId="Package\DF_BridgeRegionGroup\Union All 1.Outputs[Union All Output 1]" />
+              startId="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver.Outputs[Union All Output 1]" />
             <path
               refId="Package\DF_BridgeRegionGroup.Paths[Union All Output 11]"
               endId="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup.Inputs[OLE DB Destination Input]"
               name="Union All Output 1"
-              startId="Package\DF_BridgeRegionGroup\Union All.Outputs[Union All Output 1]" />
+              startId="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL_truncate_BridgeRegionGroup"
+      DTS:refId="Package\truncate_BridgeRegionGroup"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{c93aa678-b2ed-4430-9a94-5b8445db58b8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL_truncate_BridgeRegionGroup"
+      DTS:ObjectName="truncate_BridgeRegionGroup"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -2205,7 +2205,7 @@ CROSS APPLY (
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{544ef141-6fcb-404b-a136-54a99d9c11b0}"
-      DTS:From="Package\SQL_truncate_BridgeRegionGroup"
+      DTS:From="Package\truncate_BridgeRegionGroup"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\DF_BridgeRegionGroup" />
@@ -2225,14 +2225,14 @@ CROSS APPLY (
         <NodeLayout
           Size="189,42"
           Id="Package\DF_BridgeRegionGroup"
-          TopLeft="85,206" />
+          TopLeft="77,205" />
         <NodeLayout
-          Size="239,42"
-          Id="Package\SQL_truncate_BridgeRegionGroup"
-          TopLeft="60,60" />
+          Size="215,42"
+          Id="Package\truncate_BridgeRegionGroup"
+          TopLeft="59,59" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="179.5,102">
+          TopLeft="169,101">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2261,71 +2261,71 @@ CROSS APPLY (
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="232,42"
-          Id="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup"
-          TopLeft="579,746" />
-        <NodeLayout
           Size="153,42"
           Id="Package\DF_BridgeRegionGroup\LKP_DimRegion"
-          TopLeft="230,377" />
+          TopLeft="1036.28571428571,378.142857142857" />
         <NodeLayout
-          Size="174,42"
-          Id="Package\DF_BridgeRegionGroup\DC_CS_ErrorReason"
-          TopLeft="948,224" />
-        <NodeLayout
-          Size="130,42"
-          Id="Package\DF_BridgeRegionGroup\Union All 1"
-          TopLeft="1234,374" />
+          Size="214,42"
+          Id="Package\DF_BridgeRegionGroup\DC_CS_Rejects_ErrorReason"
+          TopLeft="1439.71428571429,81.1428571428571" />
         <NodeLayout
           Size="239,42"
           Id="Package\DF_BridgeRegionGroup\OLE_SRC_RawRegionGroupBridge"
-          TopLeft="222,69" />
+          TopLeft="994,73" />
         <NodeLayout
-          Size="179,42"
-          Id="Package\DF_BridgeRegionGroup\DC_LKP_ErrorReason"
-          TopLeft="946,375" />
+          Size="273,42"
+          Id="Package\DF_BridgeRegionGroup\DC_RawRegionGroupBridge_ErrorReason"
+          TopLeft="607,76" />
         <NodeLayout
           Size="220,42"
           Id="Package\DF_BridgeRegionGroup\OLE_DST_BridgeRegionGroup"
-          TopLeft="177,748" />
+          TopLeft="1003.28571428571,542" />
         <NodeLayout
-          Size="157,42"
-          Id="Package\DF_BridgeRegionGroup\DC_Concatenate"
-          TopLeft="1219,230" />
+          Size="174,42"
+          Id="Package\DF_BridgeRegionGroup\DC_CS_ErrorReason"
+          TopLeft="606,222" />
         <NodeLayout
-          Size="156,42"
-          Id="Package\DF_BridgeRegionGroup\DC_ErrorReason"
-          TopLeft="777,522" />
+          Size="202,42"
+          Id="Package\DF_BridgeRegionGroup\UA_Diagnostics_DB_Silver"
+          TopLeft="319,224" />
         <NodeLayout
-          Size="328,42"
-          Id="Package\DF_BridgeRegionGroup\DC_ErrorReason_Unknown_RegionAK_in_DimRegion"
-          TopLeft="372,524" />
+          Size="226,42"
+          Id="Package\DF_BridgeRegionGroup\DC_LKP_NoMatch_ErrorReason"
+          TopLeft="1437.42857142857,379.142857142857" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup"
+          TopLeft="2022.14285714286,227.428571428571" />
         <NodeLayout
           Size="233,42"
           Id="Package\DF_BridgeRegionGroup\OLE_DST_Diagnostics_DB_Silver"
-          TopLeft="1184,537" />
+          TopLeft="8,231" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\DF_BridgeRegionGroup\UA_rejBridgeRegionGroup"
+          TopLeft="1723,224" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\DF_BridgeRegionGroup\DC_LKP_DimRegion_ErrorReason"
+          TopLeft="608,371" />
         <NodeLayout
           Size="202,42"
           Id="Package\DF_BridgeRegionGroup\CS_GoodRows_or_Rejects"
-          TopLeft="236,218" />
-        <NodeLayout
-          Size="121,42"
-          Id="Package\DF_BridgeRegionGroup\Union All"
-          TopLeft="637,650" />
+          TopLeft="1008,222" />
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Union All Output 11]"
-          TopLeft="696.25,692">
+          TopLeft="1925,246.714285714286">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54"
+              EndConnector="97.1428571428573,0"
               Start="0,0"
-              End="0,46.5">
+              End="89.6428571428573,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.5" />
+                    End="89.6428571428573,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2336,18 +2336,18 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Union All Output 1]"
-          TopLeft="1299.75,416">
+          TopLeft="319,248.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,121"
+              EndConnector="-78,0"
               Start="0,0"
-              End="0,113.5">
+              End="-70.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,113.5" />
+                    End="-70.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2358,43 +2358,43 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Rejects]"
-          TopLeft="385.5,260">
+          TopLeft="1141.33333333333,222">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="469.5,262"
+              EndConnector="371.047619047619,-98.8571428571429"
               Start="0,0"
-              End="469.5,254.5">
+              End="371.047619047619,-91.3571428571429">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,85.6091205211726" />
+                    End="0,-45.4554957525452" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,85.6091205211726"
-                    Point2="0,89.6091205211726"
-                    Point3="4,89.6091205211726" />
+                    Point1="0,-45.4554957525452"
+                    Point2="0,-49.4554957525452"
+                    Point3="4,-49.4554957525452" />
                   <mssgle:LineSegment
-                    End="465.5,89.6091205211726" />
+                    End="367.047619047619,-49.4554957525452" />
                   <mssgle:CubicBezierSegment
-                    Point1="465.5,89.6091205211726"
-                    Point2="469.5,89.6091205211726"
-                    Point3="469.5,93.6091205211726" />
+                    Point1="367.047619047619,-49.4554957525452"
+                    Point2="371.047619047619,-49.4554957525452"
+                    Point3="371.047619047619,-53.4554957525452" />
                   <mssgle:LineSegment
-                    End="469.5,254.5" />
+                    End="371.047619047619,-91.3571428571429" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="218.232421875,94.6091205211726,33.03515625,11.384765625"
+              BoundingBox="169.00623139881,-44.4554957525452,33.03515625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[OLE DB Source Output]"
-          TopLeft="339.25,111">
+          TopLeft="1111.25,115">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2416,174 +2416,138 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[OLE DB Source Error Output]"
-          TopLeft="380,111">
+          TopLeft="994,95.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="917.5,119"
+              EndConnector="-114,0"
               Start="0,0"
-              End="917.5,111.5">
+              End="-106.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.0748129675811" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,44.0748129675811"
-                    Point2="0,48.0748129675811"
-                    Point3="4,48.0748129675811" />
-                  <mssgle:LineSegment
-                    End="913.5,48.0748129675811" />
-                  <mssgle:CubicBezierSegment
-                    Point1="913.5,48.0748129675811"
-                    Point2="917.5,48.0748129675811"
-                    Point3="917.5,52.0748129675811" />
-                  <mssgle:LineSegment
-                    End="917.5,111.5" />
+                    End="-106.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="395.31609375,53.0748129675811,126.8678125,11.43359375"
+              BoundingBox="-116.68390625,5,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Lookup No Match Output]"
-          TopLeft="330.666666666667,419">
+          TopLeft="1189.28571428571,399.642857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="205.333333333333,105"
+              EndConnector="248.142857142857,0"
               Start="0,0"
-              End="205.333333333333,97.5">
+              End="240.642857142857,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.6520051746443" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,38.6520051746443"
-                    Point2="0,42.6520051746443"
-                    Point3="4,42.6520051746443" />
-                  <mssgle:LineSegment
-                    End="201.333333333333,42.6520051746443" />
-                  <mssgle:CubicBezierSegment
-                    Point1="201.333333333333,42.6520051746443"
-                    Point2="205.333333333333,42.6520051746443"
-                    Point3="205.333333333333,46.6520051746443" />
-                  <mssgle:LineSegment
-                    End="205.333333333333,97.5" />
+                    End="240.642857142857,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="46.8602799479167,47.6520051746443,111.6127734375,11.609375"
+              BoundingBox="64.5150418526785,5,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Lookup Match Output]"
-          TopLeft="284.666666666667,419">
+          TopLeft="1113.03571428571,420.142857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,329"
+              EndConnector="0,121.857142857143"
               Start="0,0"
-              End="0,321.5">
+              End="0,114.357142857143">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,321.5" />
+                    End="0,114.357142857143" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,154.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,51.3738839285714,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Lookup Error Output]"
-          TopLeft="383,397">
+          TopLeft="1036.28571428571,395.571428571429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="563,0"
+              EndConnector="-192.285714285714,0"
               Start="0,0"
-              End="555.5,0">
+              End="-184.785714285714,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="555.5,0" />
+                    End="-184.785714285714,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="231.88361328125,5,91.7327734375,11.609375"
+              BoundingBox="-138.259243861607,5,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[GoodRows]"
-          TopLeft="305.583333333333,260">
+          TopLeft="1110.89285714286,264">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,117"
+              EndConnector="0,114.142857142857"
               Start="0,0"
-              End="0,109.5">
+              End="0,106.642857142857">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,109.5" />
+                    End="0,106.642857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-24.03509765625,49.87548828125,48.0701953125,9.7490234375"
+              BoundingBox="-24.03509765625,48.4469168526786,48.0701953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Derived Column Output4]"
-          TopLeft="1035,266">
+          TopLeft="606,244">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="243.666666666667,108"
+              EndConnector="-85,0"
               Start="0,0"
-              End="243.666666666667,100.5">
+              End="-77.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,60.0121580547112" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,60.0121580547112"
-                    Point2="0,64.0121580547112"
-                    Point3="4,64.0121580547112" />
-                  <mssgle:LineSegment
-                    End="239.666666666667,64.0121580547112" />
-                  <mssgle:CubicBezierSegment
-                    Point1="239.666666666667,64.0121580547112"
-                    Point2="243.666666666667,64.0121580547112"
-                    Point3="243.666666666667,68.0121580547112" />
-                  <mssgle:LineSegment
-                    End="243.666666666667,100.5" />
+                    End="-77.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2594,30 +2558,30 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Derived Column Output3]"
-          TopLeft="855,564">
+          TopLeft="1581.04761904762,123.142857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-129.25,86"
+              EndConnector="242.952380952381,100.857142857143"
               Start="0,0"
-              End="-129.25,78.5">
+              End="242.952380952381,93.3571428571428">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.0970350404313" />
+                    End="0,36.7919427511264" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,52.0970350404313"
-                    Point2="0,56.0970350404313"
-                    Point3="-4,56.0970350404313" />
+                    Point1="0,36.7919427511264"
+                    Point2="0,40.7919427511264"
+                    Point3="4,40.7919427511264" />
                   <mssgle:LineSegment
-                    End="-125.25,56.0970350404313" />
+                    End="238.952380952381,40.7919427511264" />
                   <mssgle:CubicBezierSegment
-                    Point1="-125.25,56.0970350404313"
-                    Point2="-129.25,56.0970350404313"
-                    Point3="-129.25,60.0970350404313" />
+                    Point1="238.952380952381,40.7919427511264"
+                    Point2="242.952380952381,40.7919427511264"
+                    Point3="242.952380952381,44.7919427511264" />
                   <mssgle:LineSegment
-                    End="-129.25,78.5" />
+                    End="242.952380952381,93.3571428571428" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2628,30 +2592,30 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Derived Column Output2]"
-          TopLeft="536,566">
+          TopLeft="1550.42857142857,379.142857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="142.666666666667,84"
+              EndConnector="273.571428571429,-113.142857142857"
               Start="0,0"
-              End="142.666666666667,76.5">
+              End="273.571428571429,-105.642857142857">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,45.742251223491" />
+                    End="0,-52.5714285714286" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,45.742251223491"
-                    Point2="0,49.742251223491"
-                    Point3="4,49.742251223491" />
+                    Point1="0,-52.5714285714286"
+                    Point2="0,-56.5714285714286"
+                    Point3="4,-56.5714285714286" />
                   <mssgle:LineSegment
-                    End="138.666666666667,49.742251223491" />
+                    End="269.571428571429,-56.5714285714286" />
                   <mssgle:CubicBezierSegment
-                    Point1="138.666666666667,49.742251223491"
-                    Point2="142.666666666667,49.742251223491"
-                    Point3="142.666666666667,53.742251223491" />
+                    Point1="269.571428571429,-56.5714285714286"
+                    Point2="273.571428571429,-56.5714285714286"
+                    Point3="273.571428571429,-60.5714285714286" />
                   <mssgle:LineSegment
-                    End="142.666666666667,76.5" />
+                    End="273.571428571429,-105.642857142857" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2662,18 +2626,30 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Derived Column Output1]"
-          TopLeft="1125,395.5">
+          TopLeft="726,371">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="109,0"
+              EndConnector="-306,-105"
               Start="0,0"
-              End="101.5,0">
+              End="-306,-97.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="101.5,0" />
+                    End="0,-48.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-48.5"
+                    Point2="0,-52.5"
+                    Point3="-4,-52.5" />
+                  <mssgle:LineSegment
+                    End="-302,-52.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-302,-52.5"
+                    Point2="-306,-52.5"
+                    Point3="-306,-56.5" />
+                  <mssgle:LineSegment
+                    End="-306,-97.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2684,18 +2660,30 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Derived Column Output]"
-          TopLeft="1298.25,272">
+          TopLeft="743.5,118">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,102"
+              EndConnector="-323.5,106"
               Start="0,0"
-              End="0,94.5">
+              End="-323.5,98.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,94.5" />
+                    End="0,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49"
+                    Point2="0,53"
+                    Point3="-4,53" />
+                  <mssgle:LineSegment
+                    End="-319.5,53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-319.5,53"
+                    Point2="-323.5,53"
+                    Point3="-323.5,57" />
+                  <mssgle:LineSegment
+                    End="-323.5,98.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2706,80 +2694,55 @@ CROSS APPLY (
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Conditional Split Error Output]"
-          TopLeft="438,242">
+          TopLeft="1008,243">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="510,0"
+              EndConnector="-228,0"
               Start="0,0"
-              End="502.5,0">
+              End="-220.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="502.5,0" />
+                    End="-220.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="185.55609375,5,131.3878125,11.609375"
+              BoundingBox="-175.94390625,5,131.3878125,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_BridgeRegionGroup.Paths[Conditional Split Default Output]"
-          TopLeft="337,260">
+          TopLeft="1210,244">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="332.25,390"
+              EndConnector="513,0"
               Start="0,0"
-              End="332.25,382.5">
+              End="505.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,250.393530997305" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,250.393530997305"
-                    Point2="0,254.393530997305"
-                    Point3="4,254.393530997305" />
-                  <mssgle:LineSegment
-                    End="328.25,254.393530997305" />
-                  <mssgle:CubicBezierSegment
-                    Point1="328.25,254.393530997305"
-                    Point2="332.25,254.393530997305"
-                    Point3="332.25,258.393530997305" />
-                  <mssgle:LineSegment
-                    End="332.25,382.5" />
+                    End="505.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="95.51109375,259.393530997305,141.2278125,11.658203125"
+              BoundingBox="182.13609375,5,141.2278125,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DF_BridgeRegionGroup\LKP_DimRegion">
     <Properties>
@@ -2813,6 +2776,19 @@ CROSS APPLY (
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DF_BridgeRegionGroup\OLE_DST_BridgeRegionGroup">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_BridgeRegionGroup\OLE_DST_rejBridgeRegionGroup">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

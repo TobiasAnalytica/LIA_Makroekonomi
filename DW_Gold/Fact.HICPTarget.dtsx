@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{A0D638EC-E69A-4EAB-A661-A4C120715546}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{E6821247-56A3-4A21-9621-BC1DE7B52D3D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -486,10 +486,6 @@ where [refTable].[Description] = ?</property>
                       dataType="i4"
                       name="TargetKey" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedAt]"
-                      dataType="dbTimeStamp2"
-                      name="UpdatedAt" />
-                    <externalMetadataColumn
                       refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
                       dataType="dbTimeStamp"
                       name="CreatedSilverAt" />
@@ -734,13 +730,13 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL_truncate_FactHICPTarget"
+      DTS:refId="Package\truncate_FactHICPTarget"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{A43BA4B5-84FF-4547-8612-48716604EF4B}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL_truncate_FactHICPTarget"
+      DTS:ObjectName="truncate_FactHICPTarget"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -756,7 +752,7 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{5AD7A772-68E6-4E3B-BB3D-7EE55FD558CB}"
-      DTS:From="Package\SQL_truncate_FactHICPTarget"
+      DTS:From="Package\truncate_FactHICPTarget"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\DF_FactHICPTarget" />
@@ -776,25 +772,25 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
         <NodeLayout
           Size="171,42"
           Id="Package\DF_FactHICPTarget"
-          TopLeft="270,214" />
+          TopLeft="268,213" />
         <NodeLayout
-          Size="222,42"
-          Id="Package\SQL_truncate_FactHICPTarget"
+          Size="198,42"
+          Id="Package\truncate_FactHICPTarget"
           TopLeft="247,64" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="356.75,106">
+          TopLeft="349.75,106">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,108"
+              EndConnector="0,107"
               Start="0,0"
-              End="0,100.5">
+              End="0,99.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,100.5" />
+                    End="0,99.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -812,10 +808,6 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="203,42"
-          Id="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget"
-          TopLeft="309,373" />
-        <NodeLayout
           Size="153,42"
           Id="Package\DF_FactHICPTarget\LKP_DimRegion"
           TopLeft="338,157" />
@@ -823,6 +815,14 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
           Size="198,42"
           Id="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation"
           TopLeft="312,57" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget"
+          TopLeft="309,373" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\DF_FactHICPTarget\LKP_DimDate"
+          TopLeft="337,252" />
         <EdgeLayout
           Id="Package\DF_FactHICPTarget.Paths[OLE DB Source Output]"
           TopLeft="412.75,99">
@@ -843,34 +843,6 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="143,42"
-          Id="Package\DF_FactHICPTarget\LKP_DimDate"
-          TopLeft="337,252" />
-        <EdgeLayout
-          Id="Package\DF_FactHICPTarget.Paths[Lookup Match Output]"
-          TopLeft="411.5,199">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53"
-              Start="0,0"
-              End="0,45.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,16.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -897,22 +869,33 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactHICPTarget.Paths[Lookup Match Output]"
+          TopLeft="411.5,199">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,16.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DF_FactHICPTarget\LKP_DimRegion">
     <Properties>
@@ -945,12 +928,25 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\DF_FactHICPTarget\LKP_DimDate">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -960,7 +956,7 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

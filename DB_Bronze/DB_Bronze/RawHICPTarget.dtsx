@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="RawTargetInflation"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{33A3B724-9C41-44C4-BC8C-D568B485B787}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{51290DD5-DA2D-4717-A527-3C508309BABE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -140,6 +140,12 @@
                       cachedName="Notes"
                       externalMetadataColumnId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[Notes]"
                       lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].Columns[Notes]" />
+                    <inputColumn
+                      refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].Columns[ToDate]"
+                      cachedDataType="date"
+                      cachedName="ToDate"
+                      externalMetadataColumnId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[ToDate]"
+                      lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].Columns[ToDate]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -154,7 +160,8 @@
                       name="Region" />
                     <externalMetadataColumn
                       refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[FromDate]"
-                      dataType="dbDate"
+                      dataType="wstr"
+                      length="255"
                       name="FromDate" />
                     <externalMetadataColumn
                       refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[TargetPercent]"
@@ -171,6 +178,11 @@
                       refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
                       dataType="dbTimeStamp2"
                       name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[ToDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="ToDate" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -290,6 +302,15 @@
                       lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].Columns[Notes]"
                       name="Notes"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].Columns[ToDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].ExternalColumns[ToDate]"
+                      lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].Columns[ToDate]"
+                      name="ToDate"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -311,6 +332,10 @@
                       dataType="wstr"
                       length="255"
                       name="Notes" />
+                    <externalMetadataColumn
+                      refId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Output].ExternalColumns[ToDate]"
+                      dataType="date"
+                      name="ToDate" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -329,6 +354,11 @@
                       dataType="date"
                       lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Error Output].Columns[FromDate]"
                       name="FromDate" />
+                    <outputColumn
+                      refId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Error Output].Columns[ToDate]"
+                      dataType="date"
+                      lineageId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Error Output].Columns[ToDate]"
+                      name="ToDate" />
                     <outputColumn
                       refId="Package\DF_HICPTarget\XL_SRC_InflationTargets.Outputs[Excel Source Error Output].Columns[TargetPercent]"
                       dataType="r8"
@@ -384,7 +414,7 @@
         <NodeLayout
           Size="152,42"
           Id="Package\DF_HICPTarget"
-          TopLeft="192,188" />
+          TopLeft="160,95" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

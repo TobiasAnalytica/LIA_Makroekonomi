@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{B45497FC-0592-4506-BFDD-C975D3E9F635}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{8747B5F2-B7F1-48AE-BFF6-DB1DC1F89615}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,57 +32,57 @@
           version="1">
           <components>
             <component
-              refId="Package\DF_DimFlags\Derived Column - Concatenate"
+              refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column - Concatenate"
+              name="DC_All_Fact_tables_ErrorReason"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="70"
                       cachedName="Description"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[OBS_FLAG]"
+                      refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[OBS_FLAG]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="OBS_FLAG"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="80"
-                      lineageId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
-                      name="ErrorDescription"
+                      lineageId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]} + #{Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]} + #{Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,11 +120,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimFlags\LIA_DB_Diagnostics"
+              refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="LIA_DB_Diagnostics"
+              name="OLE_DST_Diagnostics_DB_Silver"
               usesDispositions="true"
               version="4">
               <properties>
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,74 +185,74 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      externalMetadataColumnId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      externalMetadataColumnId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="80"
-                      cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      lineageId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorReason" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -338,14 +338,14 @@
                       cachedLength="70"
                       cachedName="Description"
                       externalMetadataColumnId="Package\DF_DimFlags\OLE_DST_DimFlags.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
                     <inputColumn
                       refId="Package\DF_DimFlags\OLE_DST_DimFlags.Inputs[OLE DB Destination Input].Columns[OBS_FLAG]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="OBS_FLAG"
                       externalMetadataColumnId="Package\DF_DimFlags\OLE_DST_DimFlags.Inputs[OLE DB Destination Input].ExternalColumns[Flags]"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -392,11 +392,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables"
+              refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE_SRC_Load_All_Fact_tables"
+              name="OLE_SRC_All_Fact_tables"
               usesDispositions="true"
               version="7">
               <properties>
@@ -493,7 +493,7 @@ ORDER BY OBS_FLAG;</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Connections[OleDbConnection]"
+                  refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -501,72 +501,72 @@ ORDER BY OBS_FLAG;</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="70"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      externalMetadataColumnId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
                       length="10"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="70"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[OBS_FLAG]"
                       dataType="wstr"
                       length="10"
                       name="OBS_FLAG" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="70"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      refId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
+                      lineageId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       name="OBS_FLAG" />
                   </outputColumns>
                   <externalMetadataColumns />
@@ -577,31 +577,31 @@ ORDER BY OBS_FLAG;</property>
           <paths>
             <path
               refId="Package\DF_DimFlags.Paths[Derived Column Output]"
-              endId="Package\DF_DimFlags\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\DF_DimFlags\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_DimFlags.Paths[OLE DB Source Error Output]"
-              endId="Package\DF_DimFlags\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              endId="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DF_DimFlags.Paths[OLE DB Source Output]"
               endId="Package\DF_DimFlags\OLE_DST_DimFlags.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimFlags\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate DimFlags"
+      DTS:refId="Package\truncate_DimFlags"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{F2952D0C-A729-4D40-8EDB-D8660AF38918}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate DimFlags"
+      DTS:ObjectName="truncate_DimFlags"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -617,7 +617,7 @@ ORDER BY OBS_FLAG;</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{D7C326C0-9CCA-4A0E-A380-11B5108A3DDE}"
-      DTS:From="Package\SQL truncate DimFlags"
+      DTS:From="Package\truncate_DimFlags"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\DF_DimFlags" />
@@ -639,12 +639,12 @@ ORDER BY OBS_FLAG;</property>
           Id="Package\DF_DimFlags"
           TopLeft="96,195" />
         <NodeLayout
-          Size="186,42"
-          Id="Package\SQL truncate DimFlags"
+          Size="167,42"
+          Id="Package\truncate_DimFlags"
           TopLeft="76,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="167.75,102">
+          TopLeft="163,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -673,16 +673,16 @@ ORDER BY OBS_FLAG;</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\DF_DimFlags\LIA_DB_Diagnostics"
-          TopLeft="424,283" />
+          Size="233,42"
+          Id="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver"
+          TopLeft="409,280" />
         <NodeLayout
-          Size="227,42"
-          Id="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables"
+          Size="199,42"
+          Id="Package\DF_DimFlags\OLE_SRC_All_Fact_tables"
           TopLeft="165,72" />
         <NodeLayout
-          Size="223,42"
-          Id="Package\DF_DimFlags\Derived Column - Concatenate"
+          Size="232,42"
+          Id="Package\DF_DimFlags\DC_All_Fact_tables_ErrorReason"
           TopLeft="406,175" />
         <NodeLayout
           Size="172,42"
@@ -690,7 +690,7 @@ ORDER BY OBS_FLAG;</property>
           TopLeft="152,278" />
         <EdgeLayout
           Id="Package\DF_DimFlags.Paths[OLE DB Source Output]"
-          TopLeft="240,114">
+          TopLeft="235.333333333333,114">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -712,54 +712,54 @@ ORDER BY OBS_FLAG;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimFlags.Paths[OLE DB Source Error Output]"
-          TopLeft="315,114">
+          TopLeft="296.333333333333,114">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="202.5,61"
+              EndConnector="225.666666666667,61"
               Start="0,0"
-              End="202.5,53.5">
+              End="225.666666666667,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.6561679790026" />
+                    End="0,20.6919242273181" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20.6561679790026"
-                    Point2="0,24.6561679790026"
-                    Point3="4,24.6561679790026" />
+                    Point1="0,20.6919242273181"
+                    Point2="0,24.6919242273181"
+                    Point3="4,24.6919242273181" />
                   <mssgle:LineSegment
-                    End="198.5,24.6561679790026" />
+                    End="221.666666666667,24.6919242273181" />
                   <mssgle:CubicBezierSegment
-                    Point1="198.5,24.6561679790026"
-                    Point2="202.5,24.6561679790026"
-                    Point3="202.5,28.6561679790026" />
+                    Point1="221.666666666667,24.6919242273181"
+                    Point2="225.666666666667,24.6919242273181"
+                    Point3="225.666666666667,28.6919242273181" />
                   <mssgle:LineSegment
-                    End="202.5,53.5" />
+                    End="225.666666666667,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="37.81609375,29.6561679790026,126.8678125,11.43359375"
+              BoundingBox="49.3994270833334,29.6919242273181,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimFlags.Paths[Derived Column Output]"
-          TopLeft="514,217">
+          TopLeft="523.75,217">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,66"
+              EndConnector="0,63"
               Start="0,0"
-              End="0,58.5">
+              End="0,55.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5" />
+                    End="0,55.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -772,7 +772,7 @@ ORDER BY OBS_FLAG;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimFlags\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimFlags\OLE_DST_Diagnostics_DB_Silver">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -785,7 +785,7 @@ ORDER BY OBS_FLAG;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimFlags\OLE_SRC_Load_All_Fact_tables">
+    design-time-name="Package\DF_DimFlags\OLE_SRC_All_Fact_tables">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

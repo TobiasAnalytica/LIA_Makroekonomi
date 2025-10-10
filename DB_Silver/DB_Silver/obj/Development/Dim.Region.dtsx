@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package11"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{C26843D7-619F-4287-90DE-D10DCF5407FD}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{D67D4016-5BAE-4733-AD6B-E5EB33A8FE4D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,57 +32,57 @@
           version="1">
           <components>
             <component
-              refId="Package\DF_DimRegion\Derived Column - Concatenate"
+              refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column - Concatenate"
+              name="DC_All_Fact_tables_ErrorReason"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="Description"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Region]"
+                      refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[Region]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]" />
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="130"
-                      lineageId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
-                      name="ErrorDescription"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]} + #{Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]} + #{Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,11 +120,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimRegion\LIA_DB_Diagnostics"
+              refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="LIA_DB_Diagnostics"
+              name="OLE_DST_Diagnostics_DB_Silver"
               usesDispositions="true"
               version="4">
               <properties>
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,74 +185,74 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="130"
-                      cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorReason" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -338,14 +338,14 @@
                       cachedLength="10"
                       cachedName="Region"
                       externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]" />
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="120"
                       cachedName="Description"
                       externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -392,11 +392,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables"
+              refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE_SRC_Load_All_Fact_tables"
+              name="OLE_SRC_All_Fact_tables"
               usesDispositions="true"
               version="7">
               <properties>
@@ -462,7 +462,7 @@ ORDER BY Description;</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Connections[OleDbConnection]"
+                  refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -470,71 +470,71 @@ ORDER BY Description;</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Region]"
                       length="10"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Region]"
                       name="Region"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="120"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Region]"
                       dataType="wstr"
                       length="10"
                       name="Region" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="120"
                       name="Description" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Region]"
                       name="Region" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="120"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -546,31 +546,31 @@ ORDER BY Description;</property>
           <paths>
             <path
               refId="Package\DF_DimRegion.Paths[Derived Column Output]"
-              endId="Package\DF_DimRegion\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\DF_DimRegion\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_DimRegion.Paths[OLE DB Source Error Output]"
-              endId="Package\DF_DimRegion\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              endId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DF_DimRegion.Paths[OLE DB Source Output]"
               endId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate DimRegion"
+      DTS:refId="Package\truncate_DimRegion"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{E767D304-551D-49CA-99F4-B71D3DBCCA72}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate DimRegion"
+      DTS:ObjectName="truncate_DimRegion"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -586,7 +586,7 @@ ORDER BY Description;</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{02BDA080-C2A5-496A-B5E3-08EBA74F6338}"
-      DTS:From="Package\SQL truncate DimRegion"
+      DTS:From="Package\truncate_DimRegion"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\DF_DimRegion" />
@@ -608,12 +608,12 @@ ORDER BY Description;</property>
           Id="Package\DF_DimRegion"
           TopLeft="76,201" />
         <NodeLayout
-          Size="194,42"
-          Id="Package\SQL truncate DimRegion"
+          Size="175,42"
+          Id="Package\truncate_DimRegion"
           TopLeft="60,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="153.75,102">
+          TopLeft="149,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -642,35 +642,35 @@ ORDER BY Description;</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\DF_DimRegion\LIA_DB_Diagnostics"
+          Size="233,42"
+          Id="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver"
           TopLeft="473,274" />
         <NodeLayout
-          Size="227,42"
-          Id="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables"
-          TopLeft="177,52" />
+          Size="199,42"
+          Id="Package\DF_DimRegion\OLE_SRC_All_Fact_tables"
+          TopLeft="181,51" />
         <NodeLayout
-          Size="223,42"
-          Id="Package\DF_DimRegion\Derived Column - Concatenate"
-          TopLeft="455,166" />
+          Size="232,42"
+          Id="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason"
+          TopLeft="470,164" />
         <NodeLayout
           Size="180,42"
           Id="Package\DF_DimRegion\OLE_DST_DimRegion"
           TopLeft="163,273" />
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[OLE DB Source Output]"
-          TopLeft="253.5,94">
+          TopLeft="250.833333333333,93">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,179"
+              EndConnector="0,180"
               Start="0,0"
-              End="0,171.5">
+              End="0,172.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,171.5" />
+                    End="0,172.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -681,54 +681,54 @@ ORDER BY Description;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[OLE DB Source Error Output]"
-          TopLeft="327,94">
+          TopLeft="312.333333333333,93">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="239.5,72"
+              EndConnector="273.666666666667,71"
               Start="0,0"
-              End="239.5,64.5">
+              End="273.666666666667,63.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25.1023622047244" />
+                    End="0,24.7397806580259" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,25.1023622047244"
-                    Point2="0,29.1023622047244"
-                    Point3="4,29.1023622047244" />
+                    Point1="0,24.7397806580259"
+                    Point2="0,28.7397806580259"
+                    Point3="4,28.7397806580259" />
                   <mssgle:LineSegment
-                    End="235.5,29.1023622047244" />
+                    End="269.666666666667,28.7397806580259" />
                   <mssgle:CubicBezierSegment
-                    Point1="235.5,29.1023622047244"
-                    Point2="239.5,29.1023622047244"
-                    Point3="239.5,33.1023622047244" />
+                    Point1="269.666666666667,28.7397806580259"
+                    Point2="273.666666666667,28.7397806580259"
+                    Point3="273.666666666667,32.7397806580259" />
                   <mssgle:LineSegment
-                    End="239.5,64.5" />
+                    End="273.666666666667,63.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="56.31609375,34.1023622047244,126.8678125,11.43359375"
+              BoundingBox="73.3994270833334,33.7397806580259,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[Derived Column Output]"
-          TopLeft="563,208">
+          TopLeft="587.75,206">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,66"
+              EndConnector="0,68"
               Start="0,0"
-              End="0,58.5">
+              End="0,60.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5" />
+                    End="0,60.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -741,7 +741,7 @@ ORDER BY Description;</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimRegion\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -754,7 +754,7 @@ ORDER BY Description;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimRegion\OLE_SRC_Load_All_Fact_tables">
+    design-time-name="Package\DF_DimRegion\OLE_SRC_All_Fact_tables">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

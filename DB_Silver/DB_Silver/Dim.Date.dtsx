@@ -1,0 +1,58 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/10/2025 10:34:04 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WINDOWSOFFICE"
+  DTS:CreatorName="WINDOWSOFFICE\Tobias E"
+  DTS:DTSID="{28B269AC-2C26-4EE1-84A8-10E215E699D9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LocaleID="1053"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{084DB73B-2196-40D3-A056-26F0749A4237}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_DimDate"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{18f854d8-6f71-4116-ab61-c45f882e6121}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_DimDate"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+          SQLTask:SqlStatementSource="-- Steg 1: Definiera start- och slutdatum&#xA;DECLARE @StartDate DATE = '1960-01-01';&#xA;DECLARE @EndDate   DATE = '2030-12-31';&#xA;&#xA;-- Steg 2: Använd en rekursiv CTE för att generera alla datum i intervallet&#xA;WITH DateCTE AS (&#xA;    SELECT &#xA;        @StartDate AS DateValue&#xA;    UNION ALL&#xA;    SELECT&#xA;        DATEADD(DAY, 1, DateValue)&#xA;    FROM&#xA;        DateCTE&#xA;    WHERE&#xA;        DateValue &lt; @EndDate&#xA;)&#xA;-- Steg 3: Infoga i DimDate genom att extrahera alla kolumner&#xA;INSERT INTO Dim.Date (&#xA;    DateKey,&#xA;    DateValue,&#xA;    YearNumber,&#xA;    MonthNumber,&#xA;    DayNumber,&#xA;    DayOfWeek,&#xA;    WeekNumber,&#xA;    QuarterNumber,&#xA;    MonthName,&#xA;    DayName&#xA;)&#xA;SELECT&#xA;    CAST(CONVERT(CHAR(8), DateValue, 112) AS INT) AS DateKey,  -- 112 ger 'YYYYMMDD' som string&#xA;    DateValue,&#xA;    YEAR(DateValue) AS YearNumber,&#xA;    MONTH(DateValue) AS MonthNumber,&#xA;    DAY(DateValue) AS DayNumber,&#xA;    DATEPART(WEEKDAY, DateValue) AS DayOfWeek,                -- 1=Sunday … 7=Saturday i SQL Server; justera om du vill ha ISO (1=Monday)&#xA;    DATEPART(ISO_WEEK, DateValue) AS WeekNumber,              -- ISO-veckonummer (i SQL Server 2012+)&#xA;    DATEPART(QUARTER, DateValue) AS QuarterNumber,&#xA;    DATENAME(MONTH, DateValue) AS MonthName,                  -- Månadens namn på serverspråket&#xA;    DATENAME(WEEKDAY, DateValue) AS DayName                   -- Veckodagens namn&#xA;FROM&#xA;    DateCTE&#xA;OPTION (MAXRECURSION 0);  -- Tillåter fler än standard 100 rekursioner&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="138,42"
+          Id="Package\DF_DimDate"
+          TopLeft="127,125" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

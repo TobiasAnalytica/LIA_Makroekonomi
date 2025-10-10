@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Dim TimeFrequency"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{797AC50A-F7D0-4D60-BCEF-56108FCFF84E}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{4647177D-C5A5-4E77-8097-271365477BCB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -32,57 +32,57 @@
           version="1">
           <components>
             <component
-              refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate"
+              refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column - Concatenate"
+              name="DC_All_Fact_tables_ErrorReason"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
+                  refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Description"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]" />
                     <inputColumn
-                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input].Columns[TimeFrequency]"
                       cachedDataType="wstr"
                       cachedLength="1"
                       cachedName="TimeFrequency"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]" />
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]"
+                  refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
+                      refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="11"
-                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]"
-                      name="ErrorDescription"
+                      lineageId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">#{Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]} + #{Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
+                          name="Expression">#{Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]} + #{Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -95,23 +95,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output]"
+                  refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -120,11 +120,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics"
+              refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="LIA_DB_Diagnostics"
+              name="OLE_DST_Diagnostics_DB_Silver"
               usesDispositions="true"
               version="4">
               <properties>
@@ -177,7 +177,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Connections[OleDbConnection]"
+                  refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
                   connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -185,74 +185,74 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
                     <inputColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].Columns[ErrorDescription]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="11"
-                      cachedName="ErrorDescription"
-                      externalMetadataColumnId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      lineageId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output].Columns[ErrorDescription]" />
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      lineageId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       dataType="wstr"
                       length="100"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       dataType="wstr"
                       length="100"
                       name="ErrorColumn" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
                       dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      dataType="wstr"
+                      length="500"
+                      name="ErrorReason" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -338,14 +338,14 @@
                       cachedLength="1"
                       cachedName="TimeFrequency"
                       externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_DST_DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[TimeFrequency]"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]" />
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]" />
                     <inputColumn
                       refId="Package\DF_DimTimeFrequency\OLE_DST_DimTimeFrequency.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Description"
                       externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_DST_DimTimeFrequency.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -392,11 +392,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables"
+              refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE_SRC_Load_All_Fact_tables"
+              name="OLE_SRC_All_Fact_tables"
               usesDispositions="true"
               version="7">
               <properties>
@@ -461,7 +461,7 @@ SELECT DISTINCT
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Connections[OleDbConnection]"
+                  refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Connections[OleDbConnection]"
                   connectionManagerID="{5D400992-DA68-4043-A268-53124E7DC339}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -469,71 +469,71 @@ SELECT DISTINCT
               </connections>
               <outputs>
                 <output
-                  refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
                       length="1"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[TimeFrequency]"
                       name="TimeFrequency"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      externalMetadataColumnId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       length="10"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].Columns[Description]"
                       name="Description"
                       truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[TimeFrequency]"
                       dataType="wstr"
                       length="1"
                       name="TimeFrequency" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output].ExternalColumns[Description]"
                       dataType="wstr"
                       length="10"
                       name="Description" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
                       dataType="wstr"
                       length="1"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[TimeFrequency]"
                       name="TimeFrequency" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       dataType="wstr"
                       length="10"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[Description]"
                       name="Description" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -545,31 +545,31 @@ SELECT DISTINCT
           <paths>
             <path
               refId="Package\DF_DimTimeFrequency.Paths[Derived Column Output]"
-              endId="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
-              startId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Outputs[Derived Column Output]" />
+              startId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]" />
             <path
               refId="Package\DF_DimTimeFrequency.Paths[OLE DB Source Error Output]"
-              endId="Package\DF_DimTimeFrequency\Derived Column - Concatenate.Inputs[Derived Column Input]"
+              endId="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason.Inputs[Derived Column Input]"
               name="OLE DB Source Error Output"
-              startId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
+              startId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output]" />
             <path
               refId="Package\DF_DimTimeFrequency.Paths[OLE DB Source Output]"
               endId="Package\DF_DimTimeFrequency\OLE_DST_DimTimeFrequency.Inputs[OLE DB Destination Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL truncate DimTimeFrequency"
+      DTS:refId="Package\truncate_DimTimeFrequency"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{D20BF9F8-489E-4043-8C80-10B635250CEC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL truncate DimTimeFrequency"
+      DTS:ObjectName="truncate_DimTimeFrequency"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -585,7 +585,7 @@ SELECT DISTINCT
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{6B30E6D7-47F8-4C84-A3CF-D38167E3D512}"
-      DTS:From="Package\SQL truncate DimTimeFrequency"
+      DTS:From="Package\truncate_DimTimeFrequency"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\DF_DimTimeFrequency" />
@@ -607,12 +607,12 @@ SELECT DISTINCT
           Id="Package\DF_DimTimeFrequency"
           TopLeft="76,194" />
         <NodeLayout
-          Size="234,42"
-          Id="Package\SQL truncate DimTimeFrequency"
+          Size="214,42"
+          Id="Package\truncate_DimTimeFrequency"
           TopLeft="60,60" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="173.5,102">
+          TopLeft="168.5,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -641,16 +641,16 @@ SELECT DISTINCT
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="173,42"
-          Id="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics"
-          TopLeft="448,278" />
+          Size="233,42"
+          Id="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver"
+          TopLeft="432,281" />
         <NodeLayout
-          Size="227,42"
-          Id="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables"
+          Size="199,42"
+          Id="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables"
           TopLeft="141,70" />
         <NodeLayout
-          Size="223,42"
-          Id="Package\DF_DimTimeFrequency\Derived Column - Concatenate"
+          Size="232,42"
+          Id="Package\DF_DimTimeFrequency\DC_All_Fact_tables_ErrorReason"
           TopLeft="430,170" />
         <NodeLayout
           Size="219,42"
@@ -658,30 +658,30 @@ SELECT DISTINCT
           TopLeft="143,277" />
         <EdgeLayout
           Id="Package\DF_DimTimeFrequency.Paths[OLE DB Source Output]"
-          TopLeft="218,112">
+          TopLeft="208.666666666667,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="34.5,165"
+              EndConnector="43.8333333333333,165"
               Start="0,0"
-              End="34.5,157.5">
+              End="43.8333333333333,157.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,62.6929133858268" />
+                    End="0,62.78963110668" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,62.6929133858268"
-                    Point2="0,66.6929133858268"
-                    Point3="4,66.6929133858268" />
+                    Point1="0,62.78963110668"
+                    Point2="0,66.78963110668"
+                    Point3="4,66.78963110668" />
                   <mssgle:LineSegment
-                    End="30.5,66.6929133858268" />
+                    End="39.8333333333333,66.78963110668" />
                   <mssgle:CubicBezierSegment
-                    Point1="30.5,66.6929133858268"
-                    Point2="34.5,66.6929133858268"
-                    Point3="34.5,70.6929133858268" />
+                    Point1="39.8333333333333,66.78963110668"
+                    Point2="43.8333333333333,66.78963110668"
+                    Point3="43.8333333333333,70.78963110668" />
                   <mssgle:LineSegment
-                    End="34.5,157.5" />
+                    End="43.8333333333333,157.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -692,54 +692,54 @@ SELECT DISTINCT
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimTimeFrequency.Paths[OLE DB Source Error Output]"
-          TopLeft="291,112">
+          TopLeft="272.333333333333,112">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="250.5,58"
+              EndConnector="273.666666666667,58"
               Start="0,0"
-              End="250.5,50.5">
+              End="273.666666666667,50.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4435695538058" />
+                    End="0,19.4775672981057" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4435695538058"
-                    Point2="0,23.4435695538058"
-                    Point3="4,23.4435695538058" />
+                    Point1="0,19.4775672981057"
+                    Point2="0,23.4775672981057"
+                    Point3="4,23.4775672981057" />
                   <mssgle:LineSegment
-                    End="246.5,23.4435695538058" />
+                    End="269.666666666667,23.4775672981057" />
                   <mssgle:CubicBezierSegment
-                    Point1="246.5,23.4435695538058"
-                    Point2="250.5,23.4435695538058"
-                    Point3="250.5,27.4435695538058" />
+                    Point1="269.666666666667,23.4775672981057"
+                    Point2="273.666666666667,23.4775672981057"
+                    Point3="273.666666666667,27.4775672981057" />
                   <mssgle:LineSegment
-                    End="250.5,50.5" />
+                    End="273.666666666667,50.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="61.81609375,28.4435695538058,126.8678125,11.43359375"
+              BoundingBox="73.3994270833334,28.4775672981057,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimTimeFrequency.Paths[Derived Column Output]"
-          TopLeft="538,212">
+          TopLeft="547.25,212">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,66"
+              EndConnector="0,69"
               Start="0,0"
-              End="0,58.5">
+              End="0,61.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5" />
+                    End="0,61.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -752,7 +752,7 @@ SELECT DISTINCT
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimTimeFrequency\LIA_DB_Diagnostics">
+    design-time-name="Package\DF_DimTimeFrequency\OLE_DST_Diagnostics_DB_Silver">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -765,7 +765,7 @@ SELECT DISTINCT
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimTimeFrequency\OLE_SRC_Load_All_Fact_tables">
+    design-time-name="Package\DF_DimTimeFrequency\OLE_SRC_All_Fact_tables">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
