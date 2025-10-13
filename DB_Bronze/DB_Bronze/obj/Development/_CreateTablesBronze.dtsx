@@ -11,20 +11,64 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="190"
-  DTS:VersionGUID="{355ECA3B-CCE6-4F0A-96B0-46B2C57A1E32}">
+  DTS:VersionBuild="204"
+  DTS:VersionGUID="{49CD40F0-ABD2-4E35-9834-F37C63B819ED}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{966CEB33-6FBF-4D2C-B6C4-710C96017243}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::Enviroment]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Environment">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B563808-86BE-42FD-A4C5-174B1891CD77}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="JobName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F1F0F2DA-8AF6-4EC7-839A-3929AA61079A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RunId">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{14A276DF-A4C4-4278-93C6-17E7CE623D6C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[System::ServerExecutionID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SsisExecutionId">
+      <DTS:VariableValue
+        DTS:DataType="20">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Create_Diagnostics_DB_Bronze"
+      DTS:refId="Package\Create_dboDiagnostics_DB_Bronze"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{a87ed9ae-e66e-4765-9895-b84199f8b8c8}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="1033"
-      DTS:ObjectName="Create_Diagnostics_DB_Bronze"
+      DTS:ObjectName="Create_dboDiagnostics_DB_Bronze"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
       DTS:ThreadHint="0">
       <DTS:Variables />
@@ -33,7 +77,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DB_Bronze', 'U') IS NOT NULL&#xA;    DROP TABLE dbo.Diagnostics_DB_Bronze;&#xA;&#xA;CREATE TABLE dbo.Diagnostics_DB_Bronze (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DB_Bronze', 'U') IS NOT NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE dbo.Diagnostics_DB_Bronze (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -55,7 +99,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -74,7 +118,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -93,7 +137,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -112,7 +156,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -131,7 +175,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -150,7 +194,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -169,7 +213,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawJobVacancies"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -188,7 +232,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -207,7 +251,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -226,7 +270,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawRegionGroupBridge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -245,7 +289,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -263,7 +307,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{0D398E32-C0E7-4905-B6BF-11B14747EFC6}"
-      DTS:From="Package\Create_Diagnostics_DB_Bronze"
+      DTS:From="Package\Create_dboDiagnostics_DB_Bronze"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\SC - Create bronze tables - LIA_DB_Bronze" />
@@ -281,9 +325,9 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="226,42"
-          Id="Package\Create_Diagnostics_DB_Bronze"
-          TopLeft="462,27" />
+          Size="244,42"
+          Id="Package\Create_dboDiagnostics_DB_Bronze"
+          TopLeft="445,165" />
         <NodeLayout
           Size="194,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawConfigGroup"
@@ -334,21 +378,21 @@
           PanelSize="1085,588"
           Size="1085,631"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze"
-          TopLeft="31,115" />
+          TopLeft="31,255" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="574.25,69">
+          TopLeft="570.25,207">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46"
+              EndConnector="0,48"
               Start="0,0"
-              End="0,38.5">
+              End="0,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.5" />
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
