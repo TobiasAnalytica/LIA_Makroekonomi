@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesGold"
   DTS:PackageType="5"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{430A9425-6A6E-46F3-8A12-CA20947CDA21}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{A9438F7F-D5BB-41E1-BDEB-428EB90FCC53}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -72,7 +72,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimAgeClassEmp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -89,7 +89,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimAgeClassUnemp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -106,7 +106,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -123,7 +123,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -140,7 +140,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimDate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -157,7 +157,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimFlags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -174,7 +174,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimGender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -191,7 +191,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimRegion"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -208,7 +208,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimSeasonalAdjustment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -225,7 +225,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimTimeFrequency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -271,12 +271,97 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_BridgeRegionGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
               SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Bridge') IS NULL&#xA;    EXEC('CREATE SCHEMA Bridge');&#xA;&#xA;-- Skapa tabellen om den inte redan finns&#xA;IF NOT EXISTS (&#xA;    SELECT 1&#xA;    FROM sys.tables&#xA;    WHERE name = 'RegionGroup'&#xA;      AND schema_id = SCHEMA_ID('Bridge')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE Bridge.RegionGroup&#xA;    (&#xA;        GroupKey       INT           NOT NULL,  -- FK till Dim.ConfigGroup.GroupSK&#xA;        RegionKey      INT           NOT NULL,  -- FK till Dim.Region.RegionSK&#xA;&#xA;        CONSTRAINT PK_Bridge_RegionGroup&#xA;            PRIMARY KEY CLUSTERED (GroupKey, RegionKey)&#xA;    );&#xA;&#xA;&#xA;    CREATE NONCLUSTERED INDEX IX_Bridge_RegionGroup_RegionKey ON Bridge.RegionGroup(RegionKey);&#xA;    CREATE NONCLUSTERED INDEX IX_Bridge_RegionGroup_GroupKey  ON Bridge.RegionGroup(GroupKey);&#xA;END;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SC - Create Gold tables - Fact and Bridge\Create_dboSplit"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{357438C0-2121-4C2B-B022-879969F865AC}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create_dboSplit"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;-- =============================================&#xA;-- Author:&#x9;&#x9;Fredrik Bergdahl&#xA;-- Create date: 2017-08-09&#xA;-- Description:&#x9;Returns a Statment for Truncate Tables. &#xA;--&#x9;&#x9;&#x9;    @SchemaNames is a comma seperated string with the schemas to truncate&#xA;-- =============================================&#xA;CREATE FUNCTION [dbo].[Split] &#xA;    (   &#xA;    @DelimitedString    varchar(8000),&#xA;    @Delimiter              varchar(100) &#xA;    )&#xA;RETURNS @tblArray TABLE&#xA;    (&#xA;    ElementID   int IDENTITY(1,1),  -- Array index&#xA;    Element     varchar(1000)               -- Array element contents&#xA;    )&#xA;AS&#xA;BEGIN&#xA;&#xA;    -- Local Variable Declarations&#xA;    -- ---------------------------&#xA;    DECLARE @Index      smallint,&#xA;                    @Start      smallint,&#xA;                    @DelSize    smallint&#xA;&#xA;    SET @DelSize = LEN(@Delimiter)&#xA;&#xA;    -- Loop through source string and add elements to destination table array&#xA;    -- ----------------------------------------------------------------------&#xA;    WHILE LEN(@DelimitedString) &gt; 0&#xA;    BEGIN&#xA;&#xA;        SET @Index = CHARINDEX(@Delimiter, @DelimitedString)&#xA;&#xA;        IF @Index = 0&#xA;            BEGIN&#xA;&#xA;                INSERT INTO&#xA;                    @tblArray &#xA;                    (Element)&#xA;                VALUES&#xA;                    (LTRIM(RTRIM(@DelimitedString)))&#xA;&#xA;                BREAK&#xA;            END&#xA;        ELSE&#xA;            BEGIN&#xA;&#xA;                INSERT INTO&#xA;                    @tblArray &#xA;                    (Element)&#xA;                VALUES&#xA;                    (LTRIM(RTRIM(SUBSTRING(@DelimitedString, 1,@Index - 1))))&#xA;&#xA;                SET @Start = @Index + @DelSize&#xA;                SET @DelimitedString = SUBSTRING(@DelimitedString, @Start , LEN(@DelimitedString) - @Start + 1)&#xA;&#xA;            END&#xA;    END&#xA;&#xA;    RETURN&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetCreateForeignKeyCMD"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1B5089BB-4CEB-44AD-B140-034185D6CF3D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create_etlGetCreateForeignKeyCMD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;-- =============================================&#xA;-- Author:&#x9;&#x9;Fredrik Bergdahl&#xA;-- Create date: 2017-08-08&#xA;-- Description:&#x9;Returns a Statment for recreating foreign keys&#xA;-- =============================================&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('etl') IS NULL&#xA;    EXEC('CREATE SCHEMA etl');&#xA;&#xA;CREATE FUNCTION [etl].[GetCreateForeignKeyCMD]() &#xA;RETURNS varchar(MAX)&#xA;AS&#xA;BEGIN&#xA;&#x9;declare @strsql as varchar(max)&#xA;&#xA;&#x9;-- create create for all foreign-keys&#xA;&#x9;--select fk.name, spo.name ,sro.name, fkpc.name,fkrc.name&#xA;&#x9;set @strsql='-- begin CREATE Foreign Keys ' + CHAR(13)&#xA;&#x9;&#xA;&#x9;SELECT @strsql += N'&#xA;   ALTER TABLE ' &#xA;   + QUOTENAME(cs.name) + '.' + QUOTENAME(ct.name) &#xA;   + ' ADD CONSTRAINT ' + QUOTENAME(fk.name) &#xA;   + ' FOREIGN KEY (' + STUFF((SELECT ',' + QUOTENAME(c.name)&#xA;   -- get all the columns in the constraint table&#xA;    FROM sys.columns AS c &#xA;    INNER JOIN sys.foreign_key_columns AS fkc &#xA;    ON fkc.parent_column_id = c.column_id&#xA;    AND fkc.parent_object_id = c.[object_id]&#xA;    WHERE fkc.constraint_object_id = fk.[object_id]&#xA;    ORDER BY fkc.constraint_column_id &#xA;    FOR XML PATH(N''), TYPE).value(N'.[1]', N'nvarchar(max)'), 1, 1, N'')&#xA;  + ') REFERENCES ' + QUOTENAME(rs.name) + '.' + QUOTENAME(rt.name)&#xA;  + '(' + STUFF((SELECT ',' + QUOTENAME(c.name)&#xA;   -- get all the referenced columns&#xA;    FROM sys.columns AS c &#xA;    INNER JOIN sys.foreign_key_columns AS fkc &#xA;    ON fkc.referenced_column_id = c.column_id&#xA;    AND fkc.referenced_object_id = c.[object_id]&#xA;    WHERE fkc.constraint_object_id = fk.[object_id]&#xA;    ORDER BY fkc.constraint_column_id &#xA;    FOR XML PATH(N''), TYPE).value(N'.[1]', N'nvarchar(max)'), 1, 1, N'') + ');'&#xA;&#x9;FROM sys.foreign_keys AS fk&#xA;&#x9;INNER JOIN sys.tables AS rt -- referenced table&#xA;&#x9;  ON fk.referenced_object_id = rt.[object_id]&#xA;&#x9;INNER JOIN sys.schemas AS rs &#xA;&#x9;  ON rt.[schema_id] = rs.[schema_id]&#xA;&#x9;INNER JOIN sys.tables AS ct -- constraint table&#xA;&#x9;  ON fk.parent_object_id = ct.[object_id]&#xA;&#x9;INNER JOIN sys.schemas AS cs &#xA;&#x9;  ON ct.[schema_id] = cs.[schema_id]&#xA;&#x9;WHERE rt.is_ms_shipped = 0 AND ct.is_ms_shipped = 0;&#xA;&#x9;&#xA;&#x9;set @strsql=@strsql + '-- end CREATE Foreign Keys ' + CHAR(13)&#xA;&#x9;&#xA;&#x9;Return @strsql&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetDropForeignKeyCMD"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FC24DD28-1591-49CB-B19F-DD707534FB17}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create_etlGetDropForeignKeyCMD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="3">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;-- =============================================&#xA;-- Author:&#x9;&#x9;Fredrik Bergdahl&#xA;-- Create date: 2017-08-08&#xA;-- Description:&#x9;Returns a Statment for droping all foreign keys&#xA;-- =============================================&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('etl') IS NULL&#xA;    EXEC('CREATE SCHEMA etl');&#xA;&#xA;CREATE FUNCTION [etl].[GetDropForeignKeyCMD]() &#xA;RETURNS varchar(MAX)&#xA;AS&#xA;BEGIN&#xA;&#x9;&#xA;&#x9;declare @strsql as varchar(max)&#xA;&#x9;set @strsql='-- begin DROP Foreign Keys ' + CHAR(13)&#xA;&#x9;-- drop is easy, just build a simple concatenated list from sys.foreign_keys:&#xA;&#x9;SELECT @strsql += N'&#xA;&#x9;ALTER TABLE ' + QUOTENAME(cs.name) + '.' + QUOTENAME(ct.name) &#xA;&#x9;&#x9;+ ' DROP CONSTRAINT ' + QUOTENAME(fk.name) + ';'&#xA;&#x9;FROM sys.foreign_keys AS fk&#xA;&#x9;INNER JOIN sys.tables AS ct&#xA;&#x9;  ON fk.parent_object_id = ct.[object_id]&#xA;&#x9;INNER JOIN sys.schemas AS cs &#xA;&#x9;  ON ct.[schema_id] = cs.[schema_id];&#xA;&#xA;&#x9;set @strsql= @strsql + '-- end DROP Foreign Keys' + CHAR(13)+CHAR(13)&#xA;&#x9;&#xA;&#x9;&#xA;&#x9;Return @strsql&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetTruncateTableCMD"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3EF7364A-697B-4122-B68C-8A56BA6F9D7F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create_etlGetTruncateTableCMD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;-- =============================================&#xA;-- Author:&#x9;&#x9;Fredrik Bergdahl&#xA;-- Create date: 2017-08-08&#xA;-- Description:&#x9;Returns a Statment for Truncate Tables. &#xA;--&#x9;&#x9;&#x9;    @SchemaNames is a comma seperated string with the schemas to truncate&#xA;-- =============================================&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('etl') IS NULL&#xA;    EXEC('CREATE SCHEMA etl');&#xA;&#xA;CREATE FUNCTION [etl].[GetTruncateTablesCMD](@SchemaNames varchar(2000)) &#xA;RETURNS varchar(MAX)&#xA;AS&#xA;BEGIN&#xA;&#x9;declare @strsql as varchar(max)&#xA;&#x9;set @strsql='-- begin Truncate Tables ' + CHAR(13)&#xA;&#x9;select @strsql = @strsql  + 'truncate table [' + TABLE_SCHEMA + '].[' + TABLE_NAME + ']' + CHAR(13) + CHAR(13)&#xA;&#x9;from INFORMATION_SCHEMA.TABLES&#xA;&#x9;where  TABLE_SCHEMA in (select Element from dbo.Split(@SchemaNames,','))&#xA;&#x9;and TABLE_TYPE = 'BASE TABLE'&#xA;&#xA;&#x9;set @strsql= @strsql + '-- end Truncate Tables ' + CHAR(13)+CHAR(13)&#xA;&#x9;&#xA;&#x9;Return @strsql&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SC - Create Gold tables - Fact and Bridge\Create_etlParameter"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{FEE09BA7-0EEB-457C-BE92-02D3DCF0B530}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Create_etlParameter"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{A017A1D6-82C4-449D-8C3E-61DF27798648}"
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('etl') IS NULL&#xA;    EXEC('CREATE SCHEMA etl');&#xA;&#xA;CREATE TABLE [etl].[Parameter] (&#xA;    [Parameter]   VARCHAR (100) NULL,&#xA;    [Value]       VARCHAR (MAX) NULL,&#xA;    [Description] VARCHAR (500) NULL,&#xA;    UNIQUE NONCLUSTERED ([Parameter] ASC)&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -288,7 +373,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -305,7 +390,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -322,7 +407,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -339,7 +424,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -356,7 +441,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -373,7 +458,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactJobVacancies"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -390,7 +475,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="12">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -407,7 +492,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -424,7 +509,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_FactUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -472,7 +557,7 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="219,42"
           Id="Package\Create_Diagnostics_DW_Gold"
@@ -572,11 +657,31 @@
           Size="206,42"
           Id="Package\SC - Create Gold tables - Fact and Bridge\Create_FactUnemployment"
           TopLeft="797,48" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\SC - Create Gold tables - Fact and Bridge\Create_dboSplit"
+          TopLeft="10,494" />
+        <NodeLayout
+          Size="176,42"
+          Id="Package\SC - Create Gold tables - Fact and Bridge\Create_etlParameter"
+          TopLeft="170,496" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetDropForeignKeyCMD"
+          TopLeft="357,497" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetTruncateTableCMD"
+          TopLeft="608,498" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\SC - Create Gold tables - Fact and Bridge\Create_etlGetCreateForeignKeyCMD"
+          TopLeft="852,499" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1136,471"
-          Size="1136,514"
+          PanelSize="1144,606"
+          Size="1144,649"
           Id="Package\SC - Create Gold tables - Fact and Bridge"
           TopLeft="64,851" />
         <EdgeLayout
@@ -603,7 +708,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="632.5,806">
+          TopLeft="634.5,806">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

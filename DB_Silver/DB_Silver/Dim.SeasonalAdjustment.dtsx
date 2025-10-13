@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package12"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{CB898B50-164F-4494-8D0F-66AACEA63EF2}">
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{667F898F-5449-40EF-A08B-6FE5336D1180}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -89,6 +89,75 @@
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
                           name="FriendlyExpression">[Seasonal adjustment] + Description</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="38"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      name="RunId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="24"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::TaskName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::TaskName]</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -210,6 +279,27 @@
                       cachedName="ErrorReason"
                       externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\DF_DimSeasonalAdjustment\DC_FactGDP_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -225,13 +315,31 @@
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
+                      dataType="dbTimeStamp2"
                       name="CreatedErrorAt" />
                     <externalMetadataColumn
                       refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       dataType="wstr"
                       length="500"
                       name="ErrorReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[DiagnosticsId]"
+                      dataType="i4"
+                      name="DiagnosticsId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="guid"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimSeasonalAdjustment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      dataType="wstr"
+                      length="128"
+                      name="TaskName" />
                   </externalMetadataColumns>
                 </input>
               </inputs>

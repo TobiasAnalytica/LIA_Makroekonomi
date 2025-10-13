@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Fact HICPIndex"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{43CC9FCF-1194-4169-A777-FF3A1EC48F2B}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{B528CA74-D439-4E83-A0B5-109932B97038}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -151,6 +151,75 @@
                           name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(unit) ? "" : (DT_WSTR,10)unit) + "|" + (ISNULL([Unit of measure]) ? "" : (DT_WSTR,50)[Unit of measure]) + "|" + (ISNULL(coicop) ? "" : (DT_WSTR,20)coicop) + "|" + (ISNULL([Classification of individual consumption by purpose (COICOP)]) ? "" : (DT_WSTR,150)[Classification of individual consumption by purpose (COICOP)]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : (DT_WSTR,100)[Geopolitical entity (reporting)]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : (DT_WSTR,100)[Observation status (Flag) V2 structure]),1,500)</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="38"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      name="RunId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="14"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="16"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::TaskName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::TaskName]</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -270,6 +339,27 @@
                       cachedName="ErrorReason"
                       externalMetadataColumnId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="16"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -285,13 +375,31 @@
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
+                      dataType="dbTimeStamp2"
                       name="CreatedErrorAt" />
                     <externalMetadataColumn
                       refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       dataType="wstr"
                       length="500"
                       name="ErrorReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[DiagnosticsId]"
+                      dataType="i4"
+                      name="DiagnosticsId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="guid"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactHICPIndex\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      dataType="wstr"
+                      length="128"
+                      name="TaskName" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1089,28 +1197,6 @@ FROM Raw.HICPIndex;</property>
           Id="Package\DF_FactHICPIndex\DC_RawHICPIndex_ErrorReason"
           TopLeft="555,200" />
         <EdgeLayout
-          Id="Package\DF_FactHICPIndex.Paths[OLE DB Source Output]"
-          TopLeft="327.083333333333,98">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,210"
-              Start="0,0"
-              End="0,202.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,202.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\DF_FactHICPIndex.Paths[OLE DB Source Error Output]"
           TopLeft="389.333333333333,98">
           <EdgeLayout.Curve>
@@ -1160,6 +1246,28 @@ FROM Raw.HICPIndex;</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,58.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactHICPIndex.Paths[OLE DB Source Output]"
+          TopLeft="327.083333333333,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,210"
+              Start="0,0"
+              End="0,202.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,202.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Fact Employment"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{B0CDF19F-3275-4A06-9279-08FC19E43696}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{9C2EE576-6FA3-456A-93D3-B72DD7CE4B4C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -149,6 +149,75 @@
                           name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : freq) + "|" + (ISNULL([Time frequency]) ? "" : [Time frequency]) + "|" + (ISNULL(geo) ? "" : geo) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : OBS_FLAG) + "|" + (ISNULL(sex) ? "" : sex) + "|" + (ISNULL(Sex_2) ? "" : Sex_2) + "|" + (ISNULL(age) ? "" : (DT_WSTR,10)age) + "|" + (ISNULL([Age class]) ? "" : [Age class]) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : [Geopolitical entity (reporting)]) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : [Observation status (Flag) V2 structure]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)),1,500)</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="38"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      name="RunId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="15"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="17"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::TaskName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::TaskName]</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -268,6 +337,27 @@
                       cachedName="ErrorReason"
                       externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="17"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -283,13 +373,31 @@
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
+                      dataType="dbTimeStamp2"
                       name="CreatedErrorAt" />
                     <externalMetadataColumn
                       refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       dataType="wstr"
                       length="500"
                       name="ErrorReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[DiagnosticsId]"
+                      dataType="i4"
+                      name="DiagnosticsId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="guid"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactEmployment\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      dataType="wstr"
+                      length="128"
+                      name="TaskName" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1084,28 +1192,6 @@ FROM Raw.Employment;</property>
           Id="Package\DF_FactEmployment\DC_RawEmployment_ErrorReason"
           TopLeft="464,176" />
         <EdgeLayout
-          Id="Package\DF_FactEmployment.Paths[OLE DB Source Output]"
-          TopLeft="244.416666666667,134">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,145"
-              Start="0,0"
-              End="0,137.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,137.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\DF_FactEmployment.Paths[OLE DB Source Error Output]"
           TopLeft="307.666666666667,134">
           <EdgeLayout.Curve>
@@ -1155,6 +1241,28 @@ FROM Raw.Employment;</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactEmployment.Paths[OLE DB Source Output]"
+          TopLeft="244.416666666667,134">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,145"
+              Start="0,0"
+              End="0,137.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,137.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Fact MoneyMarketInterestRates"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{A9EC16F1-5BC1-49C5-B8FF-7FC84807FAB5}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{18940B93-7DAE-4554-A39C-61DFFD8D3543}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -125,6 +125,75 @@
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
                           name="FriendlyExpression">SUBSTRING((ISNULL(freq) ? "" : (DT_WSTR,10)freq) + "|" + (ISNULL([Time frequency]) ? "" : (DT_WSTR,20)[Time frequency]) + "|" + (ISNULL(geo) ? "" : (DT_WSTR,20)geo) + "|" + (ISNULL([Geopolitical entity (reporting)]) ? "" : (DT_WSTR,100)[Geopolitical entity (reporting)]) + "|" + (ISNULL(Date) ? "" : LEFT((DT_WSTR,20)Date,10)) + "|" + (ISNULL(OBS_VALUE) ? "" : (DT_WSTR,40)OBS_VALUE) + "|" + (ISNULL(OBS_FLAG) ? "" : (DT_WSTR,10)OBS_FLAG) + "|" + (ISNULL([Observation status (Flag) V2 structure]) ? "" : (DT_WSTR,100)[Observation status (Flag) V2 structure]),1,500)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="38"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      name="RunId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="29"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="31"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::TaskName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::TaskName]</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -246,6 +315,27 @@
                       cachedName="ErrorReason"
                       externalMetadataColumnId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="29"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="31"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      lineageId="Package\DF_FactMoneyMarketInterestRates\DC_RawMoneyMarketInterestRates_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -261,13 +351,31 @@
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
+                      dataType="dbTimeStamp2"
                       name="CreatedErrorAt" />
                     <externalMetadataColumn
                       refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
                       dataType="wstr"
                       length="500"
                       name="ErrorReason" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[DiagnosticsId]"
+                      dataType="i4"
+                      name="DiagnosticsId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="guid"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactMoneyMarketInterestRates\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      dataType="wstr"
+                      length="128"
+                      name="TaskName" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -920,12 +1028,12 @@ FROM Raw.MoneyMarketInterestRates;</property>
           TopLeft="627,170" />
         <NodeLayout
           Size="275,42"
-          Id="Package\DF_FactMoneyMarketInterestRates\OLE_SRC_RawMoneyMarketInterestRates"
-          TopLeft="245,74" />
-        <NodeLayout
-          Size="275,42"
           Id="Package\DF_FactMoneyMarketInterestRates\OLE_DST_FactMoneyMarketInterestRates"
           TopLeft="205,278" />
+        <NodeLayout
+          Size="275,42"
+          Id="Package\DF_FactMoneyMarketInterestRates\OLE_SRC_RawMoneyMarketInterestRates"
+          TopLeft="245,74" />
         <EdgeLayout
           Id="Package\DF_FactMoneyMarketInterestRates.Paths[OLE DB Source Output]"
           TopLeft="340.25,116">
@@ -1023,14 +1131,6 @@ FROM Raw.MoneyMarketInterestRates;</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactMoneyMarketInterestRates\OLE_SRC_RawMoneyMarketInterestRates">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\DF_FactMoneyMarketInterestRates\OLE_DST_FactMoneyMarketInterestRates">
     <Properties>
       <Property>
@@ -1040,6 +1140,14 @@ FROM Raw.MoneyMarketInterestRates;</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_FactMoneyMarketInterestRates\OLE_SRC_RawMoneyMarketInterestRates">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

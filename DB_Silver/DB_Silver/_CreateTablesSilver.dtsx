@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="209"
-  DTS:VersionGUID="{0F8CF867-1A4E-4D8F-8AA9-6D73A275EC40}">
+  DTS:VersionBuild="220"
+  DTS:VersionGUID="{5C1DBE2A-28FC-4E52-9303-5A1935CC8F58}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -33,7 +33,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Diagnostics_DB_Silver', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Diagnostics_DB_Silver (&#xA;        DiagnosticsId  INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId          UNIQUEIDENTIFIER NULL,    -- mappa SSIS System::ExecutionInstanceGUID hit&#xA;        ErrorCode      NVARCHAR(100)  NOT NULL,  -- från Error Output&#xA;        ErrorColumn    NVARCHAR(100)  NOT NULL,  -- från Error Output&#xA;        ErrorReason    NVARCHAR(500)  NOT NULL,  -- från Derived Column&#xA;        CreatedErrorAt DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;&#xA;    CREATE INDEX IX_Diagnostics_Run ON dbo.Diagnostics_DB_Silver(RunId, CreatedErrorAt);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Diagnostics_DB_Silver', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Diagnostics_DB_Silver (&#xA;        DiagnosticsId   INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId           UNIQUEIDENTIFIER NULL,     -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName     NVARCHAR(128) NULL,        -- SSIS: System::PackageName&#xA;        TaskName        NVARCHAR(128) NULL,        -- SSIS: System::TaskName (alt. System::SourceName)&#xA;        ErrorCode       NVARCHAR(100)  NOT NULL,   -- från Error Output (casta vid behov)&#xA;        ErrorColumn     NVARCHAR(100)  NOT NULL,   -- från Error Output (casta vid behov)&#xA;        ErrorReason     NVARCHAR(500)  NOT NULL,   -- från Derived Column&#xA;        CreatedErrorAt  DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;&#xA;    CREATE INDEX IX_Diagnostics_Run ON dbo.Diagnostics_DB_Silver(RunId, CreatedErrorAt);&#xA;END;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -55,7 +55,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_BridgeRegionGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="21">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -74,7 +74,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_dboHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="22">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -93,7 +93,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_dboHICPTarget_In"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="23">
+          DTS:ThreadHint="12">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -112,7 +112,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimAgeClassEmp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -131,7 +131,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimAgeClassUnemp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -150,7 +150,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="15">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -169,7 +169,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -188,7 +188,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimDate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="24">
+          DTS:ThreadHint="17">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -205,7 +205,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimFlags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="18">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -224,7 +224,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimGender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -243,7 +243,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimRegion"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="20">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -262,7 +262,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimSeasonalAdjustment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="21">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -281,7 +281,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimTimeFrequency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="19">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -300,7 +300,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimUnit"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="22">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -319,7 +319,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="24">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -338,7 +338,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -357,7 +357,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -376,7 +376,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="18">
+          DTS:ThreadHint="23">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -395,7 +395,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactJobVacancies"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="19">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -414,7 +414,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="17">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -433,7 +433,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="13">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -452,7 +452,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="14">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -471,14 +471,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejBridgeRegionGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="15">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Droppa rej-tabellen&#xA;IF OBJECT_ID(N'rej.BridgeRegionGroup', N'U') IS NOT NULL&#xA;    DROP TABLE rej.BridgeRegionGroup;&#xA;&#xA;-- Skapa rej-tabellen&#xA;CREATE TABLE rej.BridgeRegionGroup&#xA;(&#xA;    RejectId        INT IDENTITY(1,1) PRIMARY KEY,&#xA;    GroupKeySrc     NVARCHAR(50)   NULL,&#xA;    RegionAKSrc     NVARCHAR(50)   NULL,&#xA;    CountryNameSrc  NVARCHAR(120)  NULL,&#xA;    ErrorReason     NVARCHAR(500)  NOT NULL,&#xA;    CreatedBronzeAt DATETIME2(0)   NOT NULL,&#xA;    CreatedSilverAt     DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Droppa rej-tabellen&#xA;IF OBJECT_ID(N'rej.BridgeRegionGroup', N'U') IS NOT NULL&#xA;    DROP TABLE rej.BridgeRegionGroup;&#xA;&#xA;-- Skapa rej-tabellen&#xA;CREATE TABLE rej.BridgeRegionGroup&#xA;(&#xA;    RejectId        INT IDENTITY(1,1) PRIMARY KEY,&#xA;    RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;    PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;    TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;    GroupKeySrc     NVARCHAR(50)   NULL,&#xA;    RegionAKSrc     NVARCHAR(50)   NULL,&#xA;    CountryNameSrc  NVARCHAR(120)  NULL,&#xA;    ErrorReason     NVARCHAR(500)  NOT NULL,&#xA;    ErrorCode INT NULL,&#xA;    ErrorColumn INT NULL,&#xA;    CreatedBronzeAt DATETIME2(0)   NOT NULL,&#xA;    CreatedSilverAt     DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -490,14 +490,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="16">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF SCHEMA_ID('rej') IS NULL EXEC('CREATE SCHEMA rej');&#xA;&#xA;IF OBJECT_ID('rej.ConfigGroup','U') IS NULL&#xA;&#xA;CREATE TABLE rej.ConfigGroup(&#xA;  RejectId       INT IDENTITY(1,1) PRIMARY KEY,&#xA;  GroupKeySrc    NVARCHAR(50)   NULL,&#xA;  GroupNameSrc   NVARCHAR(120)  NULL,&#xA;  GroupSortSrc   NVARCHAR(50)   NULL,&#xA;  ErrorReason    NVARCHAR(500)  NOT NULL,&#xA;  CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;  CreatedSilverAt DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF SCHEMA_ID('rej') IS NULL EXEC('CREATE SCHEMA rej');&#xA;&#xA;IF OBJECT_ID('rej.ConfigGroup','U') IS NULL&#xA;&#xA;CREATE TABLE rej.ConfigGroup(&#xA;  RejectId       INT IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;  PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;  TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;  GroupKeySrc    NVARCHAR(50)   NULL,&#xA;  GroupNameSrc   NVARCHAR(120)  NULL,&#xA;  GroupSortSrc   NVARCHAR(50)   NULL,&#xA;  ErrorReason    NVARCHAR(500)  NOT NULL,&#xA;  ErrorCode INT NULL,&#xA;  ErrorColumn INT NULL,&#xA;  CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;  CreatedSilverAt DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -509,14 +509,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="20">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Skapa reject-tabell för HICPTarget (skapas bara om den saknas)&#xA;IF OBJECT_ID(N'rej.HICPTarget', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE rej.HICPTarget&#xA;    (&#xA;        RejectId         INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;        TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;&#xA;        -- Källvärden (råa/otvättade för spårbarhet)&#xA;        RegionSrc        NVARCHAR(120) NULL,&#xA;        FromDateSrc      NVARCHAR(50)  NULL,&#xA;        ToDateSrc        NVARCHAR(50)  NULL,&#xA;        TargetPercentSrc NVARCHAR(50)  NULL,&#xA;        NotesSrc         NVARCHAR(255) NULL,&#xA;&#xA;        -- Felinfo&#xA;        ErrorReason      NVARCHAR(500) NOT NULL,&#xA;        ErrorCode        INT           NULL,         -- från Error Output (om du mappar)&#xA;        ErrorColumn      INT           NULL,         -- från Error Output (om du mappar)&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;        CreatedSilverAt      DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Skapa reject-tabell för HICPTarget (skapas bara om den saknas)&#xA;IF OBJECT_ID(N'rej.HICPTarget', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE rej.HICPTarget&#xA;    (&#xA;        RejectId         INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;        TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;&#xA;        -- Källvärden (råa/otvättade för spårbarhet)&#xA;        RegionSrc        NVARCHAR(120) NULL,&#xA;        FromDateSrc      NVARCHAR(50)  NULL,&#xA;        ToDateSrc        NVARCHAR(50)  NULL,&#xA;        TargetPercentSrc NVARCHAR(50)  NULL,&#xA;        NotesSrc         NVARCHAR(255) NULL,&#xA;&#xA;        -- Felinfo&#xA;        ErrorReason      NVARCHAR(500) NOT NULL,&#xA;        ErrorCode INT NULL,&#xA;        ErrorColumn INT NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;        CreatedSilverAt      DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -576,6 +576,10 @@
           Size="238,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimConsumptionCategory"
           TopLeft="470,447" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimDate"
+          TopLeft="46,728" />
         <NodeLayout
           Size="158,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimFlags"
@@ -640,10 +644,6 @@
           Size="186,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_rejConfigGroup"
           TopLeft="291,648" />
-        <NodeLayout
-          Size="156,42"
-          Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimDate"
-          TopLeft="46,728" />
         <NodeLayout
           Size="182,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_rejHICPTarget"
