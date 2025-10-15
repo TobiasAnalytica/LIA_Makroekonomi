@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="204"
-  DTS:VersionGUID="{49CD40F0-ABD2-4E35-9834-F37C63B819ED}">
+  DTS:VersionBuild="206"
+  DTS:VersionGUID="{AFA89227-F4D3-4224-9092-8CE513C172B7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -81,6 +81,23 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\Create_logRun"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1BF4B835-8564-4CC0-807A-3B94FB65E7B0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create_logRun"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
+          SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('log') IS NULL&#xA;    EXEC('CREATE SCHEMA log');&#xA;GO&#xA;&#xA;-- Skapa tabell om den inte finns&#xA;IF OBJECT_ID('log.AuditLog', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE log.AuditLog&#xA;    (&#xA;        AuditId         BIGINT IDENTITY(1,1) NOT NULL,&#xA;&#xA;        -- Vad loggas&#xA;        PackageName     NVARCHAR(128)    NOT NULL,&#xA;        TaskName        NVARCHAR(256)    NOT NULL,&#xA;        StartedAt       DATETIME2(0)     NOT NULL,&#xA;        EndedAt         DATETIME2(0)     NULL,&#xA;&#xA;        -- Automatisk varaktighet i ms (NULL tills EndedAt finns)&#xA;        DurationMs AS (CASE WHEN EndedAt IS NULL&#xA;                            THEN NULL&#xA;                            ELSE DATEDIFF(MILLISECOND, StartedAt, EndedAt)&#xA;                       END) PERSISTED,&#xA;        ErrorMessage    NVARCHAR(MAX)    NULL&#xA;    );&#xA;END&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\SC - Create bronze tables - LIA_DB_Bronze"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
@@ -99,7 +116,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -137,7 +154,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -156,7 +173,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -175,7 +192,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -194,7 +211,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -270,7 +287,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawRegionGroupBridge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -289,7 +306,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -311,6 +328,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\SC - Create bronze tables - LIA_DB_Bronze" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C281C91A-C1C0-4A6B-A5D8-C6BB3AD9B8A7}"
+      DTS:From="Package\Create_logRun"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Create_dboDiagnostics_DB_Bronze" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -393,6 +418,32 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="148,42"
+          Id="Package\Create_logRun"
+          TopLeft="490,78" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="565.5,120">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
