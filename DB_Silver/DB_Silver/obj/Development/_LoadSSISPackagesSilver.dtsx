@@ -7,15 +7,63 @@
   DTS:CreatorName="WINDOWSOFFICE\Tobias E"
   DTS:DTSID="{715BE42C-B145-4B52-8642-2A355BFBDFA5}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LastModifiedProductVersion="17.0.1008.3"
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackagesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="23"
-  DTS:VersionGUID="{7C6AFC51-775D-4BF5-8734-84118FF8F986}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{5F01A446-CE1C-4259-A3A1-B3B3B06DE4E6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{86B7591F-1F0D-44F4-8D34-D13654059BF8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="HadErrors">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{02BC621A-60CD-4117-84B8-AE4E9AD71BC5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MsgFail">
+      <DTS:VariableValue
+        DTS:DataType="8">One or more Silver packages failed</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{EBCC57F4-0655-484A-8125-3A5F577EA972}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="MsgSuccess">
+      <DTS:VariableValue
+        DTS:DataType="8">All Silver packages ok</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3C3324C7-ACB8-4F0D-AFF9-4E2553EBA83D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Noop">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B67D3451-05A4-4382-A733-2B737903089D}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="(DT_WSTR,50)@[System::ExecutionInstanceGUID]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="RunId">
+      <DTS:VariableValue
+        DTS:DataType="8">{CD844BA5-6490-405C-9D09-9B813AF9749B}</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\PKG__CreateTablesSilver"
@@ -31,6 +79,10 @@
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
           <PackageName>_CreateTablesSilver.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>p_RunId</ParameterName>
+            <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+          </ParameterAssignment>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -58,6 +110,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.AgeClassEmp.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -75,6 +131,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.AgeClassUnemp.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -92,6 +152,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.ConsumptionCategory.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -109,6 +173,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.Flags.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -126,6 +194,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.Gender.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -143,6 +215,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.Region.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -160,6 +236,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.SeasonalAdjustment.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -177,6 +257,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.TimeFrequency.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -194,6 +278,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.Unit.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -223,6 +311,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Bridge.RegionGroup.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -240,6 +332,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.ConfigGroup.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -257,6 +353,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.Employment.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -274,6 +374,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.GDP.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -291,6 +395,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.GovernmentDebt.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -308,6 +416,31 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.HICPIndex.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_FactHICPTarget"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{16B6CE4C-BC22-4E21-8E92-4515C4851A17}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_FactHICPTarget"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Fact.HICPTarget.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -325,6 +458,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.JobVacancies.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -342,6 +479,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.MoneyMarketInterestRates.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -359,23 +500,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.Population.dtsx</PackageName>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_FactTargetInflation"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Execute Package Task"
-          DTS:DTSID="{16B6CE4C-BC22-4E21-8E92-4515C4851A17}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="PKG_FactTargetInflation"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Fact.TargetInflation.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -393,6 +521,10 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.Unemployment.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
             </ExecutePackageTask>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -417,6 +549,299 @@
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Sequence Container - Load Silver Fact" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{CF4B0DE3-DEC4-41BA-B4BE-D125D92BADFD}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{878275DC-5B54-429C-8F6D-4980B9E18266}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Err_Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{dcc693e1-edc2-41d2-91e4-2bb4b05148e6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Err_Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)
+VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)&#xA;VALUES (?,?,?,?,?,SYSUTCDATETIME());" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="50" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Mark_HadErrors"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{a16c4b45-68ef-45f1-a67a-c9c0f3be8ee1}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Mark_HadErrors"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::HadErrors] = TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{07405097-c7be-4dfe-9a62-6cbf2fb21eef}"
+          DTS:From="Package.EventHandlers[OnError]\Mark_HadErrors"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Err_Insert" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{47C86A83-D77F-404C-AEA6-8A382E943D67}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{A1ADD669-6B6E-46F2-821C-D19550E254E9}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Run_End_Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6ff4e612-563b-4f6e-9102-67482968a02d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Run_End_Failure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE log.Run
+   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
+       Status  = 'F',
+       Message = ?
+ WHERE RunId = ?;"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::MsgFail"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Run_End_Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{fc968692-042d-45ed-ad59-cd761f7ebe59}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Run_End_Success"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE log.Run
+   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
+       Status  = 'S',
+       Message = ?
+ WHERE RunId = ?;"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'S',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::MsgSuccess"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="User::RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{3cb4bc9d-286c-4eb6-9ce6-0bedf74b1e05}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Start"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::Noop] = @[User::Noop]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{11c0cba9-d589-4f42-add7-a8732e3ebcdb}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors] == FALSE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Run_End_Success"
+          DTS:Value="2" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{6d121bc5-808a-476f-989d-86816fcd692e}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors]  == TRUE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Run_End_Failure"
+          DTS:Value="2" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DTSID="{91CD4673-E4A9-46BE-82F0-48F17E0DA136}"
+      DTS:EventID="-2097632928"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F12AA403-A054-4747-AAB3-4E354F6EB62F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\Run_Start"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1518e5c2-9f4c-484e-9a5d-e7546606789f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Run_Start"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Run(RunId, JobName, StartedAt)
+SELECT ?, ?, SYSUTCDATETIME()
+WHERE NOT EXISTS (
+  SELECT 1 FROM log.Run WHERE RunId = ?
+);"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Run(RunId, JobName, StartedAt)&#xA;SELECT ?, ?, SYSUTCDATETIME()&#xA;WHERE NOT EXISTS (&#xA;  SELECT 1 FROM log.Run WHERE RunId = ?&#xA;);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="User::RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="User::RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -432,115 +857,115 @@
         <NodeLayout
           Size="197,42"
           Id="Package\PKG__CreateTablesSilver"
-          TopLeft="473,54" />
+          TopLeft="1592.5,5.49999999999977" />
         <NodeLayout
-          Size="185,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimAgeClassEmp"
-          TopLeft="50.1666666666667,62.3333333333333" />
+          TopLeft="5.5,5.49999999999989" />
         <NodeLayout
-          Size="198,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimAgeClassUnemp"
-          TopLeft="384.25,77" />
+          TopLeft="292.5,5.49999999999989" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimConsumptionCategory"
-          TopLeft="721.333333333333,63.3333333333333" />
+          TopLeft="579.5,5.49999999999989" />
         <NodeLayout
-          Size="147,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimFlags"
-          TopLeft="60.75,215.333333333333" />
+          TopLeft="866.5,5.49999999999989" />
         <NodeLayout
-          Size="157,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimGender"
-          TopLeft="421.666666666667,203" />
+          TopLeft="1153.5,5.49999999999977" />
         <NodeLayout
-          Size="155,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimRegion"
-          TopLeft="791.833333333333,197" />
+          TopLeft="1440.5,5.49999999999977" />
         <NodeLayout
-          Size="218,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimSeasonalAdjustment"
-          TopLeft="39.25,344" />
+          TopLeft="1727.5,5.49999999999977" />
         <NodeLayout
-          Size="195,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimTimeFrequency"
-          TopLeft="424.166666666667,335" />
+          TopLeft="2014.5,5.49999999999966" />
         <NodeLayout
-          Size="142,42"
+          Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimUnit"
-          TopLeft="809.833333333333,331" />
+          TopLeft="2301.5,5.49999999999966" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1086,446"
-          Size="1086,489"
+          PanelSize="2533,102"
+          Size="2533,145"
           Id="Package\Sequence Container - Load Silver Dim"
-          TopLeft="28,752" />
+          TopLeft="424.5,313.5" />
         <NodeLayout
-          Size="195,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
-          TopLeft="42,341" />
+          TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="181,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_DimConfigGroup"
-          TopLeft="400,345" />
+          TopLeft="316.5,5.5" />
         <NodeLayout
-          Size="182,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactEmployment"
-          TopLeft="39.6666666666667,23.3333333333333" />
+          TopLeft="627.5,5.5" />
         <NodeLayout
-          Size="144,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactGDP"
-          TopLeft="401,23.3333333333333" />
+          TopLeft="938.5,5.49999999999989" />
         <NodeLayout
-          Size="204,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactGovernmentDebt"
-          TopLeft="748,23.3333333333333" />
+          TopLeft="1249.5,5.49999999999989" />
         <NodeLayout
-          Size="174,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactHICPIndex"
-          TopLeft="78.6666666666667,131.333333333333" />
+          TopLeft="1560.5,5.49999999999989" />
         <NodeLayout
-          Size="186,42"
+          Size="250,42"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_FactHICPTarget"
+          TopLeft="2804.5,5.49999999999966" />
+        <NodeLayout
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactJobVacancies"
-          TopLeft="376.5,131.333333333333" />
+          TopLeft="1871.5,5.49999999999977" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactMoneyMarketInterestRates"
-          TopLeft="724,131.333333333333" />
+          TopLeft="2182.5,5.49999999999977" />
         <NodeLayout
-          Size="173,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactPopulation"
-          TopLeft="42.6666666666667,247.5" />
+          TopLeft="2493.5,5.49999999999977" />
         <NodeLayout
-          Size="195,42"
+          Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactUnemployment"
-          TopLeft="400.5,246.5" />
-        <NodeLayout
-          Size="194,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_FactTargetInflation"
-          TopLeft="723,345" />
+          TopLeft="3115.5,5.49999999999966" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1083,466"
-          Size="1083,509"
+          PanelSize="3371,103"
+          Size="3371,146"
           Id="Package\Sequence Container - Load Silver Fact"
-          TopLeft="29,187" />
+          TopLeft="5.50000000000023,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="570.75,696">
+          TopLeft="1691,253.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56"
+              EndConnector="0,60.0000000000003"
               Start="0,0"
-              End="0,48.5">
+              End="0,52.5000000000003">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5" />
+                    End="0,52.5000000000003" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -551,18 +976,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="571,96">
+          TopLeft="1691,47.4999999999998">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,91"
+              EndConnector="0,60.0000000000002"
               Start="0,0"
-              End="0,83.5">
+              End="0,52.5000000000002">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,83.5" />
+                    End="0,52.5000000000002" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -574,5 +999,147 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="126,42"
+          Id="Package.EventHandlers[OnError]\Err_Insert"
+          TopLeft="441,198" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package.EventHandlers[OnError]\Mark_HadErrors"
+          TopLeft="429,85" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="505.25,127">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="Package.EventHandlers[OnPostExecute]\Run_End_Failure"
+          TopLeft="530,203" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package.EventHandlers[OnPostExecute]\Run_End_Success"
+          TopLeft="309,201" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package.EventHandlers[OnPostExecute]\Start"
+          TopLeft="451,74" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="486.333333333333,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-88.8333333333333,85"
+              Start="0,0"
+              End="-88.8333333333333,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.7876447876448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.7876447876448"
+                    Point2="0,34.7876447876448"
+                    Point3="-4,34.7876447876448" />
+                  <mssgle:LineSegment
+                    End="-84.8333333333333,34.7876447876448" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-84.8333333333333,34.7876447876448"
+                    Point2="-88.8333333333333,34.7876447876448"
+                    Point3="-88.8333333333333,38.7876447876448" />
+                  <mssgle:LineSegment
+                    End="-88.8333333333333,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.3822526041667,39.7876447876448,67.931171875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="517.666666666667,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="100.833333333333,87"
+              Start="0,0"
+              End="100.833333333333,79.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.6061776061776" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.6061776061776"
+                    Point2="0,35.6061776061776"
+                    Point3="4,35.6061776061776" />
+                  <mssgle:LineSegment
+                    End="96.8333333333334,35.6061776061776" />
+                  <mssgle:CubicBezierSegment
+                    Point1="96.8333333333334,35.6061776061776"
+                    Point2="100.833333333333,35.6061776061776"
+                    Point3="100.833333333333,39.6061776061776" />
+                  <mssgle:LineSegment
+                    End="100.833333333333,79.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="16.4510807291667,40.6061776061776,67.931171875,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="128,42"
+          Id="Package.EventHandlers[OnPreExecute]\Run_Start"
+          TopLeft="410,139" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

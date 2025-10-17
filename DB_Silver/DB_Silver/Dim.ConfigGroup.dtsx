@@ -7,15 +7,46 @@
   DTS:CreatorName="WINDOWSOFFICE\Tobias E"
   DTS:DTSID="{34D99DD7-DAD6-4136-B6CF-57CED41DE6F6}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LastModifiedProductVersion="17.0.1008.3"
   DTS:LocaleID="1053"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="DimConfigGroup"
   DTS:PackageType="5"
-  DTS:VersionBuild="58"
-  DTS:VersionGUID="{A0F80854-2861-42E5-AC33-5529DF7DEB2F}">
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{D4D5B095-D0CF-415A-8FF4-CA9F082C5012}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{6E5A9CC3-56C5-4B65-84FE-9F98AE8BD75D}"
+      DTS:ObjectName="p_RunId">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{09705A6B-0701-4BBB-83F5-9F6EB072F629}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="HadErrors">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{023E6B23-4EA5-4874-813B-7F6A0BC02218}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Noop">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\DF_DimConfigGroup"
@@ -603,7 +634,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -752,7 +783,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -866,6 +897,28 @@
                       refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
                       dataType="dbTimeStamp2"
                       name="CreatedSilverAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="guid"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
+                      dataType="wstr"
+                      length="128"
+                      name="TaskName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -919,7 +972,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -978,34 +1031,6 @@
                       cachedName="ErrorColumn"
                       externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
                       lineageId="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup.Outputs[Union All Output 1].Columns[ErrorColumn]" />
-                    <inputColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
-                      cachedDataType="wstr"
-                      cachedLength="500"
-                      cachedName="ErrorReason"
-                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
-                      lineageId="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup.Outputs[Union All Output 1].Columns[ErrorReason]" />
-                    <inputColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].Columns[RunId]"
-                      cachedDataType="wstr"
-                      cachedLength="38"
-                      cachedName="RunId"
-                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
-                      lineageId="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup.Outputs[Union All Output 1].Columns[RunId]" />
-                    <inputColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].Columns[PackageName]"
-                      cachedDataType="wstr"
-                      cachedLength="8"
-                      cachedName="PackageName"
-                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
-                      lineageId="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup.Outputs[Union All Output 1].Columns[PackageName]" />
-                    <inputColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].Columns[TaskName]"
-                      cachedDataType="wstr"
-                      cachedLength="17"
-                      cachedName="TaskName"
-                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
-                      lineageId="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup.Outputs[Union All Output 1].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1021,31 +1046,13 @@
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp2"
+                      dataType="dbTimeStamp"
                       name="CreatedErrorAt" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorReason]"
+                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       dataType="wstr"
                       length="500"
-                      name="ErrorReason" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[DiagnosticsId]"
-                      dataType="i4"
-                      name="DiagnosticsId" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
-                      dataType="guid"
-                      name="RunId" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
-                      dataType="wstr"
-                      length="128"
-                      name="PackageName" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[TaskName]"
-                      dataType="wstr"
-                      length="128"
-                      name="TaskName" />
+                      name="ErrorDescription" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1099,7 +1106,7 @@
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
     TRY_CONVERT(int, LTRIM(RTRIM(r.group_key)))                                       AS GroupKey,
     CA.GroupName,
     TRY_CONVERT(int, LTRIM(RTRIM(r.group_sort)))                                      AS GroupSort,
@@ -1985,6 +1992,336 @@ CROSS APPLY (
       DTS:ObjectName="Constraint"
       DTS:To="Package\DF_DimConfigGroup" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{FC78A36D-00E5-4F99-8BF3-5A44C8D720B2}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{0BD36250-EC25-4730-AE26-0FED89DDDFC3}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{f10eadc9-d4f4-4887-9116-ed02d12b6f63}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Err_Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)
+VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)&#xA;VALUES (?,?,?,?,?,SYSUTCDATETIME());" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{596b5539-c6c1-4264-b5cd-0c1f4c719c1d}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Mark_HadErrors"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@User::HadErrors = TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7ea956df-2cfe-4069-b66d-4d4b458f91fe}"
+          DTS:From="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{758E93A4-B562-4E96-98E2-263E735B9A33}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{2B26B70A-2145-4A7C-B7F1-AEAF659F1D30}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{bc569fcc-0825-4323-a703-b773ae3d7398}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_End_Failure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE p
+   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),
+       Status  = 'F',
+       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')
+  FROM log.Package AS p
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{84ecea00-e634-40bd-a735-55b4feb1ef2c}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_End_Success"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE p
+   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),
+       Status  = 'S'
+  FROM log.Package AS p
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'S'&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{3880ccd5-9782-4f1c-a0bb-0a5fdf5e25e3}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Start"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::Noop] = @[User::Noop]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{13afbef6-4e84-4e5e-abcd-5ff4bdd76702}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors] == FALSE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Pkg_End_Success" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{08d8a90b-f33f-4dcb-8538-c9ea953c44bf}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors] == TRUE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DTSID="{5101AF5F-5103-4734-9A65-560D6B52C7F7}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{CF49AA2B-CB29-480C-9169-A3E8167221FA}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\Pkg_Start"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{8a2eebc5-9896-4658-bac8-a5943eb421cc}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Start"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)
+VALUES (?,?,?,?,SYSUTCDATETIME());
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)&#xA;VALUES (?,?,?,?,SYSUTCDATETIME());&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -1998,27 +2335,27 @@ CROSS APPLY (
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="175,42"
+          Size="215,42"
           Id="Package\DF_DimConfigGroup"
-          TopLeft="325,212" />
+          TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="201,42"
+          Size="215,42"
           Id="Package\truncate_DimConfigGroup"
-          TopLeft="307,67" />
+          TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="410,109">
+          TopLeft="113,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,103"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,95.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,95.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2030,31 +2367,159 @@ CROSS APPLY (
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="153,42"
+          Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          TopLeft="70,60" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors"
+          TopLeft="60,188" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="149.25,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
+          TopLeft="304,168" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package.EventHandlers[OnPostExecute]\Start"
+          TopLeft="212,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="247.333333333333,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-99.8333333333333,62"
+              Start="0,0"
+              End="-99.8333333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3745173745174"
+                    Point2="0,25.3745173745174"
+                    Point3="-4,25.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-95.8333333333333,25.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-95.8333333333333,25.3745173745174"
+                    Point2="-99.8333333333333,25.3745173745174"
+                    Point3="-99.8333333333333,29.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-99.8333333333333,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.9166666666667,30.3745173745174,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="278.666666666667,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.833333333333,66"
+              Start="0,0"
+              End="108.833333333333,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.011583011583"
+                    Point2="0,27.011583011583"
+                    Point3="4,27.011583011583" />
+                  <mssgle:LineSegment
+                    End="104.833333333333,27.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.833333333333,27.011583011583"
+                    Point2="108.833333333333,27.011583011583"
+                    Point3="108.833333333333,31.011583011583" />
+                  <mssgle:LineSegment
+                    End="108.833333333333,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.4166666666667,32.011583011583,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42"
+          Id="Package.EventHandlers[OnPreExecute]\Pkg_Start"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\DF_DimConfigGroup">
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="207,42"
-          Id="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup"
-          TopLeft="1016.33333333333,62" />
-        <NodeLayout
-          Size="214,42"
-          Id="Package\DF_DimConfigGroup\DC_CS_Rejects_ErrorReason"
-          TopLeft="1351.33333333334,183.666666666667" />
-        <NodeLayout
-          Size="200,42"
-          Id="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup"
-          TopLeft="1330.00000000001,457" />
-        <NodeLayout
-          Size="206,42"
-          Id="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup"
-          TopLeft="980.999999999993,454.666666666667" />
-        <NodeLayout
-          Size="265,42"
-          Id="Package\DF_DimConfigGroup\DC_SRC_RawConfigGroup_ErrorReason"
-          TopLeft="648,60.3333333333333" />
+          Size="261,42"
+          Id="Package\DF_DimConfigGroup\DC_DST_DinConfigGroup_ErrorReason"
+          TopLeft="652.666666666667,451" />
         <NodeLayout
           Size="169,42"
           Id="Package\DF_DimConfigGroup\UA_rejConfigGroup"
@@ -2064,9 +2529,181 @@ CROSS APPLY (
           Id="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput"
           TopLeft="346.666666666667,250.333333333333" />
         <NodeLayout
+          Size="200,42"
+          Id="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup"
+          TopLeft="1330.00000000001,457" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup"
+          TopLeft="1016.33333333333,62" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\DF_DimConfigGroup\OLE_DST_DimConfigGroup"
+          TopLeft="980.999999999993,454.666666666667" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup"
+          TopLeft="681,253" />
+        <NodeLayout
+          Size="214,42"
+          Id="Package\DF_DimConfigGroup\DC_CS_Rejects_ErrorReason"
+          TopLeft="1351.33333333334,183.666666666667" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\DF_DimConfigGroup\DC_SRC_RawConfigGroup_ErrorReason"
+          TopLeft="648,60.3333333333333" />
+        <NodeLayout
           Size="202,42"
           Id="Package\DF_DimConfigGroup\CS_GoodRows_or_Rejects"
           TopLeft="1022.99999999999,187.666666666667" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[GoodRows]"
+          TopLeft="1087.83333333332,229.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,225"
+              Start="0,0"
+              End="0,217.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,217.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-24.03509765625,103.87548828125,48.0701953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output2]"
+          TopLeft="780.583333333334,451">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-156"
+              Start="0,0"
+              End="0,-148.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-148.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output1]"
+          TopLeft="779.25,102.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,150.666666666667"
+              Start="0,0"
+              End="0,143.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,143.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output]"
+          TopLeft="1455.50000000001,225.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,105.666666666667"
+              Start="0,0"
+              End="0,98.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,98.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Conditional Split Default Output]"
+          TopLeft="1156.33333333333,229.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="242.666666666683,101.666666666667"
+              Start="0,0"
+              End="242.666666666683,94.1666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.7371464067278" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.7371464067278"
+                    Point2="0,50.7371464067278"
+                    Point3="4,50.7371464067278" />
+                  <mssgle:LineSegment
+                    End="238.666666666683,50.7371464067278" />
+                  <mssgle:CubicBezierSegment
+                    Point1="238.666666666683,50.7371464067278"
+                    Point2="242.666666666683,50.7371464067278"
+                    Point3="242.666666666683,54.7371464067278" />
+                  <mssgle:LineSegment
+                    End="242.666666666683,94.1666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="50.7194270833414,55.7371464067278,141.2278125,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Union All Output 11]"
+          TopLeft="681,272.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.3333333333327,0"
+              Start="0,0"
+              End="-65.8333333333327,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-65.8333333333327,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimConfigGroup.Paths[Union All Output 1]"
           TopLeft="1427.91666666668,373.333333333333">
@@ -2160,92 +2797,6 @@ CROSS APPLY (
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[GoodRows]"
-          TopLeft="1087.83333333332,229.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,225"
-              Start="0,0"
-              End="0,217.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,217.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-24.03509765625,103.87548828125,48.0701953125,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output]"
-          TopLeft="1455.50000000001,225.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,105.666666666667"
-              Start="0,0"
-              End="0,98.1666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,98.1666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Conditional Split Default Output]"
-          TopLeft="1156.33333333333,229.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="242.666666666683,101.666666666667"
-              Start="0,0"
-              End="242.666666666683,94.1666666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.7371464067278" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,46.7371464067278"
-                    Point2="0,50.7371464067278"
-                    Point3="4,50.7371464067278" />
-                  <mssgle:LineSegment
-                    End="238.666666666683,50.7371464067278" />
-                  <mssgle:CubicBezierSegment
-                    Point1="238.666666666683,50.7371464067278"
-                    Point2="242.666666666683,50.7371464067278"
-                    Point3="242.666666666683,54.7371464067278" />
-                  <mssgle:LineSegment
-                    End="242.666666666683,94.1666666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="50.7194270833414,55.7371464067278,141.2278125,11.658203125"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="261,42"
-          Id="Package\DF_DimConfigGroup\DC_DST_DinConfigGroup_ErrorReason"
-          TopLeft="652.666666666667,451" />
-        <EdgeLayout
           Id="Package\DF_DimConfigGroup.Paths[OLE DB Destination Error Output]"
           TopLeft="980.999999999993,473.833333333333">
           <EdgeLayout.Curve>
@@ -2269,84 +2820,19 @@ CROSS APPLY (
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="194,42"
-          Id="Package\DF_DimConfigGroup\UA_DST_rejConfigGroup"
-          TopLeft="681,253" />
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output1]"
-          TopLeft="779.25,102.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,150.666666666667"
-              Start="0,0"
-              End="0,143.166666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,143.166666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Derived Column Output2]"
-          TopLeft="780.583333333334,451">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,-156"
-              Start="0,0"
-              End="0,-148.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-148.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Union All Output 11]"
-          TopLeft="681,272.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-73.3333333333327,0"
-              Start="0,0"
-              End="-65.8333333333327,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-65.8333333333327,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup">
+    design-time-name="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -2377,15 +2863,10 @@ CROSS APPLY (
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimConfigGroup\OLE_DST_rejConfigGroup_ErrorOutput">
+    design-time-name="Package\DF_DimConfigGroup\OLE_SRC_RawConfigGroup">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

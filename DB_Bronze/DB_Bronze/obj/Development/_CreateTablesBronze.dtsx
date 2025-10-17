@@ -7,12 +7,12 @@
   DTS:CreatorName="WINDOWSOFFICE\Tobias E"
   DTS:DTSID="{25207DDA-F944-4FD6-8088-E16B79C82AEC}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LastModifiedProductVersion="17.0.1008.3"
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="214"
-  DTS:VersionGUID="{323D7273-0073-4CCD-A179-72B7EE48BDA0}">
+  DTS:VersionBuild="228"
+  DTS:VersionGUID="{545A6538-8F10-41DA-B56E-8279EA8FBC55}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -82,7 +82,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DB_Bronze', 'U') IS NOT NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE dbo.Diagnostics_DB_Bronze (&#xA;      ErrorCode NCHAR(100) NOT NULL,     &#xA;      ErrorColumn NCHAR(100) NOT NULL,     &#xA;      ErrorDescription NVARCHAR(500) NOT NULL,       &#xA;      CreatedErrorAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning till error meddelande&#xA;);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.Diagnostics_DB_Bronze', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Diagnostics_DB_Bronze&#xA;    (&#xA;        ErrorCode        NVARCHAR(100)  NOT NULL,&#xA;        ErrorColumn      NVARCHAR(100)  NOT NULL,&#xA;        ErrorDescription NVARCHAR(500)  NOT NULL,&#xA;        CreatedErrorAt   DATETIME2(3)   NOT NULL CONSTRAINT DF_Diagnostics_DB_Bronze_CreatedErrorAt DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -104,7 +104,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -123,7 +123,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -142,7 +142,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -161,7 +161,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -180,7 +180,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -237,7 +237,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -256,7 +256,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -275,7 +275,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawRegionGroupBridge"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -294,7 +294,7 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_RawUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
@@ -451,13 +451,16 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
        Status  = 'F',
        ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')
   FROM log.Package AS p
- WHERE p.RunId = ?
-   AND p.PackageName = ?
-   AND p.EndTime IS NULL;"</DTS:PropertyExpression>
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId = ?&#xA;   AND p.PackageName = ?&#xA;   AND p.EndTime IS NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="$Package::p_RunId"
@@ -466,10 +469,22 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
                 SQLTask:ParameterSize="36" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
                 SQLTask:DtsVariableName="System::PackageName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -488,13 +503,16 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
    SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),
        Status  = 'S'
   FROM log.Package AS p
- WHERE p.RunId = ?
-   AND p.PackageName = ?
-   AND p.EndTime IS NULL;"</DTS:PropertyExpression>
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'S'&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId = ?&#xA;   AND p.PackageName = ?&#xA;   AND p.EndTime IS NULL;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'S'&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="$Package::p_RunId"
@@ -503,10 +521,22 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
                 SQLTask:ParameterSize="36" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
                 SQLTask:DtsVariableName="System::PackageName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
             </SQLTask:SqlTaskData>
           </DTS:ObjectData>
         </DTS:Executable>
@@ -580,11 +610,13 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
           <DTS:Variables />
           <DTS:PropertyExpression
-            DTS:Name="SqlStatementSource">"INSERT INTO log.Package(RunId, PackageName, TaskName) VALUES (?, ?, ?);"</DTS:PropertyExpression>
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)
+VALUES (?,?,?,?,SYSUTCDATETIME());
+"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-              SQLTask:SqlStatementSource="INSERT INTO log.Package(RunId, PackageName, TaskName) VALUES (?, ?, ?);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)&#xA;VALUES (?,?,?,?,SYSUTCDATETIME());&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="$Package::p_RunId"
@@ -593,12 +625,18 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
                 SQLTask:ParameterSize="36" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="1"
-                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
                 SQLTask:ParameterSize="128" />
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
                 SQLTask:DtsVariableName="System::SourceName"
                 SQLTask:ParameterDirection="Input"
                 SQLTask:DataType="130"
@@ -622,63 +660,63 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="244,42"
+          Size="261,42"
           Id="Package\Create_dboDiagnostics_DB_Bronze"
-          TopLeft="445,165" />
+          TopLeft="444,55" />
         <NodeLayout
-          Size="194,42"
+          Size="204,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawConfigGroup"
-          TopLeft="41,471" />
+          TopLeft="37,471" />
         <NodeLayout
-          Size="194,42"
+          Size="227,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawEmployment"
-          TopLeft="418.666666666667,56" />
+          TopLeft="422.666666666667,56" />
         <NodeLayout
-          Size="156,42"
+          Size="200,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawGDP"
           TopLeft="35,56" />
         <NodeLayout
-          Size="216,42"
+          Size="226,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawGovernmentDebt"
           TopLeft="424.666666666667,259" />
         <NodeLayout
-          Size="186,42"
+          Size="197,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawHICPIndex"
           TopLeft="35,260" />
         <NodeLayout
-          Size="190,42"
+          Size="199,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawHICPTarget"
           TopLeft="31,367" />
         <NodeLayout
-          Size="198,42"
+          Size="221,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawJobVacancies"
-          TopLeft="429.166666666667,158" />
+          TopLeft="427.166666666667,158" />
         <NodeLayout
-          Size="262,42"
+          Size="277,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawMoneyMarketInterestRates"
-          TopLeft="769.041666666667,156" />
+          TopLeft="782.041666666667,156" />
         <NodeLayout
-          Size="185,42"
+          Size="195,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawPopulation"
           TopLeft="35,158" />
         <NodeLayout
-          Size="226,42"
+          Size="244,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawRegionGroupBridge"
-          TopLeft="395,478" />
+          TopLeft="411,479" />
         <NodeLayout
-          Size="207,42"
+          Size="263,42"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze\Create_RawUnemployment"
-          TopLeft="791.041666666667,56" />
+          TopLeft="790.041666666667,56" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="1085,588"
           Size="1085,631"
           Id="Package\SC - Create bronze tables - LIA_DB_Bronze"
-          TopLeft="31,255" />
+          TopLeft="30,145" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="570.25,207">
+          TopLeft="573.5,97">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -702,125 +740,21 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
     </LayoutInfo>
   </Package>
   <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnPreExecute]">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
-        <NodeLayout
-          Size="124,42"
-          Id="Package.EventHandlers[OnPreExecute]\Pkg_Start"
-          TopLeft="253,84" />
-      </GraphLayout>
-    </LayoutInfo>
-  </DtsEventHandler>
-  <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnPostExecute]">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="157,42"
-          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
-          TopLeft="304,168" />
-        <NodeLayout
-          Size="162,42"
-          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
-          TopLeft="60,164" />
-        <NodeLayout
-          Size="102,42"
-          Id="Package.EventHandlers[OnPostExecute]\Start"
-          TopLeft="212,60" />
-        <EdgeLayout
-          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
-          TopLeft="263,102">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-122,62"
-              Start="0,0"
-              End="-122,54.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27"
-                    Point2="0,31"
-                    Point3="-4,31" />
-                  <mssgle:LineSegment
-                    End="-118,31" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-118,31"
-                    Point2="-122,31"
-                    Point3="-122,35" />
-                  <mssgle:LineSegment
-                    End="-122,54.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-69,36,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
-          TopLeft="278.666666666667,102">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="103.833333333333,66"
-              Start="0,0"
-              End="103.833333333333,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.011583011583" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,23.011583011583"
-                    Point2="0,27.011583011583"
-                    Point3="4,27.011583011583" />
-                  <mssgle:LineSegment
-                    End="99.8333333333334,27.011583011583" />
-                  <mssgle:CubicBezierSegment
-                    Point1="99.8333333333334,27.011583011583"
-                    Point2="103.833333333333,27.011583011583"
-                    Point3="103.833333333333,31.011583011583" />
-                  <mssgle:LineSegment
-                    End="103.833333333333,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="43.9166666666667,32.011583011583,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </DtsEventHandler>
-  <DtsEventHandler
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="149,42"
+          Size="153,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
           TopLeft="70,60" />
         <NodeLayout
-          Size="177,42"
+          Size="184,42"
           Id="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors"
           TopLeft="60,188" />
         <EdgeLayout
           Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
-          TopLeft="146.5,102">
+          TopLeft="149.25,102">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -837,9 +771,115 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
+          TopLeft="304,168" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package.EventHandlers[OnPostExecute]\Start"
+          TopLeft="212,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="247.333333333333,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-99.8333333333333,62"
+              Start="0,0"
+              End="-99.8333333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3745173745174"
+                    Point2="0,25.3745173745174"
+                    Point3="-4,25.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-95.8333333333333,25.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-95.8333333333333,25.3745173745174"
+                    Point2="-99.8333333333333,25.3745173745174"
+                    Point3="-99.8333333333333,29.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-99.8333333333333,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.9166666666667,30.3745173745174,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="278.666666666667,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.833333333333,66"
+              Start="0,0"
+              End="108.833333333333,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.011583011583"
+                    Point2="0,27.011583011583"
+                    Point3="4,27.011583011583" />
+                  <mssgle:LineSegment
+                    End="104.833333333333,27.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.833333333333,27.011583011583"
+                    Point2="108.833333333333,27.011583011583"
+                    Point3="108.833333333333,31.011583011583" />
+                  <mssgle:LineSegment
+                    End="108.833333333333,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.4166666666667,32.011583011583,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42"
+          Id="Package.EventHandlers[OnPreExecute]\Pkg_Start"
+          TopLeft="253,84" />
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>

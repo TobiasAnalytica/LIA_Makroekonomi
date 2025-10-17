@@ -7,15 +7,46 @@
   DTS:CreatorName="WINDOWSOFFICE\Tobias E"
   DTS:DTSID="{7A5D63FB-160D-4626-87A1-BD31ADD3F131}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5397.1"
+  DTS:LastModifiedProductVersion="17.0.1008.3"
   DTS:LocaleID="1053"
-  DTS:ObjectName="Fact HICPTarget"
+  DTS:ObjectName="FactHICPTarget"
   DTS:PackageType="5"
-  DTS:VersionBuild="106"
-  DTS:VersionGUID="{33FBAB64-23E8-4E85-966F-852169F07829}">
+  DTS:VersionBuild="115"
+  DTS:VersionGUID="{E3E28B13-F2BE-4834-962A-0CA28601E264}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{DE3705AC-EBDF-4530-8662-22372D82EDBB}"
+      DTS:ObjectName="p_RunId">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BBEB9C03-B0E4-4813-B135-2AF2E0425FA7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="HadErrors">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8D8370F0-7DD8-43E5-9DDB-4360691C9FD9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Noop">
+      <DTS:VariableValue
+        DTS:DataType="11">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\DF_RawHICPTarget"
@@ -48,30 +79,30 @@
                       refId="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects.Inputs[Conditional Split Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -91,7 +122,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\DF_RawHICPTarget\771:invalid} == 1 &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\772:invalid}) &amp;&amp; [LEN]([TRIM](#{Package\DF_RawHICPTarget\772:invalid})) &gt; 0 &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\773:invalid}) &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\775:invalid}) &amp;&amp; (#{Package\DF_RawHICPTarget\775:invalid} &gt;= #{Package\DF_RawHICPTarget\773:invalid}) &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\774:invalid})</property>
+                      name="Expression">#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]} == 1 &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]}) &amp;&amp; [LEN]([TRIM](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]})) &gt; 0 &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]}) &amp;&amp; (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]} &gt;= #{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) &amp;&amp; ![ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -119,7 +150,7 @@
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\DF_RawHICPTarget\771:invalid} == 0 || [ISNULL](#{Package\DF_RawHICPTarget\772:invalid}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\772:invalid})) == 0 || [ISNULL](#{Package\DF_RawHICPTarget\773:invalid}) || [ISNULL](#{Package\DF_RawHICPTarget\775:invalid}) || (#{Package\DF_RawHICPTarget\775:invalid} &lt; #{Package\DF_RawHICPTarget\773:invalid}) || [ISNULL](#{Package\DF_RawHICPTarget\774:invalid})</property>
+                      name="Expression">#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]} == 0 || [ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]})) == 0 || [ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) || [ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]}) || (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]} &lt; #{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) || [ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]})</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -187,31 +218,31 @@
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_ErrorReason.Inputs[Derived Column Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_ErrorReason.Inputs[Derived Column Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_ErrorReason.Inputs[Derived Column Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_ErrorReason.Inputs[Derived Column Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_ErrorReason.Inputs[Derived Column Input].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -238,7 +269,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)([ISNULL](#{Package\DF_RawHICPTarget\772:invalid}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\772:invalid})) == 0 ? "Missing/empty Region" : ([ISNULL](#{Package\DF_RawHICPTarget\773:invalid}) ? "Invalid FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\775:invalid}) ? "Invalid ToDate" : (#{Package\DF_RawHICPTarget\775:invalid} &lt; #{Package\DF_RawHICPTarget\773:invalid} ? "ToDate earlier than FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\774:invalid}) ? "Invalid TargetPercent (not decimal)" : (#{Package\DF_RawHICPTarget\771:invalid} == 0 ? "Failed general validation" : "Validation failed"))))))</property>
+                          name="Expression">(DT_WSTR,500)([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]})) == 0 ? "Missing/empty Region" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) ? "Invalid FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]}) ? "Invalid ToDate" : (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]} &lt; #{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]} ? "ToDate earlier than FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]}) ? "Invalid TargetPercent (not decimal)" : (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]} == 0 ? "Failed general validation" : "Validation failed"))))))</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -360,31 +391,31 @@
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason.Inputs[Derived Column Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason.Inputs[Derived Column Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason.Inputs[Derived Column Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason.Inputs[Derived Column Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason.Inputs[Derived Column Input].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -411,7 +442,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)([ISNULL](#{Package\DF_RawHICPTarget\772:invalid}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\772:invalid})) == 0 ? "CS-Reject: Missing/empty Region" : ([ISNULL](#{Package\DF_RawHICPTarget\773:invalid}) ? "CS-Reject: Invalid FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\775:invalid}) ? "CS-Reject: Invalid ToDate" : (#{Package\DF_RawHICPTarget\775:invalid} &lt; #{Package\DF_RawHICPTarget\773:invalid} ? "CS-Reject: ToDate earlier than FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\774:invalid}) ? "CS-Reject: Invalid TargetPercent (not decimal)" : (#{Package\DF_RawHICPTarget\771:invalid} == 0 ? "CS-Reject: General validation failed" : "CS-Reject: Unknown reason"))))))</property>
+                          name="Expression">(DT_WSTR,500)([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]}) || [LEN]([TRIM](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]})) == 0 ? "CS-Reject: Missing/empty Region" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]}) ? "CS-Reject: Invalid FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]}) ? "CS-Reject: Invalid ToDate" : (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]} &lt; #{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]} ? "CS-Reject: ToDate earlier than FromDate" : ([ISNULL](#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]}) ? "CS-Reject: Invalid TargetPercent (not decimal)" : (#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]} == 0 ? "CS-Reject: General validation failed" : "CS-Reject: Unknown reason"))))))</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -533,32 +564,32 @@
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason.Inputs[Derived Column Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason.Inputs[Derived Column Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason.Inputs[Derived Column Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason.Inputs[Derived Column Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason.Inputs[Derived Column Input].Columns[Notes]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -585,7 +616,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)("OLE_DST_TargetInflation_In error | Region=" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\772:invalid},"")) + " | FromDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\773:invalid},"")) + " | ToDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\775:invalid},"")) + " | TargetPercent=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\774:invalid},"")) + " | Notes=" + [TRIM]([REPLACENULL]((DT_WSTR,255)#{Package\DF_RawHICPTarget\776:invalid},"")))</property>
+                          name="Expression">(DT_WSTR,500)("OLE_DST_TargetInflation_In error | Region=" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]},"")) + " | FromDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]},"")) + " | ToDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]},"")) + " | TargetPercent=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]},"")) + " | Notes=" + [TRIM]([REPLACENULL]((DT_WSTR,255)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]},"")))</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -708,7 +739,7 @@
                       refId="Package\DF_RawHICPTarget\DC_LKP_DimDate_FromDate_ErrorReason.Inputs[Derived Column Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -735,7 +766,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)("FromDate-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\773:invalid},"")) + "' not found in Dim.Date")</property>
+                          name="Expression">(DT_WSTR,500)("FromDate-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]},"")) + "' not found in Dim.Date")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -858,7 +889,7 @@
                       refId="Package\DF_RawHICPTarget\DC_LKP_DimDate_ToDate_ErrorReason.Inputs[Derived Column Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -885,7 +916,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)("ToDate-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\775:invalid},"")) + "' not found in Dim.Date")</property>
+                          name="Expression">(DT_WSTR,500)("ToDate-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]},"")) + "' not found in Dim.Date")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -1007,9 +1038,9 @@
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_LKP_DimRegion_ErrorReason.Inputs[Derived Column Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1036,7 +1067,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)("Region-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\772:invalid},"")) + "' not found in Dim.Region")</property>
+                          name="Expression">(DT_WSTR,500)("Region-Lookup NoMatch: '" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]},"")) + "' not found in Dim.Region")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -1589,30 +1620,30 @@
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\777:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason.Inputs[Derived Column Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\778:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason.Inputs[Derived Column Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\779:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ToDate]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason.Inputs[Derived Column Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\780:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason.Inputs[Derived Column Input].Columns[Notes]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\781:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1639,7 +1670,7 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,500)("OLE_SRC_RawHICPTarget error | Region=" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\777:invalid},"")) + " | FromDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\778:invalid},"")) + " | ToDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\779:invalid},"")) + " | TargetPercent=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\780:invalid},"")) + " | Notes=" + [TRIM]([REPLACENULL]((DT_WSTR,255)#{Package\DF_RawHICPTarget\781:invalid},"")))</property>
+                          name="Expression">(DT_WSTR,500)("OLE_SRC_RawHICPTarget error | Region=" + [TRIM]([REPLACENULL]((DT_WSTR,120)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]},"")) + " | FromDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]},"")) + " | ToDate=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ToDate]},"")) + " | TargetPercent=" + [TRIM]([REPLACENULL]((DT_WSTR,30)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]},"")) + " | Notes=" + [TRIM]([REPLACENULL]((DT_WSTR,255)#{Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]},"")))</property>
                         <property
                           containsID="true"
                           dataType="System.String"
@@ -1759,13 +1790,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Date]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Dim].[Date]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Date]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Dim].[Date]) [refTable]
 where [refTable].[DateValue] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1802,7 +1833,7 @@ where [refTable].[DateValue] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_RawHICPTarget\773:invalid};</property>
+                  name="ParameterMap">#{Package\DF_RawHICPTarget\760:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1829,7 +1860,7 @@ where [refTable].[DateValue] = ?</property>
                       refId="Package\DF_RawHICPTarget\LKP_FromDate.Inputs[Lookup Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1916,13 +1947,13 @@ where [refTable].[DateValue] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Region]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Dim].[Region]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Region]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Dim].[Region]) [refTable]
 where [refTable].[Description] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -1959,7 +1990,7 @@ where [refTable].[Description] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_RawHICPTarget\772:invalid};</property>
+                  name="ParameterMap">#{Package\DF_RawHICPTarget\761:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1985,9 +2016,9 @@ where [refTable].[Description] = ?</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\LKP_Region.Inputs[Lookup Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2075,13 +2106,13 @@ where [refTable].[Description] = ?</property>
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [Dim].[Date]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Dim].[Date]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [Dim].[Date]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Dim].[Date]) [refTable]
 where [refTable].[DateValue] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -2118,7 +2149,7 @@ where [refTable].[DateValue] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_RawHICPTarget\775:invalid};</property>
+                  name="ParameterMap">#{Package\DF_RawHICPTarget\762:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2145,7 +2176,7 @@ where [refTable].[DateValue] = ?</property>
                       refId="Package\DF_RawHICPTarget\LKP_ToDate.Inputs[Lookup Input].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2243,7 +2274,7 @@ where [refTable].[DateValue] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2423,13 +2454,11 @@ where [refTable].[DateValue] = ?</property>
                       name="ErrorReason" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
+                      dataType="i4"
                       name="ErrorCode" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="wstr"
-                      length="100"
+                      dataType="i4"
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
@@ -2492,7 +2521,7 @@ where [refTable].[DateValue] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2660,13 +2689,11 @@ where [refTable].[DateValue] = ?</property>
                       name="ErrorReason" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
+                      dataType="i4"
                       name="ErrorCode" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="wstr"
-                      length="100"
+                      dataType="i4"
                       name="ErrorColumn" />
                     <externalMetadataColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
@@ -2729,7 +2756,7 @@ where [refTable].[DateValue] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2783,20 +2810,20 @@ where [refTable].[DateValue] = ?</property>
                       cachedPrecision="5"
                       cachedScale="2"
                       externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].ExternalColumns[TargetPercent]"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].Columns[Notes]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
                       externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].ExternalColumns[Notes]"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
                       externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid" />
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In.Inputs[OLE DB Destination Input].Columns[Description]"
                       cachedDataType="wstr"
@@ -2904,9 +2931,40 @@ where [refTable].[DateValue] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">-- Truncation i källan (rad 2 längre än 5 tecken)
-SELECT CONVERT(nvarchar(5), v.Val) AS ShortTxt
-FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    CA.Region                                                        AS Region,
+    TRY_CONVERT(date,      NULLIF(LTRIM(RTRIM(r.FromDate)), N''))    AS FromDate,
+    TRY_CONVERT(date,      NULLIF(LTRIM(RTRIM(r.ToDate)),   N''))    AS ToDate,
+    TRY_CONVERT(decimal(5,2),
+        NULLIF(
+            REPLACE(REPLACE(LTRIM(RTRIM(r.TargetPercent)), NCHAR(160), N' '), ',', '.'),
+        N'')
+    )                                                                AS TargetPercent,
+    CA.Notes                                                         AS Notes,
+    TRY_CONVERT(datetime2(0), NULLIF(LTRIM(RTRIM(r.CreatedBronzeAt)), N'')) AS CreatedBronzeAt,
+    CASE 
+        WHEN CA.Region IS NULL OR CA.Region = N'' 
+          OR TRY_CONVERT(date, NULLIF(LTRIM(RTRIM(r.FromDate)), N'')) IS NULL
+          OR TRY_CONVERT(date, NULLIF(LTRIM(RTRIM(r.ToDate)),   N'')) IS NULL
+          OR TRY_CONVERT(date, NULLIF(LTRIM(RTRIM(r.ToDate)),   N'')) 
+             &lt; TRY_CONVERT(date, NULLIF(LTRIM(RTRIM(r.FromDate)), N''))
+          OR TRY_CONVERT(decimal(5,2),
+                NULLIF(REPLACE(REPLACE(LTRIM(RTRIM(r.TargetPercent)), NCHAR(160), N' '), ',', '.'), N'')
+             ) IS NULL
+        THEN 0 ELSE 1
+    END                                                              AS IsValid
+FROM Raw.HICPTarget r
+CROSS APPLY (
+    SELECT
+        Region = CONVERT(NVARCHAR(10),
+                     LTRIM(RTRIM(
+                       REPLACE(REPLACE(ISNULL(r.Region, N''), NCHAR(8211), N'-'), NCHAR(160), N' ')
+                     ))),
+        Notes  = CONVERT(NVARCHAR(255),
+                     LEFT(LTRIM(RTRIM(
+                       REPLACE(REPLACE(ISNULL(r.Notes,  N''), NCHAR(8211), N'-'), NCHAR(160), N' ')
+                     )), 255))
+) CA;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -2943,23 +3001,107 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ShortTxt]"
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[ShortTxt]"
-                      length="5"
-                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ShortTxt]"
-                      name="ShortTxt"
-                      truncationRowDisposition="FailComponent" />
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      length="10"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]"
+                      name="Region"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]"
+                      name="FromDate"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[ToDate]"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]"
+                      name="ToDate"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]"
+                      name="TargetPercent"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      length="255"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]"
+                      name="Notes"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt"
+                      truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      externalMetadataColumnId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="RedirectRow" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[ShortTxt]"
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Region]"
                       dataType="wstr"
-                      length="5"
-                      name="ShortTxt" />
+                      length="10"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
+                      dataType="dbDate"
+                      name="FromDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[ToDate]"
+                      dataType="dbDate"
+                      name="ToDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
+                      dataType="numeric"
+                      name="TargetPercent"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      dataType="wstr"
+                      length="255"
+                      name="Notes" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAt" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2968,11 +3110,44 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ShortTxt]"
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]"
                       dataType="wstr"
-                      length="5"
-                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ShortTxt]"
-                      name="ShortTxt" />
+                      length="10"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      name="Region" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]"
+                      name="FromDate" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ToDate]"
+                      dataType="dbDate"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ToDate]"
+                      name="ToDate" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
+                      dataType="numeric"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
+                      name="TargetPercent"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      name="Notes" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      name="CreatedBronzeAt" />
+                    <outputColumn
+                      refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
                     <outputColumn
                       refId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -3005,9 +3180,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 1].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3020,7 +3195,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 1].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3035,7 +3210,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3049,7 +3224,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3062,7 +3237,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3075,7 +3250,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 1].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3088,7 +3263,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 1].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -3164,9 +3339,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 2].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3179,7 +3354,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 2].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3194,7 +3369,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3208,7 +3383,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3221,7 +3396,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3234,7 +3409,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 2].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3247,7 +3422,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 2].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -3323,9 +3498,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 3].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3338,7 +3513,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 3].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3353,7 +3528,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3367,7 +3542,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3380,7 +3555,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3393,7 +3568,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 3].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3406,7 +3581,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 3].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -3482,9 +3657,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 4].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3497,7 +3672,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 4].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3512,7 +3687,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3526,7 +3701,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3539,7 +3714,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 4].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3552,7 +3727,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 4].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3565,7 +3740,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 4].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -3641,9 +3816,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 5].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3656,7 +3831,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 5].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3671,7 +3846,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3685,7 +3860,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3698,7 +3873,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 5].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3711,7 +3886,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 5].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3724,7 +3899,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget.Inputs[Union All Input 5].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -3889,9 +4064,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 4].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -3904,7 +4079,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 4].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3919,7 +4094,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -3933,7 +4108,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -3946,7 +4121,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 4].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -3959,7 +4134,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 4].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -3972,7 +4147,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 4].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -4074,9 +4249,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 3].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -4089,7 +4264,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 3].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4104,7 +4279,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -4118,7 +4293,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -4131,7 +4306,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 3].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -4144,7 +4319,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 3].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4157,7 +4332,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 3].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -4259,9 +4434,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 2].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -4274,7 +4449,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 2].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4289,7 +4464,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -4303,7 +4478,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -4316,7 +4491,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 2].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -4329,7 +4504,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 2].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4342,7 +4517,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 2].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -4446,7 +4621,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\777:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -4459,7 +4634,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 1].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\778:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4472,7 +4647,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 1].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\779:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4487,7 +4662,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\780:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -4501,7 +4676,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\781:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -4514,7 +4689,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 1].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\783:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -4527,7 +4702,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 1].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\784:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Error Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -4629,9 +4804,9 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                     <inputColumn
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 5].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="10"
                       cachedName="Region"
-                      lineageId="Package\DF_RawHICPTarget\772:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           containsID="true"
@@ -4644,7 +4819,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 5].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_RawHICPTarget\773:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4659,7 +4834,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedName="TargetPercent"
                       cachedPrecision="5"
                       cachedScale="2"
-                      lineageId="Package\DF_RawHICPTarget\774:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]">
                       <properties>
                         <property
                           containsID="true"
@@ -4673,7 +4848,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
-                      lineageId="Package\DF_RawHICPTarget\776:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]">
                       <properties>
                         <property
                           containsID="true"
@@ -4686,7 +4861,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 5].Columns[CreatedBronzeAt]"
                       cachedDataType="dbTimeStamp2"
                       cachedName="CreatedBronzeAt"
-                      lineageId="Package\DF_RawHICPTarget\782:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]">
                       <properties>
                         <property
                           containsID="true"
@@ -4699,7 +4874,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 5].Columns[ToDate]"
                       cachedDataType="dbDate"
                       cachedName="ToDate"
-                      lineageId="Package\DF_RawHICPTarget\775:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[ToDate]">
                       <properties>
                         <property
                           containsID="true"
@@ -4712,7 +4887,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
                       refId="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error.Inputs[Union All Input 5].Columns[IsValid]"
                       cachedDataType="i4"
                       cachedName="IsValid"
-                      lineageId="Package\DF_RawHICPTarget\771:invalid">
+                      lineageId="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget.Outputs[OLE DB Source Output].Columns[IsValid]">
                       <properties>
                         <property
                           containsID="true"
@@ -5091,6 +5266,336 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\merge_UpdateChanged_HICPTarget" />
   </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{3ECD6F01-4C5A-4DD1-8072-9857CCCCBB4F}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{C4E728A1-CC9A-447C-8FDC-E58239A56A2C}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c7a97974-dbbc-48f1-83df-0e466652b49d}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Err_Insert"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)
+VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Error(RunId,PackageName,SourceName,ErrorCode,ErrorDescription,LoggedAt)&#xA;VALUES (?,?,?,?,?,SYSUTCDATETIME());" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::ErrorCode"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="3"
+                SQLTask:ParameterSize="-1" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="4"
+                SQLTask:DtsVariableName="System::ErrorDescription"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="4000" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{041324a3-98cd-45f3-ba48-45b4dffee971}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Mark_HadErrors"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@User::HadErrors = TRUE" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0715fc49-e4d5-4e62-823c-52f1e8a11ce7}"
+          DTS:From="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPostExecute]"
+      DTS:CreationName="OnPostExecute"
+      DTS:DTSID="{0AFA553F-D523-41AB-B1E1-338E8F3C73C4}"
+      DTS:EventID="0"
+      DTS:EventName="OnPostExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{AC744244-FDF8-440D-BE22-2A448C9AC922}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{e2d8d6e2-b20b-45ed-a3de-f1270b1f0326}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_End_Failure"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE p
+   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),
+       Status  = 'F',
+       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')
+  FROM log.Package AS p
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       ErrorMessage = COALESCE(ErrorMessage, N'Failed – see log.Error')&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{53479aa9-4894-4be5-b26a-eaca531c6fe3}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_End_Success"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE p
+   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),
+       Status  = 'S'
+  FROM log.Package AS p
+ WHERE p.RunId        = ?
+   AND p.ProjectName  = ?
+   AND p.PackageName  = ?
+   AND p.TaskName     = ?
+   AND p.EndTime IS NULL;
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="UPDATE p&#xA;   SET EndTime = COALESCE(EndTime, SYSUTCDATETIME()),&#xA;       Status  = 'S'&#xA;  FROM log.Package AS p&#xA; WHERE p.RunId        = ?&#xA;   AND p.ProjectName  = ?&#xA;   AND p.PackageName  = ?&#xA;   AND p.TaskName     = ?&#xA;   AND p.EndTime IS NULL;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:CreationName="Microsoft.ExpressionTask"
+          DTS:Description="Expression Task"
+          DTS:DTSID="{7342ff30-b549-44b6-8b32-dcec430c3bb3}"
+          DTS:ExecutableType="Microsoft.ExpressionTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Start"
+          DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExpressionTask
+              Expression="@[User::Noop] = @[User::Noop]" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{c948a8b9-aa60-4c05-ab12-c4320f03229e}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors] == FALSE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Pkg_End_Success" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{cbb81d54-2099-4ff2-9728-ac1ab51e0b56}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::HadErrors] == TRUE"
+          DTS:From="Package.EventHandlers[OnPostExecute]\Start"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure" />
+      </DTS:PrecedenceConstraints>
+    </DTS:EventHandler>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnPreExecute]"
+      DTS:CreationName="OnPreExecute"
+      DTS:DTSID="{04C30E25-92F8-452B-A274-689C0F219114}"
+      DTS:EventID="0"
+      DTS:EventName="OnPreExecute"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{4BD26FF3-B662-41F1-822A-C1E270D8E8CF}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnPreExecute]\Pkg_Start"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{d0dd6179-0110-48e8-86c5-91e7e141583b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Pkg_Start"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)
+VALUES (?,?,?,?,SYSUTCDATETIME());
+"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
+              SQLTask:SqlStatementSource="INSERT INTO log.Package(RunId, ProjectName, PackageName, TaskName, StartTime)&#xA;VALUES (?,?,?,?,SYSUTCDATETIME());&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="0"
+                SQLTask:DtsVariableName="$Package::p_RunId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="36" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="1"
+                SQLTask:DtsVariableName="$Project::prj_ProjectName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="2"
+                SQLTask:DtsVariableName="System::PackageName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="128" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="3"
+                SQLTask:DtsVariableName="System::SourceName"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="130"
+                SQLTask:ParameterSize="256" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -5162,15 +5667,185 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153,42"
+          Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
+          TopLeft="70,60" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package.EventHandlers[OnError]\Pkg_Mark_HadErrors"
+          TopLeft="60,188" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="149.25,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPostExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="167,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Failure"
+          TopLeft="304,168" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package.EventHandlers[OnPostExecute]\Pkg_End_Success"
+          TopLeft="60,164" />
+        <NodeLayout
+          Size="102,42"
+          Id="Package.EventHandlers[OnPostExecute]\Start"
+          TopLeft="212,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="247.333333333333,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-99.8333333333333,62"
+              Start="0,0"
+              End="-99.8333333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3745173745174"
+                    Point2="0,25.3745173745174"
+                    Point3="-4,25.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-95.8333333333333,25.3745173745174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-95.8333333333333,25.3745173745174"
+                    Point2="-99.8333333333333,25.3745173745174"
+                    Point3="-99.8333333333333,29.3745173745174" />
+                  <mssgle:LineSegment
+                    End="-99.8333333333333,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-57.9166666666667,30.3745173745174,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPostExecute].PrecedenceConstraints[Constraint 1]"
+          TopLeft="278.666666666667,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="108.833333333333,66"
+              Start="0,0"
+              End="108.833333333333,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.011583011583"
+                    Point2="0,27.011583011583"
+                    Point3="4,27.011583011583" />
+                  <mssgle:LineSegment
+                    End="104.833333333333,27.011583011583" />
+                  <mssgle:CubicBezierSegment
+                    Point1="104.833333333333,27.011583011583"
+                    Point2="108.833333333333,27.011583011583"
+                    Point3="108.833333333333,31.011583011583" />
+                  <mssgle:LineSegment
+                    End="108.833333333333,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="46.4166666666667,32.011583011583,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42"
+          Id="Package.EventHandlers[OnPreExecute]\Pkg_Start"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\DF_RawHICPTarget">
     <LayoutInfo>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="243,42"
-          Id="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch"
-          TopLeft="2266.25,356.5" />
+          Size="266,42"
+          Id="Package\DF_RawHICPTarget\DC_LKP_DimDate_ToDate_ErrorReason"
+          TopLeft="588.83333333333,564.142857142857" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\DF_RawHICPTarget\DC_LKP_Region_ErrorReason_NoMatch"
+          TopLeft="1587.33333333334,354" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason"
+          TopLeft="593.357142857143,693.392857142857" />
+        <NodeLayout
+          Size="135,42"
+          Id="Package\DF_RawHICPTarget\LKP_Region"
+          TopLeft="1207.33333333334,349" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget"
+          TopLeft="1193.33333333334,41" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\DF_RawHICPTarget\DC_LKP_ToDate_ErrorReason_NoMatch"
+          TopLeft="1586.33333333334,577.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error"
+          TopLeft="312.428571428571,444.821428571429" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DF_RawHICPTarget\DC_CS_ErrorReason"
+          TopLeft="1593.33333333334,171" />
         <NodeLayout
           Size="236,42"
           Id="Package\DF_RawHICPTarget\DC_LKP_DimRegion_ErrorReason"
@@ -5180,57 +5855,25 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           Id="Package\DF_RawHICPTarget\DC_LKP_DimDate_FromDate_ErrorReason"
           TopLeft="587.83333333333,452.214285714286" />
         <NodeLayout
-          Size="135,42"
-          Id="Package\DF_RawHICPTarget\LKP_Region"
-          TopLeft="1207.33333333334,349" />
+          Size="136,42"
+          Id="Package\DF_RawHICPTarget\LKP_ToDate"
+          TopLeft="1203.33333333334,571.5" />
         <NodeLayout
           Size="214,42"
           Id="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In"
           TopLeft="1164.83333333334,690" />
         <NodeLayout
-          Size="202,42"
-          Id="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects"
-          TopLeft="1199.33333333334,176" />
-        <NodeLayout
-          Size="194,42"
-          Id="Package\DF_RawHICPTarget\UA_rejHICPTarget_Error"
-          TopLeft="312.428571428571,444.821428571429" />
-        <NodeLayout
-          Size="148,42"
-          Id="Package\DF_RawHICPTarget\LKP_FromDate"
-          TopLeft="1202.08333333334,456.25" />
-        <NodeLayout
-          Size="174,42"
-          Id="Package\DF_RawHICPTarget\DC_CS_ErrorReason"
-          TopLeft="1593.33333333334,171" />
-        <NodeLayout
-          Size="273,42"
-          Id="Package\DF_RawHICPTarget\DC_DST_TargetInflation_In_ErrorReason"
-          TopLeft="593.357142857143,693.392857142857" />
-        <NodeLayout
-          Size="136,42"
-          Id="Package\DF_RawHICPTarget\LKP_ToDate"
-          TopLeft="1203.33333333334,571.5" />
-        <NodeLayout
-          Size="278,42"
-          Id="Package\DF_RawHICPTarget\DC_LKP_FromDate_ErrorReason_NoMatch"
-          TopLeft="1586.08333333334,459.25" />
-        <NodeLayout
-          Size="266,42"
-          Id="Package\DF_RawHICPTarget\DC_LKP_DimDate_ToDate_ErrorReason"
-          TopLeft="588.83333333333,564.142857142857" />
-        <NodeLayout
-          Size="261,42"
-          Id="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason"
-          TopLeft="587.761904761902,45.5" />
+          Size="243,42"
+          Id="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch"
+          TopLeft="2266.25,356.5" />
         <NodeLayout
           Size="203,42"
           Id="Package\DF_RawHICPTarget\DC_CS_Error_ErrorReason"
           TopLeft="1589.83333333333,267.75" />
         <NodeLayout
-          Size="203,42"
-          Id="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget"
-          TopLeft="1193.33333333334,41" />
+          Size="261,42"
+          Id="Package\DF_RawHICPTarget\DC_SRC_RawHICPTarget_ErrorReason"
+          TopLeft="587.761904761902,45.5" />
         <NodeLayout
           Size="165,42"
           Id="Package\DF_RawHICPTarget\UA_rejHICPTarget"
@@ -5240,13 +5883,17 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           Id="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput"
           TopLeft="2.49999999999983,439.392857142857" />
         <NodeLayout
-          Size="265,42"
-          Id="Package\DF_RawHICPTarget\DC_LKP_Region_ErrorReason_NoMatch"
-          TopLeft="1587.33333333334,354" />
+          Size="148,42"
+          Id="Package\DF_RawHICPTarget\LKP_FromDate"
+          TopLeft="1202.08333333334,456.25" />
         <NodeLayout
-          Size="266,42"
-          Id="Package\DF_RawHICPTarget\DC_LKP_ToDate_ErrorReason_NoMatch"
-          TopLeft="1586.33333333334,577.5" />
+          Size="202,42"
+          Id="Package\DF_RawHICPTarget\CS_GoodRows_or_Rejects"
+          TopLeft="1199.33333333334,176" />
+        <NodeLayout
+          Size="278,42"
+          Id="Package\DF_RawHICPTarget\DC_LKP_FromDate_ErrorReason_NoMatch"
+          TopLeft="1586.08333333334,459.25" />
         <EdgeLayout
           Id="Package\DF_RawHICPTarget.Paths[Union All Output 11]"
           TopLeft="2180,375.875">
@@ -5311,7 +5958,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="66.86376953125,5,50.7724609375,16"
+              BoundingBox="75.732421875,5,33.03515625,11.384765625"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5334,9 +5981,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,34.75,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5359,7 +6004,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-240.630753348219,5,144.190078125,16"
+              BoundingBox="-231.969620535719,5,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5383,7 +6028,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-227.358134300599,5,163.740078125,16"
+              BoundingBox="-218.697001488099,5,146.4178125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5479,7 +6124,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-57.0600390625,26.5,114.120078125,16"
+              BoundingBox="-48.19138671875,28.6953125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5503,7 +6148,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-57.0600390625,24.875,114.120078125,16"
+              BoundingBox="-48.19138671875,27.0703125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5527,55 +6172,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-57.0600390625,20.875,114.120078125,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_RawHICPTarget.Paths[Lookup Error Output]"
-          TopLeft="1202.08333333334,475.232142857143">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-336.25000000001,0"
-              Start="0,0"
-              End="-328.75000000001,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-328.75000000001,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-219.110039062505,5,109.470078125,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_RawHICPTarget.Paths[Lookup Error Output1]"
-          TopLeft="1203.33333333334,588.821428571429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-348.50000000001,0"
-              Start="0,0"
-              End="-341.00000000001,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-341.00000000001,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-225.235039062505,5,109.470078125,16"
+              BoundingBox="-48.19138671875,23.0703125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5599,7 +6196,55 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-242.413610491076,5,109.470078125,16"
+              BoundingBox="-233.544958147326,5,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_RawHICPTarget.Paths[Lookup Error Output1]"
+          TopLeft="1203.33333333334,588.821428571429">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-348.50000000001,0"
+              Start="0,0"
+              End="-341.00000000001,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-341.00000000001,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-216.366386718755,5,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_RawHICPTarget.Paths[Lookup Error Output]"
+          TopLeft="1202.08333333334,475.232142857143">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-336.25000000001,0"
+              Start="0,0"
+              End="-328.75000000001,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-328.75000000001,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-210.241386718755,5,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5623,7 +6268,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-32.69623046875,53.75,65.3924609375,16"
+              BoundingBox="-24.03509765625,56.87548828125,48.0701953125,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5658,9 +6303,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-148.70238095238,-41.0133654688869,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5694,9 +6337,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="191.291666666663,-33.031212484994,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5730,9 +6371,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="208.166666666668,30.8493397358943,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5766,9 +6405,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-141.023809523808,36.1785714285715,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5790,9 +6427,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-44.9523809523794,5,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5826,9 +6461,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-152.714285714286,-117.929009640666,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5862,9 +6495,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="167.999999999997,-103.299819927971,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5898,9 +6529,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-146.916666666665,217.639132340053,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5922,9 +6551,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="69.58333333333,5,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5958,9 +6585,7 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="187.499999999997,88.3418367346938,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -5995,26 +6620,13 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="100.05829427083,25.1345776031434,158.550078125,16"
+              BoundingBox="108.71942708333,25.1345776031434,141.2278125,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DF_RawHICPTarget\LKP_Region">
     <Properties>
@@ -6039,7 +6651,64 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawHICPTarget\LKP_ToDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Dim].[Date]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\DF_RawHICPTarget\OLE_DST_TargetInflation_In">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_NoMatch">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6071,50 +6740,6 @@ FROM (VALUES (N'OK'), (N'FörLångText')) v(Val);</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_RawHICPTarget\LKP_ToDate">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[Dim].[Date]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_RawHICPTarget\OLE_SRC_RawHICPTarget">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DF_RawHICPTarget\OLE_DST_rejHICPTarget_ErrorOutput">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
