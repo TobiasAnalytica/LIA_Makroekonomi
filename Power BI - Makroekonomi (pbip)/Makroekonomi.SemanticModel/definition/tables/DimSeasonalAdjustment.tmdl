@@ -1,0 +1,42 @@
+table DimSeasonalAdjustment
+	lineageTag: a0bfb295-f16a-4a0f-bacd-d0b1f35f77c3
+
+	column SeasonalAdjustmentSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 07eab1a5-6a2e-496b-93b1-7ebe15cf5f26
+		summarizeBy: none
+		sourceColumn: SeasonalAdjustmentSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeasonalAdjustmentAK
+		dataType: string
+		lineageTag: e84cb758-33bc-4fb5-813e-d688ddff03e4
+		summarizeBy: none
+		sourceColumn: SeasonalAdjustmentAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 52521458-2ef6-4f99-adeb-aa9c4abe1a87
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSeasonalAdjustment = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    Dim_SeasonalAdjustment = LIA_DW_Gold{[Schema="Dim",Item="SeasonalAdjustment"]}[Data]
+				in
+				    Dim_SeasonalAdjustment
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

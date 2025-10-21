@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackagesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{5F01A446-CE1C-4259-A3A1-B3B3B06DE4E6}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{01E7D2A5-680D-47A6-9BB9-FF58EB400623}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -61,7 +61,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="RunId">
       <DTS:VariableValue
-        DTS:DataType="8">{CD844BA5-6490-405C-9D09-9B813AF9749B}</DTS:VariableValue>
+        DTS:DataType="8">{031051AD-7AF5-4254-8148-E657BA602B6F}</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -152,6 +152,27 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Dim.ConsumptionCategory.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Load Silver Dim\PKG_DimDate"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{382E3905-7AEC-4753-A669-83057E792CF4}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_DimDate"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Dim.Date.dtsx</PackageName>
               <ParameterAssignment>
                 <ParameterName>p_RunId</ParameterName>
                 <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
@@ -679,14 +700,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'F',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'F',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'F',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgFail"
@@ -714,14 +735,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'S',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'S',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'S',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'S',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgSuccess"
@@ -861,7 +882,7 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimAgeClassEmp"
-          TopLeft="5.5,5.49999999999989" />
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimAgeClassUnemp"
@@ -877,7 +898,7 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimGender"
-          TopLeft="1153.5,5.49999999999977" />
+          TopLeft="1153.5,5.49999999999989" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimRegion"
@@ -889,18 +910,22 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimTimeFrequency"
-          TopLeft="2014.5,5.49999999999966" />
+          TopLeft="2014.5,5.49999999999977" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimUnit"
           TopLeft="2301.5,5.49999999999966" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Sequence Container - Load Silver Dim\PKG_DimDate"
+          TopLeft="2588,5.49999999999966" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="2533,102"
-          Size="2533,145"
+          PanelSize="2744,102"
+          Size="2744,146"
           Id="Package\Sequence Container - Load Silver Dim"
-          TopLeft="424.5,313.5" />
+          TopLeft="319,313.5" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
@@ -928,19 +953,19 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactHICPTarget"
-          TopLeft="2804.5,5.49999999999966" />
-        <NodeLayout
-          Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_FactJobVacancies"
           TopLeft="1871.5,5.49999999999977" />
         <NodeLayout
           Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_FactMoneyMarketInterestRates"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_FactJobVacancies"
           TopLeft="2182.5,5.49999999999977" />
         <NodeLayout
           Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_FactPopulation"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_FactMoneyMarketInterestRates"
           TopLeft="2493.5,5.49999999999977" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Sequence Container - Load Silver Fact\PKG_FactPopulation"
+          TopLeft="2804.5,5.49999999999966" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactUnemployment"
@@ -948,7 +973,7 @@ WHERE NOT EXISTS (
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="3371,103"
+          PanelSize="3371,102"
           Size="3371,146"
           Id="Package\Sequence Container - Load Silver Fact"
           TopLeft="5.50000000000023,107.5" />
@@ -958,14 +983,14 @@ WHERE NOT EXISTS (
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000003"
+              EndConnector="0,60.0000000000005"
               Start="0,0"
-              End="0,52.5000000000003">
+              End="0,52.5000000000005">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000003" />
+                    End="0,52.5000000000005" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1003,7 +1028,7 @@ WHERE NOT EXISTS (
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="126,42"
           Id="Package.EventHandlers[OnError]\Err_Insert"
@@ -1031,7 +1056,9 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

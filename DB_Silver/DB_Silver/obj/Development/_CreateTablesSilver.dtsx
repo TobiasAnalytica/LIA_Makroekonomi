@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_CreateTablesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="234"
-  DTS:VersionGUID="{03F5552A-D7D0-4400-B5FB-D66E4C6F63B6}">
+  DTS:VersionBuild="258"
+  DTS:VersionGUID="{D5D17D64-CA3B-4B5B-858A-037EF6F4DB92}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -49,22 +49,19 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Create_Diagnostics_DB_Silver"
+      DTS:refId="Package\Create_schemas_dbo_Dim_Fact_rej_Bridge"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{0EBE4576-BC2F-4321-9C96-EC91696135AB}"
+      DTS:DTSID="{8d12f22c-63be-49ea-9991-fbcdf64001cd}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="1033"
-      DTS:ObjectName="Create_Diagnostics_DB_Silver"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Create_schemas_dbo_Dim_Fact_rej_Bridge"
       DTS:ThreadHint="0">
       <DTS:Variables />
-      <DTS:LoggingOptions
-        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{1334099B-3AB3-40F8-827F-E3DE821777F9}"
-          SQLTask:SqlStatementSource="IF OBJECT_ID(N'dbo.Diagnostics_DB_Silver', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.Diagnostics_DB_Silver (&#xA;        DiagnosticsId   INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId           UNIQUEIDENTIFIER NULL,     -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName     NVARCHAR(128) NULL,        -- SSIS: System::PackageName&#xA;        TaskName        NVARCHAR(128) NULL,        -- SSIS: System::TaskName (alt. System::SourceName)&#xA;        ErrorCode       NVARCHAR(100)  NOT NULL,   -- från Error Output (casta vid behov)&#xA;        ErrorColumn     NVARCHAR(100)  NOT NULL,   -- från Error Output (casta vid behov)&#xA;        ErrorReason     NVARCHAR(500)  NOT NULL,   -- från Derived Column&#xA;        CreatedErrorAt  DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;&#xA;    CREATE INDEX IX_Diagnostics_Run ON dbo.Diagnostics_DB_Silver(RunId, CreatedErrorAt);&#xA;END;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
+          SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('dbo') IS NULL&#xA;    EXEC('CREATE SCHEMA dbo');&#xA;&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('Dim') IS NULL&#xA;    EXEC('CREATE SCHEMA Dim');&#xA;&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('Fact') IS NULL&#xA;    EXEC('CREATE SCHEMA Fact');&#xA;&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('Bridge') IS NULL&#xA;    EXEC('CREATE SCHEMA Bridge');&#xA;&#xA;-- Säkerställ schema&#xA;IF SCHEMA_ID('vw') IS NULL&#xA;    EXEC('CREATE SCHEMA vw');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -86,14 +83,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_BridgeRegionGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="15">
+          DTS:ThreadHint="21">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('Bridge') IS NULL&#xA;    EXEC('CREATE SCHEMA Bridge');&#xA;&#xA;-- Droppa om finns&#xA;IF OBJECT_ID('Bridge.RegionGroup', 'U') IS NOT NULL&#xA;    DROP TABLE Bridge.RegionGroup;&#xA;&#xA;-- Skapa tabellen&#xA;CREATE TABLE Bridge.RegionGroup&#xA;(&#xA;    GroupKey       INT           NOT NULL,&#xA;    RegionAK       NVARCHAR(10)  NOT NULL, -- t.ex. 'SE'&#xA;    CountryName NVARCHAR(120) NOT NULL,&#xA;    CreatedBronzeAt DATETIME2(0)  NULL,&#xA;    CreatedSilverAt DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;-- Index (gör det gärna unikt på kombinationen)&#xA;CREATE UNIQUE CLUSTERED INDEX CX_BridgeRegionGroup&#xA;    ON Bridge.RegionGroup (GroupKey, RegionAK);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Bridge.RegionGroup', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Bridge.RegionGroup&#xA;(&#xA;    GroupKey       INT           NOT NULL,&#xA;    RegionAK       NVARCHAR(10)  NOT NULL, &#xA;    CountryName NVARCHAR(120) NOT NULL,&#xA;    CreatedBronzeAtUTC DATETIME2(0)  NOT NULL,&#xA;    CreatedSilverAtUTC DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;-- Index &#xA;CREATE UNIQUE CLUSTERED INDEX CX_BridgeRegionGroup&#xA;    ON Bridge.RegionGroup (GroupKey, RegionAK);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -105,14 +102,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_dboHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="16">
+          DTS:ThreadHint="22">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 FROM sys.tables &#xA;    WHERE name = 'HICPTarget' AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE dbo.HICPTarget(&#xA;        TargetId       int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region    nvarchar(120) NOT NULL,   -- kanoniskt namn som matchar DimRegion.Description&#xA;        FromDate       date          NOT NULL,&#xA;        ToDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedBronzeAt datetime2(0),&#xA;        CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret,&#xA;        CONSTRAINT UQ_HICPTarget_Region_From UNIQUE (Region, FromDate)&#xA;    );&#xA;&#xA;    CREATE NONCLUSTERED INDEX IX_HICPTarget_RegionDate&#xA;        ON dbo.HICPTarget(Region, FromDate);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.HICPTarget', 'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.HICPTarget(&#xA;        TargetId       int IDENTITY(1,1) PRIMARY KEY,&#xA;        Region    nvarchar(120) NOT NULL,   -- namn som matchar DimRegion.Description&#xA;        FromDate       date          NOT NULL,&#xA;        ToDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedBronzeAtUTC DATETIME2(0) NOT NULL,&#xA;        CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret,&#xA;        CONSTRAINT UQ_HICPTarget_Region_From UNIQUE (Region, FromDate)&#xA;    );&#xA;&#xA;    CREATE NONCLUSTERED INDEX IX_HICPTarget_RegionDate&#xA;        ON dbo.HICPTarget(Region, FromDate);&#xA;END;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -124,14 +121,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_dboHICPTarget_In"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="17">
+          DTS:ThreadHint="23">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF NOT EXISTS (&#xA;    SELECT 1 FROM sys.tables &#xA;    WHERE name = 'HICPTarget_In' AND schema_id = SCHEMA_ID('dbo')&#xA;)&#xA;BEGIN&#xA;    CREATE TABLE dbo.HICPTarget_In(&#xA;        Region    nvarchar(120) NOT NULL,&#xA;        FromDate       date          NOT NULL,&#xA;        ToDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedBronzeAt datetime2(0) NOT NULL,&#xA;        CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('dbo.HICPTarget_In') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE dbo.HICPTarget_In(&#xA;        Region    nvarchar(120) NOT NULL,&#xA;        FromDate       date          NOT NULL,&#xA;        ToDate       date          NOT NULL,&#xA;        TargetPercent  decimal(5,2)  NOT NULL,&#xA;        Notes          nvarchar(255) NULL,&#xA;        CreatedBronzeAtUTC datetime2(0) NOT NULL,&#xA;        CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -143,14 +140,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimAgeClassEmp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="18">
+          DTS:ThreadHint="24">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.AgeClassEmp', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.AgeClassEmp;&#xA;&#xA;CREATE TABLE Dim.AgeClassEmp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.AgeClassEmp', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.AgeClassEmp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -162,14 +159,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimAgeClassUnemp"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="19">
+          DTS:ThreadHint="11">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.AgeClassUnemp', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.AgeClassUnemp;&#xA;&#xA;CREATE TABLE Dim.AgeClassUnemp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.AgeClassUnemp', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.AgeClassUnemp (&#xA;    AgeClass NVARCHAR(6) NOT NULL,&#xA;    Description NVARCHAR(20) NULL,&#xA;    CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -181,14 +178,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="20">
+          DTS:ThreadHint="12">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.ConfigGroup', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.ConfigGroup;&#xA;&#xA;CREATE TABLE Dim.ConfigGroup(&#xA;        GroupKey       INT            NOT NULL,&#xA;        GroupName      NVARCHAR(120)  NOT NULL,&#xA;        GroupSort      INT            NOT NULL,&#xA;        CreatedBronsAt DATETIME2(0)   NULL,&#xA;        CreatedSilverAt DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;    CREATE NONCLUSTERED INDEX IX_ConfigGroup_key ON Dim.ConfigGroup(GroupKey);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.ConfigGroup', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.ConfigGroup(&#xA;        GroupKey       INT            NOT NULL,&#xA;        GroupName      NVARCHAR(120)  NOT NULL,&#xA;        GroupSort      INT            NOT NULL,&#xA;        CreatedBronsAtUTC DATETIME2(0)  NOT NULL,&#xA;        CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;    CREATE NONCLUSTERED INDEX IX_ConfigGroup_key ON Dim.ConfigGroup(GroupKey);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -200,14 +197,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimConsumptionCategory"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="21">
+          DTS:ThreadHint="13">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.ConsumptionCategory', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.ConsumptionCategory;&#xA;&#xA;CREATE TABLE Dim.ConsumptionCategory (&#xA;    ConsumptionCategory NCHAR(4) NOT NULL,&#xA;    Description NVARCHAR(70) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.ConsumptionCategory', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.ConsumptionCategory (&#xA;    ConsumptionCategory NCHAR(4) NOT NULL,&#xA;    Description NVARCHAR(70) NULL,&#xA;    CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -219,12 +216,12 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Create_DimDate"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="22">
+          DTS:ThreadHint="6">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Ta bort tabellen om den redan finns&#xA;IF OBJECT_ID('Dim.Date', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.Date;&#xA;&#xA;CREATE TABLE Dim.Date (&#xA;    DateKey       INT         NOT NULL PRIMARY KEY,  -- Exempel: 20250101&#xA;    DateValue     DATE        NOT NULL UNIQUE,       -- Faktiskt datum&#xA;    YearNumber    INT         NOT NULL,              -- År,  t.ex. 2025&#xA;    MonthNumber   INT         NOT NULL,              -- Månad (1–12)&#xA;    DayNumber     INT         NOT NULL,              -- Dag i månaden (1–31)&#xA;    DayOfWeek     INT         NOT NULL,              -- Veckodag (1=Monday … 7=Sunday)&#xA;    WeekNumber    INT         NOT NULL,              -- Vecka på året (ISO 1–53)&#xA;    QuarterNumber INT         NOT NULL,              -- Kvartal (1–4)&#xA;    MonthName     CHAR(20) NOT NULL,              -- Månadens namn (t.ex. 'Januari')&#xA;    DayName       CHAR(20) NOT NULL               -- Veckodagens namn (t.ex. 'Måndag')&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Date', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.Date (&#xA;    DateKey       INT         NOT NULL PRIMARY KEY,  -- Exempel: 20250101&#xA;    DateValue     DATE        NOT NULL UNIQUE,       -- Faktiskt datum&#xA;    YearNumber    INT         NOT NULL,              -- År,  t.ex. 2025&#xA;    MonthNumber   INT         NOT NULL,              -- Månad (1–12)&#xA;    DayNumber     INT         NOT NULL,              -- Dag i månaden (1–31)&#xA;    DayOfWeek     INT         NOT NULL,              -- Veckodag (1=Monday … 7=Sunday)&#xA;    WeekNumber    INT         NOT NULL,              -- Vecka på året (ISO 1–53)&#xA;    QuarterNumber INT         NOT NULL,              -- Kvartal (1–4)&#xA;    MonthName     CHAR(20) NOT NULL,              -- Månadens namn (t.ex. 'Januari')&#xA;    DayName       CHAR(20) NOT NULL               -- Veckodagens namn (t.ex. 'Måndag')&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -236,14 +233,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimFlags"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="23">
+          DTS:ThreadHint="7">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Flags', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.Flags;&#xA;&#xA;CREATE TABLE Dim.Flags (&#xA;    Flags NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(70) NULL,&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Flags', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.Flags (&#xA;    Flags NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(70) NULL,&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -255,14 +252,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimGender"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="24">
+          DTS:ThreadHint="8">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Gender', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.Gender;&#xA;&#xA;CREATE TABLE Dim.Gender (&#xA;    Gender NCHAR(1) NOT NULL,&#xA;    Description NVARCHAR(7) NULL,&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Gender', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.Gender (&#xA;    Gender NCHAR(1) NOT NULL,&#xA;    Description NVARCHAR(7) NULL,&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -274,14 +271,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimRegion"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="14">
+          DTS:ThreadHint="9">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Region', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.Region;&#xA;&#xA;CREATE TABLE Dim.Region (&#xA;    Region NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(120) NULL,&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Region', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.Region (&#xA;    Region NVARCHAR(10) NOT NULL,&#xA;    Description NVARCHAR(120) NULL,&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -293,14 +290,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimSeasonalAdjustment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="10">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.SeasonalAdjustment', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.SeasonalAdjustment;&#xA;&#xA;CREATE TABLE Dim.SeasonalAdjustment (&#xA;    [Seasonal adjustment] NCHAR(3) NOT NULL,&#xA;    Description NVARCHAR(80) NULL,&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.SeasonalAdjustment', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.SeasonalAdjustment (&#xA;    [Seasonal adjustment] NCHAR(3) NOT NULL,&#xA;    Description NVARCHAR(80) NULL,&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -312,14 +309,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimTimeFrequency"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.TimeFrequency', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.TimeFrequency;&#xA;&#xA;CREATE TABLE Dim.TimeFrequency (&#xA;    TimeFrequency NCHAR(1) NOT NULL,&#xA;    Description NVARCHAR(10) NULL,&#xA;    CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.TimeFrequency', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.TimeFrequency (&#xA;    TimeFrequency NCHAR(1) NOT NULL,&#xA;    Description NVARCHAR(10) NULL,&#xA;    CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -331,14 +328,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_DimUnit"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="5">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Unit', 'U') IS NOT NULL&#xA;    DROP TABLE Dim.Unit;&#xA;&#xA;CREATE TABLE Dim.Unit (&#xA;    Unit NCHAR(3) NOT NULL,&#xA;    Description NCHAR(30) NULL,&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Dim.Unit', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Dim.Unit (&#xA;    Unit NCHAR(3) NOT NULL,&#xA;    Description NCHAR(30) NULL,&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -350,14 +347,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactEmployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="6">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Employment', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.Employment;&#xA;&#xA;CREATE TABLE Fact.Employment (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly     &#xA;     sex NCHAR(1) NOT NULL,   -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,  -- t.ex. Males&#xA;     age NVARCHAR(6) NOT NULL,   -- t.ex. Y15-24&#xA;     [Age class] NVARCHAR(20) NOT NULL,  -- t.ex. From 15 to 24 years                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,     -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(10) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Employment', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.Employment (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly     &#xA;     sex NCHAR(1) NOT NULL,   -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,  -- t.ex. Males&#xA;     age NVARCHAR(6) NOT NULL,   -- t.ex. Y15-24&#xA;     [Age class] NVARCHAR(20) NOT NULL,  -- t.ex. From 15 to 24 years                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,     -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(10) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -369,14 +366,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactGDP"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="7">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.GDP', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.GDP;&#xA;&#xA;CREATE TABLE Fact.GDP (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly&#xA;     s_adj NCHAR(3) NOT NULL,      -- t.ex. SCA&#xA;     [Seasonal adjustment] NVARCHAR(80) NOT NULL,   -- t.ex. Seasonally and calendar adjusted data                                           &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE BIGINT NULL,    -- t.ex. 10000000000000&#xA;     OBS_FLAG NVARCHAR(10) NOT NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NOT NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.GDP', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.GDP (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly&#xA;     s_adj NCHAR(3) NOT NULL,      -- t.ex. SCA&#xA;     [Seasonal adjustment] NVARCHAR(80) NOT NULL,   -- t.ex. Seasonally and calendar adjusted data                                           &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE BIGINT NULL,    -- t.ex. 10000000000000&#xA;     OBS_FLAG NVARCHAR(10) NOT NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NOT NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -388,14 +385,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactGovernmentDebt"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="8">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.GovernmentDebt', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.GovernmentDebt;&#xA;&#xA;CREATE TABLE Fact.GovernmentDebt (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly                                       &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE BIGINT NULL,   -- t.ex. 10000000000000000&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.GovernmentDebt', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.GovernmentDebt (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly                                       &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE BIGINT NULL,   -- t.ex. 10000000000000000&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -407,14 +404,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactHICPIndex"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="9">
+          DTS:ThreadHint="5">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.HICPIndex', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.HICPIndex;&#xA;&#xA;CREATE TABLE Fact.HICPIndex (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly   &#xA;      unit NVARCHAR(7) NOT NULL,         -- t.ex. I05&#xA;     [Unit of measure] NVARCHAR(30) NOT NULL,      -- t.ex. Index, 2005=100         &#xA;     coicop NCHAR(4) NOT NULL,      &#xA;     [Classification of individual consumption by purpose (COICOP)] NVARCHAR(70) NOT NULL,                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC(20,2) NULL,   -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.HICPIndex', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.HICPIndex (&#xA;      freq NCHAR(1) NOT NULL,      -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,    -- t.ex. Quarterly   &#xA;      unit NVARCHAR(7) NOT NULL,         -- t.ex. I05&#xA;     [Unit of measure] NVARCHAR(30) NOT NULL,      -- t.ex. Index, 2005=100         &#xA;     coicop NCHAR(4) NOT NULL,      &#xA;     [Classification of individual consumption by purpose (COICOP)] NVARCHAR(70) NOT NULL,                                 &#xA;     geo NVARCHAR(10) NOT NULL,      -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,       -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC(20,2) NULL,   -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,      -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -426,14 +423,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactJobVacancies"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="10">
+          DTS:ThreadHint="15">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.JobVacancies', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.JobVacancies;&#xA;&#xA;CREATE TABLE Fact.JobVacancies (&#xA;      freq NCHAR(1) NOT NULL,        -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,     -- t.ex. Quarterly                           &#xA;     geo NVARCHAR(10) NOT NULL,        -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,         -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,      -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,        -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CONF_FLAG NVARCHAR(5) NULL,        -- t.ex. C&#xA;     [Confidentiality status (flag)] NVARCHAR(50) NULL,   -- t.ex. confidential&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.JobVacancies', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.JobVacancies (&#xA;      freq NCHAR(1) NOT NULL,        -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,     -- t.ex. Quarterly                           &#xA;     geo NVARCHAR(10) NOT NULL,        -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,         -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,      -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,        -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CONF_FLAG NVARCHAR(5) NULL,        -- t.ex. C&#xA;     [Confidentiality status (flag)] NVARCHAR(50) NULL,   -- t.ex. confidential&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -445,14 +442,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactMoneyMarketInterestRates"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="11">
+          DTS:ThreadHint="16">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.MoneyMarketInterestRates', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.MoneyMarketInterestRates;&#xA;&#xA;CREATE TABLE Fact.MoneyMarketInterestRates (&#xA;      freq NCHAR(1) NOT NULL,    -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,   -- t.ex. Quarterly                                         &#xA;     geo NVARCHAR(10) NOT NULL,    -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,    -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC (10,2) NULL,  -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,    -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.MoneyMarketInterestRates', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.MoneyMarketInterestRates (&#xA;      freq NCHAR(1) NOT NULL,    -- t.ex. Q&#xA;     [Time frequency] NCHAR(10) NOT NULL,   -- t.ex. Quarterly                                         &#xA;     geo NVARCHAR(10) NOT NULL,    -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,    -- t.ex. 1995-01-01&#xA;     OBS_VALUE NUMERIC (10,2) NULL,  -- t.ex. 1000,12&#xA;     OBS_FLAG NVARCHAR(5) NULL,    -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -464,14 +461,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactPopulation"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="12">
+          DTS:ThreadHint="17">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Population', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.Population;&#xA;&#xA;CREATE TABLE Fact.Population (&#xA;      freq NCHAR(1) NOT NULL,         -- t.ex. A&#xA;     [Time frequency] NCHAR(10) NOT NULL,      -- t.ex. Annual          &#xA;     sex NCHAR(1) NOT NULL,      -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,     -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,         -- t.ex. SE&#xA;     [Geopolitical entity] NVARCHAR(120) NOT NULL,  -- t.ex. Sweden&#xA;     Date DATE NOT NULL,          -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,                       -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,         -- t.ex. p&#xA;     [Observation status] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                         -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Population', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.Population (&#xA;      freq NCHAR(1) NOT NULL,         -- t.ex. A&#xA;     [Time frequency] NCHAR(10) NOT NULL,      -- t.ex. Annual          &#xA;     sex NCHAR(1) NOT NULL,      -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,     -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,         -- t.ex. SE&#xA;     [Geopolitical entity] NVARCHAR(120) NOT NULL,  -- t.ex. Sweden&#xA;     Date DATE NOT NULL,          -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,                       -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(5) NULL,         -- t.ex. p&#xA;     [Observation status] NVARCHAR(50) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                         -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()       -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -483,14 +480,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_FactUnemployment"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="13">
+          DTS:ThreadHint="18">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Unemployment', 'U') IS NOT NULL&#xA;    DROP TABLE Fact.Unemployment;&#xA;&#xA;CREATE TABLE Fact.Unemployment (&#xA;      freq NCHAR(1) NOT NULL,        -- t.ex. M&#xA;     [Time frequency] NCHAR(10) NOT NULL,     -- t.ex. Monthly     &#xA;     age NVARCHAR(6) NOT NULL,     -- t.ex. Y25-74&#xA;     [Age class] NVARCHAR(20) NOT NULL,    -- t.ex. From 25 to 74    &#xA;     sex NCHAR(1) NOT NULL,     -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,    -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,        -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,         -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,     -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(10) NULL,        -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAt DATETIME,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAt DATETIME DEFAULT GETDATE()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('Fact.Unemployment', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE Fact.Unemployment (&#xA;      freq NCHAR(1) NOT NULL,        -- t.ex. M&#xA;     [Time frequency] NCHAR(10) NOT NULL,     -- t.ex. Monthly     &#xA;     age NVARCHAR(6) NOT NULL,     -- t.ex. Y25-74&#xA;     [Age class] NVARCHAR(20) NOT NULL,    -- t.ex. From 25 to 74    &#xA;     sex NCHAR(1) NOT NULL,     -- t.ex. M&#xA;     Sex_2 NVARCHAR(7) NOT NULL,    -- t.ex. Males                             &#xA;     geo NVARCHAR(10) NOT NULL,        -- t.ex. SE&#xA;     [Geopolitical entity (reporting)] NVARCHAR(120) NOT NULL, -- t.ex. Sweden&#xA;     Date DATE NOT NULL,         -- t.ex. 1995-01-01&#xA;     OBS_VALUE INT NULL,     -- t.ex. 1000&#xA;     OBS_FLAG NVARCHAR(10) NULL,        -- t.ex. p&#xA;     [Observation status (Flag) V2 structure] NVARCHAR(70) NULL,  -- t.ex. provisional&#xA;     CreatedBronzeAtUTC DATETIME2(0) NOT NULL,                                        -- loggar tidpunkten för inmatning i Bronze lagret&#xA;     CreatedSilverAtUTC DATETIME2(0) NOT NULL DEFAULT SYSUTCDATETIME()      -- loggar tidpunkten för inmatning i Silver lagret&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -502,14 +499,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejBridgeRegionGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="19">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Droppa rej-tabellen&#xA;IF OBJECT_ID(N'rej.BridgeRegionGroup', N'U') IS NOT NULL&#xA;    DROP TABLE rej.BridgeRegionGroup;&#xA;&#xA;-- Skapa rej-tabellen&#xA;CREATE TABLE rej.BridgeRegionGroup&#xA;(&#xA;    RejectId        INT IDENTITY(1,1) PRIMARY KEY,&#xA;    RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;    PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;    TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;    GroupKeySrc     NVARCHAR(50)   NULL,&#xA;    RegionAKSrc     NVARCHAR(50)   NULL,&#xA;    CountryNameSrc  NVARCHAR(120)  NULL,&#xA;    ErrorReason     NVARCHAR(500)  NOT NULL,&#xA;    ErrorCode INT NULL,&#xA;    ErrorColumn INT NULL,&#xA;    CreatedBronzeAt DATETIME2(0)   NOT NULL,&#xA;    CreatedSilverAt     DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('rej.BridgeRegionGroup', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;-- Skapa rej-tabellen&#xA;CREATE TABLE rej.BridgeRegionGroup&#xA;(&#xA;    RejectId        INT IDENTITY(1,1) PRIMARY KEY,&#xA;    RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;    PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;    TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;    GroupKeySrc     NVARCHAR(50)   NULL,&#xA;    RegionAKSrc     NVARCHAR(50)   NULL,&#xA;    CountryNameSrc  NVARCHAR(120)  NULL,&#xA;    ErrorReason     NVARCHAR(500)  NOT NULL,&#xA;    ErrorCode INT NULL,&#xA;    ErrorColumn INT NULL,&#xA;    CreatedBronzeAtUTC DATETIME2(0)   NOT NULL,&#xA;    CreatedSilverAtUTC     DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -521,14 +518,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejConfigGroup"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="20">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="IF SCHEMA_ID('rej') IS NULL EXEC('CREATE SCHEMA rej');&#xA;&#xA;IF OBJECT_ID('rej.ConfigGroup','U') IS NULL&#xA;&#xA;CREATE TABLE rej.ConfigGroup(&#xA;  RejectId       INT IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;  PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;  TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;  GroupKeySrc    NVARCHAR(50)   NULL,&#xA;  GroupNameSrc   NVARCHAR(120)  NULL,&#xA;  GroupSortSrc   NVARCHAR(50)   NULL,&#xA;  ErrorReason    NVARCHAR(500)  NOT NULL,&#xA;  ErrorCode INT NULL,&#xA;  ErrorColumn INT NULL,&#xA;  CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;  CreatedSilverAt DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('rej.ConfigGroup', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;CREATE TABLE rej.ConfigGroup(&#xA;  RejectId       INT IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;  PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;  TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;  GroupKeySrc    NVARCHAR(50)   NULL,&#xA;  GroupNameSrc   NVARCHAR(120)  NULL,&#xA;  GroupSortSrc   NVARCHAR(50)   NULL,&#xA;  ErrorReason    NVARCHAR(500)  NOT NULL,&#xA;  ErrorCode INT NULL,&#xA;  ErrorColumn INT NULL,&#xA;  CreatedBronzeAtUTC DATETIME2(0) NOT NULL,&#xA;  CreatedSilverAtUTC DATETIME2(0)   NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -540,14 +537,14 @@
           DTS:LocaleID="1033"
           DTS:ObjectName="Create_rejHICPTarget"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="14">
           <DTS:Variables />
           <DTS:LoggingOptions
             DTS:FilterKind="0" />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{5D400992-DA68-4043-A268-53124E7DC339}"
-              SQLTask:SqlStatementSource="-- Säkerställ schema&#xA;IF SCHEMA_ID('rej') IS NULL&#xA;    EXEC('CREATE SCHEMA rej');&#xA;&#xA;-- Skapa reject-tabell för HICPTarget (skapas bara om den saknas)&#xA;IF OBJECT_ID(N'rej.HICPTarget', N'U') IS NULL&#xA;BEGIN&#xA;    CREATE TABLE rej.HICPTarget&#xA;    (&#xA;        RejectId         INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;        TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;&#xA;        -- Källvärden (råa/otvättade för spårbarhet)&#xA;        RegionSrc        NVARCHAR(120) NULL,&#xA;        FromDateSrc      NVARCHAR(50)  NULL,&#xA;        ToDateSrc        NVARCHAR(50)  NULL,&#xA;        TargetPercentSrc NVARCHAR(50)  NULL,&#xA;        NotesSrc         NVARCHAR(255) NULL,&#xA;&#xA;        -- Felinfo&#xA;        ErrorReason      NVARCHAR(500) NOT NULL,&#xA;        ErrorCode INT NULL,&#xA;        ErrorColumn INT NULL,&#xA;&#xA;        CreatedBronzeAt DATETIME2(0) NOT NULL,&#xA;        CreatedSilverAt      DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="IF OBJECT_ID('rej.HICPTarget', 'U') IS NULL&#xA;BEGIN&#xA;&#xA;    CREATE TABLE rej.HICPTarget&#xA;    (&#xA;        RejectId         INT IDENTITY(1,1) PRIMARY KEY,&#xA;        RunId            UNIQUEIDENTIFIER NULL,      -- SSIS: System::ExecutionInstanceGUID&#xA;        PackageName      NVARCHAR(128) NULL,         -- SSIS: System::PackageName (valfritt)&#xA;        TaskName         NVARCHAR(128) NULL,         -- valfritt&#xA;&#xA;        -- Källvärden (råa/otvättade för spårbarhet)&#xA;        RegionSrc        NVARCHAR(120) NULL,&#xA;        FromDateSrc      NVARCHAR(50)  NULL,&#xA;        ToDateSrc        NVARCHAR(50)  NULL,&#xA;        TargetPercentSrc NVARCHAR(50)  NULL,&#xA;        NotesSrc         NVARCHAR(255) NULL,&#xA;&#xA;        -- Felinfo&#xA;        ErrorReason      NVARCHAR(500) NOT NULL,&#xA;        ErrorCode INT NULL,&#xA;        ErrorColumn INT NULL,&#xA;&#xA;        CreatedBronzeAtUTC DATETIME2(0) NOT NULL,&#xA;        CreatedSilverAtUTC      DATETIME2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;    );&#xA;END;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -557,8 +554,8 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{EBBEF42F-3E92-422E-8AC3-9E5A17340F9B}"
-      DTS:From="Package\Create_Diagnostics_DB_Silver"
+      DTS:DTSID="{6B123213-0FAF-41A8-8A7B-4F0FAC8F79FC}"
+      DTS:From="Package\Create_schemas_dbo_Dim_Fact_rej_Bridge"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\SC - Create silver tables - LIA_DB_Silver" />
@@ -906,130 +903,130 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="220,42"
-          Id="Package\Create_Diagnostics_DB_Silver"
-          TopLeft="450,32" />
+          Size="296,42"
+          Id="Package\Create_schemas_dbo_Dim_Fact_rej_Bridge"
+          TopLeft="506.851851851846,105.5" />
         <NodeLayout
-          Size="206,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_BridgeRegionGroup"
-          TopLeft="549,654" />
+          TopLeft="4.04761904761907,5.49999999999991" />
         <NodeLayout
-          Size="187,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_dboHICPTarget"
-          TopLeft="838,302" />
+          TopLeft="337.546296296295,5.49999999999991" />
         <NodeLayout
-          Size="203,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_dboHICPTarget_In"
-          TopLeft="607,300" />
+          TopLeft="670.546296296293,5.49999999999991" />
         <NodeLayout
-          Size="197,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimAgeClassEmp"
-          TopLeft="24,442.571428571428" />
+          TopLeft="1003.54629629629,5.49999999999991" />
         <NodeLayout
-          Size="209,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimAgeClassUnemp"
-          TopLeft="241,446" />
+          TopLeft="4.04761904761907,57.7222222222219" />
         <NodeLayout
-          Size="193,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimConfigGroup"
-          TopLeft="44,646" />
+          TopLeft="337.546296296295,57.7222222222219" />
         <NodeLayout
-          Size="238,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimConsumptionCategory"
-          TopLeft="470,447" />
+          TopLeft="670.546296296293,57.7222222222219" />
         <NodeLayout
-          Size="156,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimDate"
-          TopLeft="46,728" />
+          TopLeft="1003.54629629629,57.7222222222219" />
         <NodeLayout
-          Size="158,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimFlags"
-          TopLeft="883,535" />
+          TopLeft="4.04761904761907,106.611111111111" />
         <NodeLayout
-          Size="168,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimGender"
-          TopLeft="48.5,532.071428571428" />
+          TopLeft="337.546296296295,106.611111111111" />
         <NodeLayout
-          Size="166,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimRegion"
-          TopLeft="237.821428571429,540.071428571428" />
+          TopLeft="670.546296296293,106.611111111111" />
         <NodeLayout
-          Size="229,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimSeasonalAdjustment"
-          TopLeft="437.875,542" />
+          TopLeft="1003.54629629629,106.611111111111" />
         <NodeLayout
-          Size="206,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimTimeFrequency"
-          TopLeft="731.821428571429,450" />
+          TopLeft="4.04761904761907,157.722222222222" />
         <NodeLayout
-          Size="153,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_DimUnit"
-          TopLeft="696.482142857143,537" />
+          TopLeft="337.546296296295,157.722222222222" />
         <NodeLayout
-          Size="194,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactEmployment"
-          TopLeft="454.1875,60" />
+          TopLeft="670.546296296293,157.722222222222" />
         <NodeLayout
-          Size="155,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactGDP"
-          TopLeft="65,56" />
+          TopLeft="1003.54629629629,157.722222222222" />
         <NodeLayout
-          Size="215,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactGovernmentDebt"
-          TopLeft="327.6875,297.5" />
+          TopLeft="4.04761904761907,207.722222222222" />
         <NodeLayout
-          Size="185,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactHICPIndex"
-          TopLeft="53,289.5" />
+          TopLeft="337.546296296295,207.722222222222" />
         <NodeLayout
-          Size="197,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactJobVacancies"
-          TopLeft="446.5,183" />
+          TopLeft="670.546296296293,207.722222222221" />
         <NodeLayout
-          Size="261,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactMoneyMarketInterestRates"
-          TopLeft="772.6875,183" />
+          TopLeft="1003.54629629629,207.722222222221" />
         <NodeLayout
-          Size="184,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactPopulation"
-          TopLeft="53.6875,177.5" />
+          TopLeft="4.04761904761907,259.944444444443" />
         <NodeLayout
-          Size="206,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_FactUnemployment"
-          TopLeft="809,57.5" />
+          TopLeft="337.546296296295,259.944444444443" />
         <NodeLayout
-          Size="219,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_rejBridgeRegionGroup"
-          TopLeft="800,654" />
+          TopLeft="670.546296296293,259.944444444443" />
         <NodeLayout
-          Size="186,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_rejConfigGroup"
-          TopLeft="291,648" />
+          TopLeft="1003.54629629629,259.944444444443" />
         <NodeLayout
-          Size="182,42"
+          Size="272,42"
           Id="Package\SC - Create silver tables - LIA_DB_Silver\Create_rejHICPTarget"
-          TopLeft="243,734" />
+          TopLeft="4.04761904761907,308.833333333332" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1074,849"
-          Size="1074,892"
+          PanelSize="1281,406"
+          Size="1281,449"
           Id="Package\SC - Create silver tables - LIA_DB_Silver"
-          TopLeft="28,123" />
+          TopLeft="18.3518518518462,214.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="562.5,74">
+          TopLeft="656.851851851846,147.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,49"
+              EndConnector="0,67"
               Start="0,0"
-              End="0,41.5">
+              End="0,59.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,41.5" />
+                    End="0,59.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1045,7 +1042,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="153,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -1073,7 +1070,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

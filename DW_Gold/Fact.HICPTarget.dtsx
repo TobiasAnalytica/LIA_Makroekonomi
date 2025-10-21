@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="FactHICPTarget"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{A1CEF588-A766-4893-ABFA-7F8C2B0B5E9D}">
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{54D24EC4-9E70-4EC4-9A95-6BB059094FEA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -119,7 +119,7 @@ where [refTable].[DateValue] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[FromDate]};</property>
+                  name="ParameterMap">#{Package\DF_FactHICPTarget\806:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -146,7 +146,7 @@ where [refTable].[DateValue] = ?</property>
                       refId="Package\DF_FactHICPTarget\LKP_DimDate.Inputs[Lookup Input].Columns[FromDate]"
                       cachedDataType="dbDate"
                       cachedName="FromDate"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[FromDate]">
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -279,7 +279,7 @@ where [refTable].[Description] = ?</property>
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Region]};</property>
+                  name="ParameterMap">#{Package\DF_FactHICPTarget\807:invalid};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -305,9 +305,9 @@ where [refTable].[Description] = ?</property>
                     <inputColumn
                       refId="Package\DF_FactHICPTarget\LKP_DimRegion.Inputs[Lookup Input].Columns[Region]"
                       cachedDataType="wstr"
-                      cachedLength="100"
+                      cachedLength="120"
                       cachedName="Region"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Region]">
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Region]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -458,7 +458,7 @@ where [refTable].[Description] = ?</property>
                       cachedDataType="dbDate"
                       cachedName="FromDate"
                       externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[FromDate]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[FromDate]" />
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]" />
                     <inputColumn
                       refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].Columns[TargetPercent]"
                       cachedDataType="numeric"
@@ -466,14 +466,14 @@ where [refTable].[Description] = ?</property>
                       cachedPrecision="5"
                       cachedScale="2"
                       externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[TargetPercent]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]" />
                     <inputColumn
                       refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].Columns[Notes]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="Notes"
                       externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[Notes]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Notes]" />
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]" />
                     <inputColumn
                       refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].Columns[RegionKey]"
                       cachedDataType="i4"
@@ -481,11 +481,11 @@ where [refTable].[Description] = ?</property>
                       externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[RegionKey]"
                       lineageId="Package\DF_FactHICPTarget\LKP_DimRegion.Outputs[Lookup Match Output].Columns[RegionKey]" />
                     <inputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].Columns[CreatedSilverAt]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="CreatedSilverAt"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]" />
+                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].Columns[CreatedSilverAtUTC]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedSilverAtUTC"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAtUTC]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedSilverAtUTC]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -509,17 +509,18 @@ where [refTable].[Description] = ?</property>
                       length="255"
                       name="Notes" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedGoldAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedGoldAt" />
-                    <externalMetadataColumn
                       refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[TargetKey]"
                       dataType="i4"
                       name="TargetKey" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAtUTC"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedGoldAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedGoldAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -549,11 +550,11 @@ where [refTable].[Description] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation"
+              refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
-              name="OLE_SRC_TargetInflation"
+              name="OLE_SRC_dboHICPTarget"
               usesDispositions="true"
               version="7">
               <properties>
@@ -573,8 +574,8 @@ where [refTable].[Description] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Region, FromDate, TargetPercent, Notes, CreatedSilverAt
-FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Region, FromDate, TargetPercent, Notes, CreatedSilverAtUTC
+FROM dbo.HICPTarget;</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -599,7 +600,7 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Connections[OleDbConnection]"
+                  refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Connections[OleDbConnection]"
                   connectionManagerID="{0794A7C7-C3AA-4261-8057-BF73BA6AB22F}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Silver]"
                   description="The OLE DB runtime connection used to access the database."
@@ -607,131 +608,131 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
               </connections>
               <outputs>
                 <output
-                  refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output]"
+                  refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Region]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Region]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[Region]"
-                      length="100"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Region]"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      length="120"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Region]"
                       name="Region"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[FromDate]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[FromDate]"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[FromDate]"
                       name="FromDate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[TargetPercent]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]"
                       dataType="numeric"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[TargetPercent]"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[TargetPercent]"
                       name="TargetPercent"
                       precision="5"
                       scale="2"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Notes]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
                       length="255"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[Notes]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[Notes]"
                       name="Notes"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].Columns[CreatedSilverAt]"
-                      name="CreatedSilverAt"
+                      externalMetadataColumnId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAtUTC]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].Columns[CreatedSilverAtUTC]"
+                      name="CreatedSilverAtUTC"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Region]"
                       dataType="wstr"
-                      length="100"
+                      length="120"
                       name="Region" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[FromDate]"
                       dataType="dbDate"
                       name="FromDate" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[TargetPercent]"
                       dataType="numeric"
                       name="TargetPercent"
                       precision="5"
                       scale="2" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[Notes]"
                       dataType="wstr"
                       length="255"
                       name="Notes" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAtUTC" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output]"
+                  refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]"
                       dataType="wstr"
-                      length="100"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[Region]"
+                      length="120"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[Region]"
                       name="Region" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[FromDate]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]"
                       dataType="dbDate"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[FromDate]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[FromDate]"
                       name="FromDate" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
                       dataType="numeric"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[TargetPercent]"
                       name="TargetPercent"
                       precision="5"
                       scale="2" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[Notes]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[Notes]"
                       name="Notes" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAt]"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAtUTC]"
+                      name="CreatedSilverAtUTC" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -755,7 +756,7 @@ FROM dbo.TargetInflation;  -- redan kanoniska namn från Silver</property>
               refId="Package\DF_FactHICPTarget.Paths[OLE DB Source Output]"
               endId="Package\DF_FactHICPTarget\LKP_DimRegion.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation.Outputs[OLE DB Source Output]" />
+              startId="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -1313,35 +1314,59 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="153,42"
+          Size="228,42"
           Id="Package\DF_FactHICPTarget\LKP_DimRegion"
-          TopLeft="338,157" />
+          TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="198,42"
-          Id="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation"
-          TopLeft="312,57" />
+          Size="228,42"
+          Id="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget"
+          TopLeft="5.5,5.5" />
         <NodeLayout
-          Size="203,42"
+          Size="228,42"
           Id="Package\DF_FactHICPTarget\OLE_DST_FactHICPTarget"
-          TopLeft="309,373" />
+          TopLeft="5.50000000000003,311.5" />
         <NodeLayout
-          Size="143,42"
+          Size="228,42"
           Id="Package\DF_FactHICPTarget\LKP_DimDate"
-          TopLeft="337,252" />
+          TopLeft="5.50000000000003,209.5" />
         <EdgeLayout
-          Id="Package\DF_FactHICPTarget.Paths[OLE DB Source Output]"
-          TopLeft="412.75,99">
+          Id="Package\DF_FactHICPTarget.Paths[Lookup Match Output]"
+          TopLeft="119.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,50.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_FactHICPTarget.Paths[OLE DB Source Output]"
+          TopLeft="119.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1352,49 +1377,25 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactHICPTarget.Paths[Lookup Match Output1]"
-          TopLeft="409.5,294">
+          TopLeft="119.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,79"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,71.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,29.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\DF_FactHICPTarget.Paths[Lookup Match Output]"
-          TopLeft="411.5,199">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53"
-              Start="0,0"
-              End="0,45.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,16.9453125,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1425,7 +1426,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactHICPTarget\OLE_SRC_TargetInflation">
+    design-time-name="Package\DF_FactHICPTarget\OLE_SRC_dboHICPTarget">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

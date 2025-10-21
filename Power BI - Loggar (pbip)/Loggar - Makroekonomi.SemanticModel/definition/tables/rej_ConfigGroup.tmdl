@@ -1,0 +1,126 @@
+table rej_ConfigGroup
+	lineageTag: 916542e8-0235-4d13-b53a-fd78d2c58950
+
+	column RejectId
+		dataType: int64
+		formatString: 0
+		lineageTag: 478a1e5a-41b7-4982-b89d-17c44061500c
+		summarizeBy: count
+		sourceColumn: RejectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunId
+		dataType: string
+		lineageTag: 94301bbb-b84f-4c11-8639-9f5506c19476
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageName
+		dataType: string
+		lineageTag: 160b5953-ce1d-4e39-a52e-3a0477cc82dc
+		summarizeBy: none
+		sourceColumn: PackageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaskName
+		dataType: string
+		lineageTag: d5e650b7-f490-446d-b159-61255adc61b5
+		summarizeBy: none
+		sourceColumn: TaskName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupKeySrc
+		dataType: string
+		lineageTag: acae336f-5626-4a22-bd01-82f116d29c31
+		summarizeBy: none
+		sourceColumn: GroupKeySrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupNameSrc
+		dataType: string
+		lineageTag: 3a8ac463-db47-459b-a25d-6ddf296b0665
+		summarizeBy: none
+		sourceColumn: GroupNameSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupSortSrc
+		dataType: string
+		lineageTag: 58a4a237-4bf1-47a6-b96a-b995e3b6b6a8
+		summarizeBy: none
+		sourceColumn: GroupSortSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorReason
+		dataType: string
+		lineageTag: 150855d3-5ccb-4335-8c83-9c0676a0c8dd
+		summarizeBy: none
+		sourceColumn: ErrorReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e7f2400-49a2-4791-b04b-b44ba38cf4f3
+		summarizeBy: count
+		sourceColumn: ErrorCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorColumn
+		dataType: int64
+		formatString: 0
+		lineageTag: 44d724a8-5c77-4b52-9a91-85fa10331f5c
+		summarizeBy: sum
+		sourceColumn: ErrorColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedBronzeAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2046db89-e143-4d73-b58f-a01d71c93ca7
+		summarizeBy: none
+		sourceColumn: CreatedBronzeAtUTC
+
+		variation Variation
+			isDefault
+			relationship: eeb97590-3738-41c9-bd31-f79d3092fdf0
+			defaultHierarchy: LocalDateTable_9318c3c7-b770-412f-bbca-bdad8aca271f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedSilverAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 78672d88-6340-4878-9442-45e48c404fc7
+		summarizeBy: none
+		sourceColumn: CreatedSilverAtUTC
+
+		variation Variation
+			isDefault
+			relationship: 5a128b98-26a8-4971-ba48-fc4f3bc35947
+			defaultHierarchy: LocalDateTable_35f32554-d463-4b41-88c4-b914cf732b25.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition rej_ConfigGroup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Silver = Source{[Name="LIA_DB_Silver"]}[Data],
+				    rej_ConfigGroup = LIA_DB_Silver{[Schema="rej",Item="ConfigGroup"]}[Data]
+				in
+				    rej_ConfigGroup
+
+	annotation PBI_ResultType = Table
+

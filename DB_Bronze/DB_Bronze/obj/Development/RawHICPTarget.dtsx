@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="RawHICPTarget"
   DTS:PackageType="5"
-  DTS:VersionBuild="33"
-  DTS:VersionGUID="{2EE6EEC2-D528-4A3D-90AB-83EBB2159583}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{CC197300-299F-4F8E-88D2-FF26677C9B5D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -222,14 +222,14 @@
                       length="255"
                       name="Notes" />
                     <externalMetadataColumn
-                      refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp2"
-                      name="CreatedBronzeAt" />
-                    <externalMetadataColumn
                       refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[ToDate]"
                       dataType="wstr"
                       length="255"
                       name="ToDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF_HICPTarget\OLE_DST_RawHICPTarget.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -831,9 +831,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="160,42"
+          Size="213,42"
           Id="Package\DF_HICPTarget"
-          TopLeft="160,95" />
+          TopLeft="5.5,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -841,7 +841,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="149,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -869,7 +869,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -985,27 +987,27 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="196,42"
+          Size="221,42"
           Id="Package\DF_HICPTarget\XL_SRC_InflationTargets"
-          TopLeft="178,109" />
+          TopLeft="5.50000000000001,5.5" />
         <NodeLayout
-          Size="203,42"
+          Size="221,42"
           Id="Package\DF_HICPTarget\OLE_DST_RawHICPTarget"
-          TopLeft="168,269" />
+          TopLeft="5.50000000000001,107.5" />
         <EdgeLayout
           Id="Package\DF_HICPTarget.Paths[Excel Source Output]"
-          TopLeft="272.75,151">
+          TopLeft="116,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,118"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,110.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,110.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

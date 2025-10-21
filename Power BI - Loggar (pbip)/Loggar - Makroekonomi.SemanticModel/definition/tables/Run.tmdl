@@ -1,0 +1,75 @@
+table Run
+	lineageTag: de153e0a-d868-41a1-b393-c9a5123f0971
+
+	column RunId
+		dataType: string
+		lineageTag: 11edd7ef-e42e-427f-ba8c-14b2b49d89a1
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column JobName
+		dataType: string
+		lineageTag: 43ced503-ecd2-4111-b2e4-68f3d26e261c
+		summarizeBy: none
+		sourceColumn: JobName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4e7afd39-a44c-4eb9-b72b-a1f10c973bcc
+		summarizeBy: none
+		sourceColumn: StartedAt
+
+		variation Variation
+			isDefault
+			relationship: 4faea0f3-3eb4-430a-813d-d2855e779727
+			defaultHierarchy: LocalDateTable_23eeb39f-5c20-4a09-9cbf-b1b97499fa27.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd853ca8-5a49-42c3-b6fb-3ab34c6873b9
+		summarizeBy: none
+		sourceColumn: EndedAt
+
+		variation Variation
+			isDefault
+			relationship: 94bc8880-70eb-4c35-a19d-9eed0303d445
+			defaultHierarchy: LocalDateTable_f7ec39fd-4733-4713-b74c-44e8f0f6f7b4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: c232f430-23fb-45a6-b034-179df9e6998f
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Message
+		dataType: string
+		lineageTag: 9f2061fd-d80a-449d-8874-e337364eea5b
+		summarizeBy: none
+		sourceColumn: Message
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Run = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Diagnostics = Source{[Name="LIA_DB_Diagnostics"]}[Data],
+				    log_Run = LIA_DB_Diagnostics{[Schema="log",Item="Run"]}[Data]
+				in
+				    log_Run
+
+	annotation PBI_ResultType = Table
+

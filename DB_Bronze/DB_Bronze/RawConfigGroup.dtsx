@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="RawConfigGroup"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{9FAF7FD6-DBC2-4EA7-BDD5-504F30BEBC70}">
+  DTS:VersionBuild="42"
+  DTS:VersionGUID="{81D727BB-1718-4225-BF6E-386CAF4E01C0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -146,6 +146,74 @@
                           name="FriendlyExpression">(DT_WSTR,500)((DT_WSTR,100)group_key + " | " + TRIM(REPLACENULL((DT_WSTR,300)group_name,"")) + " | " + (DT_WSTR,100)group_sort)</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
+                      name="RunId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::p_RunId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::p_RunId]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="14"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]"
+                      name="PackageName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::PackageName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::PackageName]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="17"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]"
+                      name="TaskName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[System::TaskName]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[System::TaskName]</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -175,11 +243,11 @@
               </outputs>
             </component>
             <component
-              refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze"
+              refId="Package\DF_RawConfigGroup\OLE_DST_logError"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
-              name="OLE_DST_Diagnostics_DB_Bronze"
+              name="OLE_DST_logError"
               usesDispositions="true"
               version="4">
               <properties>
@@ -190,7 +258,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Diagnostics_DB_Bronze]</property>
+                  name="OpenRowset">[log].[Error]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -232,7 +300,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Connections[OleDbConnection]"
+                  refId="Package\DF_RawConfigGroup\OLE_DST_logError.Connections[OleDbConnection]"
                   connectionManagerID="{1526A1A1-661B-48A2-916E-36893FC832FB}:external"
                   connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
                   description="The OLE DB runtime connection used to access the database."
@@ -240,74 +308,101 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]"
+                  refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
                       lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorCode]" />
                     <inputColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig.Outputs[Excel Source Error Output].Columns[ErrorColumn]" />
-                    <inputColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
                       cachedDataType="wstr"
                       cachedLength="500"
                       cachedName="ErrorReason"
-                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="17"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      lineageId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
                       name="ErrorCode" />
                     <externalMetadataColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
                       dataType="wstr"
-                      length="100"
-                      name="ErrorColumn" />
-                    <externalMetadataColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
+                      length="4000"
                       name="ErrorDescription" />
                     <externalMetadataColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedErrorAt" />
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="wstr"
+                      length="38"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      dataType="wstr"
+                      length="256"
+                      name="SourceName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[LoggedAt]"
+                      dataType="dbTimeStamp2"
+                      name="LoggedAt" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\DF_RawConfigGroup\OLE_DST_logError.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\DF_RawConfigGroup\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -431,9 +526,9 @@
                       length="255"
                       name="group_sort" />
                     <externalMetadataColumn
-                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
+                      refId="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
                       dataType="dbTimeStamp2"
-                      name="CreatedBronzeAt" />
+                      name="CreatedBronzeAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -609,7 +704,7 @@
           <paths>
             <path
               refId="Package\DF_RawConfigGroup.Paths[Derived Column Output]"
-              endId="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_RawConfigGroup\OLE_DST_logError.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason.Outputs[Derived Column Output]" />
             <path
@@ -648,7 +743,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{69978683-f75e-498e-8446-27bd79e502d2}"
+      DTS:DTSID="{19590CD9-09B3-48F3-85C5-70313220FF3D}"
       DTS:From="Package\truncate_RawConfigGroup"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
@@ -997,27 +1092,27 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="176,42"
+          Size="213,42"
           Id="Package\DF_RawConfigGroup"
-          TopLeft="74,238" />
+          TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="202,42"
+          Size="213,42"
           Id="Package\truncate_RawConfigGroup"
-          TopLeft="60,60" />
+          TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="161.5,102">
+          TopLeft="112,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,136"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,128.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,128.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1033,7 +1128,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="149,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -1061,7 +1156,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1177,103 +1274,111 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="227,42"
+          Size="268,42"
           Id="Package\DF_RawConfigGroup\XL_SRC_EUGroupsBridgeConfig"
-          TopLeft="263,60" />
+          TopLeft="334.5,5.49999999999989" />
         <NodeLayout
-          Size="208,42"
+          Size="268,42"
           Id="Package\DF_RawConfigGroup\OLE_DST_RawConfigGroup"
-          TopLeft="240,239" />
+          TopLeft="5.50000000000006,107.5" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\DF_RawConfigGroup\OLE_DST_logError"
+          TopLeft="334.5,209.5" />
         <NodeLayout
           Size="268,42"
           Id="Package\DF_RawConfigGroup\DC_EUGroupsBridgeConfig_ErrorReason"
-          TopLeft="587,141" />
-        <NodeLayout
-          Size="240,42"
-          Id="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze"
-          TopLeft="601,239" />
+          TopLeft="334.5,107.5" />
         <EdgeLayout
           Id="Package\DF_RawConfigGroup.Paths[Excel Source Output]"
-          TopLeft="342,102">
+          TopLeft="425.166666666667,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,137"
+              EndConnector="-285.666666666667,60"
               Start="0,0"
-              End="0,129.5">
+              End="-285.666666666667,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,129.5" />
+                    End="0,20.213649851632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.213649851632"
+                    Point2="0,24.213649851632"
+                    Point3="-4,24.213649851632" />
+                  <mssgle:LineSegment
+                    End="-281.666666666667,24.213649851632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-281.666666666667,24.213649851632"
+                    Point2="-285.666666666667,24.213649851632"
+                    Point3="-285.666666666667,28.213649851632" />
+                  <mssgle:LineSegment
+                    End="-285.666666666667,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_RawConfigGroup.Paths[Excel Source Error Output]"
-          TopLeft="413,102">
+          TopLeft="511.833333333333,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="308,39"
+              EndConnector="-43.3333333333333,60"
               Start="0,0"
-              End="308,31.5">
+              End="-43.3333333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,11.7637795275591" />
+                    End="0,20.2136498516321" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,11.7637795275591"
-                    Point2="0,15.7637795275591"
-                    Point3="4,15.7637795275591" />
+                    Point1="0,20.2136498516321"
+                    Point2="0,24.2136498516321"
+                    Point3="-4,24.2136498516321" />
                   <mssgle:LineSegment
-                    End="304,15.7637795275591" />
+                    End="-39.3333333333333,24.2136498516321" />
                   <mssgle:CubicBezierSegment
-                    Point1="304,15.7637795275591"
-                    Point2="308,15.7637795275591"
-                    Point3="308,19.7637795275591" />
+                    Point1="-39.3333333333333,24.2136498516321"
+                    Point2="-43.3333333333333,24.2136498516321"
+                    Point3="-43.3333333333333,28.2136498516321" />
                   <mssgle:LineSegment
-                    End="308,31.5" />
+                    End="-43.3333333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="96.14861328125,20.7637795275591,115.7027734375,11.609375"
+              BoundingBox="-79.5180533854166,29.2136498516321,115.7027734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_RawConfigGroup.Paths[Derived Column Output]"
-          TopLeft="721,183">
+          TopLeft="468.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,56"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,48.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,48.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1306,7 +1411,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_RawConfigGroup\OLE_DST_Diagnostics_DB_Bronze">
+    design-time-name="Package\DF_RawConfigGroup\OLE_DST_logError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

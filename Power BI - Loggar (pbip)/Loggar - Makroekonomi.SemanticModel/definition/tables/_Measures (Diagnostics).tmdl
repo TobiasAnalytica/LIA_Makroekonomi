@@ -1,0 +1,149 @@
+table '_Measures (Diagnostics)'
+	lineageTag: cb6934d5-fe74-4004-8e38-c932c2c4761c
+
+	measure 'Latest Run Date (Per Job)' =
+			
+			VAR job = SELECTEDVALUE ( Run[JobName] )
+			RETURN CALCULATE ( MAX ( Run[StartedAt] ), FILTER ( ALL ( Run ), Run[JobName] = job ) )
+		lineageTag: faa0b4bb-9946-4848-acaa-c265045acd41
+
+	measure 'Latest RunId (Per Job)' =
+			
+			VAR job   = SELECTEDVALUE ( Run[JobName] )
+			VAR lastD = [Latest Run Date (Per Job)]
+			RETURN
+			MAXX ( FILTER ( ALL ( Run ), Run[JobName] = job && Run[StartedAt] = lastD ), Run[RunId] )
+		lineageTag: 4129346b-815a-41e3-82ad-27d6cc8f6533
+
+	measure 'Latest Status (Per Job)' =
+			
+			VAR rid = [Latest RunId (Per Job)]
+			RETURN MAXX ( FILTER ( ALL ( Run ), Run[RunId] = rid ), Run[Status] )
+		lineageTag: 68f704ea-62cd-444c-81a2-d5c107dca8f3
+
+	measure 'Status – Light (Per Job)' =
+			
+			IF ( [Latest Status (Per Job)] = "S", 1, 0 )   -- 1 = grön, 0 = röd
+		formatString: 0
+		lineageTag: 8baaf574-b165-4702-8da4-8906deb0cf27
+
+	measure 'Status – Color (Per Job)' =
+			
+			IF ( [Status – Light (Per Job)] = 1, "#22c55e", "#ef4444" )
+		lineageTag: 42496577-8e87-4d7b-9010-869ddf3ed352
+
+	measure 'Latest Message (Per Job)' =
+			
+			VAR rid = [Latest RunId (Per Job)]
+			RETURN MAXX ( FILTER ( ALL ( Run ), Run[RunId] = rid ), Run[Message] )
+		lineageTag: 172f5afb-8b2b-4d1f-9371-ca81d2d2c965
+
+	measure 'Runs – Duration (min)' =
+			
+			VAR s = SELECTEDVALUE ( Run[StartedAt] )
+			VAR e = SELECTEDVALUE ( Run[EndedAt] )
+			RETURN IF ( NOT ISBLANK ( s ) && NOT ISBLANK ( e ), DATEDIFF ( s, e, MINUTE ) )
+		formatString: 0
+		lineageTag: ed0832c9-3104-4744-8a91-4cb3dd0d00e2
+
+	measure 'Errors – Count (Selected)' = COUNTROWS ( 'Error' )
+		formatString: 0
+		lineageTag: b1552784-8fbb-4763-8b00-1ee905a62dd2
+
+	measure 'Packages – Failures Card (Selected Run)' = ```
+			
+			VAR _v =
+			    CALCULATE (
+			        COUNTROWS ( Package ),
+			        KEEPFILTERS ( Package[Status] = "F" )
+			    )
+			RETURN
+			    COALESCE ( _v, 0 )
+			
+			```
+		formatString: 0
+		lineageTag: 805285d4-d5b7-4fce-8039-9fa8ad0b9ebe
+
+	measure 'Packages – Duration (sec)' =
+			
+			VAR s = SELECTEDVALUE ( Package[StartTime] )
+			VAR e = SELECTEDVALUE ( Package[EndTime] )
+			RETURN IF ( NOT ISBLANK ( s ) && NOT ISBLANK ( e ), DATEDIFF ( s, e, SECOND ) )
+		formatString: 0
+		lineageTag: 8ea18d9b-4d28-45fe-830d-e8e0f8766f47
+
+	measure 'rej HICPTarget – Rows' = COUNTROWS ( rej_HICPTarget )
+		formatString: 0
+		lineageTag: f1dd659a-9e04-42ea-b53d-e41e36c95c6b
+
+	measure 'rej ConfigGroup – Rows' = COUNTROWS ( rej_ConfigGroup )
+		formatString: 0
+		lineageTag: 5b6b8909-fd5c-446a-9b2e-ea2a33e808b6
+
+	measure 'rej BridgeRegionGroup – Rows' = COUNTROWS ( rej_BridgeRegionGroup )
+		formatString: 0
+		lineageTag: cf6d2ec6-f0ea-49fd-9c3d-7478e9dd2532
+
+	measure 'rej HICPTarget – Color' = IF ( [rej HICPTarget – Rows] > 0, "#ef4444", "#22c55e" )
+		lineageTag: 195013b9-3ae7-4711-8a06-0d61a1560c38
+
+	measure 'rej ConfigGroup – Color' = IF ( [rej ConfigGroup – Rows] > 0, "#ef4444", "#22c55e" )
+		lineageTag: 55654a2e-c5e7-4993-9ff9-17be2c742a53
+
+	measure 'rej BridgeRegionGroup – Color' = IF ( [rej BridgeRegionGroup – Rows] > 0, "#ef4444", "#22c55e" )
+		lineageTag: 8bf8f112-a968-4ebc-a982-e8fe0c74086c
+
+	measure 'Card BG – Color (HICPTarget)' = ```
+			
+			IF ( [rej HICPTarget – Rows] > 0, "#fee2e2", "#dcfce7" )  -- ljus röd / ljus grön
+			
+			```
+		lineageTag: e01af3e3-bb01-46c2-8643-efc2e71c5340
+
+	measure 'Card BG – Color (ConfigGroup)' =
+			
+			IF ( [rej ConfigGroup – Rows] > 0, "#fee2e2", "#dcfce7" )  -- ljusröd / ljusgrön
+		lineageTag: d49d0289-8606-49c2-8657-0691196e4d6e
+
+	measure 'Card BG – Color (BridgeRegionGroup)' =
+			
+			IF ( [rej BridgeRegionGroup – Rows] > 0, "#fee2e2", "#dcfce7" )  -- ljusröd / ljusgrön
+		lineageTag: 95cb4f8e-378a-41c0-9624-60d2a1cfe6d9
+
+	measure 'Jobs – Failing (Selected)' =
+			
+			VAR _t =
+			    SUMX (
+			        VALUES ( Run[JobName] ),
+			        IF ( CALCULATE ( [Status – Light (Per Job)] ) = 0, 1, 0 )
+			    )
+			RETURN COALESCE ( _t, 0 )
+		formatString: 0
+		lineageTag: 223223ee-a957-4328-b4a7-00ec611d8d69
+
+	measure 'Package Failures' = ```
+			
+			CALCULATE (
+			    COUNTROWS ( Package ),
+			    KEEPFILTERS ( Package[Status] = "F" )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: c5d89d88-d620-4193-8bd8-3bda1833bf49
+
+	column Value
+		formatString: 0
+		lineageTag: a4144b98-f3df-40e0-90a5-cec281c91278
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '_Measures (Diagnostics)' = calculated
+		mode: import
+		source = { (BLANK()) }
+
+	annotation PBI_Id = 95d834dba6de4389bf2f73cd2a6886cc
+

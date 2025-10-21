@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "9023855c90393e0c96b9",
+  "position": {
+    "x": 1142.6341463414635,
+    "y": 772.68292682926824,
+    "z": 5008,
+    "height": 288.780487804878,
+    "width": 764.8780487804878,
+    "tabOrder": 5008
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "rej_BridgeRegionGroup"
+                    }
+                  },
+                  "Property": "ErrorReason"
+                }
+              },
+              "queryRef": "rej_BridgeRegionGroup.ErrorReason",
+              "nativeQueryRef": "ErrorReason",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures (Diagnostics)"
+                    }
+                  },
+                  "Property": "rej BridgeRegionGroup – Rows"
+                }
+              },
+              "queryRef": "_Measures (Diagnostics).rej BridgeRegionGroup – Rows",
+              "nativeQueryRef": "rej BridgeRegionGroup – Rows"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures (Diagnostics)"
+                  }
+                },
+                "Property": "rej BridgeRegionGroup – Rows"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "df83a63bb151a9e6548e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "rej_BridgeRegionGroup"
+              }
+            },
+            "Property": "ErrorReason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ab347dcc7ce6aa939479",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "rej BridgeRegionGroup – Rows"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,100 @@
+table Package
+	lineageTag: c3b68261-1f6b-46dd-81c9-f752bab41d67
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: c6dae78d-7b7f-49d7-ad03-b7846374082f
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunId
+		dataType: string
+		lineageTag: c35f0d8c-72b7-4d53-b412-a2aeb3279675
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectName
+		dataType: string
+		lineageTag: 0e7ff3e0-c16d-4001-9ca4-ada8eb3706a4
+		summarizeBy: none
+		sourceColumn: ProjectName
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageName
+		dataType: string
+		lineageTag: 58326815-f49e-4b19-8b0e-d5325c51a521
+		summarizeBy: none
+		sourceColumn: PackageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaskName
+		dataType: string
+		lineageTag: 5e598060-a2d7-45c4-9671-acc5f03ee192
+		summarizeBy: none
+		sourceColumn: TaskName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 467c6532-76c3-48d0-a674-ea7c8c9a49a4
+		summarizeBy: none
+		sourceColumn: StartTime
+
+		variation Variation
+			isDefault
+			relationship: f4a02f76-a436-41ad-b950-6e2f82b4722e
+			defaultHierarchy: LocalDateTable_d57c823b-8493-4d1a-9f21-ae0185c055fb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 707cc85d-0aae-4b60-bc22-6d0b573a1434
+		summarizeBy: none
+		sourceColumn: EndTime
+
+		variation Variation
+			isDefault
+			relationship: 7de3ac1c-2624-464f-b2ee-98171f963586
+			defaultHierarchy: LocalDateTable_6d9685fa-3227-4619-aeb9-350ae34a8d49.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 2c46bb6b-45a3-4e34-94be-1010f1077d45
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorMessage
+		dataType: string
+		lineageTag: 4f36009d-86a0-47ce-b2df-f70031b3d4ef
+		summarizeBy: none
+		sourceColumn: ErrorMessage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Package = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Diagnostics = Source{[Name="LIA_DB_Diagnostics"]}[Data],
+				    log_Package = LIA_DB_Diagnostics{[Schema="log",Item="Package"]}[Data]
+				in
+				    log_Package
+
+	annotation PBI_ResultType = Table
+

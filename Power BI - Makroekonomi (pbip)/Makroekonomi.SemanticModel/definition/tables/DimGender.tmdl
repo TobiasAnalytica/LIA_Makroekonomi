@@ -1,0 +1,42 @@
+table DimGender
+	lineageTag: 72029d4e-d4a5-4c9f-a011-259ae885adc9
+
+	column GenderSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 5db37f6d-b4eb-4966-a556-f0ced77c9178
+		summarizeBy: none
+		sourceColumn: GenderSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column GenderAK
+		dataType: string
+		lineageTag: 3a334559-6f81-4d64-858e-6fc1496c3deb
+		summarizeBy: none
+		sourceColumn: GenderAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 51c4deed-f935-460f-83e7-32c2c61e3809
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimGender = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    Dim_Gender = LIA_DW_Gold{[Schema="Dim",Item="Gender"]}[Data]
+				in
+				    Dim_Gender
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

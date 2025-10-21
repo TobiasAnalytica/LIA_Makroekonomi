@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "b502d30142db697bd7ed",
+  "position": {
+    "x": 1142.6341463414635,
+    "y": 488.58536585365852,
+    "z": 5007,
+    "height": 268.48780487804879,
+    "width": 764.8780487804878,
+    "tabOrder": 5007
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "rej_ConfigGroup"
+                    }
+                  },
+                  "Property": "ErrorReason"
+                }
+              },
+              "queryRef": "rej_ConfigGroup.ErrorReason",
+              "nativeQueryRef": "ErrorReason",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures (Diagnostics)"
+                    }
+                  },
+                  "Property": "rej ConfigGroup – Rows"
+                }
+              },
+              "queryRef": "_Measures (Diagnostics).rej ConfigGroup – Rows",
+              "nativeQueryRef": "rej ConfigGroup – Rows"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures (Diagnostics)"
+                  }
+                },
+                "Property": "rej ConfigGroup – Rows"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c236b65dd379c318cd9e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "rej_ConfigGroup"
+              }
+            },
+            "Property": "ErrorReason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ab854d3844e0c9049b53",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "rej ConfigGroup – Rows"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

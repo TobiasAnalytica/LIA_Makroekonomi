@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackageBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="144"
-  DTS:VersionGUID="{17B66DA9-B382-49C3-8C43-F9D81DEBC86C}">
+  DTS:VersionBuild="146"
+  DTS:VersionGUID="{0DB78171-F12E-45D8-871D-AB2C73176E1C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -72,7 +72,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="RunId">
       <DTS:VariableValue
-        DTS:DataType="8">{5F31982B-06D4-4B89-989E-0A47BFF1EA03}</DTS:VariableValue>
+        DTS:DataType="8">{ECF923A2-C468-42AD-A00A-C4A3B65E05FA}</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -586,14 +586,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'F',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'F',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'F',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgFail"
@@ -621,14 +621,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'S',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'S',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'S',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'S',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgSuccess"
@@ -709,7 +709,7 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           DTS:refId="Package.EventHandlers[OnPreExecute]\Run_Start"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{3af083f8-c178-4255-98c8-35baa1f505d5}"
+          DTS:DTSID="{40a4b110-1eee-4be8-8cf5-ae933b1e07ff}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Run_Start"
@@ -1105,14 +1105,40 @@ WHERE NOT EXISTS (
     </LayoutInfo>
   </Package>
   <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnPreExecute]">
+    design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="128,42"
-          Id="Package.EventHandlers[OnPreExecute]\Run_Start"
+          Size="126,42"
+          Id="Package.EventHandlers[OnError]\Err_Insert"
+          TopLeft="72,173" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package.EventHandlers[OnError]\Mark_HadErrors"
           TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="136.25,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>
@@ -1209,40 +1235,14 @@ WHERE NOT EXISTS (
     </LayoutInfo>
   </DtsEventHandler>
   <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnError]">
+    design-time-name="Package.EventHandlers[OnPreExecute]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="126,42"
-          Id="Package.EventHandlers[OnError]\Err_Insert"
-          TopLeft="72,173" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package.EventHandlers[OnError]\Mark_HadErrors"
+          Size="128,42"
+          Id="Package.EventHandlers[OnPreExecute]\Run_Start"
           TopLeft="60,60" />
-        <EdgeLayout
-          Id="Package.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
-          TopLeft="136.25,102">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,71"
-              Start="0,0"
-              End="0,63.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </DtsEventHandler>

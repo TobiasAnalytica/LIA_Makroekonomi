@@ -1,0 +1,79 @@
+table Error
+	lineageTag: 53c8d03e-c8ce-4802-a6e9-9fc12851086a
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: b4ff6e04-35a8-441b-83c1-a75486fcd525
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunId
+		dataType: string
+		lineageTag: c5aaaf1d-4e2d-4634-9383-7001e387dbd4
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageName
+		dataType: string
+		lineageTag: b28f8ea6-04eb-423b-9a00-e1f6cce8b1f4
+		summarizeBy: none
+		sourceColumn: PackageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceName
+		dataType: string
+		lineageTag: 6c36502b-4bd0-427e-926d-affdf8d493c5
+		summarizeBy: none
+		sourceColumn: SourceName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 3027fd5b-5af9-4aad-9760-de2d6f16c60e
+		summarizeBy: count
+		sourceColumn: ErrorCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorDescription
+		dataType: string
+		lineageTag: 37f3bb79-c501-49eb-bd1b-1d09d59ea500
+		summarizeBy: none
+		sourceColumn: ErrorDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column LoggedAt
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9359f44e-daaf-4cf5-91e6-92763757f7a2
+		summarizeBy: none
+		sourceColumn: LoggedAt
+
+		variation Variation
+			isDefault
+			relationship: f94212ec-5d34-46cd-9512-4166654edefa
+			defaultHierarchy: LocalDateTable_4b70d68c-9fe7-49aa-a750-49c8364770de.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Error = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Diagnostics = Source{[Name="LIA_DB_Diagnostics"]}[Data],
+				    log_Error = LIA_DB_Diagnostics{[Schema="log",Item="Error"]}[Data]
+				in
+				    log_Error
+
+	annotation PBI_ResultType = Table
+

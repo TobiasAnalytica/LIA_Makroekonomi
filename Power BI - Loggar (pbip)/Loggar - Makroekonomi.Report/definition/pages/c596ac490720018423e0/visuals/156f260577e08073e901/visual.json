@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "name": "156f260577e08073e901",
+  "position": {
+    "x": 1144.1951219512196,
+    "y": 182.63414634146341,
+    "z": 5006,
+    "height": 293.46341463414632,
+    "width": 763.31707317073176,
+    "tabOrder": 5006
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "rej_HICPTarget"
+                    }
+                  },
+                  "Property": "ErrorReason"
+                }
+              },
+              "queryRef": "rej_HICPTarget.ErrorReason",
+              "nativeQueryRef": "ErrorReason",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures (Diagnostics)"
+                    }
+                  },
+                  "Property": "rej HICPTarget – Rows"
+                }
+              },
+              "queryRef": "_Measures (Diagnostics).rej HICPTarget – Rows",
+              "nativeQueryRef": "rej HICPTarget – Rows"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures (Diagnostics)"
+                  }
+                },
+                "Property": "rej HICPTarget – Rows"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "89c8d22b1baa7102e4e5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "rej_HICPTarget"
+              }
+            },
+            "Property": "ErrorReason"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e6f280f0429933d8b128",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "rej HICPTarget – Rows"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

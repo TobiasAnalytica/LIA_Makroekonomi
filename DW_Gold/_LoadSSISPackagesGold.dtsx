@@ -11,11 +11,40 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackagesGold"
   DTS:PackageType="5"
-  DTS:VersionBuild="40"
-  DTS:VersionGUID="{A02431A4-FB05-4DAC-BBA9-9B619A33F3F9}">
+  DTS:VersionBuild="52"
+  DTS:VersionGUID="{2C1D861A-EE3C-4F7B-A125-6E0099042238}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A47D6F89-B895-4AB4-93B8-2DF410BC3146}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CreateCmds">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{53107271-7F69-4705-8E6F-A50BC4FE6699}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DropCmds">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B7B8341C-A540-4635-B482-CE7842E821B2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FactsCsv">
+      <DTS:VariableValue
+        DTS:DataType="8">Fact.Employment, Fact.GDP, Fact.GovernmentDebt, Fact.HICPIndex, Fact.HICPTarget, Fact.JobVacancies, Fact.MoneyMarketInterestRates, Fact.Population, Fact.Unemployment</DTS:VariableValue>
+    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{D38D68D3-3E45-4CE7-B480-0DE13702EF3E}"
@@ -54,6 +83,16 @@
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
+      DTS:DTSID="{5B01DBC7-ECDF-4649-B58C-2841864154CA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OneSqlCmd">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
       DTS:DTSID="{2314A5A8-2008-4ACE-910A-E788C8A2E6BC}"
       DTS:EvaluateAsExpression="True"
       DTS:Expression="(DT_WSTR,50)@[System::ExecutionInstanceGUID]"
@@ -61,7 +100,26 @@
       DTS:Namespace="User"
       DTS:ObjectName="RunId">
       <DTS:VariableValue
-        DTS:DataType="8">{4AA29A33-CCEA-44DE-BD0C-7F44FF7CC0E3}</DTS:VariableValue>
+        DTS:DataType="8">{111A313B-E3E9-4715-BF8A-3390F32F20C9}</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{902C1C47-33AB-4A47-93BB-D1C740C84ACD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">Fact</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DE3CEF53-F9C7-4976-AA4F-8487D9D1C1F1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TruncateCmds">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -564,7 +622,7 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{28CCBEB7-993F-4433-86FC-7B02792CC1F7}"
+      DTS:DTSID="{39845824-AC44-47C6-82EC-512B2C451DC6}"
       DTS:From="Package\PKG__CreateTablesGold"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
@@ -700,14 +758,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'F',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'F',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FFC1722B-4752-41E9-BF4D-EE32734A257B}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'F',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'F',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgFail"
@@ -735,14 +793,14 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           <DTS:Variables />
           <DTS:PropertyExpression
             DTS:Name="SqlStatementSource">"UPDATE log.Run
-   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),
-       Status  = 'S',
-       Message = ?
- WHERE RunId = ?;"</DTS:PropertyExpression>
+SET EndedAt = SYSUTCDATETIME(),
+    Status  = 'S',
+    Message = ?
+WHERE RunId = ?;"</DTS:PropertyExpression>
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{FFC1722B-4752-41E9-BF4D-EE32734A257B}"
-              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;   SET EndedAt = COALESCE(EndedAt, SYSUTCDATETIME()),&#xA;       Status  = 'S',&#xA;       Message = ?&#xA; WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              SQLTask:SqlStatementSource="UPDATE log.Run&#xA;SET EndedAt = SYSUTCDATETIME(),&#xA;    Status  = 'S',&#xA;    Message = ?&#xA;WHERE RunId = ?;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
               <SQLTask:ParameterBinding
                 SQLTask:ParameterName="0"
                 SQLTask:DtsVariableName="User::MsgSuccess"
@@ -823,7 +881,7 @@ VALUES (?,?,?,?,?,SYSUTCDATETIME());"</DTS:PropertyExpression>
           DTS:refId="Package.EventHandlers[OnPreExecute]\Run_Start"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{9419413a-2acb-421e-ba39-456e23c04a11}"
+          DTS:DTSID="{9f6f5cdd-7e3d-4257-8629-86843b2dd268}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Run_Start"
@@ -878,7 +936,7 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="192,42"
           Id="Package\PKG__CreateTablesGold"
-          TopLeft="1192.5,5.49999999999989" />
+          TopLeft="1199.5,5.49999999999989" />
         <NodeLayout
           Size="185,42"
           Id="Package\SC - Load Gold Dim\PKG_DimAgeClassEmp"
@@ -926,10 +984,10 @@ WHERE NOT EXISTS (
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="2566,102"
+          PanelSize="2566,103"
           Size="2566,146"
           Id="Package\SC - Load Gold Dim"
-          TopLeft="5.50000000000023,107.5" />
+          TopLeft="15.5000000000002,91.5" />
         <NodeLayout
           Size="195,42"
           Id="Package\SC - Load Gold Fact and Bridge\PKG_BridgeRegionGroup"
@@ -976,10 +1034,10 @@ WHERE NOT EXISTS (
           PanelSize="2440,102"
           Size="2440,145"
           Id="Package\SC - Load Gold Fact and Bridge"
-          TopLeft="68.5000000000002,313.5" />
+          TopLeft="78.5000000000002,297.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1288.5,253.5">
+          TopLeft="1298.5,237.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1001,18 +1059,18 @@ WHERE NOT EXISTS (
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="1288.5,47.4999999999999">
+          TopLeft="1297,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000001"
+              EndConnector="0,44.0000000000001"
               Start="0,0"
-              End="0,52.5000000000001">
+              End="0,36.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000001" />
+                    End="0,36.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1028,7 +1086,7 @@ WHERE NOT EXISTS (
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="126,42"
           Id="Package.EventHandlers[OnError]\Err_Insert"
@@ -1056,9 +1114,7 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

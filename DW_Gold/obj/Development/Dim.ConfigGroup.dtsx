@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="DimConfigGroup"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{B476462B-B56F-49C3-AFAF-DB6E53066784}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{29D8986B-53C0-4E3C-B5C1-9478B4E9F38D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -535,6 +535,24 @@
                       lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].Columns[GroupSort]"
                       name="GroupSort"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronsAtUTC]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronsAtUTC]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedBronsAtUTC]"
+                      name="CreatedBronsAtUTC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAtUTC]"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].Columns[CreatedSilverAtUTC]"
+                      name="CreatedSilverAtUTC"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -552,13 +570,13 @@
                       dataType="i4"
                       name="GroupSort" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronsAt]"
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronsAtUTC]"
                       dataType="dbTimeStamp2"
-                      name="CreatedBronsAt" />
+                      name="CreatedBronsAtUTC" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAt]"
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Output].ExternalColumns[CreatedSilverAtUTC]"
                       dataType="dbTimeStamp2"
-                      name="CreatedSilverAt" />
+                      name="CreatedSilverAtUTC" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -582,6 +600,16 @@
                       dataType="i4"
                       lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[GroupSort]"
                       name="GroupSort" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedBronsAtUTC]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedBronsAtUTC]"
+                      name="CreatedBronsAtUTC" />
+                    <outputColumn
+                      refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[CreatedSilverAtUTC]"
+                      name="CreatedSilverAtUTC" />
                     <outputColumn
                       refId="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -1122,9 +1150,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="175,42"
+          Size="185,42"
           Id="Package\DF_DimConfigGroup"
-          TopLeft="243,75" />
+          TopLeft="5.5,5.5" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1132,7 +1160,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="153,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -1160,7 +1188,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1276,16 +1306,64 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="206,42"
-          Id="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup"
-          TopLeft="209,5.49999999999989" />
+          Size="258,42"
+          Id="Package\DF_DimConfigGroup\Insert Destination"
+          TopLeft="324.5,209.5" />
         <NodeLayout
-          Size="244,42"
+          Size="258,42"
+          Id="Package\DF_DimConfigGroup\OLE DB Command 1"
+          TopLeft="5.5,209.5" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\DF_DimConfigGroup\OLE_SRC_DimConfigGroup"
+          TopLeft="324.5,5.49999999999989" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\DF_DimConfigGroup\OLE DB Command"
+          TopLeft="643.5,209.5" />
+        <NodeLayout
+          Size="258,42"
           Id="Package\DF_DimConfigGroup\Slowly Changing Dimension Type 1"
-          TopLeft="190,107.5" />
+          TopLeft="324.5,107.5" />
+        <EdgeLayout
+          Id="Package\DF_DimConfigGroup.Paths[Changing Attribute Updates Output]"
+          TopLeft="391,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-256.5,60.0000000000001"
+              Start="0,0"
+              End="-256.5,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.4092071611254" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.4092071611254"
+                    Point2="0,20.4092071611254"
+                    Point3="-4,20.4092071611254" />
+                  <mssgle:LineSegment
+                    End="-252.5,20.4092071611254" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-252.5,20.4092071611254"
+                    Point2="-256.5,20.4092071611254"
+                    Point3="-256.5,24.4092071611254" />
+                  <mssgle:LineSegment
+                    End="-256.5,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-206.78390625,25.4092071611254,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimConfigGroup.Paths[OLE DB Source Output]"
-          TopLeft="312,47.4999999999999">
+          TopLeft="453.5,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1305,53 +1383,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\DF_DimConfigGroup\Insert Destination"
-          TopLeft="5.50000000000006,209.5" />
         <EdgeLayout
           Id="Package\DF_DimConfigGroup.Paths[New Output]"
-          TopLeft="253,149.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-166,60"
-              Start="0,0"
-              End="-166,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.4324324324324" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.4324324324324"
-                    Point2="0,20.4324324324324"
-                    Point3="-4,20.4324324324324" />
-                  <mssgle:LineSegment
-                    End="-162,20.4324324324324" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-162,20.4324324324324"
-                    Point2="-166,20.4324324324324"
-                    Point3="-166,24.4324324324324" />
-                  <mssgle:LineSegment
-                    End="-166,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-110.09138671875,25.4324324324324,54.1827734375,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\DF_DimConfigGroup\OLE DB Command"
-          TopLeft="229,209.5" />
-        <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Inferred Member Updates Output]"
-          TopLeft="312,149.5">
+          TopLeft="453.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1369,47 +1403,43 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-74.40298828125,20.4208984375,148.8059765625,11.658203125"
+              BoundingBox="-27.09138671875,20.533203125,54.1827734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="175,42"
-          Id="Package\DF_DimConfigGroup\OLE DB Command 1"
-          TopLeft="455.5,209.5" />
         <EdgeLayout
-          Id="Package\DF_DimConfigGroup.Paths[Changing Attribute Updates Output]"
-          TopLeft="371,149.5">
+          Id="Package\DF_DimConfigGroup.Paths[Inferred Member Updates Output]"
+          TopLeft="516,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="172,60"
+              EndConnector="256.5,60"
               Start="0,0"
-              End="172,52.5">
+              End="256.5,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.4324324324324" />
+                    End="0,16.4092071611253" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.4324324324324"
-                    Point2="0,20.4324324324324"
-                    Point3="4,20.4324324324324" />
+                    Point1="0,16.4092071611253"
+                    Point2="0,20.4092071611253"
+                    Point3="4,20.4092071611253" />
                   <mssgle:LineSegment
-                    End="168,20.4324324324324" />
+                    End="252.5,20.4092071611253" />
                   <mssgle:CubicBezierSegment
-                    Point1="168,20.4324324324324"
-                    Point2="172,20.4324324324324"
-                    Point3="172,24.4324324324324" />
+                    Point1="252.5,20.4092071611253"
+                    Point2="256.5,20.4092071611253"
+                    Point3="256.5,24.4092071611253" />
                   <mssgle:LineSegment
-                    End="172,52.5" />
+                    End="256.5,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="7.46609374999997,25.4324324324324,157.0678125,11.6630859375"
+              BoundingBox="53.84701171875,25.4092071611253,148.8059765625,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

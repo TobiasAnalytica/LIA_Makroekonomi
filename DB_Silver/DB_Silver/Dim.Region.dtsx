@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="DimRegion"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{08F30C45-6CAC-401C-AACC-3DCF4F9B8BB3}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{2DECBD6E-9351-436E-8A89-B732BAC7130C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -127,7 +127,6 @@
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="38"
                       lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
                       name="RunId"
                       truncationRowDisposition="FailComponent">
@@ -136,13 +135,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                          name="Expression">@[$Package::p_RunId]</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                          name="FriendlyExpression">@[$Package::p_RunId]</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -212,140 +211,6 @@
                       refId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE_DST_Diagnostics_DB_Silver"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Diagnostics_DB_Silver]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
-                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
-                    <inputColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorCode" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorColumn" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedErrorAt" />
-                    <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -453,9 +318,9 @@
                       length="120"
                       name="Description" />
                     <externalMetadataColumn
-                      refId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_DimRegion\OLE_DST_DimRegion.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -477,6 +342,174 @@
                       refId="Package\DF_DimRegion\OLE_DST_DimRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_DimRegion\OLE_DST_DimRegion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_DimRegion\OLE_DST_logError"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_logError"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[log].[Error]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_DimRegion\OLE_DST_logError.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_DimRegion\OLE_SRC_All_Fact_tables.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="130"
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      lineageId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="4000"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="wstr"
+                      length="38"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      dataType="wstr"
+                      length="256"
+                      name="SourceName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[LoggedAt]"
+                      dataType="dbTimeStamp2"
+                      name="LoggedAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_DimRegion\OLE_DST_logError.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_DimRegion\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_DimRegion\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -639,7 +672,7 @@ ORDER BY Description;</property>
           <paths>
             <path
               refId="Package\DF_DimRegion.Paths[Derived Column Output]"
-              endId="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_DimRegion\OLE_DST_logError.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason.Outputs[Derived Column Output]" />
             <path
@@ -1209,35 +1242,47 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="233,42"
-          Id="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver"
-          TopLeft="473,274" />
-        <NodeLayout
-          Size="199,42"
+          Size="249,42"
           Id="Package\DF_DimRegion\OLE_SRC_All_Fact_tables"
-          TopLeft="181,51" />
+          TopLeft="315.5,5.5" />
         <NodeLayout
-          Size="232,42"
+          Size="249,42"
           Id="Package\DF_DimRegion\DC_All_Fact_tables_ErrorReason"
-          TopLeft="470,164" />
+          TopLeft="315.5,107.5" />
         <NodeLayout
-          Size="180,42"
+          Size="249,42"
           Id="Package\DF_DimRegion\OLE_DST_DimRegion"
-          TopLeft="163,273" />
+          TopLeft="5.50000000000006,107.5" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\DF_DimRegion\OLE_DST_logError"
+          TopLeft="315.5,209.5" />
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[OLE DB Source Output]"
-          TopLeft="250.833333333333,93">
+          TopLeft="399.833333333333,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,180"
+              EndConnector="-269.833333333333,60"
               Start="0,0"
-              End="0,172.5">
+              End="-269.833333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,172.5" />
+                    End="0,20.2298483639266" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2298483639266"
+                    Point2="0,24.2298483639266"
+                    Point3="-4,24.2298483639266" />
+                  <mssgle:LineSegment
+                    End="-265.833333333333,24.2298483639266" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-265.833333333333,24.2298483639266"
+                    Point2="-269.833333333333,24.2298483639266"
+                    Point3="-269.833333333333,28.2298483639266" />
+                  <mssgle:LineSegment
+                    End="-269.833333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1248,54 +1293,54 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[OLE DB Source Error Output]"
-          TopLeft="312.333333333333,93">
+          TopLeft="480.166666666667,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="273.666666666667,71"
+              EndConnector="-40.1666666666666,60"
               Start="0,0"
-              End="273.666666666667,63.5">
+              End="-40.1666666666666,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.7397806580259" />
+                    End="0,20.2298483639266" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.7397806580259"
-                    Point2="0,28.7397806580259"
-                    Point3="4,28.7397806580259" />
+                    Point1="0,20.2298483639266"
+                    Point2="0,24.2298483639266"
+                    Point3="-4,24.2298483639266" />
                   <mssgle:LineSegment
-                    End="269.666666666667,28.7397806580259" />
+                    End="-36.1666666666666,24.2298483639266" />
                   <mssgle:CubicBezierSegment
-                    Point1="269.666666666667,28.7397806580259"
-                    Point2="273.666666666667,28.7397806580259"
-                    Point3="273.666666666667,32.7397806580259" />
+                    Point1="-36.1666666666666,24.2298483639266"
+                    Point2="-40.1666666666666,24.2298483639266"
+                    Point3="-40.1666666666666,28.2298483639266" />
                   <mssgle:LineSegment
-                    End="273.666666666667,63.5" />
+                    End="-40.1666666666666,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="73.3994270833334,33.7397806580259,126.8678125,11.43359375"
+              BoundingBox="-83.5172395833333,29.2298483639266,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_DimRegion.Paths[Derived Column Output]"
-          TopLeft="587.75,206">
+          TopLeft="440,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,68"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,60.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,60.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1329,7 +1374,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_DimRegion\OLE_DST_Diagnostics_DB_Silver">
+    design-time-name="Package\DF_DimRegion\OLE_DST_logError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

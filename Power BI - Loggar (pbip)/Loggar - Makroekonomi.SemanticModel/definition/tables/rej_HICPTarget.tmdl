@@ -1,0 +1,142 @@
+table rej_HICPTarget
+	lineageTag: 62a411bf-bf2a-422c-84a3-0e86b425e7ab
+
+	column RejectId
+		dataType: int64
+		formatString: 0
+		lineageTag: 3281f9d4-36a5-4f5d-9e5c-43fc23a9a15b
+		summarizeBy: count
+		sourceColumn: RejectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunId
+		dataType: string
+		lineageTag: 083807f5-9919-469c-a4e2-a271f853b2bd
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageName
+		dataType: string
+		lineageTag: 39d0367e-5c8f-4204-9394-41a7662e4766
+		summarizeBy: none
+		sourceColumn: PackageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaskName
+		dataType: string
+		lineageTag: edd3625b-d8bb-4d8b-95ac-76a367c94787
+		summarizeBy: none
+		sourceColumn: TaskName
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionSrc
+		dataType: string
+		lineageTag: 92bbf3ce-c190-4977-8ae3-82c8a7eabf97
+		summarizeBy: none
+		sourceColumn: RegionSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDateSrc
+		dataType: string
+		lineageTag: 0782af7d-6955-4835-93e0-c758322c9c56
+		summarizeBy: none
+		sourceColumn: FromDateSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDateSrc
+		dataType: string
+		lineageTag: 4e5f4980-09f7-4dca-b4db-5f40d377e9e8
+		summarizeBy: none
+		sourceColumn: ToDateSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column TargetPercentSrc
+		dataType: string
+		lineageTag: 434ca5da-30e3-4131-9872-1b4f1cf80608
+		summarizeBy: none
+		sourceColumn: TargetPercentSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column NotesSrc
+		dataType: string
+		lineageTag: 8ff94506-a3c8-46b1-a7de-dd662de7374b
+		summarizeBy: none
+		sourceColumn: NotesSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorReason
+		dataType: string
+		lineageTag: 6815e7f7-adbe-4a5a-8b69-d69447065cfb
+		summarizeBy: none
+		sourceColumn: ErrorReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 49c07d44-2813-4766-a217-41e00e4d3dcf
+		summarizeBy: count
+		sourceColumn: ErrorCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorColumn
+		dataType: int64
+		formatString: 0
+		lineageTag: d37f7bb9-26c2-4404-9a4f-227e14da48a2
+		summarizeBy: sum
+		sourceColumn: ErrorColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedBronzeAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9c3c221a-9dc2-44ba-990d-e5f2e388fd2d
+		summarizeBy: none
+		sourceColumn: CreatedBronzeAtUTC
+
+		variation Variation
+			isDefault
+			relationship: abb64c07-c8f6-4aa1-9a2e-23d1c75a40a9
+			defaultHierarchy: LocalDateTable_40cacedb-667e-4b12-a2d4-c486f07feab7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedSilverAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 59b0ac44-a0f2-4ba6-a146-41f32d9bde07
+		summarizeBy: none
+		sourceColumn: CreatedSilverAtUTC
+
+		variation Variation
+			isDefault
+			relationship: 8de54928-e490-4bed-95ff-c90cfbedfaf9
+			defaultHierarchy: LocalDateTable_2df6253e-aa0f-4179-9213-214cbcfdc415.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition rej_HICPTarget = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Silver = Source{[Name="LIA_DB_Silver"]}[Data],
+				    rej_HICPTarget = LIA_DB_Silver{[Schema="rej",Item="HICPTarget"]}[Data]
+				in
+				    rej_HICPTarget
+
+	annotation PBI_ResultType = Table
+

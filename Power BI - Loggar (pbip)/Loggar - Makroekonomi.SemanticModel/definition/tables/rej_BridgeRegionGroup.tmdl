@@ -1,0 +1,126 @@
+table rej_BridgeRegionGroup
+	lineageTag: 281b4b81-14c2-4972-90a7-9bc2f36b851b
+
+	column RejectId
+		dataType: int64
+		formatString: 0
+		lineageTag: 23d093c0-a767-485d-99be-f2aa4c6c417f
+		summarizeBy: count
+		sourceColumn: RejectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column RunId
+		dataType: string
+		lineageTag: ed64dd0a-8920-4826-b23b-6af6126e4429
+		summarizeBy: none
+		sourceColumn: RunId
+
+		annotation SummarizationSetBy = Automatic
+
+	column PackageName
+		dataType: string
+		lineageTag: 484a95a8-f9d5-4357-8cef-51455b879271
+		summarizeBy: none
+		sourceColumn: PackageName
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaskName
+		dataType: string
+		lineageTag: 472dce4e-1eaf-414e-b83a-feb16243cfbb
+		summarizeBy: none
+		sourceColumn: TaskName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupKeySrc
+		dataType: string
+		lineageTag: 9c710486-842f-4ce2-9c32-2f4c94e7d992
+		summarizeBy: none
+		sourceColumn: GroupKeySrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionAKSrc
+		dataType: string
+		lineageTag: 5be03d7a-17c5-447f-935c-4b5b14acdb05
+		summarizeBy: none
+		sourceColumn: RegionAKSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryNameSrc
+		dataType: string
+		lineageTag: f007214a-e6ca-451c-933a-c587c1ec850b
+		summarizeBy: none
+		sourceColumn: CountryNameSrc
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorReason
+		dataType: string
+		lineageTag: 567b2979-102e-492c-9f95-80bb9c7b0baa
+		summarizeBy: none
+		sourceColumn: ErrorReason
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 857c4630-fe88-44c1-94f1-c7bcf52eac22
+		summarizeBy: count
+		sourceColumn: ErrorCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ErrorColumn
+		dataType: int64
+		formatString: 0
+		lineageTag: 084064c9-3b49-42a9-8650-71fe8e77f46f
+		summarizeBy: sum
+		sourceColumn: ErrorColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedBronzeAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f34d1d3-cf91-431e-b6c4-5fe570f44993
+		summarizeBy: none
+		sourceColumn: CreatedBronzeAtUTC
+
+		variation Variation
+			isDefault
+			relationship: 17cadc3c-baa2-4ccf-a492-70e70b01c833
+			defaultHierarchy: LocalDateTable_c474591b-84f4-4cc9-944c-90cb536b5090.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedSilverAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b10d3dd3-4c17-4cf5-b92a-276dcd0289a4
+		summarizeBy: none
+		sourceColumn: CreatedSilverAtUTC
+
+		variation Variation
+			isDefault
+			relationship: c0d15f50-dc12-47e4-ba96-86f7967df0b4
+			defaultHierarchy: LocalDateTable_f2b9525d-17e5-41cc-8831-6b8e5752f0a2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition rej_BridgeRegionGroup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("."),
+				    LIA_DB_Silver = Source{[Name="LIA_DB_Silver"]}[Data],
+				    rej_BridgeRegionGroup = LIA_DB_Silver{[Schema="rej",Item="BridgeRegionGroup"]}[Data]
+				in
+				    rej_BridgeRegionGroup
+
+	annotation PBI_ResultType = Table
+

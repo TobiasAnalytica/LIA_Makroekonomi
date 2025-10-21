@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="FactGDP"
   DTS:PackageType="5"
-  DTS:VersionBuild="47"
-  DTS:VersionGUID="{6C77CE6C-5C26-46E1-9073-DA10C795F3FD}">
+  DTS:VersionBuild="51"
+  DTS:VersionGUID="{E95FEE38-2405-44BA-8C24-E845AC3FCAD3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -173,7 +173,6 @@
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="38"
                       lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
                       name="RunId"
                       truncationRowDisposition="FailComponent">
@@ -182,13 +181,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                          name="Expression">@[$Package::p_RunId]</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                          name="FriendlyExpression">@[$Package::p_RunId]</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -258,140 +257,6 @@
                       refId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE_DST_Diagnostics_DB_Silver"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Diagnostics_DB_Silver]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
-                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
-                    <inputColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorCode" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorColumn" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedErrorAt" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -540,11 +405,11 @@
                       externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
                       lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
                     <inputColumn
-                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="CreatedBronzeAt"
-                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
+                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAtUTC]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAtUTC"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
+                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -597,13 +462,13 @@
                       length="70"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedBronzeAt" />
+                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAtUTC" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_FactGDP\OLE_DST_FactGDP.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -625,6 +490,174 @@
                       refId="Package\DF_FactGDP\OLE_DST_FactGDP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_FactGDP\OLE_DST_FactGDP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactGDP\OLE_DST_logError"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_logError"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[log].[Error]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactGDP\OLE_DST_logError.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="374"
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      lineageId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="4000"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="wstr"
+                      length="38"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      dataType="wstr"
+                      length="256"
+                      name="SourceName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[LoggedAt]"
+                      dataType="dbTimeStamp2"
+                      name="LoggedAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactGDP\OLE_DST_logError.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGDP\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactGDP\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactGDP\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -695,7 +728,7 @@
     )
   AS NVARCHAR(70))                             AS [Observation status (Flag) V2 structure],
 
-  CreatedBronzeAt
+  CreatedBronzeAtUTC
 FROM Raw.GDP;</property>
                 <property
                   dataType="System.String"
@@ -831,14 +864,14 @@ FROM Raw.GDP;</property>
                       name="Observation status (Flag) V2 structure"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp"
+                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
                       errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
-                      name="CreatedBronzeAt"
-                      truncationRowDisposition="RedirectRow" />
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAtUTC]"
+                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]"
+                      name="CreatedBronzeAtUTC"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -891,9 +924,9 @@ FROM Raw.GDP;</property>
                       length="70"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
+                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAtUTC]"
                       dataType="dbTimeStamp2"
-                      name="CreatedBronzeAt" />
+                      name="CreatedBronzeAtUTC" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -960,6 +993,11 @@ FROM Raw.GDP;</property>
                       lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[OBS_VALUE]"
                       name="OBS_VALUE" />
                     <outputColumn
+                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAtUTC]"
+                      name="CreatedBronzeAtUTC" />
+                    <outputColumn
                       refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[OBS_FLAG]"
                       dataType="wstr"
                       length="10"
@@ -971,11 +1009,6 @@ FROM Raw.GDP;</property>
                       length="70"
                       lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[Observation status (Flag) V2 structure]"
                       name="Observation status (Flag) V2 structure" />
-                    <outputColumn
-                      refId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp2"
-                      lineageId="Package\DF_FactGDP\OLE_SRC_RawGDP.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
-                      name="CreatedBronzeAt" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -985,7 +1018,7 @@ FROM Raw.GDP;</property>
           <paths>
             <path
               refId="Package\DF_FactGDP.Paths[Derived Column Output]"
-              endId="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_FactGDP\OLE_DST_logError.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\DF_FactGDP\DC_RawGDP_ErrorReason.Outputs[Derived Column Output]" />
             <path
@@ -1373,27 +1406,27 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="138,42"
+          Size="172,42"
           Id="Package\DF_FactGDP"
-          TopLeft="102,205" />
+          TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="164,42"
+          Size="172,42"
           Id="Package\truncate_FactGDP"
-          TopLeft="82,78" />
+          TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="167.5,120">
+          TopLeft="91.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,85"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,77.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,77.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1409,7 +1442,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="153,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -1437,7 +1470,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1553,35 +1588,47 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="169,42"
+          Size="215,42"
+          Id="Package\DF_FactGDP\OLE_DST_logError"
+          TopLeft="281.5,209.5" />
+        <NodeLayout
+          Size="215,42"
           Id="Package\DF_FactGDP\OLE_DST_FactGDP"
-          TopLeft="107,271" />
+          TopLeft="5.50000000000006,107.5" />
         <NodeLayout
-          Size="202,42"
-          Id="Package\DF_FactGDP\DC_RawGDP_ErrorReason"
-          TopLeft="376,169" />
-        <NodeLayout
-          Size="169,42"
+          Size="215,42"
           Id="Package\DF_FactGDP\OLE_SRC_RawGDP"
-          TopLeft="129,75" />
+          TopLeft="281.5,5.5" />
         <NodeLayout
-          Size="233,42"
-          Id="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver"
-          TopLeft="357.75,274.5" />
+          Size="215,42"
+          Id="Package\DF_FactGDP\DC_RawGDP_ErrorReason"
+          TopLeft="281.5,107.5" />
         <EdgeLayout
           Id="Package\DF_FactGDP.Paths[OLE DB Source Output]"
-          TopLeft="189.083333333333,117">
+          TopLeft="354.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,154"
+              EndConnector="-241.5,60"
               Start="0,0"
-              End="0,146.5">
+              End="-241.5,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,146.5" />
+                    End="0,20.2659279778393" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2659279778393"
+                    Point2="0,24.2659279778393"
+                    Point3="-4,24.2659279778393" />
+                  <mssgle:LineSegment
+                    End="-237.5,24.2659279778393" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-237.5,24.2659279778393"
+                    Point2="-241.5,24.2659279778393"
+                    Point3="-241.5,28.2659279778393" />
+                  <mssgle:LineSegment
+                    End="-241.5,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1592,54 +1639,54 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactGDP.Paths[OLE DB Source Error Output]"
-          TopLeft="240.333333333333,117">
+          TopLeft="423.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="236.666666666667,52"
+              EndConnector="-34.4999999999999,60"
               Start="0,0"
-              End="236.666666666667,44.5">
+              End="-34.4999999999999,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.0926143024619" />
+                    End="0,20.2659279778393" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.0926143024619"
-                    Point2="0,21.0926143024619"
-                    Point3="4,21.0926143024619" />
+                    Point1="0,20.2659279778393"
+                    Point2="0,24.2659279778393"
+                    Point3="-4,24.2659279778393" />
                   <mssgle:LineSegment
-                    End="232.666666666667,21.0926143024619" />
+                    End="-30.4999999999999,24.2659279778393" />
                   <mssgle:CubicBezierSegment
-                    Point1="232.666666666667,21.0926143024619"
-                    Point2="236.666666666667,21.0926143024619"
-                    Point3="236.666666666667,25.0926143024619" />
+                    Point1="-30.4999999999999,24.2659279778393"
+                    Point2="-34.4999999999999,24.2659279778393"
+                    Point3="-34.4999999999999,28.2659279778393" />
                   <mssgle:LineSegment
-                    End="236.666666666667,44.5" />
+                    End="-34.4999999999999,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="54.8994270833334,26.0926143024619,126.8678125,11.43359375"
+              BoundingBox="-80.68390625,29.2659279778393,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactGDP.Paths[Derived Column Output]"
-          TopLeft="475.625,211">
+          TopLeft="389,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,63.5"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,56">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1652,10 +1699,15 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactGDP\OLE_SRC_RawGDP">
+    design-time-name="Package\DF_FactGDP\OLE_DST_logError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -1673,15 +1725,10 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactGDP\OLE_DST_Diagnostics_DB_Silver">
+    design-time-name="Package\DF_FactGDP\OLE_SRC_RawGDP">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

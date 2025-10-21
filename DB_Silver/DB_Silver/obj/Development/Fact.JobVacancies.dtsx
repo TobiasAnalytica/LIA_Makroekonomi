@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="FactJobVacancies"
   DTS:PackageType="5"
-  DTS:VersionBuild="27"
-  DTS:VersionGUID="{DE96847E-651F-4DCE-9312-510D4B212DA1}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{9F9533F6-64B9-49FE-991A-60038A3EE285}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
@@ -174,7 +174,6 @@
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
-                      length="38"
                       lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output].Columns[RunId]"
                       name="RunId"
                       truncationRowDisposition="FailComponent">
@@ -183,13 +182,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">@[System::ExecutionInstanceGUID]</property>
+                          name="Expression">@[$Package::p_RunId]</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">@[System::ExecutionInstanceGUID]</property>
+                          name="FriendlyExpression">@[$Package::p_RunId]</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -259,140 +258,6 @@
                       refId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE_DST_Diagnostics_DB_Silver"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Diagnostics_DB_Silver]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Connections[OleDbConnection]"
-                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
-                    <inputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorCode" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
-                      dataType="wstr"
-                      length="100"
-                      name="ErrorColumn" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[CreatedErrorAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedErrorAt" />
-                    <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
-                      dataType="wstr"
-                      length="500"
-                      name="ErrorDescription" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -527,12 +392,6 @@
                       externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[Observation status (Flag) V2 structure]"
                       lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[Observation status (Flag) V2 structure]" />
                     <inputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAt]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="CreatedBronzeAt"
-                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]" />
-                    <inputColumn
                       refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].Columns[CONF_STATUS]"
                       cachedDataType="wstr"
                       cachedLength="1"
@@ -546,6 +405,12 @@
                       cachedName="Confidentiality status (flag)"
                       externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[Confidentiality status (flag)]"
                       lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[Confidentiality status (flag)]" />
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].Columns[CreatedBronzeAtUTC]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="CreatedBronzeAtUTC"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
+                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -598,13 +463,13 @@
                       length="50"
                       name="Confidentiality status (flag)" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedBronzeAt" />
+                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAtUTC" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAt]"
-                      dataType="dbTimeStamp"
-                      name="CreatedSilverAt" />
+                      refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Inputs[OLE DB Destination Input].ExternalColumns[CreatedSilverAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedSilverAtUTC" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -626,6 +491,174 @@
                       refId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_FactJobVacancies\OLE_DST_logError"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST_logError"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[log].[Error]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_FactJobVacancies\OLE_DST_logError.Connections[OleDbConnection]"
+                  connectionManagerID="{1334099B-3AB3-40F8-827F-E3DE821777F9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LIA_DB_Diagnostics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="429"
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[RunId]"
+                      cachedDataType="wstr"
+                      cachedName="RunId"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output].Columns[RunId]" />
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[PackageName]"
+                      cachedDataType="wstr"
+                      cachedLength="17"
+                      cachedName="PackageName"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output].Columns[PackageName]" />
+                    <inputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].Columns[TaskName]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="TaskName"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      lineageId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output].Columns[TaskName]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="4000"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[RunId]"
+                      dataType="wstr"
+                      length="38"
+                      name="RunId" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[PackageName]"
+                      dataType="wstr"
+                      length="128"
+                      name="PackageName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[SourceName]"
+                      dataType="wstr"
+                      length="256"
+                      name="SourceName" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input].ExternalColumns[LoggedAt]"
+                      dataType="dbTimeStamp2"
+                      name="LoggedAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_FactJobVacancies\OLE_DST_logError.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactJobVacancies\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_FactJobVacancies\OLE_DST_logError.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -694,7 +727,7 @@
   CAST(CONF_STATUS AS NVARCHAR(1)) AS CONF_STATUS,
   CAST([Confidentiality status (flag)] AS NVARCHAR(12)) AS [Confidentiality status (flag)],
 
-  CreatedBronzeAt
+  CreatedBronzeAtUTC
 FROM Raw.JobVacancies;</property>
                 <property
                   dataType="System.String"
@@ -810,15 +843,6 @@ FROM Raw.JobVacancies;</property>
                       name="Observation status (Flag) V2 structure"
                       truncationRowDisposition="RedirectRow" />
                     <outputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="RedirectRow"
-                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
-                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAt]"
-                      name="CreatedBronzeAt"
-                      truncationRowDisposition="RedirectRow" />
-                    <outputColumn
                       refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CONF_STATUS]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -838,6 +862,15 @@ FROM Raw.JobVacancies;</property>
                       lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[Confidentiality status (flag)]"
                       name="Confidentiality status (flag)"
                       truncationRowDisposition="RedirectRow" />
+                    <outputColumn
+                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAtUTC]"
+                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].Columns[CreatedBronzeAtUTC]"
+                      name="CreatedBronzeAtUTC"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -881,10 +914,6 @@ FROM Raw.JobVacancies;</property>
                       length="50"
                       name="Observation status (Flag) V2 structure" />
                     <externalMetadataColumn
-                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAt]"
-                      dataType="dbTimeStamp2"
-                      name="CreatedBronzeAt" />
-                    <externalMetadataColumn
                       refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].ExternalColumns[CONF_STATUS]"
                       dataType="wstr"
                       length="1"
@@ -894,6 +923,10 @@ FROM Raw.JobVacancies;</property>
                       dataType="wstr"
                       length="12"
                       name="Confidentiality status (flag)" />
+                    <externalMetadataColumn
+                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Output].ExternalColumns[CreatedBronzeAtUTC]"
+                      dataType="dbTimeStamp2"
+                      name="CreatedBronzeAtUTC" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -961,10 +994,10 @@ FROM Raw.JobVacancies;</property>
                       lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[Confidentiality status (flag)]"
                       name="Confidentiality status (flag)" />
                     <outputColumn
-                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
+                      refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAtUTC]"
                       dataType="dbTimeStamp2"
-                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAt]"
-                      name="CreatedBronzeAt" />
+                      lineageId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[CreatedBronzeAtUTC]"
+                      name="CreatedBronzeAtUTC" />
                     <outputColumn
                       refId="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -986,7 +1019,7 @@ FROM Raw.JobVacancies;</property>
           <paths>
             <path
               refId="Package\DF_FactJobVacancies.Paths[Derived Column Output]"
-              endId="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver.Inputs[OLE DB Destination Input]"
+              endId="Package\DF_FactJobVacancies\OLE_DST_logError.Inputs[OLE DB Destination Input]"
               name="Derived Column Output"
               startId="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason.Outputs[Derived Column Output]" />
             <path
@@ -1374,27 +1407,27 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="180,42"
+          Size="244,42"
           Id="Package\DF_FactJobVacancies"
-          TopLeft="95,214" />
+          TopLeft="5.50000000000001,107.5" />
         <NodeLayout
-          Size="206,42"
+          Size="244,42"
           Id="Package\truncate_FactJobVacancies"
-          TopLeft="78,82" />
+          TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="183,124">
+          TopLeft="127.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,90"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,82.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,82.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1410,7 +1443,7 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="153,42"
           Id="Package.EventHandlers[OnError]\Pkg_Err_Insert"
@@ -1438,7 +1471,9 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -1554,35 +1589,47 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="211,42"
+          Size="267,42"
+          Id="Package\DF_FactJobVacancies\OLE_DST_logError"
+          TopLeft="333.5,209.5" />
+        <NodeLayout
+          Size="267,42"
           Id="Package\DF_FactJobVacancies\OLE_DST_FactJobVacancies"
-          TopLeft="147.333333333333,317" />
+          TopLeft="5.50000000000006,107.5" />
         <NodeLayout
-          Size="244,42"
-          Id="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason"
-          TopLeft="477,213" />
-        <NodeLayout
-          Size="211,42"
+          Size="267,42"
           Id="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies"
-          TopLeft="178,79" />
+          TopLeft="333.5,5.49999999999989" />
         <NodeLayout
-          Size="233,42"
-          Id="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver"
-          TopLeft="482.777777777778,321" />
+          Size="267,42"
+          Id="Package\DF_FactJobVacancies\DC_RawJobVacancies_ErrorReason"
+          TopLeft="333.5,107.5" />
         <EdgeLayout
           Id="Package\DF_FactJobVacancies.Paths[OLE DB Source Output]"
-          TopLeft="251.25,121">
+          TopLeft="423.833333333333,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,196"
+              EndConnector="-284.833333333333,60"
               Start="0,0"
-              End="0,188.5">
+              End="-284.833333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,188.5" />
+                    End="0,20.2144452717796" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2144452717796"
+                    Point2="0,24.2144452717796"
+                    Point3="-4,24.2144452717796" />
+                  <mssgle:LineSegment
+                    End="-280.833333333333,24.2144452717796" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-280.833333333333,24.2144452717796"
+                    Point2="-284.833333333333,24.2144452717796"
+                    Point3="-284.833333333333,28.2144452717796" />
+                  <mssgle:LineSegment
+                    End="-284.833333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1593,54 +1640,54 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactJobVacancies.Paths[OLE DB Source Error Output]"
-          TopLeft="317.333333333333,121">
+          TopLeft="510.166666666667,47.4999999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="281.666666666667,92"
+              EndConnector="-43.1666666666666,60"
               Start="0,0"
-              End="281.666666666667,84.5">
+              End="-43.1666666666666,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,33.2154280338664" />
+                    End="0,20.2144452717796" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,33.2154280338664"
-                    Point2="0,37.2154280338664"
-                    Point3="4,37.2154280338664" />
+                    Point1="0,20.2144452717796"
+                    Point2="0,24.2144452717796"
+                    Point3="-4,24.2144452717796" />
                   <mssgle:LineSegment
-                    End="277.666666666667,37.2154280338664" />
+                    End="-39.1666666666666,24.2144452717796" />
                   <mssgle:CubicBezierSegment
-                    Point1="277.666666666667,37.2154280338664"
-                    Point2="281.666666666667,37.2154280338664"
-                    Point3="281.666666666667,41.2154280338664" />
+                    Point1="-39.1666666666666,24.2144452717796"
+                    Point2="-43.1666666666666,24.2144452717796"
+                    Point3="-43.1666666666666,28.2144452717796" />
                   <mssgle:LineSegment
-                    End="281.666666666667,84.5" />
+                    End="-43.1666666666666,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="77.3994270833334,42.2154280338664,126.8678125,11.43359375"
+              BoundingBox="-85.0172395833333,29.2144452717796,126.8678125,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DF_FactJobVacancies.Paths[Derived Column Output]"
-          TopLeft="599.138888888889,255">
+          TopLeft="467,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,66.0000000000001"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,58.5000000000001">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,58.5000000000001" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1653,10 +1700,15 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies">
+    design-time-name="Package\DF_FactJobVacancies\OLE_DST_logError">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -1674,15 +1726,10 @@ VALUES (?,?,?,?,SYSUTCDATETIME());
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\DF_FactJobVacancies\OLE_DST_Diagnostics_DB_Silver">
+    design-time-name="Package\DF_FactJobVacancies\OLE_SRC_RawJobVacancies">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
