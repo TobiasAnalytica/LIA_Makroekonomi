@@ -1,0 +1,44 @@
+createOrReplace
+
+	ref table FactGovernmentDebt
+
+		measure 'Selected Frequency Label' =
+				
+				SELECTEDVALUE ( DimTimeFrequency[Description], "Q" )
+			displayFolder: DAX-GovernmentDebt\Titles
+			lineageTag: b3629fd7-2d58-40fc-925e-4a175af7b4c0
+
+		measure 'Selected Regions – Count' =
+				
+				DISTINCTCOUNT ( DimRegion[Description] )
+			formatString: 0
+			displayFolder: DAX-GovernmentDebt\Titles
+			lineageTag: 31612344-267b-41a8-a43a-79290e972d9b
+
+		measure 'Selected Regions – Short List' = ```
+				
+				VAR maxNames = 5
+				VAR t =
+				    CONCATENATEX (
+				        TOPN ( maxNames, VALUES ( DimRegion[Description] ), DimRegion[Description], ASC ),
+				        DimRegion[Description],
+				        ", "
+				    )
+				VAR more = [Selected Regions – Count] - maxNames
+				RETURN
+				    IF ( [Selected Regions – Count] = 0, "Alla länder",
+				        IF ( [Selected Regions – Count] <= maxNames, t,
+				            t & " +" & FORMAT ( more, "0" ) & " fler"
+				        )
+				    )
+				
+				```
+			displayFolder: DAX-GovernmentDebt\Titles
+			lineageTag: 4770dc2d-78d8-46d4-8918-e146d679ca7f
+
+		measure 'Selected SA Label' =
+				
+				SELECTEDVALUE ( DimSeasonalAdjustment[Description], "Seasonally & calendar adjusted" )
+			displayFolder: DAX-GovernmentDebt\Titles
+			lineageTag: 7aac48a4-51b0-4b03-ba76-041ed853570e
+

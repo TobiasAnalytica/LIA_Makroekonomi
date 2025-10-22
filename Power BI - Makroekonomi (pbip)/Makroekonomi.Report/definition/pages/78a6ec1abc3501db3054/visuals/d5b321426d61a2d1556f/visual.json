@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "d5b321426d61a2d1556f",
   "position": {
     "x": 247.69230769230768,
@@ -7,7 +7,7 @@
     "z": 16000,
     "height": 415,
     "width": 820,
-    "tabOrder": 15000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -59,7 +59,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactHICPIndex"
+                      "Entity": "_Measures (Diagnostics)"
                     }
                   },
                   "Property": "Inflation – YoY % (Data only)"
@@ -114,7 +114,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FactHICPIndex"
+                          "Entity": "_Measures (Diagnostics)"
                         }
                       },
                       "Property": "Inflation – YoY % (Font Color · Target 2%)"
@@ -130,7 +130,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "FactHICPIndex"
+                          "Entity": "_Measures (Diagnostics)"
                         }
                       },
                       "Property": "Inflation – YoY % (BG Color · Target 2%)"
@@ -195,7 +195,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactHICPIndex"
+                      "Entity": "_Measures (Diagnostics)"
                     }
                   },
                   "Property": "Title – Heatmap YoY"
@@ -220,7 +220,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactHICPIndex"
+                      "Entity": "_Measures (Diagnostics)"
                     }
                   },
                   "Property": "Subtitle – Heatmap YoY"
@@ -327,6 +327,48 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "4a83f83d1e8190984794",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "YearMonthText"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5bc7caa6048305765b50",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimRegion"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4f58811a3e749ae0e350",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Inflation – YoY % (Data only)"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

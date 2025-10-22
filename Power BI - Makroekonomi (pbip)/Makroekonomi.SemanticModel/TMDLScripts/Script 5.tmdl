@@ -1,0 +1,46 @@
+createOrReplace
+
+	ref table FactGovernmentDebt
+
+		measure 'GDP – YoY Δ % (4Q Sum at Debt Latest Common)' = ```
+				
+				VAR d = [Latest Date – Common (Debt+GDP)]
+				VAR curr = CALCULATE ( [GDP – 4Q Sum (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+				VAR prev = CALCULATE ( [GDP – 4Q Sum (At Date)], TREATAS ( { EDATE(d, -12) }, DimDate[Date] ) )
+				RETURN DIVIDE ( curr - prev, prev )
+				
+				```
+			displayFolder: DAX-GovernmentDebt\Scatter
+			lineageTag: fb1f1ac5-8a85-4f9a-8e33-213a72724f76
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Population – Persons (EOP at Aligned Common)' = ```
+				
+				VAR d = [Common Date – (Aligned with Y)]
+				RETURN
+				    IF (
+				        ISBLANK(d), BLANK(),
+				        CALCULATE ( [Population – Persons (EOP,Annual)], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+				
+				```
+			formatString: 0
+			displayFolder: DAX-GovernmentDebt\Scatter
+			lineageTag: 17dfdd44-6e00-479c-b54a-53a4157cbe0b
+
+		measure 'Scatter – Y Label' = ```
+				
+				VAR ySel = SELECTEDVALUE ( 'Y Axis'[Y Axis Fields] )
+				RETURN
+				    SWITCH (
+				        TRUE(),
+				        ySel = "GDP – YoY Δ % (4Q at Debt Latest Common)", "BNP-tillväxt (YoY, 4Q)",
+				        ySel = "Unemployment – Rate % (EOP at Debt+Unemp Latest Common)", "Arbetslöshet (%)",
+				        "—"
+				    )
+				
+				```
+			displayFolder: DAX-GovernmentDebt\Scatter
+			lineageTag: ed179df1-0f08-40bd-b39c-c5c5e3cab10d
+

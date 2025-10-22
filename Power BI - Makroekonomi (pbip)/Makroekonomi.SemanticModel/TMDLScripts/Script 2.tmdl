@@ -1,0 +1,107 @@
+createOrReplace
+
+	ref table FactGovernmentDebt
+
+		measure 'Common Date – (Aligned with Y)' = ```
+				
+				VAR ySel = SELECTEDVALUE ( 'Y Axis'[Y Axis Fields] ) 
+				-- OBS: 'Y Axis' blir namnet på Field-parameter-tabellen (se steg 2).
+				RETURN
+				    SWITCH (
+				        TRUE(),
+				        ySel = "GDP – YoY Δ % (4Q at Debt Latest Common)", [Latest Date – Common (Debt+GDP)],
+				        ySel = "Unemployment – Rate % (EOP at Debt+Unemp Latest Common)", [Latest Date – Common (Debt+Unemp)],
+				        BLANK()
+				    )
+				```
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: bae3e6f4-d6dc-4876-9e7b-50a598fc74ef
+
+		measure 'Common Date – Label (Aligned with Y)' =
+				
+				VAR d = [Common Date – (Aligned with Y)]
+				RETURN IF ( ISBLANK(d), BLANK(), FORMAT(d, "yyyy-\QQ") )
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 0415b219-b6c0-403f-b95e-ede66fdb12a5
+
+		measure 'Debt – % of GDP (At Aligned Common)' =
+				
+				VAR d = [Common Date – (Aligned with Y)]
+				RETURN
+				    IF (
+				        ISBLANK(d), BLANK(),
+				        CALCULATE ( [Debt – % of GDP (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 5c39fdcf-db99-4d26-9005-786cf8530575
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Debt – % of GDP (Latest Common)' =
+				
+				VAR d = [Latest Date – Common (Debt+GDP)]
+				RETURN
+				    IF ( ISBLANK(d), BLANK(),
+				        CALCULATE ( [Debt – % of GDP (At Date)], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 65aa50f8-d255-400f-ab7a-3ad61a6591dc
+
+		measure 'Debt – Value (EOP at Latest Common)' = ```
+				
+				CALCULATE ( [Debt – Value (EOP)], TREATAS ( { [Latest Date – Common (Debt+GDP)] }, DimDate[Date] ) )
+				
+				```
+			formatString: 0
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 7e25abf7-5a87-4da4-957e-58ee683ec23c
+
+		measure 'Latest Date – Common (Debt+GDP)' =
+				
+				VAR nRegions = COUNTROWS ( VALUES ( DimRegion[Description] ) )
+				VAR candidates =
+				    FILTER ( ALLSELECTED ( DimDate[Date] ),
+				        CALCULATE ( DISTINCTCOUNT ( FactGovernmentDebt[RegionKey] ) ) = nRegions
+				        && CALCULATE ( DISTINCTCOUNT ( FactGDP[RegionKey] ) ) = nRegions
+				    )
+				RETURN MAXX ( candidates, DimDate[Date] )
+			formatString: General Date
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 7c4c6aa6-3cfb-4bb1-baef-91aaedccd742
+
+		measure 'Latest Date – Common (Debt+Unemp)' =
+				
+				VAR nRegions = COUNTROWS ( VALUES ( DimRegion[Description] ) )
+				VAR candidates =
+				    FILTER ( ALLSELECTED ( DimDate[Date] ),
+				        CALCULATE ( DISTINCTCOUNT ( FactGovernmentDebt[RegionKey] ) ) = nRegions
+				        && CALCULATE ( DISTINCTCOUNT ( FactUnemployment[RegionKey] ) ) = nRegions
+				    )
+				RETURN MAXX ( candidates, DimDate[Date] )
+			formatString: General Date
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 32c58ed7-5d0c-4be8-a078-6ce32bb59bc6
+
+		measure 'Latest Date Label – Debt (Common)' =
+				
+				VAR d = [Latest Date – Common (Debt+GDP)]
+				RETURN IF ( ISBLANK(d), BLANK(), FORMAT ( d, "yyyy-\QQ" ) )
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: 7bbbeb81-4930-454d-b227-6000b7464d09
+
+		measure 'Unemployment – Rate % (EOP at Debt+Unemp Latest Common)' = ```
+				
+				VAR d = [Latest Date – Common (Debt+Unemp)]
+				RETURN
+				    IF (
+				        ISBLANK(d), BLANK(),
+				        CALCULATE ( [Unemployment – Rate % (EOP)], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+				
+				```
+			displayFolder: DAX-GovernmentDebt\Date
+			lineageTag: e95ef546-ada0-4b50-a53a-ff42c09ea0fe
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+

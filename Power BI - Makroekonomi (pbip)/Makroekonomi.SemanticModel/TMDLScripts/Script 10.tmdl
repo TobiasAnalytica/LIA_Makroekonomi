@@ -1,0 +1,30 @@
+createOrReplace
+
+	ref table FactGovernmentDebt
+
+		measure 'Rate – Short-term % (EOP)' =
+				
+				CALCULATE ( [Rate – Short-term % (Monthly/Quarterly)],
+				    LASTNONBLANK ( DimDate[Date], [Rate – Short-term % (Monthly/Quarterly)] ) )
+			displayFolder: DAX-GovernmentDebt\Rate
+			lineageTag: 10be191e-080d-49c9-a386-bfbc8276f11b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Rate – Short-term % (Monthly/Quarterly)' =
+				
+				AVERAGE ( FactMoneyMarketInterestRates[Value] )
+			displayFolder: DAX-GovernmentDebt\Rate
+			lineageTag: 2e60f3f7-fc96-4d3c-940e-0403568a2d15
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Rate – YoY Δ (pp)' =
+				
+				VAR Prev = CALCULATE ( [Rate – Short-term % (EOP)], DATEADD ( DimDate[Date], -1, YEAR ) )
+				RETURN [Rate – Short-term % (EOP)] - Prev
+			displayFolder: DAX-GovernmentDebt\Rate
+			lineageTag: 95680786-0d59-4482-a896-ec0d4ea1da08
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+

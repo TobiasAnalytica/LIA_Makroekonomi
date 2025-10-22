@@ -1,0 +1,48 @@
+table 'Y axis'
+	lineageTag: 522c2a92-1cfa-41bd-b07f-87f500f47090
+
+	column 'Y axis'
+		lineageTag: 14789e25-fb2f-46e7-a6e4-8f4f36725444
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Y axis Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Y axis Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Y axis Fields'
+		isHidden
+		lineageTag: 5de4100a-704d-4f5d-b78e-6734f0ca991c
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Y axis Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Y axis Order'
+		isHidden
+		formatString: 0
+		lineageTag: ea672cbf-1b16-452e-84ad-5e45803bd0e5
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Y axis' = calculated
+		mode: import
+		source =
+				{
+				    ("GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)", NAMEOF('_Measures (Diagnostics)'[GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)]), 0),
+				    ("Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)", NAMEOF('_Measures (Diagnostics)'[Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)]), 1)
+				}
+
+	annotation PBI_Id = 395d407ecc354f8fa7783fd41b58600f
+
