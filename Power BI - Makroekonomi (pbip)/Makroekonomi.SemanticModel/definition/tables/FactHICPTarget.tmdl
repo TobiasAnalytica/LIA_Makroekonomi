@@ -1,0 +1,109 @@
+table FactHICPTarget
+	lineageTag: eb6a68eb-f77e-48e7-a9c8-76b9af4fea30
+
+	column TargetKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8659f537-88c8-4c7c-a87d-2b3129ad517e
+		summarizeBy: count
+		sourceColumn: TargetKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 43b2597b-0119-4209-a8bc-51f11b8a1aa6
+		summarizeBy: count
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FromDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b8773cb5-43be-4c88-bf7d-a38f951542fe
+		summarizeBy: none
+		sourceColumn: FromDate
+
+		variation Variation
+			isDefault
+			relationship: 3df8e11a-42a7-4898-9bc7-743d46a8ae7d
+			defaultHierarchy: LocalDateTable_12284f21-1927-4290-8f29-494d67467d81.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TargetPercent
+		dataType: double
+		lineageTag: e0157491-9fdb-4470-a5a2-0ae08b7ef305
+		summarizeBy: sum
+		sourceColumn: TargetPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Notes
+		dataType: string
+		lineageTag: c5a65123-8f40-40f2-91f7-8ac20082587f
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedSilverAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3aad07b8-dd8b-405a-a2cd-eeaaff965fab
+		summarizeBy: none
+		sourceColumn: CreatedSilverAtUTC
+
+		variation Variation
+			isDefault
+			relationship: fc6367ff-a86e-404e-9860-1bd98111a06f
+			defaultHierarchy: LocalDateTable_02c7efc8-2363-44e8-8767-d571d95551be.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column CreatedGoldAtUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cb1a6da8-fe69-4ab6-821d-cc7eaadc5a6e
+		summarizeBy: none
+		sourceColumn: CreatedGoldAtUTC
+
+		variation Variation
+			isDefault
+			relationship: 6904f047-5f66-4dee-b1f8-4773c2494d6f
+			defaultHierarchy: LocalDateTable_0b6951dc-db17-4bcd-8796-e6f8bf50fe65.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6a0fe8a9-2ae3-4782-acb4-4f77e8dfd112
+		summarizeBy: none
+		sourceColumn: ToDate
+
+		variation Variation
+			isDefault
+			relationship: 25ad05a0-3f0d-4f63-83fa-6b52817ca7bc
+			defaultHierarchy: LocalDateTable_736fcee2-8ec8-41c7-a639-d1fd05877fbd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition FactHICPTarget = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("127.0.0.1,1433"),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    Fact_HICPTarget = LIA_DW_Gold{[Schema="Fact",Item="HICPTarget"]}[Data]
+				in
+				    Fact_HICPTarget
+

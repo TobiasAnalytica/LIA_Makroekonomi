@@ -55,17 +55,17 @@ table FactJobVacancies
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 0b8643a9-f0b8-4214-8c7e-65e5b98754bb
+		lineageTag: ae1b53b9-2a75-4fe6-abdc-870b2fc3e41e
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: 748e8538-f1a3-4365-9eb7-bdc7b41a0e62
-			defaultHierarchy: LocalDateTable_6770d419-554c-4ae6-9b13-80331d73e707.'Date Hierarchy'
+			relationship: 76a69435-4ca9-4c3b-a013-d7e78cd53a49
+			defaultHierarchy: LocalDateTable_b03c895b-407f-4443-a2c4-02fb2f53e1a5.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -73,7 +73,7 @@ table FactJobVacancies
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_JobVacancies = LIA_DW_Gold{[Schema="Fact",Item="JobVacancies"]}[Data]
 				in

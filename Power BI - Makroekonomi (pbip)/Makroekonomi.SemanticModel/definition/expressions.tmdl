@@ -1,0 +1,33 @@
+expression fnUtcToStockholm =
+		(d as datetimezone) as datetime =>
+		let
+		    // Säkerställ att inkommande tidpunkt är i UTC (med zon)
+		    dUtc       = DateTimeZone.ToUtc(d),
+		
+		    // Plocka ut året (utan zoninfo) för att räkna ut sista söndagarna
+		    y          = Date.Year(DateTimeZone.RemoveZone(dUtc)),
+		
+		    // Sista söndagen i mars (start sommartid, offset +2)
+		    lastSunMar = Date.EndOfMonth(#date(y, 3, 1))
+		                 - #duration(Date.DayOfWeek(Date.EndOfMonth(#date(y, 3, 1)), Day.Sunday), 0, 0, 0),
+		
+		    // Sista söndagen i oktober (slut sommartid, offset +1)
+		    lastSunOct = Date.EndOfMonth(#date(y,10, 1))
+		                 - #duration(Date.DayOfWeek(Date.EndOfMonth(#date(y,10, 1)), Day.Sunday), 0, 0, 0),
+		
+		    // Basdatum (utan tidszon) för enkel datumsjämförelse
+		    baseDate   = DateTimeZone.RemoveZone(dUtc),
+		
+		    // Välj rätt offset: 2 timmar under sommartid, annars 1 timme
+		    offsetHrs  = if Date.From(baseDate) >= lastSunMar and Date.From(baseDate) < lastSunOct then 2 else 1,
+		
+		    // Växla tidszonen från UTC till CET/CEST via angiven offset
+		    result     = DateTime.From( DateTimeZone.SwitchZone(dUtc, offsetHrs) )
+		in
+		    result
+	lineageTag: 6b40eb97-ae44-4ae7-ae1c-882fe8f17798
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

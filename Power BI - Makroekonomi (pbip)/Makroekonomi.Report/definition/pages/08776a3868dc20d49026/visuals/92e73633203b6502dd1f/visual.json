@@ -7,7 +7,7 @@
     "z": 18000,
     "height": 415,
     "width": 820,
-    "tabOrder": 15000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -62,11 +62,11 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "GDP – YoY Δ % (Quarterly)"
+                  "Property": "GDP – YoY Δ % (4Q Sum)"
                 }
               },
-              "queryRef": "FactGDP.GDP – YoY Δ % (Quarterly)",
-              "nativeQueryRef": "GDP – YoY Δ % (Quarterly)"
+              "queryRef": "_Measures (Diagnostics).GDP – YoY Δ % (4Q Sum)",
+              "nativeQueryRef": "GDP – YoY Δ % (4Q Sum)"
             }
           ]
         }
@@ -103,6 +103,65 @@
                 }
               }
             }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "_Measures (Diagnostics)"
+                            }
+                          },
+                          "Property": "GDP – YoY Δ % (4Q Sum)"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'minColor'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'maxColor'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Measures (Diagnostics).GDP – YoY Δ % (4Q Sum)"
           }
         }
       ],
@@ -263,26 +322,55 @@
           "Where": [
             {
               "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 2,
+                "And": {
                   "Left": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
+                    "Comparison": {
+                      "ComparisonKind": 2,
+                      "Left": {
+                        "HierarchyLevel": {
                           "Expression": {
-                            "SourceRef": {
-                              "Source": "d"
+                            "Hierarchy": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d"
+                                }
+                              },
+                              "Hierarchy": "Date Hierarchy"
                             }
                           },
-                          "Hierarchy": "Date Hierarchy"
+                          "Level": "Year"
                         }
                       },
-                      "Level": "Year"
+                      "Right": {
+                        "Literal": {
+                          "Value": "2010L"
+                        }
+                      }
                     }
                   },
                   "Right": {
-                    "Literal": {
-                      "Value": "2010L"
+                    "Comparison": {
+                      "ComparisonKind": 4,
+                      "Left": {
+                        "HierarchyLevel": {
+                          "Expression": {
+                            "Hierarchy": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d"
+                                }
+                              },
+                              "Hierarchy": "Date Hierarchy"
+                            }
+                          },
+                          "Level": "Year"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "2024L"
+                        }
+                      }
                     }
                   }
                 }
@@ -291,102 +379,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "fca13ff9c20aa10ee6b0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures (Diagnostics)"
-              }
-            },
-            "Property": "Heatmap – Show (Common, Last 12Q)"
-          }
-        },
-        "type": "Advanced",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "f",
-              "Entity": "FactGDP",
-              "Type": 0
-            },
-            {
-              "Name": "_",
-              "Entity": "_Measures (Diagnostics)",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Comparison": {
-                  "ComparisonKind": 0,
-                  "Left": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Source": "_"
-                        }
-                      },
-                      "Property": "Heatmap – Show (Common, Last 12Q)"
-                    }
-                  },
-                  "Right": {
-                    "Literal": {
-                      "Value": "1L"
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
-        "howCreated": "User"
-      },
-      {
-        "name": "9ba9d71c1d9b4bac21ad",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "YearQuarterText"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "30fe574ad863c6a55b64",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimRegion"
-              }
-            },
-            "Property": "Description"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "1b6632e0da49e917638a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures (Diagnostics)"
-              }
-            },
-            "Property": "GDP – YoY Δ % (Quarterly)"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

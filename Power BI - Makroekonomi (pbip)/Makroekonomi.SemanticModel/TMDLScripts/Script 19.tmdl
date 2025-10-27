@@ -1,0 +1,23 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'Pyramid – Female (tusental)' = ```
+				
+				  DIVIDE ( [Population – Persons (Annual, Female)], 1000 )
+				```
+			formatString: " #,0,"" tusen"";#,0,"" tusen"""
+			displayFolder: Sida 6 - Population & Demografi\Pyramid
+			lineageTag: 24a7fea3-d6b0-403e-a84a-6e2c814b8e44
+
+			annotation PBI_FormatHint = {"isCustom":true}
+
+		measure 'Pyramid – Male (tusental)' =
+				
+				- DIVIDE ( [Population – Persons (Annual, Male)], 1000 )
+			formatString: " #,0,"" tusen"";#,0,"" tusen"""
+			displayFolder: Sida 6 - Population & Demografi\Pyramid
+			lineageTag: dac668ad-b9b8-4047-bcbe-21bb866f23f0
+
+			annotation PBI_FormatHint = {"isCustom":true}
+

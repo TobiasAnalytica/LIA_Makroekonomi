@@ -1,0 +1,14 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'Debt – Distance to 60% (pp)' = ```
+				
+				VAR d = [Debt – % of GDP (At Date)]
+				RETURN IF ( ISBLANK(d), BLANK(), d - 0.60 )  -- positivt = över 60%
+				
+				```
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\KPI
+			lineageTag: 5ac4d4f0-13fd-4d6f-ac1b-42aa20378916
+

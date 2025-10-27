@@ -1,0 +1,48 @@
+table DimConfigGroup
+	lineageTag: 7b2cb6f8-1c24-4d83-b367-fff530868e92
+
+	column GroupSK
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c24c52e-ace0-49da-9d7e-5e4e8aa5a702
+		summarizeBy: none
+		sourceColumn: GroupSK
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupAK
+		dataType: int64
+		formatString: 0
+		lineageTag: 48c1defc-c2d8-4e89-a7a8-8daf4b6d4e08
+		summarizeBy: none
+		sourceColumn: GroupAK
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupName
+		dataType: string
+		lineageTag: 391577a6-0e36-4e5b-9b7c-a700e74352e9
+		summarizeBy: none
+		sourceColumn: GroupName
+
+		annotation SummarizationSetBy = Automatic
+
+	column GroupSort
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a5ee1aa-c8a8-410c-8ef8-3b3c52c76622
+		summarizeBy: none
+		sourceColumn: GroupSort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimConfigGroup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("127.0.0.1,1433"),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    Dim_ConfigGroup = LIA_DW_Gold{[Schema="Dim",Item="ConfigGroup"]}[Data]
+				in
+				    Dim_ConfigGroup
+

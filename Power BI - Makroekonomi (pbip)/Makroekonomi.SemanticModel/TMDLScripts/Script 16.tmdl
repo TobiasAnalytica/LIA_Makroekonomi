@@ -1,0 +1,51 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'MMR – Rate (EOP, pp)' = ```
+				
+				    CALCULATE ( [MMR – Rate (Monthly, pp)],
+				        LASTNONBLANK ( DimDate[Date], [MMR – Rate (Monthly, pp)] )
+				    )
+				```
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+			lineageTag: 257b09cc-8258-41b2-aed5-f31af31063a4
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'MMR – Rate (Monthly, pp)' = ```
+				
+				    MAX ( FactMoneyMarketInterestRates[Value] )
+				-- Grund (läs av värdet i aktuell kontext, 1 rad/månad/land antas)
+				```
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+			lineageTag: 9fcc3b01-addc-4c3a-aefe-6af69394c53a
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Rate – Short-term % (EOP)' =
+				
+				CALCULATE ( [Rate – Short-term % (Monthly/Quarterly)],
+				    LASTNONBLANK ( DimDate[Date], [Rate – Short-term % (Monthly/Quarterly)] ) )
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+			lineageTag: 10be191e-080d-49c9-a386-bfbc8276f11b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Rate – Short-term % (Monthly/Quarterly)' =
+				
+				AVERAGE ( FactMoneyMarketInterestRates[Value] )
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+			lineageTag: 2e60f3f7-fc96-4d3c-940e-0403568a2d15
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Rate – YoY Δ (pp)' =
+				
+				VAR Prev = CALCULATE ( [Rate – Short-term % (EOP)], DATEADD ( DimDate[Date], -1, YEAR ) )
+				RETURN [Rate – Short-term % (EOP)] - Prev
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+			lineageTag: 95680786-0d59-4482-a896-ec0d4ea1da08
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+

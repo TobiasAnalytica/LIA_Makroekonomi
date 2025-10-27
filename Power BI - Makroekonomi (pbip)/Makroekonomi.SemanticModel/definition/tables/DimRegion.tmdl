@@ -21,6 +21,7 @@ table DimRegion
 	column RegionAK
 		dataType: string
 		lineageTag: 97013237-a5ef-4b54-8e92-81f9ae810e2a
+		dataCategory: Country
 		summarizeBy: none
 		sourceColumn: RegionAK
 
@@ -29,6 +30,7 @@ table DimRegion
 	column Description
 		dataType: string
 		lineageTag: c3354a67-4494-48c1-948c-b031e2339de2
+		dataCategory: Country
 		summarizeBy: none
 		sourceColumn: Description
 
@@ -66,7 +68,7 @@ table DimRegion
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Dim_Region = LIA_DW_Gold{[Schema="Dim",Item="Region"]}[Data]
 				in

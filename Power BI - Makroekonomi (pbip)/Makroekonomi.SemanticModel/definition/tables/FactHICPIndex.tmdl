@@ -74,17 +74,17 @@ table FactHICPIndex
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 230c5a52-8ec1-454a-8e24-86a825adb27e
+		lineageTag: fb1707aa-a32b-4e2d-b0d2-0ef1931fd330
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: ca2dc507-a499-4694-ad4b-d4e125de2ecb
-			defaultHierarchy: LocalDateTable_a46234cd-4963-47e5-a4dc-f03f81d80e2e.'Date Hierarchy'
+			relationship: e9af2ed1-8a84-4378-93c0-db9c4226670e
+			defaultHierarchy: LocalDateTable_4ab255c0-afc6-4daf-937c-e6edf19844e0.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -92,7 +92,7 @@ table FactHICPIndex
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_HICPIndex = LIA_DW_Gold{[Schema="Fact",Item="HICPIndex"]}[Data]
 				in

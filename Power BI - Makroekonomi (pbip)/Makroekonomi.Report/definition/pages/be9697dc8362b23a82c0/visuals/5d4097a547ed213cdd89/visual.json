@@ -7,73 +7,28 @@
     "z": 13000,
     "height": 415,
     "width": 820,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visual": {
-    "visualType": "lineChart",
+    "visualType": "barChart",
     "query": {
       "queryState": {
         "Category": {
           "projections": [
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "DimDate"
                     }
                   },
-                  "Level": "Year"
+                  "Property": "Year"
                 }
               },
-              "queryRef": "DimDate.Date Hierarchy.Year",
-              "nativeQueryRef": "Date Hierarchy Year",
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "MonthNo"
-                }
-              },
-              "queryRef": "DimDate.Date Hierarchy.MonthNo",
-              "nativeQueryRef": "Date Hierarchy MonthNo",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "QuarterNo"
-                }
-              },
-              "queryRef": "DimDate.Date Hierarchy.QuarterNo",
-              "nativeQueryRef": "Date Hierarchy QuarterNo",
-              "active": false
             }
           ]
         },
@@ -87,12 +42,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Unemployment – Rate % YoY Δ (pp)"
+                  "Property": "Population – Persons (Annual, Male)"
                 }
               },
-              "queryRef": "FactUnemployment.Unemployment – Rate % YoY Δ (pp)",
-              "nativeQueryRef": "Årlig tillväxt",
-              "displayName": "Årlig tillväxt"
+              "queryRef": "_Measures (Diagnostics).Population – Persons (Annual, Male)",
+              "nativeQueryRef": "Antal män",
+              "displayName": "Antal män"
             },
             {
               "field": {
@@ -102,27 +57,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Unemployment – Rate % MoM Δ (pp)"
+                  "Property": "Population – Persons (Annual, Female)"
                 }
               },
-              "queryRef": "FactUnemployment.Unemployment – Rate % MoM Δ (pp)",
-              "nativeQueryRef": "Månadsförändring",
-              "displayName": "Månadsförändring"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Unemployment – YoY Δ (Persons)"
-                }
-              },
-              "queryRef": "FactUnemployment.Unemployment – YoY Δ (Persons)",
-              "nativeQueryRef": "Förändring mot föregående år",
-              "displayName": "Förändring mot föregående år"
+              "queryRef": "_Measures (Diagnostics).Population – Persons (Annual, Female)",
+              "nativeQueryRef": "Antal kvinnor",
+              "displayName": "Antal kvinnor"
             }
           ]
         },
@@ -136,11 +76,27 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Population – Persons (Annual)"
+                  "Property": "Pyramid – Male (tusental)"
                 }
               },
-              "queryRef": "FactPopulation.Population – Persons (Annual)",
-              "nativeQueryRef": "Population – Persons (Annual)"
+              "queryRef": "_Measures (Diagnostics).Pyramid – Male (k)",
+              "nativeQueryRef": "Män (tusental)",
+              "displayName": "Män (tusental)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures (Diagnostics)"
+                    }
+                  },
+                  "Property": "Pyramid – Female (tusental)"
+                }
+              },
+              "queryRef": "_Measures (Diagnostics).Pyramid – Female (k)",
+              "nativeQueryRef": "Kvinnor (tusental)",
+              "displayName": "Kvinnor (tusental)"
             }
           ]
         }
@@ -155,7 +111,7 @@
                     "Entity": "_Measures (Diagnostics)"
                   }
                 },
-                "Property": "Population – Persons (Annual)"
+                "Property": "Pyramid – Male (tusental)"
               }
             },
             "direction": "Descending"
@@ -287,6 +243,19 @@
             }
           }
         }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -303,7 +272,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arbetslöshet – Relation mellan antal personer och arbetslöshetsgrad'"
+                  "Value": "'Befolkning – Pyramid per år (Män vs Kvinnor)'"
                 }
               }
             }
@@ -382,7 +351,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Baserat på månatliga och kvartalsvisa data från Eurostat'"
+                  "Value": "'X: Män (vänster) och Kvinnor (höger), tusental personer | Y: År | Nivå: årlig (1 jan) '"
                 }
               }
             }

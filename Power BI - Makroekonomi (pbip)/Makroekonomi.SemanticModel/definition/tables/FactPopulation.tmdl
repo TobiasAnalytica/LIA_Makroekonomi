@@ -64,17 +64,17 @@ table FactPopulation
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: a60db943-4a08-4541-a7cf-06d4c78757a4
+		lineageTag: 82e9baaf-cadc-4b78-913c-69cb86c35f9e
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: fed37fae-8180-4a35-bab2-79eeb89cdbcc
-			defaultHierarchy: LocalDateTable_748048e8-a6d1-4268-acc8-e49a2f1f165f.'Date Hierarchy'
+			relationship: 690bb8de-9b6c-499a-9dae-79a5ee1c3aaf
+			defaultHierarchy: LocalDateTable_8317b7cf-cfe8-4469-9fbe-85e0f4822c3d.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -82,7 +82,7 @@ table FactPopulation
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_Population = LIA_DW_Gold{[Schema="Fact",Item="Population"]}[Data]
 				in

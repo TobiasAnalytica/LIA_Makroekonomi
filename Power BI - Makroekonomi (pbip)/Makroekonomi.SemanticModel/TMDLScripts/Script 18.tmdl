@@ -1,0 +1,23 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'LastDate – Population (Per Region)' =
+				
+				CALCULATE (
+				    MAX ( DimDate[Date] ),
+				    FILTER ( ALLSELECTED ( DimDate[Date] ), NOT ISBLANK ( [Population – Persons (EOP,Annual)] ) )
+				)
+				// Population EOP: senaste datum med värde
+			formatString: General Date
+			displayFolder: Sida 6 - Population & Demografi\Dates
+			lineageTag: d031116e-e8cf-4bbf-ae87-5e92ee0b843e
+
+		measure 'Latest Date Label – Population' = ```
+				
+				FORMAT ( [LastDate – Population (Per Region)], "yyyy" )
+				
+				```
+			displayFolder: Sida 6 - Population & Demografi\Dates
+			lineageTag: 83df61cd-7367-4587-a32e-c8d764fba933
+

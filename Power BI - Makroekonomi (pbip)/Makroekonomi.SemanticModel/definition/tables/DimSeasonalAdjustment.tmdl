@@ -30,7 +30,7 @@ table DimSeasonalAdjustment
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Dim_SeasonalAdjustment = LIA_DW_Gold{[Schema="Dim",Item="SeasonalAdjustment"]}[Data]
 				in

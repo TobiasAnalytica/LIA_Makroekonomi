@@ -1,0 +1,87 @@
+createOrReplace
+
+	table FactGovernmentDebt
+		lineageTag: 8b3b7d91-145b-4afb-8a1b-2837424b5935
+
+		column FactGovernmentDebtKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 433b00f8-49ed-4744-aedc-05600d67550c
+			summarizeBy: count
+			sourceColumn: FactGovernmentDebtKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column DateKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 53fa5721-50ff-4501-a32a-081f6c9edd64
+			summarizeBy: none
+			sourceColumn: DateKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column TimeFrequencyKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 11137e10-9f4e-4d00-a4a9-702cfbea776b
+			summarizeBy: none
+			sourceColumn: TimeFrequencyKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column RegionKey
+			dataType: int64
+			formatString: 0
+			lineageTag: cf75d802-1cf8-486f-86d2-8cf6e4cfe89d
+			summarizeBy: none
+			sourceColumn: RegionKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column Value
+			dataType: int64
+			formatString: 0
+			lineageTag: e1d829ad-a75d-432a-892a-1a80a45e8016
+			summarizeBy: sum
+			sourceColumn: Value
+
+			annotation SummarizationSetBy = Automatic
+
+		column FlagKey
+			dataType: int64
+			formatString: 0
+			lineageTag: fbc9b48a-a7ca-45b9-858f-ce475bb47a76
+			summarizeBy: none
+			sourceColumn: FlagKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column CreatedGoldAtUTC
+			dataType: dateTime
+			formatString: General Date
+			lineageTag: 4f684b6e-b8b7-49f8-ace8-7691f1e946eb
+			summarizeBy: none
+			sourceColumn: CreatedGoldAtUTC
+
+			variation Variation
+				isDefault
+				relationship: 38c688d7-df31-4313-beca-adee2218fa2f
+				defaultHierarchy: LocalDateTable_58a182cf-14c8-4c2f-9f79-ff5dcb60b13f.'Date Hierarchy'
+
+			annotation SummarizationSetBy = Automatic
+
+		partition FactGovernmentDebt = m
+			mode: import
+			source =
+					let
+					    Source = Sql.Databases("127.0.0.1,1433"),
+					    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+					    Fact_GovernmentDebt = LIA_DW_Gold{[Schema="Fact",Item="GovernmentDebt"]}[Data]
+					in
+					    Fact_GovernmentDebt
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Table
+

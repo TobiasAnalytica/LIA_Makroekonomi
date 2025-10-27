@@ -56,17 +56,17 @@ table FactMoneyMarketInterestRates
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 6b3f941e-977a-4113-a521-4fb3a4d76ef2
+		lineageTag: c011554d-280c-4393-8fba-612fdb94152c
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: f036961d-797d-4d64-90ee-ce74a7396637
-			defaultHierarchy: LocalDateTable_38526e3b-3be0-494e-95c6-b515a9499d7a.'Date Hierarchy'
+			relationship: 62f841dd-c983-45eb-b2ac-e7c9679bca87
+			defaultHierarchy: LocalDateTable_75a3c874-c66c-47d2-b350-ba653f1717d7.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -74,7 +74,7 @@ table FactMoneyMarketInterestRates
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_MoneyMarketInterestRates = LIA_DW_Gold{[Schema="Fact",Item="MoneyMarketInterestRates"]}[Data]
 				in

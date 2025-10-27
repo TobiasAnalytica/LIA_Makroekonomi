@@ -1,0 +1,198 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'Population – CAGR % (5Y)' =
+				
+				VAR EndVal   = [Population – Persons (Annual)]
+				VAR StartVal = CALCULATE ( [Population – Persons (Annual)], DATEADD ( DimDate[Date], -5, YEAR ) )
+				RETURN IF ( StartVal > 0, ( EndVal / StartVal ) ^ (1/5) - 1 )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 4c7eecde-ef08-4a69-ba6a-e024fd560549
+
+		measure 'Population – Female %' =
+				
+				DIVIDE ( [Population – Persons (Annual, Female)], [Population – Persons (Annual)] )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 53e5f162-3be4-4422-a5bf-2d0977469f66
+
+		measure 'Population – Female % (Latest Year)' =
+				
+				VAR d = [LastDate – Population (Per Region)]
+				RETURN
+				    CALCULATE ( [Population – Female %], TREATAS ( { d }, DimDate[Date] ) )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 81c34600-bdd9-4122-8137-d0ba08673c58
+
+		measure 'Population – Male %' =
+				
+				DIVIDE ( [Population – Persons (Annual, Male)], [Population – Persons (Annual)] )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: abbf2c27-ed8b-4e4b-b7ac-599513635bbb
+
+		measure 'Population – Male % (Latest Year)' =
+				
+				VAR d = [LastDate – Population (Per Region)]
+				RETURN
+				    CALCULATE ( [Population – Male %], TREATAS ( { d }, DimDate[Date] ) )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 1bbee991-9a5c-4f9f-8018-0dfa90ac561c
+
+		measure 'Population – Persons (Annual, Female)' =
+				
+				CALCULATE ( [Population – Persons (Annual)], KEEPFILTERS ( DimGender[GenderAK] = "F" ) )
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: fb3b07a5-8508-4222-bffb-b7dfe65f0e41
+
+		measure 'Population – Persons (Annual, In Year Context)' = ```
+				
+				VAR Y = SELECTEDVALUE ( DimDate[Year] )
+				RETURN
+				    IF ( ISBLANK(Y), BLANK(),
+				        CALCULATE ( [Population – Persons (Annual)], KEEPFILTERS ( VALUES ( DimDate[Year] ) ) )
+				    )
+				
+				```
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: af5745d0-008c-4f15-b37a-cebf68d1ed8f
+
+		measure 'Population – Persons (Annual, Male)' =
+				
+				CALCULATE ( [Population – Persons (Annual)], KEEPFILTERS ( DimGender[GenderAK] = "M" ) )
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 90f8f77a-a8d0-40aa-8a5a-9d12d8e3404c
+
+		measure 'Population – Persons (Annual)' =
+				
+				SUM ( FactPopulation[Value] )
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 07210c7d-f385-441e-80d4-c63ba2104610
+
+		measure 'Population – Persons (EOP, Latest Common Year)' = ```
+				
+				VAR d = [Latest Date – Common year(GDPpc+Unemp+Pop)]
+				RETURN CALCULATE ( [Population – Persons (EOP,Annual)], TREATAS ( { d }, DimDate[Date] ) )
+				
+				```
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 28df1364-9160-4c9d-bc1e-daefe1f11f34
+
+		measure 'Population – Persons (EOP,Annual)' =
+				
+				// End-of-period givet vald period
+				CALCULATE (
+				    [Population – Persons (Annual)],
+				    LASTNONBLANK ( DimDate[Date], [Population – Persons (Annual)] )
+				)
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: c3e0dd05-393e-49ae-b527-a84552060155
+
+		measure 'Population – Sex Balance Icon' =
+				
+				VAR r = [Population – Sex Ratio (M per 100 F)]
+				RETURN
+				    IF( ISBLANK(r), BLANK(),
+				        IF( r < 97, "♀︎", IF( r > 103, "♂︎", "≈" ) )
+				    )
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 9e48ab84-a830-4b94-bea2-640c81588e65
+
+		measure 'Population – Sex Ratio (M per 100 F)' =
+				
+				100 * DIVIDE ( [Population – Persons (Annual, Male)], [Population – Persons (Annual, Female)] )
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 0395cb7e-c057-4154-8635-4dae56072214
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Population – Share of Total % (At Latest)' =
+				
+				VAR d = [LastDate – Population (Per Region)]
+				VAR tot =
+				    CALCULATE([Population – Persons (Annual)], TREATAS({d}, DimDate[Date]), ALLSELECTED(DimRegion))
+				RETURN DIVIDE(
+				    CALCULATE([Population – Persons (Annual)], TREATAS({d}, DimDate[Date])),
+				    tot
+				)
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 22cabdde-a4b8-4c41-a19c-d197d1692fd7
+
+		measure 'Population – Total (At Latest)' = ```
+				
+				VAR d = [LastDate – Population (Per Region)]
+				RETURN
+				    IF (
+				        ISBLANK ( d ),
+				        BLANK(),
+				        CALCULATE ( [Population – Persons (Annual)], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+				
+				```
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 96ad46c2-19c0-4b15-9ca1-cd9f85cb5329
+
+		measure 'Population – Total (k, At Latest)' = ```
+				
+				DIVIDE([Population – Total (At Latest)], 1000)
+				
+				```
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 9f9ab64b-1540-4995-8348-790113eaf6ea
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Population – YoY Δ (k, At Latest)' = ```
+				
+				VAR d = [LastDate – Population (Per Region)]
+				RETURN DIVIDE(
+				    CALCULATE([Population – YoY Δ (Persons)], TREATAS({d}, DimDate[Date])),
+				    1000
+				)
+				
+				```
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: b7fbe057-1197-4124-bf1c-8728c8989436
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Population – YoY Δ (Persons)' =
+				
+				VAR Prev = CALCULATE ( [Population – Persons (Annual)], DATEADD ( DimDate[Date], -1, YEAR ) )
+				RETURN [Population – Persons (Annual)] - Prev
+			formatString: 0
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: ebb822ff-239c-4efb-b1f0-bf47c5bdc14f
+
+		measure 'Population – YoY Δ %' =
+				
+				VAR Prev = CALCULATE ( [Population – Persons (Annual)], DATEADD ( DimDate[Date], -1, YEAR ) )
+				RETURN DIVIDE ( [Population – Persons (Annual)] - Prev, Prev )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: 9f32bf6c-055a-47a0-b809-2bf598b86d1b
+
+		measure 'Population – YoY Δ % (At Latest)' =
+				
+				VAR d = [LastDate – Population (Per Region)]
+				RETURN
+				    IF (
+				        ISBLANK ( d ),
+				        BLANK(),
+				        CALCULATE ( [Population – YoY Δ %], TREATAS ( { d }, DimDate[Date] ) )
+				    )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 6 - Population & Demografi\Base
+			lineageTag: bac9317b-7ca6-45fd-b165-476c82ff05d2
+

@@ -55,17 +55,17 @@ table FactGovernmentDebt
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 556f0d4c-98d6-4dd3-9420-196863b51f62
+		lineageTag: 4f684b6e-b8b7-49f8-ace8-7691f1e946eb
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: 19e7ec20-1e5a-4580-b157-e0c2f9c2a552
-			defaultHierarchy: LocalDateTable_0a3b8d51-b220-4d79-91cd-1d85d44b5782.'Date Hierarchy'
+			relationship: 38c688d7-df31-4313-beca-adee2218fa2f
+			defaultHierarchy: LocalDateTable_58a182cf-14c8-4c2f-9f79-ff5dcb60b13f.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -73,7 +73,7 @@ table FactGovernmentDebt
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_GovernmentDebt = LIA_DW_Gold{[Schema="Fact",Item="GovernmentDebt"]}[Data]
 				in

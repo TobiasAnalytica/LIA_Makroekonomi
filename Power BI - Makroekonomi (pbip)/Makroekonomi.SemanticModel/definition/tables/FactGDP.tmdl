@@ -64,17 +64,17 @@ table FactGDP
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: c97dd408-5cb1-4e3d-aa5b-4423581babef
+		lineageTag: 204523b0-b292-4a95-97a8-030770e4d4ac
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: 211bfd71-ebe6-4c37-b0bc-f68a59d9454d
-			defaultHierarchy: LocalDateTable_2fdb79d6-a9fd-4cc7-a279-f7323dd9688c.'Date Hierarchy'
+			relationship: 26fe00bc-f5bb-4fef-a17a-17937c99f0cc
+			defaultHierarchy: LocalDateTable_7c40d045-a5c3-4d93-bb22-96e193380416.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -82,7 +82,7 @@ table FactGDP
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_GDP = LIA_DW_Gold{[Schema="Fact",Item="GDP"]}[Data]
 				in

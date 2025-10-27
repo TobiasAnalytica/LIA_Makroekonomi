@@ -1,0 +1,85 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'GDP – 4Q Sum (At Date – Strict)' =
+				
+				VAR d = MAX ( DimDate[Date] )
+				RETURN
+				    CALCULATE (
+				        [GDP – 4Q Sum (At Date)],
+				        KEEPFILTERS ( DimDate[Date] = d )
+				    )
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Scatter
+			lineageTag: aece33b8-2e95-4587-a00e-aeeee4d3c8a8
+
+		measure 'GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)' =
+				
+				VAR d = [Latest Date – Common (Debt+GDP – Respect Year)]
+				RETURN
+				    IF (
+				        ISBLANK ( d ),
+				        BLANK(),
+				        VAR curr =
+				            CALCULATE (
+				                [GDP – 4Q Sum (At Date – Strict)],
+				                TREATAS ( { d }, DimDate[Date] )
+				            )
+				        VAR prev =
+				            CALCULATE (
+				                [GDP – 4Q Sum (At Date – Strict)],
+				                TREATAS ( { EDATE ( d, -12 ) }, DimDate[Date] )
+				            )
+				        RETURN DIVIDE ( curr - prev, prev )
+				    )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Scatter
+			lineageTag: 13c6e4a8-15db-477e-aee8-de1a69b473f4
+
+		measure 'Scatter – Y Label (Respect Year)' = ```
+				
+				VAR ySelField = SELECTEDVALUE ( 'Y Axis'[Y Axis Fields] )   -- använd Fields-kolumnen
+				RETURN
+				    SWITCH (
+				        TRUE(),
+				        ySelField = NAMEOF ( '_Measures (Diagnostics)'[GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)] ), "BNP-tillväxt (YoY, 4Q)",
+				        ySelField = NAMEOF ( '_Measures (Diagnostics)'[Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)] ), "Arbetslöshet (%)",
+				        "—"
+				    )
+				
+				```
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Scatter
+			lineageTag: fab6a45d-80be-4202-9cae-26cb1dd54521
+
+		measure 'Unemployment – Rate % (At Date – Strict)' = ```
+				
+				VAR d = MAX ( DimDate[Date] )
+				RETURN
+				    CALCULATE (
+				        [Unemployment – Rate % (EOP)],     -- <— använd ditt befintliga procentsats-mått
+				        KEEPFILTERS ( DimDate[Date] = d )  -- lås till exakt datum
+				    )
+				
+				```
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Scatter
+			lineageTag: 0071ec5e-45ea-4418-ac74-b56f73a179ae
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)' =
+				
+				VAR d = [Latest Date – Common (Debt+Unemp – Respect Year)]
+				RETURN
+				    IF (
+				        ISBLANK ( d ),
+				        BLANK(),
+				        CALCULATE (
+				            [Unemployment – Rate % (At Date – Strict)],
+				            TREATAS ( { d }, DimDate[Date] )
+				        )
+				    )
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Scatter
+			lineageTag: d2931ec1-4def-4cec-b2df-100925fbaee5
+

@@ -1,0 +1,96 @@
+createOrReplace
+
+	table FactPopulation
+		lineageTag: 5e2eb75a-0e2b-47d6-88a6-ef5aefcdeb67
+
+		column FactPopulationKey
+			dataType: int64
+			formatString: 0
+			lineageTag: bc6588b1-dc26-44b0-a626-77c6835e568c
+			summarizeBy: count
+			sourceColumn: FactPopulationKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column DateKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 2874961c-11ca-4153-a645-ad7f6f3123f1
+			summarizeBy: none
+			sourceColumn: DateKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column TimeFrequencyKey
+			dataType: int64
+			formatString: 0
+			lineageTag: d2096479-88d7-4c52-947d-eb2f0cb3f2d6
+			summarizeBy: none
+			sourceColumn: TimeFrequencyKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column GenderKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 0d9c6e30-bddf-4222-90f6-a976be57e51f
+			summarizeBy: none
+			sourceColumn: GenderKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column RegionKey
+			dataType: int64
+			formatString: 0
+			lineageTag: abfbcfd0-d8b3-42fd-aea2-4f7c3ea6e4ec
+			summarizeBy: none
+			sourceColumn: RegionKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column Value
+			dataType: int64
+			formatString: 0
+			lineageTag: 95895ad9-5ea0-4739-9d50-db4d22783639
+			summarizeBy: sum
+			sourceColumn: Value
+
+			annotation SummarizationSetBy = Automatic
+
+		column FlagKey
+			dataType: int64
+			formatString: 0
+			lineageTag: 88a34bee-ac57-4f15-a6be-7c932722ad7f
+			summarizeBy: none
+			sourceColumn: FlagKey
+
+			annotation SummarizationSetBy = Automatic
+
+		column CreatedGoldAtUTC
+			dataType: dateTime
+			formatString: General Date
+			lineageTag: 82e9baaf-cadc-4b78-913c-69cb86c35f9e
+			summarizeBy: none
+			sourceColumn: CreatedGoldAtUTC
+
+			variation Variation
+				isDefault
+				relationship: 690bb8de-9b6c-499a-9dae-79a5ee1c3aaf
+				defaultHierarchy: LocalDateTable_8317b7cf-cfe8-4469-9fbe-85e0f4822c3d.'Date Hierarchy'
+
+			annotation SummarizationSetBy = Automatic
+
+		partition FactPopulation = m
+			mode: import
+			source =
+					let
+					    Source = Sql.Databases("127.0.0.1,1433"),
+					    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+					    Fact_Population = LIA_DW_Gold{[Schema="Fact",Item="Population"]}[Data]
+					in
+					    Fact_Population
+
+		annotation PBI_NavigationStepName = Navigation
+
+		annotation PBI_ResultType = Table
+

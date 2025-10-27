@@ -1,0 +1,31 @@
+table 'Bridge RegionGroup'
+	lineageTag: 58761956-2536-4396-ad6b-d4922f05ae0b
+
+	column GroupKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e58ffc4a-a9ae-478c-a6ae-2d84fefe079d
+		summarizeBy: none
+		sourceColumn: GroupKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegionKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fb0111a3-8e8a-4526-9759-b7c70f68fdde
+		summarizeBy: none
+		sourceColumn: RegionKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Bridge RegionGroup' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("127.0.0.1,1433"),
+				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
+				    Bridge_RegionGroup = LIA_DW_Gold{[Schema="Bridge",Item="RegionGroup"]}[Data]
+				in
+				    Bridge_RegionGroup
+

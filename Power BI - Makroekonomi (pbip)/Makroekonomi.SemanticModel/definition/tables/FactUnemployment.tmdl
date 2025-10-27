@@ -73,17 +73,17 @@ table FactUnemployment
 
 		annotation SummarizationSetBy = Automatic
 
-	column CreatedGoldAt
+	column CreatedGoldAtUTC
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: c502b151-ed9b-4a31-8143-ddf53f85d7b3
+		lineageTag: 8c98f688-6477-445d-809e-403a77048cc1
 		summarizeBy: none
-		sourceColumn: CreatedGoldAt
+		sourceColumn: CreatedGoldAtUTC
 
 		variation Variation
 			isDefault
-			relationship: 53d4360c-6e6b-4ad0-b180-acc04e38ab77
-			defaultHierarchy: LocalDateTable_0b7434a5-9b4c-40f9-a488-afe50b20876c.'Date Hierarchy'
+			relationship: 8c0c1139-30a4-4ff3-8914-ee6743f7dae4
+			defaultHierarchy: LocalDateTable_a78e61f4-51e2-4d29-9bc7-2c723684ff18.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -91,7 +91,7 @@ table FactUnemployment
 		mode: import
 		source =
 				let
-				    Source = Sql.Databases("."),
+				    Source = Sql.Databases("127.0.0.1,1433"),
 				    LIA_DW_Gold = Source{[Name="LIA_DW_Gold"]}[Data],
 				    Fact_Unemployment = LIA_DW_Gold{[Schema="Fact",Item="Unemployment"]}[Data]
 				in

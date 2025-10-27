@@ -1,0 +1,57 @@
+table Model
+	lineageTag: 9bd4ed12-d597-4154-9cb6-c5255354b74c
+
+	column Label
+		dataType: string
+		lineageTag: 2056efeb-531d-46fe-8674-177c1971dece
+		summarizeBy: none
+		sourceColumn: Label
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastRefreshLocal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 14885868-e477-4092-ab87-fff7e022d844
+		summarizeBy: none
+		sourceColumn: LastRefreshLocal
+
+		variation Variation
+			isDefault
+			relationship: 6c26ec42-7419-4823-a022-68ef39c03add
+			defaultHierarchy: LocalDateTable_d1891af2-f223-4af2-8edf-3a103533f59f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastRefreshUTC
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f122c666-6946-4953-aece-3c3d77764f8b
+		summarizeBy: none
+		sourceColumn: LastRefreshUTC
+
+		variation Variation
+			isDefault
+			relationship: 971985cb-40c0-4a88-a388-df58b8b1ea48
+			defaultHierarchy: LocalDateTable_0040825c-9f46-4d40-bf9e-e2fcf51a2bc1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Model = m
+		mode: import
+		source =
+				let
+				    Source =
+				        #table(
+				            type table [ Label = text, LastRefreshUTC = datetimezone ],
+				            { { "Dataset", DateTimeZone.UtcNow() } }
+				        ),
+				    #"Invoked Custom Function" = Table.AddColumn(Source, "LastRefreshLocal", each fnUtcToStockholm([LastRefreshUTC])),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Invoked Custom Function",{{"LastRefreshLocal", type datetimezone}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

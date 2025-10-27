@@ -1,0 +1,97 @@
+createOrReplace
+
+	ref table '_Measures (Diagnostics)'
+
+		measure 'Debt – % of GDP (At Date – Strict)' = ```
+				
+				VAR d = MAX ( DimDate[Date] )
+				VAR debtQ =
+				    CALCULATE (
+				        SUM ( FactGovernmentDebt[Value] ),
+				        KEEPFILTERS ( DimDate[Date] = d )      -- strikt: bara just d
+				    )
+				VAR gdp4Q =
+				    CALCULATE (
+				        [GDP – 4Q Sum (At Date)],
+				        KEEPFILTERS ( DimDate[Date] = d )      -- strikt: bara just d
+				    )
+				RETURN DIVIDE ( debtQ, gdp4Q )
+				
+				```
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: bfa8fc4c-16e9-438f-8a7d-cf710bb3f50b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+		measure 'Debt – % of GDP (At Date)' = ```
+				
+				VAR debt = [Debt – Amount (EOP,Quarter)]
+				VAR gdp4 = [GDP – 4Q Sum (At Date)]
+				RETURN DIVIDE ( debt, gdp4 )
+				-- Statsskuld som % av BNP, beräknad på aktuell datumkontext
+				-- (BNP via 4Q-summa: robust års-BNP) 
+				```
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 4951761e-4fc2-407a-a308-d2ab0d1404c3
+
+		measure 'Debt – % of GDP (Latest Common – Respect Year)' = ```
+				
+				VAR d = [Latest Date – Common (Debt+GDP – Respect Year)]
+				RETURN
+				    IF (
+				        ISBLANK ( d ),
+				        BLANK(),
+				        CALCULATE (
+				            [Debt – % of GDP (At Date – Strict)],
+				            TREATAS ( { d }, DimDate[Date] )
+				        )
+				    )
+				
+				```
+			formatString: 0.00\ %;-0.00\ %;0.00\ %
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 0d1643a7-6480-4bc3-a515-cb69006c894a
+
+		measure 'Debt – Amount (EOP,Quarter)' = ```
+				
+				    CALCULATE ( [Debt – Amount (Quarterly)],
+				        LASTNONBLANK ( DimDate[Date], [Debt – Amount (Quarterly)] )
+				    )
+				```
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 848aa371-1155-4d99-ab73-13c29cf1a265
+
+		measure 'Debt – Amount (Quarterly)' = ```
+				
+				    SUM ( FactGovernmentDebt[Value] )
+				```
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 48a6d85b-3c1b-4c16-9271-17db09823474
+
+		measure 'Debt – Value (EOP at Latest Common)' = ```
+				
+				CALCULATE ( [Debt – Value (EOP)], TREATAS ( { [Latest Date – Common (Debt+GDP)] }, DimDate[Date] ) )
+				
+				```
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 7e25abf7-5a87-4da4-957e-58ee683ec23c
+
+		measure 'Debt – Value (EOP)' =
+				
+				CALCULATE ( [Debt – Value (Quarterly)],
+				    LASTNONBLANK ( DimDate[Date], [Debt – Value (Quarterly)] ) )
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: 8d2f4895-f1a1-4036-a258-628e9d3d9f04
+
+		measure 'Debt – Value (Quarterly)' =
+				
+				SUM ( FactGovernmentDebt[Value] )
+			formatString: 0
+			displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+			lineageTag: fee9db7f-f5e4-463f-a25a-f5a20217cdab
+
