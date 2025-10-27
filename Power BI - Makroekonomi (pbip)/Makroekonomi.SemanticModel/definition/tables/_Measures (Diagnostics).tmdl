@@ -1425,52 +1425,56 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\Dates
 		lineageTag: e3b54c68-4d5d-455c-9f31-f6236311c645
 
-	measure 'Inflation – YoY % (BG Color · Target 2%)' =
+	measure 'Inflation – YoY % (BG Color · Target 2%)' = ```
 			
-			VAR v = [Inflation – YoY % (Data only)]  -- decimal, t.ex. 0.024 = 2,4%
-			VAR target = 0.02
-			VAR tol    = 0.01        -- ±1% runt målet
+			VAR v      = [Inflation – YoY % (Data only)]   -- decimal (t.ex. 0.024 = 2,4 %)
+			VAR target = [Target – As Decimal]  -- dynamiskt mål från HICPTarget
+			VAR tol    = 0.01                               -- ±1 %-enhet runt målet
 			RETURN
-			SWITCH (
+			SWITCH(
 			    TRUE(),
 			    ISBLANK(v), BLANK(),
 			
-			    -- Deflation / mycket låg inflation
-			    v <= -0.02, "#1b4f72",   -- ≤ -2%: djupblå
-			    v <   0.00, "#2e86c1",   -- -2…0%: blå
-			    v < (target - tol), "#a9cce3", -- 0…1%: ljusblå (för lågt)
+			    -- Deflation / mycket låg inflation (absoluta band)
+			    v <= -0.02,           "#1b4f72",   -- ≤ -2%: djupblå
+			    v <   0.00,           "#2e86c1",   -- -2…0%: blå
+			    v < (target - tol),   "#a9cce3",   -- under målband: ljusblå
 			
-			    -- Målband (GRÖNT)
-			    v <= (target + tol), "#27ae60",  -- 1…3%: grönt
+			    -- Målband (GRÖNT) – centrerat på aktuellt mål
+			    v <= (target + tol),  "#27ae60",   -- inom [target−1%, target+1%]
 			
-			    -- Överhettning
-			    v <= 0.05, "#f39c12",    -- 3…5%: bärnsten
-			    v <= 0.08, "#e74c3c",    -- 5…8%: rött
-			             "#7b241c"       -- >8%: mörkrött
+			    -- Överhettning (absoluta band)
+			    v <= 0.05,            "#f39c12",   -- 3…5%: bärnsten
+			    v <= 0.08,            "#e74c3c",   -- 5…8%: rött
+			                          "#7b241c"    -- >8%: mörkrött
 			)
-			-- Bakgrundsfärg för YoY-heatmap: mål = 2%, grönt i [1%, 3%]
+			
+			```
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
 		lineageTag: 22e964a3-19ef-4291-9f3c-ea4428d21f7b
 
-	measure 'Inflation – YoY % (Font Color · Target 2%)' =
+	measure 'Inflation – YoY % (Font Color · Target 2%)' = ```
 			
-			VAR v = [Inflation – YoY % (Data only)]  -- decimal, t.ex. 0.024 = 2,4 %
+			VAR v      = [Inflation – YoY % (Data only)]
+			VAR target = [Target – As Decimal]
+			VAR tol    = 0.01
 			RETURN
 			IF (
-			    ISBLANK ( v ),
+			    ISBLANK(v),
 			    BLANK(),
-			    SWITCH (
+			    SWITCH(
 			        TRUE(),
-			        v <= -0.02, "#ffffff",   -- djupblå bakgrund → vit text
-			        v <   0.00, "#ffffff",   -- blå bakgrund → vit text
-			        v <   0.01, "#000000",   -- ljusblå → svart text
-			        v <=  0.03, "#000000",   -- GRÖN målzon (1–3 %) → svart text
-			        v <=  0.05, "#000000",   -- bärnsten (3–5 %) → svart text
-			        v <=  0.08, "#ffffff",   -- röd (5–8 %) → vit text
-			                  "#ffffff"      -- mörkröd (>8 %) → vit text
+			        v <= -0.02,          "#ffffff",  -- djupblå → vit
+			        v <   0.00,          "#ffffff",  -- blå → vit
+			        v < (target - tol),  "#000000",  -- ljusblå → svart
+			        v <= (target + tol), "#000000",  -- grönt målband → svart
+			        v <= 0.05,           "#000000",  -- bärnsten → svart
+			        v <= 0.08,           "#ffffff",  -- rött → vit
+			                              "#ffffff"   -- mörkrött → vit
 			    )
 			)
-			-- Fontfärg för YoY-heatmap anpassad till Target 2% färgbanden
+			
+			```
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
 		lineageTag: 1de7f410-e981-4d90-a4ae-5b0461a1ee36
 
@@ -2150,6 +2154,39 @@ table '_Measures (Diagnostics)'
 			```
 		displayFolder: Sida 1 - Översikt\Status
 		lineageTag: 1a8daf30-7cf0-406a-bbc0-717838e675bd
+
+	measure 'Inflation – Target % (At Date)' = ```
+			
+			VAR d   = MAX( DimDate[Date] )
+			VAR rSK = SELECTEDVALUE( DimRegion[RegionSK] )        -- justera kolumnnamn vid behov
+			VAR tgt =
+			    CALCULATE (
+			        MAX ( FactHICPTarget[TargetPercent] ),
+			        FILTER (
+			            ALL ( FactHICPTarget ),
+			            FactHICPTarget[RegionKey] = rSK
+			            && FactHICPTarget[FromDate] <= d
+			            && d <= FactHICPTarget[ToDate]
+			        )
+			    )
+			RETURN COALESCE ( tgt, 0.02 )  -- fallback 2% om inget mål är registrerat
+			
+			```
+		formatString: 0.00
+		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		lineageTag: a34a6217-e0ab-47a3-8bee-4d831ad6008b
+
+	measure 'Target – As Decimal' = ```
+			
+			VAR tRaw = [Inflation – Target % (At Date)]   -- kan vara 2 eller 50 beroende på tabell
+			RETURN IF ( tRaw >= 1, tRaw / 100.0, tRaw )   -- 2  → 0,02   | 50 → 0,50
+			-- Hjälpfunktion i måttet: mål i decimal (0–1)
+			
+			```
+		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		lineageTag: a15e40f1-d150-4eb6-8db1-120275cb16a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Value
 		formatString: 0
