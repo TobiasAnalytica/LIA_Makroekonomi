@@ -4,10 +4,10 @@
   "position": {
     "x": 247,
     "y": 207,
-    "z": 14000,
+    "z": 12000,
     "height": 415,
     "width": 820,
-    "tabOrder": 9000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -34,46 +34,6 @@
               "queryRef": "DimDate.Date Hierarchy.Year",
               "nativeQueryRef": "Date Hierarchy Year",
               "active": true
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "MonthNo"
-                }
-              },
-              "queryRef": "DimDate.Date Hierarchy.MonthNo",
-              "nativeQueryRef": "Date Hierarchy MonthNo",
-              "active": false
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "QuarterNo"
-                }
-              },
-              "queryRef": "DimDate.Date Hierarchy.QuarterNo",
-              "nativeQueryRef": "Date Hierarchy QuarterNo",
-              "active": false
             }
           ]
         },
@@ -136,12 +96,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Unemployment – Persons (Safe)"
+                  "Property": "Unemployment – % of Population (At Date)"
                 }
               },
-              "queryRef": "FactUnemployment.Unemployment – Persons (Safe)",
-              "nativeQueryRef": "Antal arbetslösa personer",
-              "displayName": "Antal arbetslösa personer"
+              "queryRef": "_Measures (Diagnostics).Unemployment – % of Population (At Date)",
+              "nativeQueryRef": "Arbetslöshetsgrad -andel av befolkning",
+              "displayName": "Arbetslöshetsgrad -andel av befolkning"
             }
           ]
         },
@@ -155,10 +115,10 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Employment – Rate % (LF, At Date)"
+                  "Property": "Unemployment – Rate % (EOP)"
                 }
               },
-              "queryRef": "FactEmployment.Employment – Rate % (LF, At Date)",
+              "queryRef": "_Measures (Diagnostics).Unemployment – Rate % (EOP)",
               "nativeQueryRef": "Arbetslöshetsgrad",
               "displayName": "Arbetslöshetsgrad"
             }
@@ -175,7 +135,7 @@
                     "Entity": "_Measures (Diagnostics)"
                   }
                 },
-                "Property": "Unemployment – Persons (Safe)"
+                "Property": "Unemployment – % of Population (At Date)"
               }
             },
             "direction": "Descending"
@@ -276,7 +236,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "10D"
                 }
               }
             },
@@ -304,6 +264,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "2009D"
+                }
+              }
             }
           }
         }
@@ -323,7 +290,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arbetslöshet | Relation mellan antal personer och arbetslöshetsgrad'"
+                  "Value": "'Arbetslöshetsgrad'"
                 }
               }
             }
@@ -395,7 +362,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -403,6 +370,19 @@
               "expr": {
                 "Literal": {
                   "Value": "'Baserat på månatliga och kvartalsvisa data'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'b47c0ce201e0fdd8a067'"
                 }
               }
             }

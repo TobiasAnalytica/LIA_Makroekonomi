@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackagesSilver"
   DTS:PackageType="5"
-  DTS:VersionBuild="42"
-  DTS:VersionGUID="{01E7D2A5-680D-47A6-9BB9-FF58EB400623}">
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{6429C7A6-3606-4B85-8340-8FFFB53148B0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -61,7 +61,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="RunId">
       <DTS:VariableValue
-        DTS:DataType="8">{A3E4D678-CC4A-4AC4-B708-4A529DCCDFBA}</DTS:VariableValue>
+        DTS:DataType="8">{8532FD86-026B-4837-A0A0-EEBDB08856FE}</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -85,6 +85,81 @@
           </ParameterAssignment>
         </ExecutePackageTask>
       </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container - Exel Source"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{E5D87D6B-05AB-4C5D-8516-DA68C88E4889}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container - Exel Source">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Exel Source\PKG_BridgeRegionGroup"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{8DA82F39-C11F-4DC7-AE82-30B9AE0ADC66}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_BridgeRegionGroup"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Bridge.RegionGroup.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Exel Source\PKG_DimConfigGroup"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{3E4E5F1B-5982-4063-A328-30088DC6C864}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_DimConfigGroup"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Dim.ConfigGroup.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container - Exel Source\PKG_FactHICPTarget"
+          DTS:CreationName="Microsoft.ExecutePackageTask"
+          DTS:Description="Execute Package Task"
+          DTS:DTSID="{16B6CE4C-BC22-4E21-8E92-4515C4851A17}"
+          DTS:ExecutableType="Microsoft.ExecutePackageTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PKG_FactHICPTarget"
+          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ExecutePackageTask>
+              <UseProjectReference>True</UseProjectReference>
+              <PackageName>Fact.HICPTarget.dtsx</PackageName>
+              <ParameterAssignment>
+                <ParameterName>p_RunId</ParameterName>
+                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
+              </ParameterAssignment>
+            </ExecutePackageTask>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Sequence Container - Load Silver Dim"
@@ -319,48 +394,6 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Execute Package Task"
-          DTS:DTSID="{8DA82F39-C11F-4DC7-AE82-30B9AE0ADC66}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="PKG_BridgeRegionGroup"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Bridge.RegionGroup.dtsx</PackageName>
-              <ParameterAssignment>
-                <ParameterName>p_RunId</ParameterName>
-                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
-              </ParameterAssignment>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_DimConfigGroup"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Execute Package Task"
-          DTS:DTSID="{3E4E5F1B-5982-4063-A328-30088DC6C864}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="PKG_DimConfigGroup"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Dim.ConfigGroup.dtsx</PackageName>
-              <ParameterAssignment>
-                <ParameterName>p_RunId</ParameterName>
-                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
-              </ParameterAssignment>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
           DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_FactEmployment"
           DTS:CreationName="Microsoft.ExecutePackageTask"
           DTS:Description="Execute Package Task"
@@ -437,27 +470,6 @@
             <ExecutePackageTask>
               <UseProjectReference>True</UseProjectReference>
               <PackageName>Fact.HICPIndex.dtsx</PackageName>
-              <ParameterAssignment>
-                <ParameterName>p_RunId</ParameterName>
-                <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
-              </ParameterAssignment>
-            </ExecutePackageTask>
-          </DTS:ObjectData>
-        </DTS:Executable>
-        <DTS:Executable
-          DTS:refId="Package\Sequence Container - Load Silver Fact\PKG_FactHICPTarget"
-          DTS:CreationName="Microsoft.ExecutePackageTask"
-          DTS:Description="Execute Package Task"
-          DTS:DTSID="{16B6CE4C-BC22-4E21-8E92-4515C4851A17}"
-          DTS:ExecutableType="Microsoft.ExecutePackageTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="PKG_FactHICPTarget"
-          DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <ExecutePackageTask>
-              <UseProjectReference>True</UseProjectReference>
-              <PackageName>Fact.HICPTarget.dtsx</PackageName>
               <ParameterAssignment>
                 <ParameterName>p_RunId</ParameterName>
                 <BindedVariableOrParameterName>User::RunId</BindedVariableOrParameterName>
@@ -569,6 +581,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Sequence Container - Load Silver Fact" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{55DE1C91-C43E-4F2B-8F8B-3CEDFF555036}"
+      DTS:From="Package\Sequence Container - Load Silver Dim"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sequence Container - Exel Source" />
   </DTS:PrecedenceConstraints>
   <DTS:EventHandlers>
     <DTS:EventHandler
@@ -878,7 +898,7 @@ WHERE NOT EXISTS (
         <NodeLayout
           Size="197,42"
           Id="Package\PKG__CreateTablesSilver"
-          TopLeft="1592.5,5.49999999999977" />
+          TopLeft="1279,5.49999999999977" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimAgeClassEmp"
@@ -892,105 +912,93 @@ WHERE NOT EXISTS (
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimConsumptionCategory"
           TopLeft="579.5,5.49999999999989" />
         <NodeLayout
+          Size="151,42"
+          Id="Package\Sequence Container - Load Silver Dim\PKG_DimDate"
+          TopLeft="866,5.49999999999989" />
+        <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimFlags"
-          TopLeft="866.5,5.49999999999989" />
+          TopLeft="1077.5,5.49999999999989" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimGender"
-          TopLeft="1153.5,5.49999999999989" />
+          TopLeft="1364.5,5.49999999999977" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimRegion"
-          TopLeft="1440.5,5.49999999999977" />
+          TopLeft="1651.5,5.49999999999977" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimSeasonalAdjustment"
-          TopLeft="1727.5,5.49999999999977" />
+          TopLeft="1938.5,5.49999999999977" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimTimeFrequency"
-          TopLeft="2014.5,5.49999999999977" />
+          TopLeft="2225.5,5.49999999999966" />
         <NodeLayout
           Size="226,42"
           Id="Package\Sequence Container - Load Silver Dim\PKG_DimUnit"
-          TopLeft="2301.5,5.49999999999966" />
-        <NodeLayout
-          Size="151,42"
-          Id="Package\Sequence Container - Load Silver Dim\PKG_DimDate"
-          TopLeft="2588,5.49999999999966" />
+          TopLeft="2512.5,5.49999999999966" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="2744,102"
           Size="2744,146"
           Id="Package\Sequence Container - Load Silver Dim"
-          TopLeft="319,313.5" />
-        <NodeLayout
-          Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_BridgeRegionGroup"
-          TopLeft="5.5,5.5" />
-        <NodeLayout
-          Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_DimConfigGroup"
-          TopLeft="316.5,5.5" />
+          TopLeft="5.50000000000023,313.5" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactEmployment"
-          TopLeft="627.5,5.5" />
+          TopLeft="5.5,5.5" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactGDP"
-          TopLeft="938.5,5.49999999999989" />
+          TopLeft="316.5,5.5" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactGovernmentDebt"
-          TopLeft="1249.5,5.49999999999989" />
+          TopLeft="627.5,5.5" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactHICPIndex"
-          TopLeft="1560.5,5.49999999999989" />
-        <NodeLayout
-          Size="250,42"
-          Id="Package\Sequence Container - Load Silver Fact\PKG_FactHICPTarget"
-          TopLeft="1871.5,5.49999999999977" />
+          TopLeft="938.5,5.49999999999989" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactJobVacancies"
-          TopLeft="2182.5,5.49999999999977" />
+          TopLeft="1249.5,5.49999999999989" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactMoneyMarketInterestRates"
-          TopLeft="2493.5,5.49999999999977" />
+          TopLeft="1560.5,5.49999999999989" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactPopulation"
-          TopLeft="2804.5,5.49999999999966" />
+          TopLeft="1871.5,5.49999999999977" />
         <NodeLayout
           Size="250,42"
           Id="Package\Sequence Container - Load Silver Fact\PKG_FactUnemployment"
-          TopLeft="3115.5,5.49999999999966" />
+          TopLeft="2182.5,5.49999999999977" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="3371,102"
-          Size="3371,146"
+          PanelSize="2438,102"
+          Size="2438,146"
           Id="Package\Sequence Container - Load Silver Fact"
-          TopLeft="5.50000000000023,107.5" />
+          TopLeft="158.5,107.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="1691,253.5">
+          TopLeft="1377.5,253.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.0000000000005"
+              EndConnector="0,60.0000000000003"
               Start="0,0"
-              End="0,52.5000000000005">
+              End="0,52.5000000000003">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.5000000000005" />
+                    End="0,52.5000000000003" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1001,7 +1009,48 @@ WHERE NOT EXISTS (
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="1691,47.4999999999998">
+          TopLeft="1377.5,47.4999999999998">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Sequence Container - Exel Source\PKG_BridgeRegionGroup"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Sequence Container - Exel Source\PKG_DimConfigGroup"
+          TopLeft="316.5,5.49999999999989" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Sequence Container - Exel Source\PKG_FactHICPTarget"
+          TopLeft="627.5,5.49999999999989" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="883,102"
+          Size="883,146"
+          Id="Package\Sequence Container - Exel Source"
+          TopLeft="936,519.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="1377.5,459.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

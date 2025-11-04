@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "Run.JobName",
-              "nativeQueryRef": "JobName",
-              "active": true
+              "nativeQueryRef": "Jobbnamn",
+              "active": true,
+              "displayName": "Jobbnamn"
             },
             {
               "field": {
@@ -61,7 +62,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Latest Run Date (Per Job)",
-              "nativeQueryRef": "Latest Run Date (Per Job)"
+              "nativeQueryRef": "Senaste Run datum",
+              "displayName": "Senaste Run datum"
             },
             {
               "field": {
@@ -75,7 +77,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Latest Message (Per Job)",
-              "nativeQueryRef": "Latest Message (Per Job)"
+              "nativeQueryRef": "Meddelande",
+              "displayName": "Meddelande"
             },
             {
               "field": {
@@ -89,7 +92,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Errors – Count (Selected)",
-              "nativeQueryRef": "Errors – Count (Selected)"
+              "nativeQueryRef": "Errors",
+              "displayName": "Errors"
             },
             {
               "field": {
@@ -103,7 +107,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Runs – Duration (min)",
-              "nativeQueryRef": "Runs – Duration (min)"
+              "nativeQueryRef": "Körtid (min)",
+              "displayName": "Körtid (min)"
             }
           ]
         }
@@ -169,6 +174,107 @@
               }
             }
           }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "_Measures (Diagnostics)"
+                                  }
+                                },
+                                "Property": "Latest Status (Per Job)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'F'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleLow'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "_Measures (Diagnostics)"
+                                  }
+                                },
+                                "Property": "Latest Status (Per Job)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "'S'"
+                              }
+                            }
+                          },
+                          "Annotations": {
+                            "PowerBI.SQExprEvaluationKind": 1,
+                            "PowerBI.SQExprTextOperatorOption": 2
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Measures (Diagnostics).Latest Run Date (Per Job)"
+          }
         }
       ],
       "general": [
@@ -203,7 +309,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "86.8328228345478D"
+                  "Value": "110.47400268932054D"
                 }
               }
             }

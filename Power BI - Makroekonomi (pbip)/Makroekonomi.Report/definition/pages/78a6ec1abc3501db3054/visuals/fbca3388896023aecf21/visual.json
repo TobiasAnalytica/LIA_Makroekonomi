@@ -4,10 +4,10 @@
   "position": {
     "x": 1087,
     "y": 651,
-    "z": 14000,
+    "z": 12000,
     "height": 415,
     "width": 820,
-    "tabOrder": 9000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -48,55 +48,6 @@
               "queryRef": "FactGDP.Bubble Size – Population (Latest Common)",
               "nativeQueryRef": "Befolkning (EOP, årlig)",
               "displayName": "Befolkning (EOP, årlig)"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "GDP – Per Capita YoY Δ % (4Q Sum)"
-                }
-              },
-              "queryRef": "FactGDP.GDP – Per Capita YoY Δ % (4Q Sum)",
-              "nativeQueryRef": "BNP per capita YoY (4Q)",
-              "displayName": "BNP per capita YoY (4Q)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Unemployment – Rate % MoM Δ (pp)"
-                }
-              },
-              "queryRef": "FactUnemployment.Unemployment – Rate % MoM Δ (pp)",
-              "nativeQueryRef": "Arbetslöshet MoM (pp)",
-              "displayName": "Arbetslöshet MoM (pp)"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Unemployment – Rate YoY Δ (pp)"
-                }
-              },
-              "queryRef": "FactUnemployment.Unemployment – Rate % YoY Δ (pp)",
-              "nativeQueryRef": "Arbetslöshet YoY (pp)",
-              "displayName": "Arbetslöshet YoY (pp)"
             }
           ]
         },
@@ -366,11 +317,78 @@
                   "Value": "'Canvas'"
                 }
               }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ad0f8e41584c89ad52d8'"
+                }
+              }
             }
           }
         }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "54fe85fa2cbe118205ce",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimRegion"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a972d62be49261eb10ee",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Bubble Size – Population (Latest Common)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a5e39729bb2f4a086686",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "GDP – Per Capita (Latest Common)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "36452460410377739cfa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Unemployment – Rate % (EOP, Latest Common)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

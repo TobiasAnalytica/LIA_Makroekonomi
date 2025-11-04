@@ -4,10 +4,10 @@
   "position": {
     "x": 247,
     "y": 207,
-    "z": 12000,
+    "z": 10000,
     "height": 415,
     "width": 820,
-    "tabOrder": 8000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "lineChart",
@@ -71,7 +71,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Unemployment – Rate % (EOP)",
-              "nativeQueryRef": "Unemployment – Rate % (EOP)"
+              "nativeQueryRef": "Arbetslöshetsgrad",
+              "displayName": "Arbetslöshetsgrad"
             }
           ]
         },
@@ -89,7 +90,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Inflation – YoY % (Data only)",
-              "nativeQueryRef": "Inflation – YoY % (Data only)"
+              "nativeQueryRef": "Inflation - årlig",
+              "displayName": "Inflation - årlig"
             }
           ]
         }
@@ -102,7 +104,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -187,7 +189,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "10D"
                 }
               }
             },
@@ -215,6 +217,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "2009D"
+                }
+              }
             }
           }
         }
@@ -233,6 +242,13 @@
               "expr": {
                 "Literal": {
                   "Value": "'Arbetslöshet'"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -267,7 +283,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arbetslöshet vs inflation över tid (valt land)'"
+                  "Value": "'Arbetslöshetsgrad vs inflation över tid'"
                 }
               }
             }
@@ -346,7 +362,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Arbetslöshet: % | Inflation: YoY %  | Per år/kvartal'"
+                  "Value": "''"
                 }
               }
             }
@@ -359,7 +375,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "1b6330c8272bfd45a252",
+        "name": "7a021fdbed62407c7268",
         "field": {
           "HierarchyLevel": {
             "Expression": {
@@ -375,54 +391,46 @@
             "Level": "Year"
           }
         },
-        "type": "Advanced"
-      },
-      {
-        "name": "9a43596abe55037e4f31",
-        "field": {
-          "HierarchyLevel": {
-            "Expression": {
-              "Hierarchy": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "DimDate"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DimDate",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2009L"
+                    }
                   }
-                },
-                "Hierarchy": "Date Hierarchy"
+                }
               }
-            },
-            "Level": "YearQuarterText"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "52cfe1b5befefe2f0f7c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures (Diagnostics)"
-              }
-            },
-            "Property": "Unemployment – Rate % (EOP)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f964469045affe6c6b3e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures (Diagnostics)"
-              }
-            },
-            "Property": "Inflation – YoY % (Data only)"
-          }
-        },
-        "type": "Advanced"
+            }
+          ]
+        }
       }
     ]
   }

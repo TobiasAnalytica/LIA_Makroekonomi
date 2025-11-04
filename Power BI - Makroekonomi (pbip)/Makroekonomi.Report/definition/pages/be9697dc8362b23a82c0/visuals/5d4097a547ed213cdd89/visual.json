@@ -4,10 +4,10 @@
   "position": {
     "x": 247,
     "y": 207,
-    "z": 13000,
+    "z": 12000,
     "height": 415,
     "width": 820,
-    "tabOrder": 8000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "barChart",
@@ -29,40 +29,6 @@
               "queryRef": "DimDate.Year",
               "nativeQueryRef": "Year",
               "active": true
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Population – Persons (Annual, Male)"
-                }
-              },
-              "queryRef": "_Measures (Diagnostics).Population – Persons (Annual, Male)",
-              "nativeQueryRef": "Antal män",
-              "displayName": "Antal män"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Population – Persons (Annual, Female)"
-                }
-              },
-              "queryRef": "_Measures (Diagnostics).Population – Persons (Annual, Female)",
-              "nativeQueryRef": "Antal kvinnor",
-              "displayName": "Antal kvinnor"
             }
           ]
         },
@@ -240,6 +206,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "1992D"
+                }
+              }
             }
           }
         }
@@ -251,6 +224,20 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Män och Kvinnor (tusental)'"
                 }
               }
             }
@@ -272,7 +259,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Befolkning – Pyramid per år (Män vs Kvinnor)'"
+                  "Value": "'Befolkning – Pyramid per år och kön'"
                 }
               }
             }
@@ -344,7 +331,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -357,8 +344,67 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'feba09b21c119c74032f'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4f97b363f346bb1f8769",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "17fd4471eaa1def7bc65",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Pyramid – Male (tusental)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "208c6aa2b04566548e03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Pyramid – Female (tusental)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

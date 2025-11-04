@@ -4,10 +4,10 @@
   "position": {
     "x": 1087,
     "y": 207,
-    "z": 14000,
+    "z": 13000,
     "height": 415,
     "width": 820,
-    "tabOrder": 9000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -64,8 +64,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Population – Persons (Annual, In Year Context)",
-              "nativeQueryRef": "Befolkning (miljoner)",
-              "displayName": "Befolkning (miljoner)"
+              "nativeQueryRef": "Befolkning",
+              "displayName": "Befolkning"
             }
           ]
         }
@@ -103,7 +103,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12D"
+                  "Value": "10D"
                 }
               }
             },
@@ -128,7 +128,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -291,6 +291,26 @@
                   "Value": "false"
                 }
               }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "1993D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -303,7 +323,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Befolkning per kön över tid'"
+                  "Value": "'Befolkning per kön'"
                 }
               }
             },
@@ -323,7 +343,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'X: År | Y: Befolkning (årlig 1 jan) | Legend: Kön (män/kvinnor)'"
+                  "Value": "''"
                 }
               }
             },
@@ -395,8 +415,67 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'feba09b21c119c74032f'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a8feac83c4582d59fe38",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3ea4369cc85daa17f157",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimGender"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f3000a668068c2583071",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Population – Persons (Annual, In Year Context)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

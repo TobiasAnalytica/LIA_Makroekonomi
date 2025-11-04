@@ -9,8 +9,8 @@
     "version": "1.3",
     "activeSection": "08776a3868dc20d49026",
     "filters": {
-      "byExpr": [
-        {
+      "byName": {
+        "74b8a642c2b61593a8ab": {
           "name": "74b8a642c2b61593a8ab",
           "type": "Categorical",
           "filter": {
@@ -143,6 +143,13 @@
                             {
                               "Literal": {
                                 "Value": "'European Union - 27 countries (2007-2013)'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'European Union - 27 countries (from 2020)'"
                               }
                             }
                           ],
@@ -296,7 +303,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'European Union - 27 countries (from 2020)'"
+                                "Value": "'Switzerland'"
                               }
                             }
                           ]
@@ -319,1147 +326,195 @@
             }
           },
           "howCreated": 1
+        },
+        "9b21f1d616b7f9d260ee": {
+          "name": "9b21f1d616b7f9d260ee",
+          "type": "Advanced",
+          "filter": {
+            "Version": 2,
+            "From": [
+              {
+                "Name": "d",
+                "Entity": "DimDate",
+                "Type": 0
+              }
+            ],
+            "Where": [
+              {
+                "Condition": {
+                  "Comparison": {
+                    "ComparisonKind": 2,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "1993L"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "DimDate"
+                }
+              },
+              "Property": "Year"
+            }
+          },
+          "howCreated": 1
         }
-      ]
+      }
     },
     "sections": {
       "08776a3868dc20d49026": {
-        "filters": {
-          "byExpr": [
-            {
-              "name": "0272a1c7c2644074fade",
-              "type": "Categorical",
-              "filter": {
-                "Version": 2,
-                "From": [
+        "visualContainers": {
+          "00e40ab9ddd5a7a1b517": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c53607d2fdb2788a4a34",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a8f43a0c34c86c697a93",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Bubble Size – Population (Latest Common)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "46049bfc2d6a9229f903",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita YoY Δ % (4Q Sum)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2a7c5c52037ec08f50df",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Unemployment – Rate % MoM Δ (pp)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "67710d16c8fdd4adeabb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Unemployment – Rate YoY Δ (pp)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "711d32f9fd555070df72",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (Latest Common)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "955a75286740434a776f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Unemployment – Rate % (EOP, Latest Common)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "X": [
                   {
-                    "Name": "d",
-                    "Entity": "DimDate",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "In": {
-                        "Expressions": [
-                          {
-                            "Column": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Property": "Year"
-                            }
-                          }
-                        ],
-                        "Values": [
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1994L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1995L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1996L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1997L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1998L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "1999L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2000L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2001L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2002L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2003L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2004L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2005L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2006L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2007L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2008L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2009L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2010L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2011L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2012L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2013L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2014L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2015L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2016L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2017L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2018L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2019L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2020L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2021L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2022L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2023L"
-                              }
-                            }
-                          ],
-                          [
-                            {
-                              "Literal": {
-                                "Value": "2024L"
-                              }
-                            }
-                          ]
-                        ]
-                      }
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (Latest Common)"
                     }
                   }
                 ]
-              },
-              "expression": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Year"
-                }
-              },
-              "howCreated": 1,
-              "cachedDisplayNames": [
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1994L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1994"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1995L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1995"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1996L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1996"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1997L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1997"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1998L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1998"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "1999L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "1999"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2000L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2000"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2001L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2001"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2002L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2002"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2003L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2003"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2004L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2004"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2005L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2005"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2006L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2006"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2007L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2007"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2008L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2008"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2009L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2009"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2010L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2010"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2011L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2011"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2012L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2012"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2013L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2013"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2014L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2014"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2015L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2015"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2016L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2016"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2017L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2017"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2018L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2018"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2019L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2019"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2020L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2020"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2021L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2021"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2022L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2022"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2023L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2023"
-                },
-                {
-                  "id": {
-                    "scopeId": {
-                      "Comparison": {
-                        "ComparisonKind": 0,
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Entity": "DimDate"
-                              }
-                            },
-                            "Property": "Year"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "2024L"
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "displayName": "2024"
-                }
-              ]
-            }
-          ]
-        },
-        "visualContainers": {
-          "615bfbc7013283ea4456": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "dd12c39d831feb4f3529",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "73eccb5001d884b53859": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "e43c5217abf71ac6064d",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – 4Q Sum (At Date)"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – 4Q Sum (At Date)"
-                    }
-                  }
-                }
-              ]
+              }
             }
           },
           "0a559462444a5073048a": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "6fb02606564cc5644b62",
+                  "name": "96809d71d316bf9d3304",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1468,7 +523,7 @@
                           "Entity": "_Measures (Diagnostics)"
                         }
                       },
-                      "Property": "GDP – YoY Δ % (4Q Sum)"
+                      "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
                     }
                   },
                   "howCreated": 0
@@ -1489,86 +544,6 @@
                         }
                       },
                       "Property": "GDP – YoY Δ % (4Q Sum)"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "f992e4f80052b0cec0a8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "ab51b0071b869516340d",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – CAGR % (5Y, 4Q Sum)"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – CAGR % (5Y, 4Q Sum)"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "b9389a30ee2cec01d0dc": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "8992396efb7a8c57013b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – QoQ Δ %"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – QoQ Δ %"
                     }
                   }
                 }
@@ -1581,31 +556,7 @@
               "objects": {}
             }
           },
-          "e0ce9a93d49a9ab37503": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "d6284acba1cac28a4716",
-                  "type": "Advanced",
-                  "expression": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "Year"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
+          "0b3356e5000bd362b7e7": {
             "singleVisual": {
               "visualType": "slicer",
               "objects": {
@@ -1629,7 +580,7 @@
                         "strictSingleSelect": {
                           "expr": {
                             "Literal": {
-                              "Value": "false"
+                              "Value": "true"
                             }
                           }
                         }
@@ -1637,9 +588,278 @@
                     }
                   ]
                 }
-              },
+              }
+            }
+          },
+          "36d67f7609ed6170ad9b": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "3ac9fbe0a2db56de10cf": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7fdeaf062cc6ae48c2c9",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "FactGDP",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "_",
+                        "Entity": "_Measures (Diagnostics)",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "_"
+                                  }
+                                },
+                                "Property": "Show – TopN Filter (GDP 4Q Latest Common)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Show – TopN Filter (GDP 4Q Latest Common)"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "402b4dff12ed9ec4e438",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a3f8f450d22eebdcb2af",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e2b122f245e45a0eca23",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Latest Date Label – GDP (Common)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d3d8795a5e4bd8390b6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – 4Q Sum (At Latest Common)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – 4Q Sum (At Latest Common)"
+                    }
+                  }
+                }
+              ],
               "activeProjections": {
-                "Values": [
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5e3bf848bf531dca1f82": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "aeb8c31c225b3e760e1d",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a81bbd4910f0c5fd1f9b",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "YearQuarterText"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cefa2cc191e8381db20f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – YoY Δ % (Quarterly)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8c9ff6b7079f734a6bfe",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – YoY Δ % (4Q Sum)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d56d5f0519ff3321b2a2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Bar (Selected View)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5111c1970b3c19413b3f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Line % (Selected View)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
                   {
                     "HierarchyLevel": {
                       "Expression": {
@@ -1659,11 +879,325 @@
               }
             }
           },
+          "615bfbc7013283ea4456": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6d9a6acc847956d7b356",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "641669096c66e9d63425": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a99331820851c1c80a12",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d1",
+                        "Entity": "DimDate",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
+                            "Left": {
+                              "HierarchyLevel": {
+                                "Expression": {
+                                  "Hierarchy": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "d1"
+                                      }
+                                    },
+                                    "Hierarchy": "Date Hierarchy"
+                                  }
+                                },
+                                "Level": "Year"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2010L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c562aea84d4dda736559",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "047370fd809601cad102",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Bubble Size – Population (At Play Year)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "62f8d27fadfaf2e1049b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (At Play Year)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e673275a7a4c50548231",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "Unemployment – Rate % (EOP, At Play Year)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "X": [
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – Per Capita (At Play Year)"
+                    }
+                  }
+                ]
+              },
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "657323e5ab8d01592c30": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "644036b0642a9b829191",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TopN – Values"
+                        }
+                      },
+                      "Property": "TopN"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "TopN – Values",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "t"
+                                            }
+                                          },
+                                          "Property": "TopN"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "10L"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "73eccb5001d884b53859": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2f06d9d0af4b0ffc11ef",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – 4Q Sum (At Date)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – 4Q Sum (At Date)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "76acb4ecb0e0724068e0": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "32515ee22ce3dab073ef",
+                  "name": "d74beb50deeaf40b5e36",
                   "type": "Categorical",
                   "expression": {
                     "HierarchyLevel": {
@@ -1737,17 +1271,297 @@
               }
             }
           },
+          "8d0b437dc6f9639a9be0": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "92e73633203b6502dd1f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "284e2c06415a90ce1717",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DimDate",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
+                            "Left": {
+                              "HierarchyLevel": {
+                                "Expression": {
+                                  "Hierarchy": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "d"
+                                      }
+                                    },
+                                    "Hierarchy": "Date Hierarchy"
+                                  }
+                                },
+                                "Level": "Year"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "2010L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "44f05fd0f09c07277315",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimDate"
+                        }
+                      },
+                      "Property": "YearQuarterText"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0cb18fae575e4c62943a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a32362579c1d2fa3f9ae",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – YoY Δ % (4Q Sum)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "activeProjections": {
+                "Columns": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimDate"
+                        }
+                      },
+                      "Property": "YearQuarterText"
+                    }
+                  }
+                ],
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DimRegion"
+                        }
+                      },
+                      "Property": "Description"
+                    }
+                  }
+                ]
+              }
+            }
+          },
           "9b7ca402d730ade8a28b": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {}
             }
           },
+          "aff7b7d379eb622ff124": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "b7a57f48b839a89a0b98": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f5eee08667b86540b5ee",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "View – GDP Options"
+                        }
+                      },
+                      "Property": "ViewLabel"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "advancedSlicerVisual",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "v",
+                                "Entity": "View – GDP Options",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "v"
+                                            }
+                                          },
+                                          "Property": "ViewLabel"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Kvartal'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "b9389a30ee2cec01d0dc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "56296f1637d48c2d078f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – QoQ Δ %"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "_Measures (Diagnostics)"
+                        }
+                      },
+                      "Property": "GDP – QoQ Δ %"
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "c71e80c6a60cc222801e": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "5f24ee5ee4769a43125c",
+                  "name": "3eeac68f7a86329c625f",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1815,7 +1629,7 @@
             "filters": {
               "byExpr": [
                 {
-                  "name": "3b0247bffedb30efe305",
+                  "name": "b5b74accbf295ec638b6",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1926,7 +1740,31 @@
               }
             }
           },
-          "0b3356e5000bd362b7e7": {
+          "e0ce9a93d49a9ab37503": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "540611b2075bc9b6e119",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
+                        }
+                      },
+                      "Level": "Year"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
             "singleVisual": {
               "visualType": "slicer",
               "objects": {
@@ -1950,7 +1788,7 @@
                         "strictSingleSelect": {
                           "expr": {
                             "Literal": {
-                              "Value": "true"
+                              "Value": "false"
                             }
                           }
                         }
@@ -1958,493 +1796,33 @@
                     }
                   ]
                 }
-              }
-            }
-          },
-          "36d67f7609ed6170ad9b": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "5e3bf848bf531dca1f82": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "65729308f20f980e1ff7",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Bar (Selected View)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "a41bd6275b09bfda189d",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Line % (Selected View)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "5aaab8d94e6ab6bfc657",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – YoY Δ % (Quarterly)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "b3b62fde5c517f74c6d3",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – YoY Δ % (4Q Sum)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "f430e3b10b583516aff3",
-                  "type": "Advanced",
-                  "expression": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "Year"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "47f49962d26d9197f510",
-                  "type": "Categorical",
-                  "expression": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "YearQuarterText"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "lineClusteredColumnComboChart",
-              "objects": {},
-              "activeProjections": {
-                "Category": [
-                  {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "Year"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "641669096c66e9d63425": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "5e0018605dfb67fbadf2",
-                  "type": "Advanced",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "d1",
-                        "Entity": "DimDate",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 2,
-                            "Left": {
-                              "HierarchyLevel": {
-                                "Expression": {
-                                  "Hierarchy": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Source": "d1"
-                                      }
-                                    },
-                                    "Hierarchy": "Date Hierarchy"
-                                  }
-                                },
-                                "Level": "Year"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "2010L"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "Year"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "fc29ca77f26e8ac47419",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "1fed818a5c67206ea2df",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita (At Play Year)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "34322289b0c295eb174b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Unemployment – Rate % (EOP, At Play Year)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "36b8ad90d17b52e8699a",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Bubble Size – Population (At Play Year)"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "scatterChart",
-              "objects": {},
-              "activeProjections": {
-                "X": [
-                  {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita (At Play Year)"
-                    }
-                  }
-                ]
               },
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "00e40ab9ddd5a7a1b517": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "dc915d8f852a196741d9",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "32763e3220cef694255c",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita (Latest Common)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "9bbff4902c4bf31645df",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Unemployment – Rate % (EOP, Latest Common)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "523561c08bacbf356589",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Bubble Size – Population (Latest Common)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "7e42e34fe0147fd6a664",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – Per Capita YoY Δ % (4Q Sum)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "2ff34a6c9dc6e0100686",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Unemployment – Rate % MoM Δ (pp)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "ce3db6ce7d58d0647640",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Unemployment – Rate YoY Δ (pp)"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "scatterChart",
-              "objects": {},
               "activeProjections": {
-                "X": [
+                "Values": [
                   {
-                    "Measure": {
+                    "HierarchyLevel": {
                       "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
+                        "Hierarchy": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "DimDate"
+                            }
+                          },
+                          "Hierarchy": "Date Hierarchy"
                         }
                       },
-                      "Property": "GDP – Per Capita (Latest Common)"
+                      "Level": "Year"
                     }
                   }
                 ]
               }
             }
           },
-          "3ac9fbe0a2db56de10cf": {
+          "f992e4f80052b0cec0a8": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "7fdeaf062cc6ae48c2c9",
-                  "type": "Advanced",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "f",
-                        "Entity": "FactGDP",
-                        "Type": 0
-                      },
-                      {
-                        "Name": "_",
-                        "Entity": "_Measures (Diagnostics)",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "_"
-                                  }
-                                },
-                                "Property": "Show – TopN Filter (GDP 4Q Latest Common)"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "1L"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Show – TopN Filter (GDP 4Q Latest Common)"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "1a70e2c6d9ace02e5ddc",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "639b227c727909e32c7d",
+                  "name": "1d448c872238f68a3962",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -2453,37 +1831,7 @@
                           "Entity": "_Measures (Diagnostics)"
                         }
                       },
-                      "Property": "GDP – 4Q Sum (At Latest Common)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "5d5bd91dc61e89050339",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "76e00bd2253bc4431e56",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Latest Date Label – GDP (Common)"
+                      "Property": "GDP – CAGR % (5Y, 4Q Sum)"
                     }
                   },
                   "howCreated": 0
@@ -2491,7 +1839,7 @@
               ]
             },
             "singleVisual": {
-              "visualType": "clusteredBarChart",
+              "visualType": "card",
               "objects": {},
               "orderBy": [
                 {
@@ -2503,449 +1851,11 @@
                           "Entity": "_Measures (Diagnostics)"
                         }
                       },
-                      "Property": "GDP – 4Q Sum (At Latest Common)"
+                      "Property": "GDP – CAGR % (5Y, 4Q Sum)"
                     }
                   }
-                }
-              ],
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "657323e5ab8d01592c30": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "23cf201e730cc5f25c12",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TopN – Values"
-                        }
-                      },
-                      "Property": "TopN"
-                    }
-                  },
-                  "howCreated": 0
                 }
               ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "t",
-                                "Entity": "TopN – Values",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "In": {
-                                    "Expressions": [
-                                      {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Source": "t"
-                                            }
-                                          },
-                                          "Property": "TopN"
-                                        }
-                                      }
-                                    ],
-                                    "Values": [
-                                      [
-                                        {
-                                          "Literal": {
-                                            "Value": "10L"
-                                          }
-                                        }
-                                      ]
-                                    ]
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Basic'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "selection": [
-                    {
-                      "properties": {
-                        "strictSingleSelect": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "true"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "TopN – Values"
-                        }
-                      },
-                      "Property": "TopN"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "92e73633203b6502dd1f": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "284e2c06415a90ce1717",
-                  "type": "Advanced",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "d",
-                        "Entity": "DimDate",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 2,
-                            "Left": {
-                              "HierarchyLevel": {
-                                "Expression": {
-                                  "Hierarchy": {
-                                    "Expression": {
-                                      "SourceRef": {
-                                        "Source": "d"
-                                      }
-                                    },
-                                    "Hierarchy": "Date Hierarchy"
-                                  }
-                                },
-                                "Level": "Year"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "2010L"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "HierarchyLevel": {
-                      "Expression": {
-                        "Hierarchy": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "DimDate"
-                            }
-                          },
-                          "Hierarchy": "Date Hierarchy"
-                        }
-                      },
-                      "Level": "Year"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "e50a72a175a504cd3c32",
-                  "type": "Advanced",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "f",
-                        "Entity": "FactGDP",
-                        "Type": 0
-                      },
-                      {
-                        "Name": "_",
-                        "Entity": "_Measures (Diagnostics)",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Comparison": {
-                            "ComparisonKind": 0,
-                            "Left": {
-                              "Measure": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "_"
-                                  }
-                                },
-                                "Property": "Heatmap – Show (Common, Last 12Q)"
-                              }
-                            },
-                            "Right": {
-                              "Literal": {
-                                "Value": "1L"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "Heatmap – Show (Common, Last 12Q)"
-                    }
-                  },
-                  "howCreated": 1
-                },
-                {
-                  "name": "aabf7f12208a19d35c3d",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "54b093fbb0b23f8891ab",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "_Measures (Diagnostics)"
-                        }
-                      },
-                      "Property": "GDP – YoY Δ % (Quarterly)"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "6f4ffc5dcc28e1fe068c",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Property": "YearQuarterText"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "pivotTable",
-              "objects": {},
-              "activeProjections": {
-                "Rows": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  }
-                ],
-                "Columns": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Property": "YearQuarterText"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "b7a57f48b839a89a0b98": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "aeebf697d5e489b50a91",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "View – GDP Options"
-                        }
-                      },
-                      "Property": "ViewLabel"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "v",
-                                "Entity": "View – GDP Options",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "In": {
-                                    "Expressions": [
-                                      {
-                                        "Column": {
-                                          "Expression": {
-                                            "SourceRef": {
-                                              "Source": "v"
-                                            }
-                                          },
-                                          "Property": "ViewLabel"
-                                        }
-                                      }
-                                    ],
-                                    "Values": [
-                                      [
-                                        {
-                                          "Literal": {
-                                            "Value": "'Kvartal'"
-                                          }
-                                        }
-                                      ]
-                                    ]
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Basic'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "selection": [
-                    {
-                      "properties": {
-                        "strictSingleSelect": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "true"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "View – GDP Options"
-                        }
-                      },
-                      "Property": "ViewLabel"
-                    }
-                  }
-                ]
-              }
             }
           }
         }

@@ -7,7 +7,7 @@
     "z": 18000,
     "height": 415,
     "width": 820,
-    "tabOrder": 13000
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -205,13 +205,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Title – GDP Heatmap (YoY %, Common, 12Q)"
+                "Literal": {
+                  "Value": "'BNP – Årlig tillväxt per land, heatmap'"
                 }
               }
             }
@@ -230,13 +225,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Subtitle – GDP Heatmap (YoY %, Common)"
+                "Literal": {
+                  "Value": "'Mörkare blå: Högre tillväxt | Ljusare blå: Lägre tillväxt'"
                 }
               }
             }
@@ -286,6 +276,26 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'5e259fcbdae5c9d4ecb6'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -322,55 +332,26 @@
           "Where": [
             {
               "Condition": {
-                "And": {
+                "Comparison": {
+                  "ComparisonKind": 2,
                   "Left": {
-                    "Comparison": {
-                      "ComparisonKind": 2,
-                      "Left": {
-                        "HierarchyLevel": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
                           "Expression": {
-                            "Hierarchy": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Hierarchy": "Date Hierarchy"
+                            "SourceRef": {
+                              "Source": "d"
                             }
                           },
-                          "Level": "Year"
+                          "Hierarchy": "Date Hierarchy"
                         }
                       },
-                      "Right": {
-                        "Literal": {
-                          "Value": "2010L"
-                        }
-                      }
+                      "Level": "Year"
                     }
                   },
                   "Right": {
-                    "Comparison": {
-                      "ComparisonKind": 4,
-                      "Left": {
-                        "HierarchyLevel": {
-                          "Expression": {
-                            "Hierarchy": {
-                              "Expression": {
-                                "SourceRef": {
-                                  "Source": "d"
-                                }
-                              },
-                              "Hierarchy": "Date Hierarchy"
-                            }
-                          },
-                          "Level": "Year"
-                        }
-                      },
-                      "Right": {
-                        "Literal": {
-                          "Value": "2024L"
-                        }
-                      }
+                    "Literal": {
+                      "Value": "2010L"
                     }
                   }
                 }

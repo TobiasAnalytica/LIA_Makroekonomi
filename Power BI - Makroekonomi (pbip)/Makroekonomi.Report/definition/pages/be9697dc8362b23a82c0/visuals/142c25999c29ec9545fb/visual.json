@@ -4,10 +4,10 @@
   "position": {
     "x": 1087,
     "y": 651,
-    "z": 15000,
+    "z": 14000,
     "height": 415,
     "width": 820,
-    "tabOrder": 13000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "hundredPercentStackedColumnChart",
@@ -27,8 +27,9 @@
                 }
               },
               "queryRef": "DimRegion.Description",
-              "nativeQueryRef": "Description",
-              "active": true
+              "nativeQueryRef": "Land",
+              "active": true,
+              "displayName": "Land"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Population – Male % (Latest Year)",
-              "nativeQueryRef": "Population – Male % (Latest Year)"
+              "nativeQueryRef": "Män",
+              "displayName": "Män"
             },
             {
               "field": {
@@ -60,7 +62,8 @@
                 }
               },
               "queryRef": "_Measures (Diagnostics).Population – Female % (Latest Year)",
-              "nativeQueryRef": "Population – Female % (Latest Year)"
+              "nativeQueryRef": "Kvinnor",
+              "displayName": "Kvinnor"
             }
           ]
         }
@@ -92,6 +95,26 @@
               "expr": {
                 "Literal": {
                   "Value": "'Befolkning, andel Män och Kvinnor'"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -140,7 +163,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'X: Land | Y: Andel av befolkningen (%) | Staplad: Män % + Kvinnor % (=100)'"
+                  "Value": "''"
                 }
               }
             }
@@ -204,8 +227,67 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'feba09b21c119c74032f'"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2f91778ae4340269e9eb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimRegion"
+              }
+            },
+            "Property": "Description"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "0d4f1090c59f3d238e61",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Population – Male % (Latest Year)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dcaee27db0848001f5ca",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "Population – Female % (Latest Year)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

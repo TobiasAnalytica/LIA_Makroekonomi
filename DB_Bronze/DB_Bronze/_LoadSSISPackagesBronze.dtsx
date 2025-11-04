@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="_LoadSSISPackageBronze"
   DTS:PackageType="5"
-  DTS:VersionBuild="146"
-  DTS:VersionGUID="{0DB78171-F12E-45D8-871D-AB2C73176E1C}">
+  DTS:VersionBuild="151"
+  DTS:VersionGUID="{2DB37252-450B-411F-AF92-B53B1CB29856}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -72,7 +72,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="RunId">
       <DTS:VariableValue
-        DTS:DataType="8">{ECF923A2-C468-42AD-A00A-C4A3B65E05FA}</DTS:VariableValue>
+        DTS:DataType="8">{AA817E0E-FFBC-41D8-9FCD-15A82A7DE5B7}</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:Executables>
@@ -90,7 +90,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{1526A1A1-661B-48A2-916E-36893FC832FB}"
-          SQLTask:SqlStatementSource="IF SCHEMA_ID('log') IS NULL EXEC('CREATE SCHEMA log');&#xA;&#xA;IF OBJECT_ID('log.Run','U') IS NULL&#xA;CREATE TABLE log.Run(&#xA;  RunId          nvarchar(38)  NOT NULL PRIMARY KEY,  -- = System::ExecutionInstanceGUID&#xA;  JobName        nvarchar(128) NULL,                  -- valfritt (Agent-jobb eller paketnamn)&#xA;  StartedAt      datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME(),&#xA;  EndedAt        datetime2(0)  NULL,&#xA;  Status         char(1)       NULL CHECK (Status IN ('S','F')),&#xA;  Message        nvarchar(4000) NULL&#xA;);&#xA;&#xA;IF OBJECT_ID('log.Package','U') IS NULL&#xA;CREATE TABLE log.Package(&#xA;  Id             int IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId          nvarchar(38)  NOT NULL,&#xA;  ProjectName NVARCHAR(128) NOT NULL,&#xA;  PackageName    nvarchar(128) NOT NULL,&#xA;  TaskName      nvarchar(256) NOT NULL,   -- från System::SourceName&#xA;  StartTime      datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME(),&#xA;  EndTime        datetime2(0)  NULL,&#xA;  Status         char(1)       NULL CHECK (Status IN ('S','F')),&#xA;  ErrorMessage   nvarchar(4000) NULL&#xA;);&#xA;&#xA;IF OBJECT_ID('log.Error','U') IS NULL&#xA;CREATE TABLE log.Error(&#xA;  Id               int IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId            nvarchar(38)  NOT NULL,&#xA;  PackageName      nvarchar(128) NOT NULL,&#xA;  SourceName       nvarchar(256) NULL,   -- var felet kom ifrån (task/component)&#xA;  ErrorCode        int           NULL,&#xA;  ErrorDescription nvarchar(4000) NULL,&#xA;  LoggedAt         datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="IF SCHEMA_ID('log') IS NULL EXEC('CREATE SCHEMA log');&#xA;&#xA;IF OBJECT_ID('log.Run','U') IS NULL&#xA;CREATE TABLE log.Run(&#xA;  RunId          nvarchar(38)  NOT NULL PRIMARY KEY,  -- = System::ExecutionInstanceGUID&#xA;  JobName        nvarchar(128) NULL,                  -- valfritt (Agent-jobb eller paketnamn)&#xA;  StartedAt      datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME(),&#xA;  EndedAt        datetime2(0)  NULL,&#xA;  Status         char(1)       NULL CHECK (Status IN ('S','F')),&#xA;  Message        nvarchar(4000) NULL&#xA;);&#xA;&#xA;IF OBJECT_ID('log.Package','U') IS NULL&#xA;CREATE TABLE log.Package(&#xA;  Id             int IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId          nvarchar(38)  NOT NULL,&#xA;  ProjectName NVARCHAR(128) NOT NULL,&#xA;  PackageName    nvarchar(128) NOT NULL,&#xA;  TaskName      nvarchar(256) NOT NULL,   -- från System::SourceName&#xA;  StartTime      datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME(),&#xA;  EndTime        datetime2(0)  NULL,&#xA;  Status         char(1)       NULL CHECK (Status IN ('S','F')),&#xA;  ErrorMessage   nvarchar(4000) NULL&#xA;);&#xA;&#xA;IF OBJECT_ID('log.Error','U') IS NULL&#xA;CREATE TABLE log.Error(&#xA;  Id               int IDENTITY(1,1) PRIMARY KEY,&#xA;  RunId            nvarchar(38)  NOT NULL,&#xA;  PackageName      nvarchar(128) NOT NULL,&#xA;  SourceName       nvarchar(256) NULL,   -- var felet kom ifrån (task/component)&#xA;  ErrorCode        int           NULL,&#xA;  ErrorDescription nvarchar(4000) NULL,&#xA;  LoggedAt         datetime2(0)  NOT NULL DEFAULT SYSUTCDATETIME()&#xA;);&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -350,12 +350,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{F950DC4D-CD13-4BCE-9DFD-B470C9E49982}"
+      DTS:DTSID="{81CF7DC9-8603-4EFB-A742-58A5938466E6}"
       DTS:From="Package\Create_log_tables"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\PKG__CreateTablesBronze"
-      DTS:Value="2" />
+      DTS:To="Package\PKG__CreateTablesBronze" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
@@ -814,30 +813,6 @@ WHERE NOT EXISTS (
           Id="Package\PKG_RawUnemployment"
           TopLeft="5.50000000000017,1229.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="140,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="140,557.5">
           <EdgeLayout.Curve>
@@ -1101,6 +1076,28 @@ WHERE NOT EXISTS (
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="140,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1108,7 +1105,7 @@ WHERE NOT EXISTS (
     design-time-name="Package.EventHandlers[OnError]">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="126,42"
           Id="Package.EventHandlers[OnError]\Err_Insert"
@@ -1136,7 +1133,9 @@ WHERE NOT EXISTS (
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

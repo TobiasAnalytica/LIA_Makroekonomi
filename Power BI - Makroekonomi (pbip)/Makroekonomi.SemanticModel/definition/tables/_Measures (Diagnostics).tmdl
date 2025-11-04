@@ -15,7 +15,7 @@ table '_Measures (Diagnostics)'
 			        LASTNONBLANK ( DimDate[Date], [Debt – Amount (Quarterly)] )
 			    )
 			```
-		formatString: 0
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
 		displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
 		lineageTag: 848aa371-1155-4d99-ab73-13c29cf1a265
 
@@ -64,7 +64,7 @@ table '_Measures (Diagnostics)'
 			
 			VAR Prev = CALCULATE ( [Rate – Short-term % (EOP)], DATEADD ( DimDate[Date], -1, YEAR ) )
 			RETURN [Rate – Short-term % (EOP)] - Prev
-		formatString: 0.00
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
 		lineageTag: 95680786-0d59-4482-a896-ec0d4ea1da08
 
@@ -221,8 +221,8 @@ table '_Measures (Diagnostics)'
 			RETURN
 			    SWITCH (
 			        TRUE(),
-			        ySelField = NAMEOF ( '_Measures (Diagnostics)'[GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)] ), "BNP-tillväxt (YoY, 4Q)",
-			        ySelField = NAMEOF ( '_Measures (Diagnostics)'[Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)] ), "Arbetslöshet (%)",
+			        ySelField = NAMEOF ( '_Measures (Diagnostics)'[GDP – YoY Δ % (4Q Sum at Debt Latest Common – Respect Year)] ), "BNP årlig tillväxt (%)",
+			        ySelField = NAMEOF ( '_Measures (Diagnostics)'[Unemployment – Rate % (EOP at Debt+Unemp Latest Common – Respect Year)] ), "Arbetslöshetsgrad (%)",
 			        "—"
 			    )
 			
@@ -236,22 +236,11 @@ table '_Measures (Diagnostics)'
 			VAR nCountries = DISTINCTCOUNTNOBLANK ( DimRegion[Description] )  
 			VAR countLabel = IF ( nCountries > 0, "Länder: " & FORMAT ( nCountries, "#,0" ), "Länder: Alla" )
 			RETURN
-			"Samband: Statsskuld (% av BNP) vs " & yLab & " | " & countLabel
+			"Statsskuldens andel av BNP (%) vs " & yLab & " | " & countLabel
 			
 			```
 		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 4
 		lineageTag: cf310a13-1c28-438c-9128-9a7789fc2cd2
-
-	measure 'Subtitle – Scatter (Debt vs Y – Respect Year)' = ```
-			
-			VAR yLab = [Scatter – Y Label (Respect Year)]
-			RETURN
-			    "X: Statsskuld (% av BNP) | Y: " & yLab &
-			    " | Punkt = land | Storlek = Befolkning"
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 4
-		lineageTag: 80339c3c-f3d7-420f-acbc-c6fc3929def7
 
 	measure 'Common Date – Label (Aligned with Y)' =
 			
@@ -295,10 +284,9 @@ table '_Measures (Diagnostics)'
 	measure 'Rate – Short-term % (Monthly/Quarterly)' =
 			
 			AVERAGE ( FactMoneyMarketInterestRates[Value] )
+		formatString: 0.00
 		displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
 		lineageTag: 2e60f3f7-fc96-4d3c-940e-0403568a2d15
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Debt – Value (EOP)' =
 			
@@ -351,41 +339,6 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 5 - Statsskuld & Räntor\Dates
 		lineageTag: 7bbbeb81-4930-454d-b227-6000b7464d09
 
-	measure 'Subtitle – Debt % of GDP (Line)' = ```
-			
-			VAR SeasLabel = SELECTEDVALUE ( DimSeasonalAdjustment[Description], "Säsongs- & kalenderjusterat" )
-			VAR FreqLabel = SELECTEDVALUE ( DimTimeFrequency[Description], "Kvartal" )
-			VAR dMin      = CALCULATE ( MIN ( DimDate[Date] ) )
-			VAR dMax      = CALCULATE ( MAX ( DimDate[Date] ) )
-			VAR PeriodLbl =
-			    IF (
-			        NOT ISBLANK ( dMin ) && NOT ISBLANK ( dMax ),
-			        FORMAT ( dMin, "yyyy '\Q'Q" ) & "–" & FORMAT ( dMax, "yyyy '\Q'Q" ),
-			        BLANK()
-			    )
-			VAR LatestCommon = COALESCE ( [Latest Date Label – Debt (Common)], BLANK() )
-			RETURN
-			"Period: " & COALESCE ( PeriodLbl, "–" )
-			& "  |  " & SeasLabel
-			& "  |  Frekvens: " & FreqLabel
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 1
-		lineageTag: 87305b9f-0f98-4435-9dc7-10f9fece35d6
-
-	measure 'Title – Debt % of GDP (Line)' = ```
-			
-			VAR RegionsTbl = VALUES ( DimRegion[Description] )
-			VAR nL         = COUNTROWS ( RegionsTbl )
-			VAR CountLabel =
-			    IF ( nL <= 0, "Länder: Alla", "Länder: " & FORMAT ( nL, "#,0" ) )
-			RETURN
-			"Statsskuld (% av BNP) | " & CountLabel
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 1
-		lineageTag: c9631e3f-00a8-4c31-93b0-ab216055eeb6
-
 	measure 'Selected Frequency Label' =
 			
 			SELECTEDVALUE ( DimTimeFrequency[Description], "Q" )
@@ -426,26 +379,6 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 2
 		lineageTag: 7aac48a4-51b0-4b03-ba76-041ed853570e
 
-	measure 'Subtitle – Debt Bar (Countries)' = ```
-			
-			"Senaste gemensamma kvartal: " & [Latest Date Label – Debt (Common)]
-			& "   |   Justering: " & [Selected SA Label]
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 2
-		lineageTag: 208be174-4532-4338-bceb-690ae7d2e731
-
-	measure 'Title – Debt Bar (Countries)' =
-			
-			VAR RegionsTbl = VALUES ( DimRegion[Description] )
-			VAR nL         = COUNTROWS ( RegionsTbl )
-			VAR CountLabel =
-			    IF ( nL <= 0, "Länder: Alla", "Länder: " & FORMAT ( nL, "#,0" ) )
-			RETURN
-			"Statsskuld (% av BNP) | " & CountLabel
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 2
-		lineageTag: 58d31f6f-6e36-435d-92ea-24f351e7e74f
-
 	measure 'Rates – Date Range Label' =
 			
 			VAR dMin = CALCULATE ( MIN ( DimDate[Date] ), ALLSELECTED ( DimDate ) )
@@ -466,53 +399,6 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 3
 		lineageTag: a38c5c54-886b-459b-8ba2-685cd81b4d09
 
-	measure 'Subtitle – Rates (Level vs Change)' = ```
-			
-			VAR dMin =
-			    CALCULATE ( MIN ( DimDate[Date] ), ALLSELECTED ( DimDate[Date] ) )
-			VAR dMax =
-			    CALCULATE ( MAX ( DimDate[Date] ), ALLSELECTED ( DimDate[Date] ) )
-			VAR rangeLbl =
-			    IF (
-			        ISBLANK ( dMin ) || ISBLANK ( dMax ),
-			        "—",
-			        FORMAT ( dMin, "yyyy-MM" ) & " → " & FORMAT ( dMax, "yyyy-MM" )
-			    )
-			VAR seas = SELECTEDVALUE ( DimSeasonalAdjustment[Description] )
-			VAR left  = "Period: " & rangeLbl
-			VAR mid   = IF ( NOT ISBLANK ( seas ), " | " & seas, "" )
-			VAR right = " | Primär axel: Räntenivå (%) | Sekundär axel: Förändring 12m (pp)"
-			RETURN left & mid & right
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 3
-		lineageTag: bd022980-375a-4c6b-aedb-194b4341a602
-
-	measure 'Title – Rates (Level vs Change)' = ```
-			
-			VAR baseTitle = "Korta räntan — Nivå & Förändring"
-			VAR nRegions =
-			    COUNTROWS ( VALUES ( DimRegion[Description] ) )
-			VAR regionLabel =
-			    IF (
-			        ISFILTERED ( DimRegion[Description] ),
-			        IF ( HASONEVALUE ( DimRegion[Description] ),
-			            SELECTEDVALUE ( DimRegion[Description] ),
-			            "Flera länder (" & nRegions & ")"
-			        ),
-			        "Alla länder"
-			    )
-			VAR freqLabel = SELECTEDVALUE ( DimTimeFrequency[Description] )
-			VAR unitLabel = SELECTEDVALUE ( DimUnit[Description] )    -- t.ex. %
-			VAR withRegion = baseTitle & " | " & regionLabel
-			VAR withFreq   = IF ( NOT ISBLANK ( freqLabel ), withRegion & " · " & freqLabel, withRegion )
-			VAR withUnit   = IF ( NOT ISBLANK ( unitLabel ), withFreq   & " · " & unitLabel,  withFreq )
-			RETURN withUnit
-			
-			```
-		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 3
-		lineageTag: e86d207d-e74c-4b12-a477-98c93f44221a
-
 	measure 'GDP – 4Q Sum (At Date)' =
 			
 			SUMX (
@@ -520,7 +406,7 @@ table '_Measures (Diagnostics)'
 			    [GDP – Value (EOP,Quarter)]
 			)
 			// “4Q Rolling Sum” = ”senaste 4 kvartal” ⇢ robust “års-BNP” oavsett om året är komplett
-		formatString: 0
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
 		lineageTag: 654450b0-0218-4afc-a831-d2a4cc582cda
 
@@ -551,20 +437,18 @@ table '_Measures (Diagnostics)'
 	measure 'GDP – Per Capita (4Q Sum, EUR/Person)' =
 			
 			DIVIDE ( [GDP – 4Q Sum (At Date)], [Population – Persons (EOP,Annual)] )
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
 		lineageTag: 2f03de7d-b2a9-49dd-9b8b-f28870d2c83a
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'GDP – Per Capita (Latest Common)' =
 			
 			VAR d = [Latest Date – Common year(GDPpc+Unemp+Pop)]
 			RETURN
 			    CALCULATE( [GDP – Per Capita (4Q Sum, EUR/Person)], TREATAS( { d }, DimDate[Date] ) )
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
 		lineageTag: f701827e-70c8-450d-8c0a-12ba8747a8a1
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'GDP – Per Capita YoY Δ % (4Q Sum)' =
 			
@@ -601,10 +485,9 @@ table '_Measures (Diagnostics)'
 			VAR prev = CALCULATE ( [GDP – Value (EOP,Quarter)], TREATAS ( { EDATE ( d, -3 ) }, DimDate[Date] ) )
 			RETURN DIVIDE ( curr - prev, prev )
 			//QoQ på kvartalsnivå, vid latest common
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
 		lineageTag: 19fc66fd-ad82-4758-b430-21cf738d2b58
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'GDP – Value (Annual, In Year Context)' =
 			
@@ -807,27 +690,6 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Dates
 		lineageTag: a608ac4c-1ad0-46e7-8ea9-b2e574c43487
 
-	measure 'Subtitle – GDP Heatmap (YoY %, Common)' = ```
-			
-			VAR saz = SELECTEDVALUE ( DimSeasonalAdjustment[SeasonalAdjustmentAK], "SA/NSA/CA" )
-			RETURN
-			"Rader = land | Kolumner = kvartal | Säsongsjustering: " & saz & "."
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Heatmap
-		lineageTag: a12262fe-0409-4016-b979-087705cb0b10
-
-	measure 'Title – GDP Heatmap (YoY %, Common, 12Q)' = ```
-			
-			VAR dLab = [Latest Date Label – GDP (Common)]
-			VAR nL   = DISTINCTCOUNT ( DimRegion[Description] )
-			RETURN
-			"Heatmap – BNP YoY %  |  Gemensam period till: " & dLab & "  |  Länder: " & nL & ""
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Heatmap
-		lineageTag: 950ed2c1-6078-4ed9-9d41-8b02090dc2bc
-
 	measure 'Bubble Size – Population (At Play Year)' = ```
 			
 			VAR y = SELECTEDVALUE( DimDate[Year] )
@@ -951,23 +813,11 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Ranking
 		lineageTag: 732c0530-e23c-4a94-a0cf-57b9bf6a9e04
 
-	measure 'Subtitle – GDP Ranking (4Q Sum, Common)' = ```
-			
-			VAR saz = SELECTEDVALUE ( DimSeasonalAdjustment[SeasonalAdjustmentAK], "SA/NSA/CA" )
-			RETURN
-			"Samma kvartal för alla regioner (Latest Common) | Mått: 4Q-summa. Säsongsjustering: " & saz & "."
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Ranking
-		lineageTag: 3b3b55c4-69f6-44fa-93ce-e8ac64214acc
-
 	measure 'Title – GDP Ranking (4Q Sum, Common)' = ```
 			
 			VAR n     = [TopN – Selected]
-			VAR dLab  = [Latest Date Label – GDP (Common)]
-			VAR nL    = DISTINCTCOUNT ( DimRegion[Description] )
 			RETURN
-			"Top " & n & " – Års-BNP (4Q-summa) | Gemensam period: " & dLab & "  |  Länder: " & nL
+			"Top " & n & " – BNP (€)"
 			
 			```
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Ranking
@@ -992,24 +842,11 @@ table '_Measures (Diagnostics)'
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Subtitle – Scatter: GDPpc vs Unemployment' = ```
-			
-			"X: BNP/capita som rullande 4 kvartal (€)  |  " &
-			"Y: Arbetslöshetsgrad (%)  |  " &
-			"Storlek: Befolkning (årlig)"
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Scatter
-		lineageTag: 1fd4a16d-567d-47bb-974c-2af72e7f541a
-
 	measure 'Title – Scatter: GDPpc vs Unemployment (Latest Common Year)' = ```
 			
-			VAR d = [Latest Date – Common year(GDPpc+Unemp+Pop)]
-			VAR yearLbl =
-			    IF ( ISBLANK ( d ), "—", FORMAT ( d, "yyyy" ) )
 			VAR nRegions = COUNTROWS ( ALLSELECTED ( DimRegion[Description] ) )
 			RETURN
-			"BNP per capita (4Q) vs Arbetslöshet (år: " & yearLbl & ") | " &
+			"BNP per capita (€) vs Arbetslöshetsgrad (%) | " &
 			"Länder: " & nRegions
 			
 			```
@@ -1041,34 +878,6 @@ table '_Measures (Diagnostics)'
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Switch
 		lineageTag: 85cf2fc4-2854-41ee-89a7-5c2454d599d5
-
-	measure 'Subtitle – GDP Trend (Selected View)' = ```
-			
-			VAR saz = SELECTEDVALUE ( DimSeasonalAdjustment[SeasonalAdjustmentAK], "SA/NSA/CA" )
-			RETURN
-			IF(
-			    [View – Selected (GDP)] = 1,
-			    "Kolumner: BNP per kvartal (summeras per år på Year-axel) | Linje: BNP YoY % (kvartal) | Säsongsjustering: " & saz & ".",
-			    "Kolumner: BNP 4Q-summa (rullande år) | Linje: BNP YoY % (4Q-summa) | Säsongsjustering: " & saz & "."
-			)
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Switch
-		lineageTag: 4a1495e3-ed6c-4327-9aae-0c0838e76b3e
-
-	measure 'Title – GDP Trend (Selected View, Common)' = ```
-			
-			VAR v     = SELECTEDVALUE ( 'View – GDP Options'[ViewLabel], "Kvartal" )
-			VAR dLab  = [Latest Date Label – GDP (Common)]
-			VAR nL    = DISTINCTCOUNT ( DimRegion[Description] )
-			RETURN
-			"Trend – BNP  |  Vy: " & v
-			& "  |  Gemensam period till: " & dLab
-			& "  |  Länder: " & nL
-			
-			```
-		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Switch
-		lineageTag: 27863e54-c42d-4c2f-aa9e-7cb74c6086db
 
 	measure 'View – Selected (GDP)' = ```
 			
@@ -1478,39 +1287,6 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
 		lineageTag: 1de7f410-e981-4d90-a4ae-5b0461a1ee36
 
-	measure 'Subtitle – Heatmap YoY' = ```
-			
-			VAR CountriesShown =
-			    FILTER ( VALUES ( DimRegion[Description] ), NOT ISBLANK ( [Inflation – YoY % (Data only)] ) )
-			VAR nCountries = COUNTROWS ( CountriesShown )
-			VAR latest = [Latest Date – HICP]
-			RETURN
-			"Rader: Länder " & nCountries & " | Kolumner: Månader | Senaste: " &
-			FORMAT ( latest, "yyyy-MM" )
-			
-			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
-		lineageTag: a1d2be52-6940-4c0a-8d26-4d4bb3d70b65
-
-	measure 'Title – Heatmap YoY' = ```
-			
-			VAR unitLabel =
-			    COALESCE ( SELECTEDVALUE ( DimUnit[Description] ), SELECTEDVALUE ( DimUnit[UnitSK] ) )
-			VAR catLabel =
-			    COALESCE ( SELECTEDVALUE ( DimConsumptionCategory[Description] ), "Total (CP00)" )
-			VAR DatesShown =
-			    FILTER ( ALLSELECTED ( DimDate[Date] ), NOT ISBLANK ( [Inflation – YoY % (Data only)] ) )
-			VAR dMin = MINX ( DatesShown, DimDate[Date] )
-			VAR dMax = MAXX ( DatesShown, DimDate[Date] )
-			RETURN
-			"Inflation – YoY % (Heatmap) | " &
-			catLabel & " | " &
-			unitLabel
-			
-			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
-		lineageTag: b52c43d8-1691-4f05-8ecb-2689efa66532
-
 	measure 'Inflation – MoM % (CP00, Latest Common)' =
 			
 			CALCULATE ( [Inflation – MoM % (Latest Common)], KEEPFILTERS ( DimConsumptionCategory[ConsumptionCategoryAK] = "CP00" ) )
@@ -1527,39 +1303,11 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\KPI
 		lineageTag: 28810635-6b44-4845-8113-6f5743fad4b8
 
-	measure 'Subtitle – Inflation' = ```
-			
-			VAR d    = [Latest Date – HICP]
-			VAR mom  = [Inflation – MoM % (EOP)]
-			VAR yoy  = [Inflation – YoY % (EOP)]
-			VAR ann3 = [Inflation – 3M Annualized % (EOP)]
-			RETURN
-			"Senaste datapunkt: " & FORMAT( d, "yyyy-MM" ) &
-			" — MoM " & FORMAT( mom, "0.00%" ) &
-			" | YoY " & FORMAT( yoy, "0.00%" ) &
-			" | 3M ann. " & FORMAT( ann3, "0.00%" )
-			
-			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Line and chart bar (V1)
-		lineageTag: 83c6cb48-9c6c-4768-991b-0a31d465bbc4
-
 	measure 'Title – Inflation' = ```
 			
 			VAR selMeasure = SELECTEDVALUE( DimInflationMeasure[MeasureName], "MoM %" )
-			
-			VAR unitCode  = SELECTEDVALUE( DimUnit[UnitAK], "I15" )
-			VAR unitText  = SWITCH( unitCode, "I96","1996=100", "I05","2005=100", "I15","2015=100", "index=100" )
-			
-			VAR catCode   = SELECTEDVALUE( DimConsumptionCategory[ConsumptionCategoryAK], "CP00" )
-			VAR catName   = SELECTEDVALUE( DimConsumptionCategory[ConsumptionCategoryAK] )
-			VAR catText   = IF( catCode = "CP00", "Total (CP00)", COALESCE(catName, catCode) )
-			
-			VAR nRegions  = DISTINCTCOUNT( DimRegion[RegionAK] )
-			VAR oneRegion = SELECTEDVALUE( DimRegion[RegionAK] )
-			VAR regionTxt = IF( nRegions = 1, oneRegion, "Länder " & nRegions & "" )
-			
 			RETURN
-			"Inflation " & selMeasure & " över tid | " & regionTxt & " | " & catText & " | Bas " & unitText
+			"Inflation " & selMeasure & " över tid"
 			
 			```
 		displayFolder: Sida 4 - Priser & Inflation (HICP)\Line and chart bar (V1)
@@ -1824,21 +1572,19 @@ table '_Measures (Diagnostics)'
 	measure 'Pyramid – Male (tusental)' =
 			
 			- DIVIDE ( [Population – Persons (Annual, Male)], 1000 )
-		formatString: " #,0,"" tusen"";#,0,"" tusen"""
 		displayFolder: Sida 6 - Population & Demografi\Pyramid
 		lineageTag: dac668ad-b9b8-4047-bcbe-21bb866f23f0
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Pyramid – Female (tusental)' = ```
 			
 			  DIVIDE ( [Population – Persons (Annual, Female)], 1000 )
 			```
-		formatString: " #,0,"" tusen"";#,0,"" tusen"""
 		displayFolder: Sida 6 - Population & Demografi\Pyramid
 		lineageTag: 24a7fea3-d6b0-403e-a84a-6e2c814b8e44
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Population – Male % (Latest Year)' =
 			
@@ -1857,94 +1603,6 @@ table '_Measures (Diagnostics)'
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		displayFolder: Sida 6 - Population & Demografi\Base
 		lineageTag: 81c34600-bdd9-4122-8137-d0ba08673c58
-
-	measure 'Map – Population Decile' =
-			
-			VAR v = [Map – Population (Annual, Latest)]
-			VAR T =
-			    FILTER (
-			        ALLSELECTED ( DimRegion[RegionSK] ),
-			        NOT ISBLANK ( CALCULATE ( [Map – Population (Annual, Latest)] ) )
-			    )
-			VAR n = COUNTROWS ( T )
-			RETURN
-			    IF (
-			        ISBLANK ( v ) || n = 0,
-			        BLANK(),
-			        VAR r =
-			            RANKX ( T, CALCULATE ( [Map – Population (Annual, Latest)] ), , DESC, DENSE )
-			        VAR dec = MAX ( 1, MIN ( 10, CEILING ( DIVIDE ( r, n ) * 10, 1 ) ) )
-			        RETURN dec
-			    )
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: dfd72031-ed27-45ed-a398-14ce48dd0822
-
-	measure 'Map – Color (Population, Deciles)' =
-			
-			VAR d = [Map – Population Decile]
-			RETURN
-			    SWITCH (
-			        TRUE (),
-			        ISBLANK ( d ), "#E0E0E0",          -- fallback för BLANK
-			        d = 1, "#f7fbff",
-			        d = 2, "#deebf7",
-			        d = 3, "#c6dbef",
-			        d = 4, "#9ecae1",
-			        d = 5, "#6baed6",
-			        d = 6, "#4292c6",
-			        d = 7, "#2171b5",
-			        d = 8, "#08519c",
-			        d = 9, "#08306b",
-			               "#041f4a"                   -- decil 10
-			    )
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: d5578ecf-581c-4ac6-bca9-4178ce027033
-
-	measure 'Map – Debug Color' = ```
-			"#ff0000"
-			
-			```
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: 8fcc4ae9-49f7-441a-b483-e6fd7ab5a13b
-
-	measure 'Map – Population (Latest EOP, Annual)' = ```
-			
-			    [Population – Persons (EOP,Annual)]
-			```
-		formatString: 0
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: 478d2fc0-9918-4571-80b8-da5cba294fa8
-
-	measure 'Map – Population (Annual, Latest)' = ```
-			
-			    [Population – Persons (EOP,Annual)]
-			```
-		formatString: 0
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: a2e2153a-181e-46e2-ae69-4b4a1f7cfa14
-
-	measure 'Latest Date – Population (per Region)' =
-			
-			CALCULATE(
-			    LASTNONBLANKVALUE( DimDate[Date], [Population – Persons (EOP,Annual)] ),
-			    ALLEXCEPT( DimRegion, DimRegion[RegionSK] )
-			)
-		formatString: 0
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: bd9523ce-6d38-4c55-acae-6f2ebdcde44e
-
-	measure 'Population – Persons (Latest Available, per Region)' =
-			
-			VAR d = [Latest Date – Population (per Region)]
-			RETURN
-			IF(
-			    ISBLANK(d),
-			    BLANK(),
-			    CALCULATE( [Population – Persons (EOP,Annual)], TREATAS( { d }, DimDate[Date] ) )
-			)
-		formatString: 0
-		displayFolder: Sida 6 - Population & Demografi\Map
-		lineageTag: ff5db6a0-b8fe-4961-a200-3db217633752
 
 	measure 'Population – Total (At Latest)' = ```
 			
@@ -2119,17 +1777,21 @@ table '_Measures (Diagnostics)'
 		displayFolder: Sida 1 - Översikt\Status
 		lineageTag: 09938c85-98be-475a-9727-b7f70bf1038e
 
-	measure 'Title – Datauppdatering' =
+	measure 'Title – Datauppdatering' = ```
 			
-			VAR ds  = [Dataset – Last Refresh (Local)]
-			VAR etl = [Run – Latest EndedAt (Gold, Local)]
-			VAR ok  = [Run – Success? (Gold)]
-			VAR okTxt  = IF( ok=1, "OK", "FEL" )
-			VAR okIco  = IF( ok=1, "✅", "❌" )
+			VAR ds    = [Dataset – Last Refresh (Local)]
+			VAR etl   = [Run – Latest EndedAt (Gold, Local)]
+			VAR ok    = [Run – Success? (Gold)]
+			VAR okTxt = IF( ok = 1, "OK", "FEL" )
+			VAR okIco = IF( ok = 1, "✅", "❌" )
+			VAR warn  = [Status – Out-of-sync (Text)]
 			RETURN
-			"ETL (Gold): " & IF( ISBLANK(etl), "—", FORMAT(etl, "yyyy-MM-dd HH:mm") ) &
-			" • Status: " & okIco & " " & okTxt &
-			"  | Dataset: " & IF( ISBLANK(ds), "—", FORMAT(ds, "yyyy-MM-dd HH:mm") )
+			    "ETL (Gold): " & IF( ISBLANK(etl), "—", FORMAT(etl, "yyyy-MM-dd HH:mm") ) &
+			    " • Status: " & okIco & " " & okTxt &
+			    "  | Dataset: " & IF( ISBLANK(ds), "—", FORMAT(ds, "yyyy-MM-dd HH:mm") ) &
+			    IF( NOT ISBLANK(warn), "  " & warn, "" )
+			
+			```
 		displayFolder: Sida 1 - Översikt\Status
 		lineageTag: 38d0a217-6bb9-4da8-9a90-f15278fa11dd
 
@@ -2187,6 +1849,127 @@ table '_Measures (Diagnostics)'
 		lineageTag: a15e40f1-d150-4eb6-8db1-120275cb16a6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GDP – 4Q Sum (Real, Selected Base)' = ```
+			
+			VAR idx = [HICP – Index (At Date)]
+			RETURN IF( NOT ISBLANK(idx),
+			    DIVIDE( [GDP – 4Q Sum (At Date)], DIVIDE(idx, 100) )
+			)
+			
+			```
+		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		displayFolder: Sida 1 - Översikt
+		lineageTag: 4799f7b8-d477-4fbf-9589-f847f612f6a2
+
+	measure 'UI – Geo (Card)' = ```
+			
+			VAR g = SELECTEDVALUE( DimConfigGroup[GroupName] )          -- exakt 1 grupp vald?
+			VAR r = SELECTEDVALUE( DimRegion[Description] )             -- exakt 1 land valt?
+			VAR nCountries =
+			    COUNTROWS( VALUES( DimRegion[RegionSK] ) )              -- antal länder i aktuell filter­kontekst
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    NOT ISBLANK(g),                      -- om en grupp är vald (även om land också är valt)
+			        g,
+			    NOT ISBLANK(r),                      -- om ingen grupp är vald men exakt 1 land är valt
+			        r,
+			    nCountries >= 0,                     -- annars: visa hur många länder som är valda (inkl. “allt”)
+			        FORMAT( nCountries, "#,0" ) & " länder"
+			)
+			
+			```
+		displayFolder: Sida 1 - Översikt
+		lineageTag: 756c8567-1366-432d-a0e0-44ccdecd21a2
+
+	measure 'Context – Geo label' = ```
+			
+			VAR g        = SELECTEDVALUE( DimConfigGroup[GroupName] )
+			VAR nLander  = DISTINCTCOUNT( DimRegion[Description] )
+			VAR land     = SELECTEDVALUE( DimRegion[Description] )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    NOT ISBLANK(g),                       g,                               -- om grupp vald: visa gruppen (överskuggar land)
+			    NOT ISBLANK(land) && nLander = 1,     land,                            -- ett land valt
+			    nLander > 1,                          FORMAT(nLander, "#,0") & " länder",
+			    "Alla"
+			)
+			
+			```
+		displayFolder: Sida 8 - TT - BNP
+		lineageTag: 42025b17-649d-45c4-9dbc-fc28bb860e4c
+
+	measure 'GDP – 4Q Sum (Latest Common, Miljarder)' = ```
+			
+			VAR v = [GDP – 4Q Sum (At Latest Common)]
+			RETURN DIVIDE( v, 1000000000 )
+			
+			```
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
+		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
+		lineageTag: 69e0a879-9c10-4f43-b850-5b8fb21af4af
+
+	measure 'Rate – Short-term % (EOP ÷100)' = ```
+			
+			VAR v =
+			    CALCULATE (
+			        [Rate – Short-term % (Monthly/Quarterly)],
+			        LASTNONBLANK ( DimDate[Date], [Rate – Short-term % (Monthly/Quarterly)] )
+			    )
+			RETURN DIVIDE ( v, 100 )
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+		lineageTag: 4241e485-7877-4212-98d7-3dac82ab998d
+
+	measure 'Rate – YoY Δ (pp ÷100)' = ```
+			
+			VAR Curr =
+			    [Rate – Short-term % (EOP)]
+			VAR Prev =
+			    CALCULATE ( [Rate – Short-term % (EOP)], DATEADD ( DimDate[Date], -1, YEAR ) )
+			VAR Diff = Curr - Prev
+			RETURN DIVIDE( Diff, 100 )
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Sida 5 - Statsskuld & Räntor\FactMoneyMarketInterestRates\Rate
+		lineageTag: 90e2af1d-d1fd-4078-8d09-77f66c8b1a20
+
+	measure 'Unemployment – % of Population (At Date)' = ```
+			
+			DIVIDE( [Unemployment – Persons (EOP)], [Population – Persons (EOP,Annual)] )
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Sida 3 - Arbetsmarknad\FactUnemployment\Base
+		lineageTag: baad83a8-e6be-4d57-9c24-f41e6db92320
+
+	measure 'Title – Debt Ranking' =
+			
+			VAR n     = [TopN – Selected]
+			RETURN
+			"Top " & n & " – Statsskuld andel av BNP"
+		displayFolder: Sida 5 - Statsskuld & Räntor\Titles\V. 2
+		lineageTag: 79cb6734-5746-4cc4-96f5-aa46256f7bcf
+
+	measure 'Debt – Amount (EOP,Quarter, Bn)' = ```
+			
+			VAR amt =
+			    CALCULATE(
+			        [Debt – Amount (Quarterly)],
+			        LASTNONBLANK( DimDate[Date], [Debt – Amount (Quarterly)] )
+			    )
+			RETURN
+			    DIVIDE( amt, 1000000000 )
+			
+			```
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
+		displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
+		lineageTag: 1cd270aa-128f-45f3-ad7c-149d83fb0213
 
 	column Value
 		formatString: 0

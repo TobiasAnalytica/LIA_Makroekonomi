@@ -4,13 +4,53 @@
   "position": {
     "x": 285,
     "y": 18,
-    "z": 3,
+    "z": 3000,
     "height": 132,
-    "width": 264,
-    "tabOrder": 4
+    "width": 264
   },
   "visual": {
     "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures (Diagnostics)"
+                    }
+                  },
+                  "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
+                }
+              },
+              "queryRef": "_Measures (Diagnostics).GDP – YoY Δ % (4Q Sum at Latest Common)",
+              "nativeQueryRef": "BNP - årlig tillväxt",
+              "displayName": "BNP - årlig tillväxt"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures (Diagnostics)"
+                  }
+                },
+                "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
     "objects": {
       "labels": [
         {
@@ -19,13 +59,6 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
-                }
-              }
-            },
-            "labelPrecision": {
-              "expr": {
-                "Literal": {
-                  "Value": "0L"
                 }
               }
             },
@@ -44,6 +77,13 @@
                       "Value": "'#DDDDDD'"
                     }
                   }
+                }
+              }
+            },
+            "labelPrecision": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
                 }
               }
             }
@@ -80,7 +120,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "14D"
+                  "Value": "12D"
                 }
               }
             },

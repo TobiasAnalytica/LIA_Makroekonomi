@@ -4,10 +4,10 @@
   "position": {
     "x": 247.69230769230768,
     "y": 651,
-    "z": 18000,
+    "z": 15000,
     "height": 415,
     "width": 820,
-    "tabOrder": 13000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "lineClusteredColumnComboChart",
@@ -57,48 +57,6 @@
             }
           ]
         },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimDate"
-                        }
-                      },
-                      "Property": "YearQuarterText"
-                    }
-                  },
-                  "Function": 3
-                }
-              },
-              "queryRef": "Min(DimDate.YearQuarterText)",
-              "nativeQueryRef": "First YearQuarterText"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "DimRegion"
-                        }
-                      },
-                      "Property": "Description"
-                    }
-                  },
-                  "Function": 2
-                }
-              },
-              "queryRef": "CountNonNull(DimRegion.Description)",
-              "nativeQueryRef": "Count of Description1"
-            }
-          ]
-        },
         "Y": {
           "projections": [
             {
@@ -109,11 +67,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Rate – YoY Δ (pp)"
+                  "Property": "Rate – YoY Δ (pp ÷100)"
                 }
               },
-              "queryRef": "FactGovernmentDebt.Rate – YoY Δ (pp)",
-              "nativeQueryRef": "Rate – YoY Δ (pp)"
+              "queryRef": "_Measures (Diagnostics).Rate – YoY Δ (pp ÷100)",
+              "nativeQueryRef": "Korta räntan – årsförändring (procentenheter)",
+              "displayName": "Korta räntan – årsförändring (procentenheter)"
             }
           ]
         },
@@ -127,11 +86,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "Rate – Short-term % (EOP)"
+                  "Property": "Rate – Short-term % (EOP ÷100)"
                 }
               },
-              "queryRef": "FactGovernmentDebt.Rate – Short-term % (EOP)",
-              "nativeQueryRef": "Rate – Short-term % (EOP)"
+              "queryRef": "_Measures (Diagnostics).Rate – Short-term % (EOP ÷100)",
+              "nativeQueryRef": "Korta räntan",
+              "displayName": "Korta räntan"
             }
           ]
         }
@@ -149,7 +109,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             },
@@ -157,6 +117,60 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "1993D"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "secTitleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "secShowAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -177,13 +191,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Title – Rates (Level vs Change)"
+                "Literal": {
+                  "Value": "'Korta räntan - Nivå och årsförändring'"
                 }
               }
             }
@@ -202,13 +211,8 @@
             },
             "text": {
               "expr": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures (Diagnostics)"
-                    }
-                  },
-                  "Property": "Subtitle – Rates (Level vs Change)"
+                "Literal": {
+                  "Value": "''"
                 }
               }
             }
@@ -253,6 +257,19 @@
                       "Value": "'#ffffff'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'01dd191e2665c5412e63'"
                 }
               }
             }
