@@ -6,7 +6,8 @@
     "y": 112,
     "z": 3000,
     "height": 128,
-    "width": 320
+    "width": 320,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -22,12 +23,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "GDP – 4Q Sum (Latest Common, Miljarder)"
+                  "Property": "GDP – Value (EOP,Quarter, Bn EUR)"
                 }
               },
-              "queryRef": "_Measures (Diagnostics).GDP – 4Q Sum (Latest Common, Miljarder)",
-              "nativeQueryRef": "BNP (Miljarder)",
-              "displayName": "BNP (Miljarder)"
+              "queryRef": "_Measures (Diagnostics).GDP – Value (EOP,Quarter, Bn EUR)",
+              "nativeQueryRef": "BNP i miljarder",
+              "displayName": "BNP i miljarder"
             },
             {
               "field": {
@@ -37,12 +38,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "GDP – YoY Δ % (4Q Sum at Latest Common)"
+                  "Property": "GDP – YoY Δ % (Quarterly)"
                 }
               },
-              "queryRef": "_Measures (Diagnostics).GDP – YoY Δ % (4Q Sum at Latest Common)",
-              "nativeQueryRef": "BNP – årlig tillväxt",
-              "displayName": "BNP – årlig tillväxt"
+              "queryRef": "_Measures (Diagnostics).GDP – YoY Δ % (Quarterly)",
+              "nativeQueryRef": "BNP - årlig tillväxt",
+              "displayName": "BNP - årlig tillväxt"
             },
             {
               "field": {
@@ -67,13 +68,12 @@
                       "Entity": "_Measures (Diagnostics)"
                     }
                   },
-                  "Property": "GDP – Per Capita (Latest Common)"
+                  "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
                 }
               },
-              "queryRef": "_Measures (Diagnostics).GDP – Per Capita (Latest Common)",
-              "nativeQueryRef": "GDP per Capita",
-              "displayName": "GDP per Capita",
-              "format": "0"
+              "queryRef": "_Measures (Diagnostics).GDP – Per Capita (4Q Sum, EUR/Person)",
+              "nativeQueryRef": "BNP per capita",
+              "displayName": "BNP per capita"
             }
           ]
         }
@@ -88,7 +88,7 @@
                     "Entity": "_Measures (Diagnostics)"
                   }
                 },
-                "Property": "GDP – 4Q Sum (Latest Common, Miljarder)"
+                "Property": "GDP – Value (EOP,Quarter, Bn EUR)"
               }
             },
             "direction": "Descending"
@@ -128,5 +128,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3fb7e0a9439340b0b90a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "GDP – QoQ Δ % (At Latest Common)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b0c5c54e4aca660c25e0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "GDP – YoY Δ % (Quarterly)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4fa77f798240370c10ca",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "GDP – Value (EOP,Quarter, Bn EUR)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d03979766802105c5605",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures (Diagnostics)"
+              }
+            },
+            "Property": "GDP – Per Capita (4Q Sum, EUR/Person)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

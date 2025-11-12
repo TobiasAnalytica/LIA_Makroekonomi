@@ -437,7 +437,7 @@ table '_Measures (Diagnostics)'
 	measure 'GDP – Per Capita (4Q Sum, EUR/Person)' =
 			
 			DIVIDE ( [GDP – 4Q Sum (At Date)], [Population – Persons (EOP,Annual)] )
-		formatString: #,0.00\ "€";-#,0.00\ "€";#,0.00\ "€"
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
 		lineageTag: 2f03de7d-b2a9-49dd-9b8b-f28870d2c83a
 
@@ -967,7 +967,7 @@ table '_Measures (Diagnostics)'
 			RETURN
 			    100 * DIVIDE( [HICP – Index (At Date)] - prev, prev )
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Animated bar chart race (V2)
+		displayFolder: Sida 4 - Priser & Inflation\Animated bar chart race (V2)
 		lineageTag: 7055a3ce-4354-485d-8b2b-343c72bcf556
 
 	measure 'HICP – Index (At Date)' = ```
@@ -977,7 +977,7 @@ table '_Measures (Diagnostics)'
 			-- Basindex men BLANK om 0 (0 indikerar oftast "saknar data")
 			
 			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: f91764c0-7648-4a09-8c3a-7d43a18bafc6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -992,7 +992,7 @@ table '_Measures (Diagnostics)'
 			        CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
 			    )
 			-- Index på latest common (per entitet/land)
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 921be952-1569-4ed7-a2e4-ffb5b3576334
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1003,7 +1003,7 @@ table '_Measures (Diagnostics)'
 			RETURN
 			    CALCULATE ( [HICP – Index (At Date)], TREATAS ( { d }, DimDate[Date] ) )
 			-- EOP (end-of-period): index på senaste datum i urvalet
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: b12e9c73-f92e-49cb-a161-9624b46b5d5e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1012,7 +1012,7 @@ table '_Measures (Diagnostics)'
 			
 			CALCULATE ( [HICP – Index (At Date)], DATEADD ( DimDate[Date], -1, MONTH ) )
 			-- Föregående månad
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: be62bbe0-fcd1-4698-8da9-615f111d1cff
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1021,7 +1021,7 @@ table '_Measures (Diagnostics)'
 			
 			CALCULATE ( [HICP – Index (At Date)], DATEADD ( DimDate[Date], -1, YEAR ) )
 			-- Föregående år (samma månad)
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 589d5b21-019f-4041-bb13-aeb695f9f8af
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1033,14 +1033,14 @@ table '_Measures (Diagnostics)'
 			RETURN IF ( NOT ISBLANK ( prev3 ), POWER ( DIVIDE ( [HICP – Index (At Date)], prev3 ), 4 ) - 1 )
 			-- Annualiserad 3M: (Index_t / Index_{t-3})^(12/3) - 1  ⇒ bättre signal än 1m
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: af5c2eb9-bc32-42bc-be46-a860fc66f489
 
 	measure 'Inflation – 3M Annualized % (EOP)' =
 			
 			VAR d = [Latest Date – HICP]
 			RETURN CALCULATE( [Inflation – 3M Annualized %], TREATAS( { d }, DimDate[Date] ) )
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: ea56cd5c-9878-4e08-85f0-7df977b7798d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1061,7 +1061,7 @@ table '_Measures (Diagnostics)'
 			)
 			-- Annualiserad 3M på latest common: (Index_t / Index_{t-3})^(12/3) - 1
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 99f5eab1-205c-4d74-9988-747176a35dc9
 
 	measure 'Inflation – MoM %' =
@@ -1070,7 +1070,7 @@ table '_Measures (Diagnostics)'
 			RETURN DIVIDE ( [HICP – Index (At Date)] - prev, prev )
 			-- Månatlig inflation (MoM) i procent: (Index_t / Index_{t-1}) - 1
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: fa432931-17c2-48bf-96c5-2260680aea2c
 
 	measure 'Inflation – MoM % (12M MA)' =
@@ -1081,14 +1081,14 @@ table '_Measures (Diagnostics)'
 			)
 			-- 12M glidande medel av MoM (släta ut månadsbrus)
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 2a7b21f3-310b-4938-baf6-345350f63b4a
 
 	measure 'Inflation – MoM % (EOP)' =
 			
 			VAR d = [Latest Date – HICP]
 			RETURN CALCULATE( [Inflation – MoM %], TREATAS( { d }, DimDate[Date] ) )
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 43384434-32f8-4420-b65e-479261928982
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1109,7 +1109,7 @@ table '_Measures (Diagnostics)'
 			)
 			-- Månatlig inflation vid latest common: (Index_t / Index_{t-1}) - 1
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: f9835bdc-b13e-468a-b10c-4e8e6962f30f
 
 	measure 'Inflation – MoM Annualized %' =
@@ -1121,7 +1121,7 @@ table '_Measures (Diagnostics)'
 			)
 			-- Annualiserad MoM (”run rate” från senaste månad): (Index_t / Index_{t-1})^12 - 1
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 69379be2-f5aa-4698-8968-01dacc083704
 
 	measure 'Inflation – MoM Volatility (12M StDev)' =
@@ -1130,7 +1130,7 @@ table '_Measures (Diagnostics)'
 			RETURN
 			    STDEVX.S ( Set12, CALCULATE ( [Inflation – MoM %] ) )
 			-- Volatilitet: stdev för MoM senaste 12m (”hur hoppig” inflationen är)
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 43e211e3-b89b-4fb4-a579-49c372886133
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1140,7 +1140,7 @@ table '_Measures (Diagnostics)'
 			DIVIDE ( [HICP – Index (EOP)], 100 ) - 1
 			-- Ackumulerad prisförändring sedan valt basår (pedagogiskt mått; påverkas av DimUnit)
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 33aa06df-f8f7-45cf-a819-4ed7894401b2
 
 	measure 'Inflation – Since Base (Selected Unit) % (Latest Common)' =
@@ -1148,7 +1148,7 @@ table '_Measures (Diagnostics)'
 			VAR idx = [HICP – Index (EOP, Latest Common)]
 			RETURN IF ( NOT ISBLANK ( idx ), DIVIDE ( idx, 100 ) - 1 )
 			-- Pedagogiskt: ackumulerad prisförändring sedan valt basår (på latest common)
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 73e36040-e388-4f32-a507-5f2e7525f0e9
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1160,17 +1160,16 @@ table '_Measures (Diagnostics)'
 			RETURN IF ( NOT ISBLANK(curr) && NOT ISBLANK(prev), DIVIDE ( curr - prev, prev ) )
 			-- Tar bara med månader där både t och t-12 har data (>0). Annars BLANK.
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 054b330e-bda3-4247-b1b7-c937bc573636
 
 	measure 'Inflation – YoY % (EOP)' =
 			
 			VAR d = [Latest Date – HICP]
 			RETURN CALCULATE( [Inflation – YoY % (Data only)], TREATAS( { d }, DimDate[Date] ) )
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: ef3d90d9-6324-4598-bdcd-e191a7a139f3
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Inflation – YoY % (Latest Common)' =
 			
@@ -1188,7 +1187,7 @@ table '_Measures (Diagnostics)'
 			)
 			-- Årstakt vid latest common: (Index_t / Index_{t-12}) - 1
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Base
+		displayFolder: Sida 4 - Priser & Inflation\Base
 		lineageTag: 67ae4f32-15ec-4781-80a2-0a1362906189
 
 	measure 'Latest Date – HICP' =
@@ -1199,7 +1198,7 @@ table '_Measures (Diagnostics)'
 			)
 			-- Hjälp: senaste månad med värde i vald kontext
 		formatString: General Date
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Dates
+		displayFolder: Sida 4 - Priser & Inflation\Dates
 		lineageTag: cd2ed67e-84d4-4f9f-872f-e96ed15fa6fa
 
 	measure 'Latest Date – HICP (Common)' =
@@ -1224,14 +1223,14 @@ table '_Measures (Diagnostics)'
 			RETURN MAXX ( DatesWithAll, DimDate[Date] )
 			-- Senaste månad där ALLA valda regioner har HICP-värde
 		formatString: General Date
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Dates
+		displayFolder: Sida 4 - Priser & Inflation\Dates
 		lineageTag: 86557ad1-d3fc-4277-b8c6-7de1ef904ebd
 
 	measure 'Latest Date Label – HICP (Common)' =
 			
 			FORMAT ( [Latest Date – HICP (Common)], "yyyy-MM" )
 			-- Etikett för visning
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Dates
+		displayFolder: Sida 4 - Priser & Inflation\Dates
 		lineageTag: e3b54c68-4d5d-455c-9f31-f6236311c645
 
 	measure 'Inflation – YoY % (BG Color · Target 2%)' = ```
@@ -1259,7 +1258,7 @@ table '_Measures (Diagnostics)'
 			)
 			
 			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		displayFolder: Sida 4 - Priser & Inflation\Heatmap
 		lineageTag: 22e964a3-19ef-4291-9f3c-ea4428d21f7b
 
 	measure 'Inflation – YoY % (Font Color · Target 2%)' = ```
@@ -1284,7 +1283,7 @@ table '_Measures (Diagnostics)'
 			)
 			
 			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		displayFolder: Sida 4 - Priser & Inflation\Heatmap
 		lineageTag: 1de7f410-e981-4d90-a4ae-5b0461a1ee36
 
 	measure 'Inflation – MoM % (CP00, Latest Common)' =
@@ -1292,7 +1291,7 @@ table '_Measures (Diagnostics)'
 			CALCULATE ( [Inflation – MoM % (Latest Common)], KEEPFILTERS ( DimConsumptionCategory[ConsumptionCategoryAK] = "CP00" ) )
 			-- ”Headline” låst till total CP00 (bra för KPI som alltid ska vara total)
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\KPI
+		displayFolder: Sida 4 - Priser & Inflation\KPI
 		lineageTag: 90972c36-cdb4-46c7-a838-5957aa4123cb
 
 	measure 'Inflation – YoY % (CP00, Latest Common)' =
@@ -1300,7 +1299,7 @@ table '_Measures (Diagnostics)'
 			CALCULATE ( [Inflation – YoY % (Latest Common)], KEEPFILTERS ( DimConsumptionCategory[ConsumptionCategoryAK] = "CP00" ) )
 			-- ”Headline” låst till total CP00 (bra för KPI som alltid ska vara total)
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\KPI
+		displayFolder: Sida 4 - Priser & Inflation\KPI
 		lineageTag: 28810635-6b44-4845-8113-6f5743fad4b8
 
 	measure 'Title – Inflation' = ```
@@ -1310,7 +1309,7 @@ table '_Measures (Diagnostics)'
 			"Inflation " & selMeasure & " över tid"
 			
 			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Line and chart bar (V1)
+		displayFolder: Sida 4 - Priser & Inflation\Line and chart bar (V1)
 		lineageTag: 82fb5133-a83e-4dd9-a66e-fb98b2709461
 
 	measure 'Latest Date – Common (Unemp+Emp+Vac)' =
@@ -1835,7 +1834,7 @@ table '_Measures (Diagnostics)'
 			
 			```
 		formatString: 0.00
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		displayFolder: Sida 4 - Priser & Inflation\Heatmap
 		lineageTag: a34a6217-e0ab-47a3-8bee-4d831ad6008b
 
 	measure 'Target – As Decimal' = ```
@@ -1845,7 +1844,7 @@ table '_Measures (Diagnostics)'
 			-- Hjälpfunktion i måttet: mål i decimal (0–1)
 			
 			```
-		displayFolder: Sida 4 - Priser & Inflation (HICP)\Heatmap
+		displayFolder: Sida 4 - Priser & Inflation\Heatmap
 		lineageTag: a15e40f1-d150-4eb6-8db1-120275cb16a6
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
@@ -1970,6 +1969,70 @@ table '_Measures (Diagnostics)'
 		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
 		displayFolder: Sida 5 - Statsskuld & Räntor\FactGovernmentDebt\Base
 		lineageTag: 1cd270aa-128f-45f3-ad7c-149d83fb0213
+
+	measure 'Inflation – MoM % (At Date)' = ```
+			
+			VAR idx_t = [HICP – Index (At Date)]
+			VAR idx_p = CALCULATE( [HICP – Index (At Date)], DATEADD( DimDate[Date], -1, MONTH ) )
+			RETURN DIVIDE( idx_t - idx_p, idx_p )
+			-- Månadsförändring i % (Index t / Index t-1 - 1)
+			
+			```
+		displayFolder: Sida 4 - Priser & Inflation\Scatter
+		lineageTag: f2fd51c9-1eaa-49f5-a9c6-e589852c52be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inflation – MoM Volatility (12M StDev, Latest Common)' =
+			
+			VAR dEnd = [Latest Date – HICP (Common)]
+			VAR t12 = DATESINPERIOD( DimDate[Date], dEnd, -12, MONTH )
+			VAR tbl =
+			    ADDCOLUMNS(
+			        t12,
+			        "@mom", CALCULATE( [Inflation – MoM % (At Date)] )
+			    )
+			RETURN STDEVX.P( tbl, [@mom] )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Sida 4 - Priser & Inflation\Scatter
+		lineageTag: fe060711-4422-4b37-8467-9f56c993fcef
+
+	measure 'Heat – GDP YoY Color' =
+			
+			VAR v = [GDP – YoY Δ % (Quarterly)]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(v), BLANK(),
+			    v <= -0.08, "#118DFF",   -- lägst tillväxt (eller mest negativ)
+			    v <= -0.04, "#1180F3",
+			    v <= -0.02, "#1172E7",
+			    v <=  0.00, "#1165DB",
+			    v <=  0.01, "#1258CE",
+			    v <=  0.02, "#124BC2",
+			    v <=  0.03, "#123EB6",
+			    v <=  0.04, "#1230AA",
+			               "#12239E"    -- högst tillväxt
+			)
+		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
+		lineageTag: eebe904c-8ae0-4003-a7b3-c19607904aed
+
+	measure 'Heat – GDP YoY FontColor' =
+			
+			VAR v = [GDP – YoY Δ % (Quarterly)]
+			RETURN IF( v >= 0.03, "#FFFFFF", "#000000" )
+		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
+		lineageTag: 13f9a8e0-bfb4-4d83-9951-6da10d41946b
+
+	measure 'GDP – Value (EOP,Quarter, Bn EUR)' = ```
+			
+			// End-of-period i miljarder euro
+			DIVIDE( [GDP – Value (EOP,Quarter)], 1e9 )
+			
+			```
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
+		displayFolder: Sida 2 - BNP & Ekonomisk Tillväxt\Base
+		lineageTag: 823028f3-e4b9-4dc4-81f7-2ee33d6e54d8
 
 	column Value
 		formatString: 0
